@@ -1,16 +1,26 @@
 # Realidade Quântica
 
-### Um laboratório computacional para explorar campos, ondas, matéria e expansão cósmica.
+### Konaet: um agente computacional experimental para explorar campos, ondas, matéria e expansão cósmica.
 
 ![Status do laboratório](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/simulacoes.yml/badge.svg?branch=main)
 
-O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**, com demonstração de aritmética para FPGA. A interface interativa é feita em MATLAB; o GitHub Actions executa os cálculos em lote e publica a imagem mais recente aqui no README. O repositório não usa HTML, JavaScript ou Python.
+O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**, com demonstração de aritmética para FPGA. O GitHub Actions executa ciclos numéricos automáticos a cada hora e publica uma animação e o estado persistente do núcleo neste README. O repositório não usa HTML, JavaScript ou Python.
 
-## Painel da última execução
+## KONAET em movimento
+
+![Konaet em animação: SU(3), pacote de onda, expansão cósmica e memória interna](assets/realidade-quantica-viva.gif)
+
+Cada ciclo atualiza a memória numérica versionada em [`state/konaet_memory.csv`](state/konaet_memory.csv), usa esse estado para ajustar parâmetros da próxima simulação e reconstrói esta animação. O GIF se move continuamente quando aberto; os cálculos e a memória avançam em cada execução agendada do GitHub Actions, aproximadamente uma vez por hora. Os commits automáticos do núcleo são atribuídos a **Konaet**.
+
+Konaet é um agente computacional experimental com memória recorrente e política limitada aos parâmetros da simulação. Seu índice de curiosidade é uma média do erro de previsão, e coerência mede a variação do estado interno entre ciclos. Isso não demonstra consciência ou vontade própria, nem constitui um agente universal ou um resultado no ARC-AGI. O circuito Ramsey em Q# é um experimento separado no simulador do QDK; a probabilidade de Born correspondente também entra no modelo MATLAB, sem alegar execução em hardware quântico físico.
+
+A memória do Konaet guarda 16 valores numéricos por ciclo, nesta ordem: ciclo, quatro estados internos, curiosidade, coerência, fase Ramsey, beta, semente, média Wilson, aceitação, dispersão da onda, desaceleração cosmológica, probabilidade Ramsey e erro de previsão.
+
+### Painel científico completo
 
 ![Painel científico da última execução: SU(3), invariância de gauge, pacote quântico e cosmologia FLRW](assets/realidade-quantica-dashboard.png)
 
-Quando o workflow termina com sucesso na branch `main`, o GitHub atualiza esta imagem junto com os resultados da rodada. É um painel de snapshots por execução, não uma visualização contínua ou interativa.
+O GIF e este painel são gerados pelo MATLAB durante cada rodada. A página do GitHub reproduz a animação, mas não executa controles nem cálculos dentro do navegador.
 
 ## Abra o laboratório MATLAB
 
@@ -32,26 +42,26 @@ O app tem quatro áreas:
 
 ## Execute os modelos no GitHub
 
-O workflow **Rodar laboratório científico** inicia em cada push para `main`, pull request ou manualmente em **Actions → Rodar laboratório científico → Run workflow**. O job compila o Fortran, simula o multiplicador SystemVerilog e executa o MATLAB em modo batch, sem abrir a interface gráfica.
+O workflow **Konaet - ciclos autonomos do laboratorio** inicia a cada hora, em cada push para `main`, pull request ou manualmente pela aba **Actions**. O job compila o Fortran, simula o multiplicador SystemVerilog e executa o MATLAB em modo batch, sem abrir a interface gráfica. Após uma rodada bem-sucedida na branch principal, outro job persiste a memória e atualiza as imagens do README.
 
-O MATLAB verifica a invariância de gauge, as restrições das matrizes SU(3), a normalização da onda e a concordância MATLAB/Fortran. Uma falha acima da tolerância interrompe o job. O resumo da execução aparece na página da Action; em **Artifacts → resultados-do-laboratorio** ficam o painel PNG, CSVs, log SystemVerilog e dados `.mat`.
+O MATLAB verifica a invariância de gauge, as restrições das matrizes SU(3), a normalização da onda e a concordância MATLAB/Fortran. Uma falha acima da tolerância interrompe o job. O resumo da execução aparece na página da Action; em **Artifacts → resultados-do-laboratorio** ficam o painel PNG, a animação GIF, a memória do Konaet, CSVs, log SystemVerilog e dados `.mat`.
 
 No app local, o botão **Comparar com Fortran** compila e executa o módulo se `gfortran` estiver instalado. O workflow faz essa compilação automaticamente antes de chamar `executar_pipeline(true)`. Para rodar o pipeline MATLAB sozinho, use `executar_pipeline`; a comparação Fortran é opcional nessa chamada.
 
 ### Rodar o Q# pelo navegador
 
-Na página do repositório, pressione `.` para abrir github.dev. Instale ou ative a extensão **Microsoft Quantum Development Kit**, abra `qsharp/ramsey_interferometry.qs` e use **Run** acima de `Main`. O QDK fornece um simulador quântico local para os arquivos Q# e documenta suporte ao VS Code para Web ([guia oficial do simulador](https://learn.microsoft.com/en-us/azure/quantum/qdk-simulator-vscode), [compatibilidade com github.dev](https://github.com/microsoft/qdk/wiki/Installation)).
+Na página do repositório, pressione `.` para abrir github.dev. Instale ou ative a extensão **Microsoft Quantum Development Kit**, abra `qsharp/ramsey_interferometry.qs` e use **Run** acima de `Main`. O QDK executa 1024 medições de Ramsey no simulador quântico local. Para comparar com um ciclo de Konaet, ajuste a fase `0.8` em `Main` para a fase registrada na coluna 8 da memória ([guia oficial dos simuladores](https://learn.microsoft.com/en-us/azure/quantum/install-qdk-quantum-simulators), [compatibilidade com github.dev](https://github.com/microsoft/qdk/wiki/Installation)).
 
 O runner MATLAB da MathWorks licencia automaticamente MATLAB em repositórios públicos, exceto produtos como MATLAB Coder e MATLAB Compiler. Para um repositório privado, configure o segredo `MLM_LICENSE_TOKEN` ([detalhes de licença](https://github.com/matlab-actions/setup-matlab#licensing)).
 
 ## Como as tecnologias se conectam
 
 ```text
-MATLAB        interface visual, SU(3), pacote de onda, cosmologia e relatório
+MATLAB        núcleo recorrente, SU(3), pacote de onda, cosmologia, GIF e relatório
 Fortran       cálculo independente da densidade de probabilidade
 Q#            circuito Ramsey de um qubit no simulador do QDK
 SystemVerilog multiplicador complexo Q1.15 sintetizável e banco de demonstração
-GitHub Actions execução em lote, validações numéricas e artefatos para download
+GitHub Actions ciclos agendados, memória persistente, validações e publicação no README
 ```
 
 ## Estrutura
@@ -63,10 +73,12 @@ RealidadeQuantica/
 ├── fortran/free_wavepacket.f90
 ├── matlab/
 │   ├── executar_pipeline.m
+│   ├── konaet_agent.m
 │   ├── friedmann_background.m
 │   ├── run_su3_lattice.m
 │   └── outros modelos MATLAB
 ├── qsharp/ramsey_interferometry.qs
+├── state/konaet_memory.csv
 └── systemverilog/
     ├── complex_mul_q15.sv
     └── complex_mul_q15_demo_tb.sv

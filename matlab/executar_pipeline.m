@@ -12,15 +12,28 @@ end
 project_dir = fileparts(fileparts(mfilename('fullpath')));
 matlab_dir = fullfile(project_dir, 'matlab');
 artifact_dir = fullfile(project_dir, 'artifacts');
+state_dir = fullfile(project_dir, 'state');
 addpath(matlab_dir);
 if ~exist(artifact_dir, 'dir')
     mkdir(artifact_dir);
 end
-
-beta = 5.5;
+memory_path = fullfile(state_dir, 'konaet_memory.csv');
+if ~isfile(memory_path)
+    error('Memoria inicial do agente nao encontrada em %s.', memory_path);
+end
+memory_history = readmatrix(memory_path);
+if isempty(memory_history) || size(memory_history, 2) ~= 16
+    error('Memoria do agente precisa conter 16 colunas numericas.');
+end
+[policy, ~] = konaet_agent(memory_history);
+cycle = policy.cycle;
+beta = policy.beta;
 measurement_count = 80;
-step_size = 0.35;
-seed = 7;
+step_size = policy.step_size;
+seed = policy.seed;
+ramsey_phase = policy.ramsey_phase;
+ramsey_probability = policy.ramsey_probability;
+
 [wilson_history, plaquettes, acceptance, links, lattice] = ...
     run_su3_lattice(beta, measurement_count, step_size, seed, []);
 [gauge_difference, plaquettes_before, plaquettes_after] = ...
@@ -56,6 +69,17 @@ if abs(probability_integral - 1) > 1e-6
     error('Normalizacao da onda excedeu a tolerancia: integral %.12f.', ...
         probability_integral);
 end
+
+observations = struct('wilson_mean', mean(plaquettes), ...
+    'acceptance', acceptance, 'wave_spread', sigma_t / sigma_0, ...
+    'deceleration', cosmology.present_deceleration);
+[~, agent_memory] = konaet_agent(memory_history, observations);
+curiosity = agent_memory(6);
+coherence = agent_memory(7);
+prediction_error = agent_memory(16);
+memory_history = [memory_history; agent_memory];
+writematrix(memory_history, memory_path);
+writematrix(memory_history, fullfile(artifact_dir, 'konaet_memory.csv'));
 
 writematrix([(1:numel(wilson_history)).', wilson_history], ...
     fullfile(artifact_dir, 'wilson_history.csv'));
@@ -107,6 +131,11 @@ fprintf(summary_file, 'Wave probability integral: %.12f\n', probability_integral
 fprintf(summary_file, 'Cosmic age H0^-1: %.12f\n', cosmology.age_hubble_units);
 fprintf(summary_file, 'Omega_k: %.12f, present q0: %.12f\n', ...
     cosmology.omega_k, cosmology.present_deceleration);
+fprintf(summary_file, 'Autonomous cycle: %.0f\n', cycle);
+fprintf(summary_file, 'Agent curiosity/coherence: %.6f / %.6f\n', ...
+    curiosity, coherence);
+fprintf(summary_file, 'Ramsey phase and ideal P(1): %.8f / %.8f\n', ...
+    ramsey_phase, ramsey_probability);
 if ~isnan(maximum_fortran_error)
     fprintf(summary_file, 'MATLAB/Fortran max error: %.6e\n', maximum_fortran_error);
 end
@@ -125,13 +154,19 @@ end
 fprintf('Cosmic age = %.6f H0^-1, Omega_k = %.6f, q0 = %.6f\n', ...
     cosmology.age_hubble_units, cosmology.omega_k, ...
     cosmology.present_deceleration);
+fprintf('Autonomous cycle %.0f: curiosity %.4f, coherence %.4f\n', ...
+    cycle, curiosity, coherence);
 render_dashboard(artifact_dir, wilson_history, plaquettes, ...
     plaquettes_before, plaquettes_after, x, probability, fortran_data, cosmology);
+render_live_animation(artifact_dir, wilson_history, x, sigma_0, k_0, ...
+    cosmology, memory_history(1:end - 1, :), agent_memory);
 save(fullfile(artifact_dir, 'modelos.mat'), 'wilson_history', ...
     'plaquettes', 'acceptance', 'gauge_difference', 'sigma_0', 'k_0', ...
     'unitarity_error', 'determinant_error', 'time', 'x', 'psi', ...
     'probability', 'probability_integral', 'sigma_t', ...
-    'maximum_fortran_error', 'cosmology');
+    'maximum_fortran_error', 'cosmology', 'agent_memory', ...
+    'ramsey_phase', 'ramsey_probability', 'curiosity', ...
+    'coherence', 'prediction_error');
 fprintf('Numerical outputs saved under %s\n', artifact_dir);
 end
 
@@ -228,4 +263,183 @@ ax.FontName = 'Consolas';
 ax.FontSize = 10;
 ax.Box = 'off';
 grid(ax, 'on');
+end
+
+function render_live_animation(output_dir, wilson_history, x, sigma_0, k_0, ...
+    cosmology, identity_history, agent_memory)
+frame_count = 18;
+frame_delay = 0.12;
+cycle = agent_memory(1);
+background = [0.025, 0.035, 0.055];
+panel = [0.055, 0.073, 0.100];
+text_color = [0.900, 0.940, 0.970];
+muted = [0.510, 0.620, 0.710];
+grid_color = [0.140, 0.210, 0.270];
+cyan = [0.180, 0.860, 0.920];
+violet = [0.710, 0.590, 1.000];
+amber = [1.000, 0.670, 0.340];
+green = [0.270, 0.930, 0.640];
+identity_colors = [cyan; violet; amber; green];
+
+frame_dir = tempname(output_dir);
+mkdir(frame_dir);
+frame_cleanup = onCleanup(@() remove_animation_frames(frame_dir)); %#ok<NASGU>
+animation = figure('Visible', 'off', 'Color', background, ...
+    'Position', [40, 60, 1480, 850], 'Name', 'Konaet');
+figure_cleanup = onCleanup(@() close_animation_figure(animation)); %#ok<NASGU>
+layout = tiledlayout(animation, 2, 2, ...
+    'TileSpacing', 'compact', 'Padding', 'compact');
+title(layout, sprintf('KONAET  /  CICLO %05.0f  /  TRAJETORIA DA SIMULACAO', ...
+    cycle), 'Color', text_color, 'FontName', 'Consolas', ...
+    'FontWeight', 'bold', 'FontSize', 15);
+
+ax_wilson = nexttile(layout, 1);
+wilson_line = plot(ax_wilson, NaN, NaN, 'Color', cyan, 'LineWidth', 2.1);
+hold(ax_wilson, 'on');
+plot(ax_wilson, 1:numel(wilson_history), wilson_history, ...
+    'Color', [0.075, 0.360, 0.385], 'LineWidth', 0.7);
+hold(ax_wilson, 'off');
+xlim(ax_wilson, [1, numel(wilson_history)]);
+wilson_span = max(wilson_history) - min(wilson_history);
+if wilson_span < 1e-6
+    wilson_span = 0.1;
+end
+ylim(ax_wilson, [min(wilson_history) - 0.12 * wilson_span, ...
+    max(wilson_history) + 0.12 * wilson_span]);
+title(ax_wilson, 'CAMPO DE GAUGE  /  LOOP DE WILSON', 'Color', text_color);
+xlabel(ax_wilson, 'Medicoes Monte Carlo', 'Color', muted);
+ylabel(ax_wilson, '<W>', 'Color', muted);
+style_animation_axes(ax_wilson, panel, muted, grid_color);
+
+ax_wave = nexttile(layout, 2);
+wave_line = plot(ax_wave, x, zeros(size(x)), ...
+    'Color', violet, 'LineWidth', 2.0);
+xlim(ax_wave, [min(x), max(x)]);
+ylim(ax_wave, [0, 0.65]);
+title(ax_wave, 'CAMPO QUANTICO  /  PACOTE DE ONDA', 'Color', text_color);
+xlabel(ax_wave, 'Posicao x', 'Color', muted);
+ylabel(ax_wave, '|psi(x,t)|^2', 'Color', muted);
+style_animation_axes(ax_wave, panel, muted, grid_color);
+
+ax_cosmos = nexttile(layout, 3);
+plot(ax_cosmos, cosmology.dimensionless_time, cosmology.scale_factor, ...
+    'Color', [0.400, 0.270, 0.140], 'LineWidth', 1.0);
+hold(ax_cosmos, 'on');
+cosmic_marker = plot(ax_cosmos, NaN, NaN, 'o', ...
+    'Color', amber, 'MarkerFaceColor', amber, 'MarkerSize', 8);
+hold(ax_cosmos, 'off');
+xlim(ax_cosmos, [0, cosmology.age_hubble_units]);
+ylim(ax_cosmos, [min(cosmology.scale_factor), 1.05]);
+set(ax_cosmos, 'YScale', 'log');
+title(ax_cosmos, 'COSMOLOGIA  /  EXPANSAO FLRW', 'Color', text_color);
+xlabel(ax_cosmos, 'Tempo cosmico H0 t', 'Color', muted);
+ylabel(ax_cosmos, 'Fator de escala a(t)', 'Color', muted);
+style_animation_axes(ax_cosmos, panel, muted, grid_color);
+
+ax_identity = nexttile(layout, 4);
+hold(ax_identity, 'on');
+identity_lines = gobjects(1, 4);
+for state_index = 1:4
+    identity_lines(state_index) = plot(ax_identity, NaN, NaN, ...
+        'Color', identity_colors(state_index, :), 'LineWidth', 1.7);
+end
+hold(ax_identity, 'off');
+xlim(ax_identity, [max(0, cycle - 20), max(1, cycle)]);
+ylim(ax_identity, [-1.05, 1.05]);
+title(ax_identity, sprintf('MEMORIA DO AGENTE  /  COERENCIA %.3f', ...
+    agent_memory(7)), 'Color', text_color);
+xlabel(ax_identity, 'Ciclos persistidos', 'Color', muted);
+ylabel(ax_identity, 'Estado interno', 'Color', muted);
+legend(ax_identity, {'s1', 's2', 's3', 's4'}, ...
+    'TextColor', text_color, 'Color', panel, ...
+    'Location', 'southoutside', 'Orientation', 'horizontal');
+style_animation_axes(ax_identity, panel, muted, grid_color);
+
+gif_path = fullfile(output_dir, 'realidade-quantica-viva.gif');
+color_map = make_332_palette();
+for frame_index = 1:frame_count
+    progress = (frame_index - 1) / (frame_count - 1);
+    measurement_index = max(1, min(numel(wilson_history), ...
+        round(progress * (numel(wilson_history) - 1)) + 1));
+    set(wilson_line, 'XData', 1:measurement_index, ...
+        'YData', wilson_history(1:measurement_index));
+
+    wave_time = 2.4 * progress;
+    [~, wave_probability] = free_wavepacket(x, sigma_0, k_0, wave_time);
+    set(wave_line, 'YData', wave_probability);
+
+    cosmic_index = max(1, min(numel(cosmology.dimensionless_time), ...
+        round(progress * (numel(cosmology.dimensionless_time) - 1)) + 1));
+    set(cosmic_marker, 'XData', cosmology.dimensionless_time(cosmic_index), ...
+        'YData', cosmology.scale_factor(cosmic_index));
+
+    if isempty(identity_history)
+        visible_history = agent_memory;
+    else
+        visible_history = identity_history( ...
+            max(1, size(identity_history, 1) - 19):end, :);
+    end
+    fractional_state = identity_history_value(visible_history, ...
+        agent_memory, progress);
+    for state_index = 1:4
+        set(identity_lines(state_index), ...
+            'XData', [visible_history(:, 1); cycle - 1 + progress], ...
+            'YData', [visible_history(:, state_index + 1); ...
+                fractional_state(state_index)]);
+    end
+
+    drawnow;
+    frame_path = fullfile(frame_dir, sprintf('frame-%03d.png', frame_index));
+    exportgraphics(animation, frame_path, 'Resolution', 90);
+    rgb = imread(frame_path);
+    red = bitshift(rgb(:, :, 1), -5);
+    green_channel = bitshift(rgb(:, :, 2), -5);
+    blue = bitshift(rgb(:, :, 3), -6);
+    indexed = bitor(bitor(bitshift(red, 5), ...
+        bitshift(green_channel, 2)), blue);
+    if frame_index == 1
+        imwrite(indexed, color_map, gif_path, 'gif', ...
+            'LoopCount', inf, 'DelayTime', frame_delay);
+    else
+        imwrite(indexed, color_map, gif_path, 'gif', ...
+            'WriteMode', 'append', 'DelayTime', frame_delay);
+    end
+end
+end
+
+function state = identity_history_value(history, current_memory, progress)
+previous_state = history(end, 2:5);
+current_state = current_memory(2:5);
+state = (1 - progress) .* previous_state + progress .* current_state;
+end
+
+function color_map = make_332_palette()
+palette_index = uint8((0:255).');
+red = double(bitshift(palette_index, -5)) / 7;
+green = double(bitand(bitshift(palette_index, -2), 7)) / 7;
+blue = double(bitand(palette_index, 3)) / 3;
+color_map = [red, green, blue];
+end
+
+function style_animation_axes(ax, panel, muted, grid_color)
+ax.Color = panel;
+ax.XColor = muted;
+ax.YColor = muted;
+ax.GridColor = grid_color;
+ax.FontName = 'Consolas';
+ax.FontSize = 9;
+ax.Box = 'off';
+grid(ax, 'on');
+end
+
+function remove_animation_frames(frame_dir)
+if isfolder(frame_dir)
+    rmdir(frame_dir, 's');
+end
+end
+
+function close_animation_figure(animation)
+if isgraphics(animation)
+    close(animation);
+end
 end

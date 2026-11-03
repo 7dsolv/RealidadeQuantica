@@ -8,7 +8,17 @@ operation RamseyShot(phase : Double) : Result {
     return MResetZ(qubit);
 }
 
+operation RamseyCounts(phase : Double, shots : Int) : Int {
+    mutable ones = 0;
+    for shot in 1..shots {
+        if RamseyShot(phase) == One {
+            set ones += 1;
+        }
+    }
+    return ones;
+}
+
 @EntryPoint()
-operation Main() : Result {
-    return RamseyShot(0.8);
+operation Main() : Int {
+    return RamseyCounts(0.8, 1024);
 }

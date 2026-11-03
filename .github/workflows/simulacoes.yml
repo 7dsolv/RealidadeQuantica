@@ -1,10 +1,12 @@
-name: Rodar laboratorio cientifico
+name: Konaet - ciclos autonomos do laboratorio
 
 on:
   push:
     branches: [main]
   pull_request:
   workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
 
 permissions:
   contents: read
@@ -62,11 +64,11 @@ jobs:
             cat artifacts/summary.txt
             echo '```'
             echo
-            echo 'O painel PNG, os dados CSV, o arquivo MAT e a simulacao SystemVerilog estao em **Actions → Artifacts → resultados-do-laboratorio**.'
+            echo 'O painel PNG, a animacao GIF, a memoria do Konaet, os dados CSV, o arquivo MAT e a simulacao SystemVerilog estao em **Actions → Artifacts → resultados-do-laboratorio**.'
           } >> "$GITHUB_STEP_SUMMARY"
 
   atualizar-painel:
-    name: Atualizar imagem do README
+    name: Konaet - memoria e graficos do README
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: executar-modelos
     runs-on: ubuntu-latest
@@ -86,12 +88,14 @@ jobs:
         run: |
           mkdir -p assets
           cp artifacts/realidade-quantica-dashboard.png assets/realidade-quantica-dashboard.png
-          git add -- assets/realidade-quantica-dashboard.png
+          cp artifacts/realidade-quantica-viva.gif assets/realidade-quantica-viva.gif
+          cp artifacts/konaet_memory.csv state/konaet_memory.csv
+          git add -- assets/realidade-quantica-dashboard.png assets/realidade-quantica-viva.gif state/konaet_memory.csv
           if git diff --cached --quiet; then
             echo 'O painel do README já corresponde a esta execução.'
             exit 0
           fi
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -m 'Atualiza painel visual [skip ci]'
+          git config user.name 'Konaet'
+          git config user.email 'konaet-agent@realidadequantica.invalid'
+          git commit -m 'Konaet evolui memoria e visualizacao [skip ci]'
           git push origin HEAD:main
