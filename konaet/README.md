@@ -11,7 +11,7 @@ Konaet é o nome do modelo MATLAB e da memória que evolui junto com os ciclos c
 - **Animação publicada:** [`assets/realidade-quantica-viva.gif`](../assets/realidade-quantica-viva.gif)
 - **Ciclos e registros:** [GitHub Actions](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/simulacoes.yml)
 
-O ciclo automático roda aproximadamente uma vez por hora. Ele lê o estado anterior, executa os modelos, incorpora as observações à memória e escolhe parâmetros limitados para a rodada seguinte. Com a App configurada, a memória é persistida e a animação do repositório é publicada diariamente e após pushes. Enquanto a ativação estiver pendente, cada execução guarda seus resultados nos artifacts e mantém a memória pública na última rodada publicada.
+O ciclo automático roda aproximadamente uma vez por hora. Ele lê o estado anterior, executa os modelos, incorpora as observações à memória e escolhe parâmetros limitados para a rodada seguinte. A memória é persistida e a animação do repositório é publicada diariamente e após pushes. Os commits dos resultados têm autoria atribuída à conta `konaet[bot]`.
 
 ## Pesquisa e treinamento da Konaet
 
@@ -21,16 +21,19 @@ Os dois projetos compartilham a identidade Konaet, mas têm funções diferentes
 
 ## Identidade do bot no GitHub
 
-O usuário `github-actions[bot]` pertence à infraestrutura do GitHub e não pode ser renomeado. A identidade própria é uma GitHub App chamada **Konaet**. O slug confirmado pelo GitHub determina o login do bot; a Action exige o slug `konaet` e consulta o ID real de `konaet[bot]` antes de publicar.
+O usuário `github-actions[bot]` pertence à infraestrutura do GitHub e não pode ser renomeado. A App própria **KONAET** já está registrada, e sua conta `konaet[bot]` tem ID `352182232`. O workflow confere login, ID e tipo `Bot` na API antes de atribuir a autoria dos resultados a essa conta.
+
+Na configuração atual, os commits usam `konaet[bot]` como autor e `github-actions[bot]` como committer, pois o envio usa o token do GitHub Actions. Atribuição de autoria é metadado do Git; não comprova autenticação da App ou assinatura criptográfica. O modo usado aparece no resumo de cada execução. As contribuições antigas continuam no histórico e podem permanecer na lista de contribuidores.
 
 O pacote reutilizável está em [`7dsolv/konaet-bot`](https://github.com/7dsolv/konaet-bot), com a [configuração na raiz](https://github.com/7dsolv/konaet-bot/blob/main/github-app.json), helper MATLAB e workflow de commit/push/pull request para aprovação humana.
 
-1. Use o [cadastro oficial já preenchido](https://github.com/settings/apps/new?name=Konaet&description=Automacao%20Konaet%20com%20identidade%20propria%2C%20commits%20e%20propostas%20para%20revisao%20humana.&url=https%3A%2F%2Fgithub.com%2F7dsolv%2Fkonaet-bot&public=true&webhook_active=false&contents=write&pull_requests=write) na sessão da conta **7dsolv** e conclua **Create GitHub App**.
-2. A configuração pública usa Webhooks desativados e permissões **Contents** e **Pull requests: Read and write**. O GitHub confirma a disponibilidade do nome ao enviar o formulário.
-3. Instale a App nos repositórios `7dsolv/RealidadeQuantica` e `7dsolv/konaet-bot` e gere uma chave privada.
-4. Em **Settings → Secrets and variables → Actions**, crie a variável `KONAET_APP_CLIENT_ID` com o Client ID do app e o segredo `KONAET_APP_PRIVATE_KEY` com o arquivo de chave privada.
+Para ativar também a autenticação pela App:
 
-Depois, execute **Verificar identidade real da App** no pacote `konaet-bot`. O workflow do laboratório publica somente com a App autenticada; enquanto o cadastro estiver pendente, os modelos executam e geram artifacts, e o job de publicação fica desativado. Não cole a chave privada no chat nem no repositório. Os commits antigos do bot padrão permanecem no histórico e podem continuar na lista de contribuidores; os próximos passam a usar a identidade da App depois da ativação.
+1. Na [App KONAET](https://github.com/settings/apps/konaet), mantenha Webhooks desativados e as permissões **Contents** e **Pull requests: Read and write**.
+2. Instale-a nos repositórios `7dsolv/RealidadeQuantica` e `7dsolv/konaet-bot` e gere uma chave privada.
+3. Em **Settings → Secrets and variables → Actions**, configure primeiro o segredo `KONAET_APP_PRIVATE_KEY` e depois a variável `KONAET_APP_CLIENT_ID` com o Client ID da App.
+
+Depois, execute **Verificar identidade real da App** no pacote `konaet-bot`. Com as credenciais configuradas, autor, committer e autenticação passam a usar a App KONAET. Uma falha nessa autenticação interrompe a publicação, sem trocar silenciosamente para o token do Actions. A chave privada pertence aos Secrets, não ao código do repositório.
 
 ## Modelo atual
 

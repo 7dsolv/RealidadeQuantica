@@ -71,20 +71,16 @@ jobs:
             echo 'O painel PNG, a animacao GIF, a memoria do Konaet, os dados CSV, o arquivo MAT e a simulacao SystemVerilog estao em **Actions → Artifacts → resultados-do-laboratorio**.'
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Mostrar ativacao pendente da App Konaet
-        if: ${{ vars.KONAET_APP_CLIENT_ID == '' }}
-        run: |
-          echo 'A publicacao de memoria e graficos aguarda a App Konaet. Cadastre e instale a App por https://github.com/7dsolv/konaet-bot; depois configure KONAET_APP_CLIENT_ID e KONAET_APP_PRIVATE_KEY.' >> "$GITHUB_STEP_SUMMARY"
-
   atualizar-painel:
     name: Konaet - memoria e graficos do README
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.KONAET_APP_CLIENT_ID != ''
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: executar-modelos
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - name: Autenticar a identidade real Konaet
+        if: vars.KONAET_APP_CLIENT_ID != ''
         id: konaet
         uses: 7dsolv/konaet-bot@488671c980ae433a4714de3321d10e58415cf9d0 # v1.1.1
         with:
@@ -92,10 +88,54 @@ jobs:
           private-key: ${{ secrets.KONAET_APP_PRIVATE_KEY }}
           expected-slug: konaet
 
+      - name: Conferir a autoria da KONAET
+        id: autoria
+        env:
+          GH_TOKEN: ${{ steps.konaet.outputs.token || github.token }}
+          GH_HOST: github.com
+          APP_LOGIN: ${{ steps.konaet.outputs.bot-login }}
+        run: |
+          set -euo pipefail
+          identity="$(gh api --hostname github.com '/users/konaet[bot]' --jq '[.id,.login,.type] | @tsv')"
+          IFS=$'\t' read -r bot_id bot_login bot_type <<< "$identity"
+          if [ "$bot_id" != '352182232' ] || [ "$bot_login" != 'konaet[bot]' ] || [ "$bot_type" != 'Bot' ]; then
+            echo '::error::A API nao confirmou a conta KONAET registrada por este projeto.'
+            exit 1
+          fi
+          if [ -n "$APP_LOGIN" ]; then
+            [ "$APP_LOGIN" = "$bot_login" ] || exit 1
+            mode='github-app'
+            committer_id="$bot_id"
+            committer_login="$bot_login"
+          else
+            mode='github-actions-author-attribution'
+            executor="$(gh api --hostname github.com '/users/github-actions[bot]' --jq '[.id,.login,.type] | @tsv')"
+            IFS=$'\t' read -r committer_id committer_login committer_type <<< "$executor"
+            if ! [[ "$committer_id" =~ ^[1-9][0-9]*$ ]] || [ "$committer_login" != 'github-actions[bot]' ] || [ "$committer_type" != 'Bot' ]; then
+              echo '::error::Executor do GitHub Actions nao confirmado.'
+              exit 1
+            fi
+          fi
+          {
+            echo "login=$bot_login"
+            echo "email=${bot_id}+${bot_login}@users.noreply.github.com"
+            echo "committer-login=$committer_login"
+            echo "committer-email=${committer_id}+${committer_login}@users.noreply.github.com"
+            echo "mode=$mode"
+          } >> "$GITHUB_OUTPUT"
+          {
+            printf 'Autoria dos resultados: `%s` (ID %s).\n\n' "$bot_login" "$bot_id"
+            if [ "$mode" = 'github-app' ]; then
+              echo 'Publicacao autenticada pela GitHub App KONAET.'
+            else
+              echo 'Publicacao pelo GITHUB_TOKEN do GitHub Actions, com autoria atribuida a KONAET. A App KONAET nao foi autenticada nesta execucao.'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Baixar a branch principal
         uses: actions/checkout@v7
         with:
-          token: ${{ steps.konaet.outputs.token }}
+          token: ${{ steps.konaet.outputs.token || github.token }}
 
       - name: Baixar os resultados desta execução
         uses: actions/download-artifact@v8
@@ -105,8 +145,10 @@ jobs:
 
       - name: Publicar o painel na página do repositório
         env:
-          KONAET_BOT_LOGIN: ${{ steps.konaet.outputs.bot-login }}
-          KONAET_BOT_EMAIL: ${{ steps.konaet.outputs.bot-email }}
+          KONAET_BOT_LOGIN: ${{ steps.autoria.outputs.login }}
+          KONAET_BOT_EMAIL: ${{ steps.autoria.outputs.email }}
+          PUBLISHER_LOGIN: ${{ steps.autoria.outputs.committer-login }}
+          PUBLISHER_EMAIL: ${{ steps.autoria.outputs.committer-email }}
         run: |
           set -euo pipefail
           mkdir -p assets state
@@ -125,6 +167,6 @@ jobs:
             exit 0
           fi
           GIT_AUTHOR_NAME="$KONAET_BOT_LOGIN" GIT_AUTHOR_EMAIL="$KONAET_BOT_EMAIL" \
-            GIT_COMMITTER_NAME="$KONAET_BOT_LOGIN" GIT_COMMITTER_EMAIL="$KONAET_BOT_EMAIL" \
+            GIT_COMMITTER_NAME="$PUBLISHER_LOGIN" GIT_COMMITTER_EMAIL="$PUBLISHER_EMAIL" \
             git commit -m 'Konaet evolui memoria e visualizacao [skip ci]'
           git push origin HEAD:main
