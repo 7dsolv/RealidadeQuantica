@@ -4,13 +4,15 @@
 
 ![Status do laboratório](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/simulacoes.yml/badge.svg?branch=main)
 
-O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**, com demonstração de aritmética para FPGA. O GitHub Actions executa ciclos numéricos automáticos a cada hora e publica uma animação e o estado persistente do núcleo neste README. O repositório não usa HTML, JavaScript ou Python.
+O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**, com demonstração de aritmética para FPGA. O GitHub Actions executa ciclos numéricos automáticos a cada hora; a memória acompanha os ciclos e a animação pública é renovada diariamente. O repositório não usa HTML, JavaScript ou Python.
 
 ## KONAET em movimento
 
+[Identidade, arquitetura e estado do agente Konaet →](konaet/README.md)
+
 ![Konaet em animação: SU(3), pacote de onda, expansão cósmica e memória interna](assets/realidade-quantica-viva.gif)
 
-Cada ciclo atualiza a memória numérica versionada em [`state/konaet_memory.csv`](state/konaet_memory.csv), usa esse estado para ajustar parâmetros da próxima simulação e reconstrói esta animação. O GIF se move continuamente quando aberto; os cálculos e a memória avançam em cada execução agendada do GitHub Actions, aproximadamente uma vez por hora. Os commits automáticos do núcleo são atribuídos a **Konaet**.
+Cada ciclo atualiza a memória numérica versionada em [`state/konaet_memory.csv`](state/konaet_memory.csv), usa esse estado para ajustar parâmetros da próxima simulação e gera novos quadros. A memória avança aproximadamente de hora em hora; o GIF publicado se move continuamente e é renovado diariamente ou após um push para `main`.
 
 Konaet é um agente computacional experimental com memória recorrente e política limitada aos parâmetros da simulação. Seu índice de curiosidade é uma média do erro de previsão, e coerência mede a variação do estado interno entre ciclos. Isso não demonstra consciência ou vontade própria, nem constitui um agente universal ou um resultado no ARC-AGI. O circuito Ramsey em Q# é um experimento separado no simulador do QDK; a probabilidade de Born correspondente também entra no modelo MATLAB, sem alegar execução em hardware quântico físico.
 
@@ -42,7 +44,7 @@ O app tem quatro áreas:
 
 ## Execute os modelos no GitHub
 
-O workflow **Konaet - ciclos autonomos do laboratorio** inicia a cada hora, em cada push para `main`, pull request ou manualmente pela aba **Actions**. O job compila o Fortran, simula o multiplicador SystemVerilog e executa o MATLAB em modo batch, sem abrir a interface gráfica. Após uma rodada bem-sucedida na branch principal, outro job persiste a memória e atualiza as imagens do README.
+O workflow **Konaet - ciclos autonomos do laboratorio** inicia a cada hora, em cada push para `main`, pull request ou manualmente pela aba **Actions**. O job compila o Fortran, simula o multiplicador SystemVerilog e executa o MATLAB em modo batch, sem abrir a interface gráfica. Após uma rodada bem-sucedida na branch principal, outro job persiste a memória; as imagens são publicadas uma vez por dia e após pushes.
 
 O MATLAB verifica a invariância de gauge, as restrições das matrizes SU(3), a normalização da onda e a concordância MATLAB/Fortran. Uma falha acima da tolerância interrompe o job. O resumo da execução aparece na página da Action; em **Artifacts → resultados-do-laboratorio** ficam o painel PNG, a animação GIF, a memória do Konaet, CSVs, log SystemVerilog e dados `.mat`.
 

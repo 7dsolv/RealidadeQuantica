@@ -75,8 +75,31 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Criar token do Konaet App quando configurada
+        id: konaet-app
+        if: ${{ vars.KONAET_APP_CLIENT_ID != '' }}
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.KONAET_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KONAET_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: RealidadeQuantica
+          permission-contents: write
+
       - name: Baixar a branch principal
         uses: actions/checkout@v7
+        with:
+          token: ${{ steps.konaet-app.outputs.token || github.token }}
+
+      - name: Resolver a identidade da Konaet App
+        id: konaet-bot
+        if: ${{ steps.konaet-app.outputs.token != '' }}
+        env:
+          GH_TOKEN: ${{ steps.konaet-app.outputs.token }}
+          KONAET_APP_SLUG: ${{ steps.konaet-app.outputs.app-slug }}
+        run: |
+          app_user_id="$(gh api "/users/${KONAET_APP_SLUG}[bot]" --jq '.id')"
+          echo "user-id=${app_user_id}" >> "$GITHUB_OUTPUT"
 
       - name: Baixar os resultados desta execução
         uses: actions/download-artifact@v8
@@ -85,17 +108,31 @@ jobs:
           path: artifacts
 
       - name: Publicar o painel na página do repositório
+        env:
+          KONAET_APP_SLUG: ${{ steps.konaet-app.outputs.app-slug }}
+          KONAET_APP_USER_ID: ${{ steps.konaet-bot.outputs.user-id }}
         run: |
-          mkdir -p assets
-          cp artifacts/realidade-quantica-dashboard.png assets/realidade-quantica-dashboard.png
-          cp artifacts/realidade-quantica-viva.gif assets/realidade-quantica-viva.gif
+          mkdir -p assets state
           cp artifacts/konaet_memory.csv state/konaet_memory.csv
-          git add -- assets/realidade-quantica-dashboard.png assets/realidade-quantica-viva.gif state/konaet_memory.csv
+          git add -- state/konaet_memory.csv
+          utc_hour="$(date -u +%H)"
+          if [ "$GITHUB_EVENT_NAME" != 'schedule' ] || [ "$utc_hour" = '00' ]; then
+            cp artifacts/realidade-quantica-dashboard.png assets/realidade-quantica-dashboard.png
+            cp artifacts/realidade-quantica-viva.gif assets/realidade-quantica-viva.gif
+            git add -- assets/realidade-quantica-dashboard.png assets/realidade-quantica-viva.gif
+          else
+            echo 'A memoria foi atualizada; os graficos serao publicados no ciclo diario.'
+          fi
           if git diff --cached --quiet; then
-            echo 'O painel do README já corresponde a esta execução.'
+            echo 'A memoria e os graficos ja correspondem a esta execucao.'
             exit 0
           fi
-          git config user.name 'Konaet'
-          git config user.email 'konaet-agent@realidadequantica.invalid'
+          if [ -n "$KONAET_APP_SLUG" ]; then
+            git config user.name "${KONAET_APP_SLUG}[bot]"
+            git config user.email "${KONAET_APP_USER_ID}+${KONAET_APP_SLUG}[bot]@users.noreply.github.com"
+          else
+            git config user.name 'Konaet'
+            git config user.email 'konaet-agent@realidadequantica.invalid'
+          fi
           git commit -m 'Konaet evolui memoria e visualizacao [skip ci]'
           git push origin HEAD:main
