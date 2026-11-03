@@ -1,0 +1,66 @@
+name: Rodar laboratorio cientifico
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  executar-modelos:
+    name: MATLAB, Fortran e SystemVerilog
+    runs-on: ubuntu-latest
+    env:
+      MLM_LICENSE_TOKEN: ${{ secrets.MLM_LICENSE_TOKEN }}
+    steps:
+      - name: Baixar o repositorio
+        uses: actions/checkout@v7
+
+      - name: Instalar compiladores Fortran e SystemVerilog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gfortran iverilog
+          mkdir -p build artifacts
+
+      - name: Compilar e executar o modelo Fortran
+        run: |
+          gfortran -std=f2008 -O2 fortran/free_wavepacket.f90 -o build/free_wavepacket
+          ./build/free_wavepacket 0.7 1.2 0.8 artifacts/wave_fortran.dat
+
+      - name: Simular o modulo SystemVerilog
+        run: |
+          iverilog -g2012 -s complex_mul_q15_demo_tb \
+            -o build/complex_mul_demo \
+            systemverilog/complex_mul_q15.sv \
+            systemverilog/complex_mul_q15_demo_tb.sv
+          vvp build/complex_mul_demo | tee artifacts/systemverilog.log
+
+      - name: Preparar MATLAB
+        uses: matlab-actions/setup-matlab@v3
+
+      - name: Executar os modelos MATLAB em modo batch
+        uses: matlab-actions/run-command@v3
+        with:
+          command: addpath('matlab'); executar_pipeline(true)
+
+      - name: Guardar os resultados da simulacao
+        uses: actions/upload-artifact@v7
+        with:
+          name: resultados-do-laboratorio
+          path: artifacts/
+          if-no-files-found: error
+
+      - name: Mostrar resultados no resumo do GitHub
+        run: |
+          {
+            echo '## Realidade Quantica — execucao cientifica'
+            echo
+            echo '```text'
+            cat artifacts/summary.txt
+            echo '```'
+            echo
+            echo 'O painel PNG, os dados CSV, o arquivo MAT e a simulacao SystemVerilog estao em **Actions → Artifacts → resultados-do-laboratorio**.'
+          } >> "$GITHUB_STEP_SUMMARY"
