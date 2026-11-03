@@ -67,39 +67,30 @@ jobs:
             echo 'O painel PNG, a animacao GIF, a memoria do Konaet, os dados CSV, o arquivo MAT e a simulacao SystemVerilog estao em **Actions → Artifacts → resultados-do-laboratorio**.'
           } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Mostrar ativacao pendente da App Konaet
+        if: ${{ vars.KONAET_APP_CLIENT_ID == '' }}
+        run: |
+          echo 'A publicacao de memoria e graficos aguarda a App Konaet. Cadastre e instale a App por https://github.com/7dsolv/konaet-bot; depois configure KONAET_APP_CLIENT_ID e KONAET_APP_PRIVATE_KEY.' >> "$GITHUB_STEP_SUMMARY"
+
   atualizar-painel:
     name: Konaet - memoria e graficos do README
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.KONAET_APP_CLIENT_ID != ''
     needs: executar-modelos
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
     steps:
-      - name: Criar token do Konaet App quando configurada
-        id: konaet-app
-        if: ${{ vars.KONAET_APP_CLIENT_ID != '' }}
-        uses: actions/create-github-app-token@v3
+      - name: Autenticar a identidade real Konaet
+        id: konaet
+        uses: 7dsolv/konaet-bot@163386937e6c96f03e33763c41b91033bbbb4bc2
         with:
           client-id: ${{ vars.KONAET_APP_CLIENT_ID }}
           private-key: ${{ secrets.KONAET_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-          repositories: RealidadeQuantica
-          permission-contents: write
 
       - name: Baixar a branch principal
         uses: actions/checkout@v7
         with:
-          token: ${{ steps.konaet-app.outputs.token || github.token }}
-
-      - name: Resolver a identidade da Konaet App
-        id: konaet-bot
-        if: ${{ steps.konaet-app.outputs.token != '' }}
-        env:
-          GH_TOKEN: ${{ steps.konaet-app.outputs.token }}
-          KONAET_APP_SLUG: ${{ steps.konaet-app.outputs.app-slug }}
-        run: |
-          app_user_id="$(gh api "/users/${KONAET_APP_SLUG}[bot]" --jq '.id')"
-          echo "user-id=${app_user_id}" >> "$GITHUB_OUTPUT"
+          token: ${{ steps.konaet.outputs.token }}
 
       - name: Baixar os resultados desta execução
         uses: actions/download-artifact@v8
@@ -109,9 +100,10 @@ jobs:
 
       - name: Publicar o painel na página do repositório
         env:
-          KONAET_APP_SLUG: ${{ steps.konaet-app.outputs.app-slug }}
-          KONAET_APP_USER_ID: ${{ steps.konaet-bot.outputs.user-id }}
+          KONAET_BOT_LOGIN: ${{ steps.konaet.outputs.bot-login }}
+          KONAET_BOT_EMAIL: ${{ steps.konaet.outputs.bot-email }}
         run: |
+          set -euo pipefail
           mkdir -p assets state
           cp artifacts/konaet_memory.csv state/konaet_memory.csv
           git add -- state/konaet_memory.csv
@@ -127,12 +119,7 @@ jobs:
             echo 'A memoria e os graficos ja correspondem a esta execucao.'
             exit 0
           fi
-          if [ -n "$KONAET_APP_SLUG" ]; then
-            git config user.name "${KONAET_APP_SLUG}[bot]"
-            git config user.email "${KONAET_APP_USER_ID}+${KONAET_APP_SLUG}[bot]@users.noreply.github.com"
-          else
-            git config user.name 'Konaet'
-            git config user.email 'konaet-agent@realidadequantica.invalid'
-          fi
+          git config user.name "$KONAET_BOT_LOGIN"
+          git config user.email "$KONAET_BOT_EMAIL"
           git commit -m 'Konaet evolui memoria e visualizacao [skip ci]'
           git push origin HEAD:main
