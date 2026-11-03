@@ -86,6 +86,14 @@ RealidadeQuantica/
     └── complex_mul_q15_demo_tb.sv
 ```
 
+## Pesquisa neural da Konaet
+
+O laboratório científico e a pesquisa de modelos da Konaet estão conectados pelo projeto, mas têm execuções separadas. O repositório de pesquisa é [`7dsolv/Konaet-IA`](https://github.com/7dsolv/Konaet-IA), com o [guia de treinamento](https://github.com/7dsolv/Konaet-IA/blob/main/docs/TRAINING.md) e a [trilha Forge iniciada do zero](https://github.com/7dsolv/Konaet-IA/blob/main/docs/FORGE.md).
+
+O Konaet daqui continua sendo o agente numérico em MATLAB que ajusta parâmetros dos experimentos e mantém uma memória CSV. Ele não carrega os pesos nem executa o runtime do outro repositório. Essa separação mantém este laboratório nas tecnologias **MATLAB, Fortran, Q# e SystemVerilog**.
+
+O repositório de pesquisa registra linhas distintas: o adaptador Seed é derivado de um modelo-base externo, enquanto o Forge/Core investiga pesos inicializados do zero. Os próprios registros mostram que o candidato Forge local ainda não passou pelo portão de promoção; seus resultados são experimentais, não evidência de inteligência geral ou superioridade. Consulte os relatórios e a procedência no repositório de treino antes de interpretar qualquer métrica.
+
 ## O que estes modelos representam
 
 - O modelo SU(3) usa uma rede minúscula de gauge puro: não inclui quarks dinâmicos, determinante fermiônico, extrapolação ao contínuo nem a estrutura completa de um próton.

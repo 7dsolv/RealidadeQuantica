@@ -13,6 +13,12 @@ Konaet é o nome do modelo MATLAB e da memória que evolui junto com os ciclos c
 
 O ciclo automático roda aproximadamente uma vez por hora. Ele lê o estado anterior, executa os modelos, incorpora as observações à memória e escolhe parâmetros limitados para a rodada seguinte. A animação do repositório é publicada diariamente e após pushes.
 
+## Pesquisa e treinamento da Konaet
+
+A pesquisa de modelos neurais está no repositório separado [`7dsolv/Konaet-IA`](https://github.com/7dsolv/Konaet-IA). Consulte o [histórico e os gates de treinamento](https://github.com/7dsolv/Konaet-IA/blob/main/docs/TRAINING.md), a [trilha Forge](https://github.com/7dsolv/Konaet-IA/blob/main/docs/FORGE.md) e os [resultados de avaliação](https://github.com/7dsolv/Konaet-IA/tree/main/training/evaluations).
+
+Os dois projetos compartilham a identidade Konaet, mas têm funções diferentes: este repositório contém um agente MATLAB estreito, com estado recorrente e política numérica para os experimentos; o Konaet-IA contém pesquisa de modelos e pipelines próprios. Nenhum peso, resposta de modelo ou runtime Python foi importado para este laboratório. Os relatórios do projeto de IA distinguem o experimento Seed derivado de modelo-base do candidato Forge iniciado do zero e registram quais gates ainda faltam. A palavra “treinamento” aqui se refere à pesquisa documentada lá, não a aprendizado geral automático a cada ciclo científico.
+
 ## Identidade do bot no GitHub
 
 O usuário `github-actions[bot]` pertence à infraestrutura do GitHub e não pode ser renomeado. Para que a automação apareça como `konaet[bot]`, o workflow já aceita uma GitHub App própria chamada **Konaet**. O nome exibido do app vira o nome do bot; seus commits recebem a identidade `konaet[bot]`.
