@@ -10,7 +10,7 @@ O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**
 
 [Identidade, arquitetura e estado do agente Konaet →](konaet/README.md)
 
-[Konaet Bot: pacote público, cadastro da App e exemplo de propostas →](https://github.com/7dsolv/konaet-bot)
+[KONAET: pacote público, cadastro da App e exemplo de propostas →](https://github.com/7dsolv/konaet-bot)
 
 ![Konaet em animação: SU(3), pacote de onda, expansão cósmica e memória interna](assets/realidade-quantica-viva.gif)
 
@@ -48,7 +48,7 @@ O app tem quatro áreas:
 
 O workflow **Konaet - ciclos autonomos do laboratorio** inicia a cada hora, em cada push para `main`, pull request ou manualmente pela aba **Actions**. O job compila o Fortran, simula o multiplicador SystemVerilog e executa o MATLAB em modo batch, sem abrir a interface gráfica. Após uma rodada bem-sucedida na branch principal, outro job persiste a memória; as imagens são publicadas uma vez por dia e após pushes.
 
-A publicação exige a GitHub App **Konaet**, instalada no repositório, e a configuração `KONAET_APP_CLIENT_ID` / `KONAET_APP_PRIVATE_KEY`. Sem essa configuração, os cálculos e artifacts continuam disponíveis, e a memória pública permanece na última rodada publicada. O job de publicação não usa o token padrão como alternativa à identidade da App. O [pacote público Konaet Bot](https://github.com/7dsolv/konaet-bot) contém o cadastro já preenchido e a verificação da identidade.
+A publicação exige a GitHub App **Konaet**, instalada no repositório, e a configuração `KONAET_APP_CLIENT_ID` / `KONAET_APP_PRIVATE_KEY`. Sem essa configuração, os cálculos e artifacts continuam disponíveis, e a memória pública permanece na última rodada publicada. O job de publicação não usa o token padrão como alternativa à identidade da App. O [pacote público KONAET](https://github.com/7dsolv/konaet-bot) contém o cadastro já preenchido e a verificação da identidade. As execuções da mesma branch são serializadas para que uma rodada leia a memória publicada pela rodada anterior.
 
 O MATLAB verifica a invariância de gauge, as restrições das matrizes SU(3), a normalização da onda e a concordância MATLAB/Fortran. Uma falha acima da tolerância interrompe o job. O resumo da execução aparece na página da Action; em **Artifacts → resultados-do-laboratorio** ficam o painel PNG, a animação GIF, a memória do Konaet, CSVs, log SystemVerilog e dados `.mat`.
 

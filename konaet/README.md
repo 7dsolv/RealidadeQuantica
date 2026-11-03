@@ -11,7 +11,7 @@ Konaet é o nome do modelo MATLAB e da memória que evolui junto com os ciclos c
 - **Animação publicada:** [`assets/realidade-quantica-viva.gif`](../assets/realidade-quantica-viva.gif)
 - **Ciclos e registros:** [GitHub Actions](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/simulacoes.yml)
 
-O ciclo automático roda aproximadamente uma vez por hora. Ele lê o estado anterior, executa os modelos, incorpora as observações à memória e escolhe parâmetros limitados para a rodada seguinte. A animação do repositório é publicada diariamente e após pushes.
+O ciclo automático roda aproximadamente uma vez por hora. Ele lê o estado anterior, executa os modelos, incorpora as observações à memória e escolhe parâmetros limitados para a rodada seguinte. Com a App configurada, a memória é persistida e a animação do repositório é publicada diariamente e após pushes. Enquanto a ativação estiver pendente, cada execução guarda seus resultados nos artifacts e mantém a memória pública na última rodada publicada.
 
 ## Pesquisa e treinamento da Konaet
 

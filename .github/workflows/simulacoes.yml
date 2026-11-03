@@ -11,6 +11,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: konaet-laboratorio-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   executar-modelos:
     name: MATLAB, Fortran e SystemVerilog
@@ -82,10 +86,11 @@ jobs:
     steps:
       - name: Autenticar a identidade real Konaet
         id: konaet
-        uses: 7dsolv/konaet-bot@163386937e6c96f03e33763c41b91033bbbb4bc2
+        uses: 7dsolv/konaet-bot@488671c980ae433a4714de3321d10e58415cf9d0 # v1.1.1
         with:
           client-id: ${{ vars.KONAET_APP_CLIENT_ID }}
           private-key: ${{ secrets.KONAET_APP_PRIVATE_KEY }}
+          expected-slug: konaet
 
       - name: Baixar a branch principal
         uses: actions/checkout@v7
@@ -119,7 +124,7 @@ jobs:
             echo 'A memoria e os graficos ja correspondem a esta execucao.'
             exit 0
           fi
-          git config user.name "$KONAET_BOT_LOGIN"
-          git config user.email "$KONAET_BOT_EMAIL"
-          git commit -m 'Konaet evolui memoria e visualizacao [skip ci]'
+          GIT_AUTHOR_NAME="$KONAET_BOT_LOGIN" GIT_AUTHOR_EMAIL="$KONAET_BOT_EMAIL" \
+            GIT_COMMITTER_NAME="$KONAET_BOT_LOGIN" GIT_COMMITTER_EMAIL="$KONAET_BOT_EMAIL" \
+            git commit -m 'Konaet evolui memoria e visualizacao [skip ci]'
           git push origin HEAD:main
