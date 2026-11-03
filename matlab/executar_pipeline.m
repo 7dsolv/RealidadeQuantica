@@ -259,7 +259,7 @@ ax.Color = panel;
 ax.XColor = muted;
 ax.YColor = muted;
 ax.GridColor = grid_color;
-ax.FontName = 'Consolas';
+ax.FontName = 'DejaVu Sans Mono';
 ax.FontSize = 10;
 ax.Box = 'off';
 grid(ax, 'on');
@@ -271,10 +271,10 @@ frame_count = 18;
 frame_delay = 0.12;
 cycle = agent_memory(1);
 background = [0.025, 0.035, 0.055];
-panel = [0.055, 0.073, 0.100];
+panel = [0.080, 0.110, 0.180];
 text_color = [0.900, 0.940, 0.970];
 muted = [0.510, 0.620, 0.710];
-grid_color = [0.140, 0.210, 0.270];
+grid_color = [0.220, 0.300, 0.400];
 cyan = [0.180, 0.860, 0.920];
 violet = [0.710, 0.590, 1.000];
 amber = [1.000, 0.670, 0.340];
@@ -290,7 +290,7 @@ figure_cleanup = onCleanup(@() close_animation_figure(animation)); %#ok<NASGU>
 layout = tiledlayout(animation, 2, 2, ...
     'TileSpacing', 'compact', 'Padding', 'compact');
 title(layout, sprintf('KONAET  /  CICLO %05.0f  /  TRAJETORIA DA SIMULACAO', ...
-    cycle), 'Color', text_color, 'FontName', 'Consolas', ...
+    cycle), 'Color', text_color, 'FontName', 'DejaVu Sans Mono', ...
     'FontWeight', 'bold', 'FontSize', 15);
 
 ax_wilson = nexttile(layout, 1);
@@ -426,7 +426,7 @@ ax.Color = panel;
 ax.XColor = muted;
 ax.YColor = muted;
 ax.GridColor = grid_color;
-ax.FontName = 'Consolas';
+ax.FontName = 'DejaVu Sans Mono';
 ax.FontSize = 9;
 ax.Box = 'off';
 grid(ax, 'on');
