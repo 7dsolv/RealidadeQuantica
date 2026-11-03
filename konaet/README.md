@@ -1,8 +1,12 @@
-# Konaet
+# KONAET
+
+**[App KONAET](https://github.com/apps/konaet)** · [Laboratório e animações](../README.md) · [Execuções](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/simulacoes.yml)
 
 **Identidade do agente experimental do repositório Realidade Quântica.**
 
 Konaet é o nome do modelo MATLAB e da memória que evolui junto com os ciclos científicos deste projeto. A página pública desta identidade fica dentro do próprio repositório: ela não depende de um perfil GitHub separado.
+
+A página da App é **[github.com/apps/konaet](https://github.com/apps/konaet)**. O endereço `github.com/konaet[bot]` retorna 404; ele não é o endereço da App. A App está cadastrada como privada, e esta página do repositório apresenta publicamente o agente e seus resultados.
 
 ## Estado público
 

@@ -4,6 +4,8 @@
 
 ![Status do laboratório](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/simulacoes.yml/badge.svg?branch=main)
 
+**[Abrir página da KONAET](konaet/README.md)** · **[Abrir App KONAET](https://github.com/apps/konaet)**
+
 O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**, com demonstração de aritmética para FPGA. O GitHub Actions executa ciclos numéricos automáticos a cada hora; a memória acompanha os ciclos e a animação pública é renovada diariamente. Os novos commits dos resultados têm autoria atribuída a **`konaet[bot]`**. O repositório não usa HTML, JavaScript ou Python.
 
 ## KONAET em movimento
