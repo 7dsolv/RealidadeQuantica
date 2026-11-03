@@ -4,7 +4,13 @@
 
 ![Status do laboratório](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/simulacoes.yml/badge.svg?branch=main)
 
-O projeto reúne modelos científicos em **MATLAB, Fortran, Q#, SystemVerilog e FPGA**. A interface interativa é feita em MATLAB; o GitHub Actions executa os cálculos em lote e guarda um painel visual com os resultados. O repositório não usa HTML, JavaScript ou Python.
+O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**, com demonstração de aritmética para FPGA. A interface interativa é feita em MATLAB; o GitHub Actions executa os cálculos em lote e publica a imagem mais recente aqui no README. O repositório não usa HTML, JavaScript ou Python.
+
+## Painel da última execução
+
+![Painel científico da última execução: SU(3), invariância de gauge, pacote quântico e cosmologia FLRW](assets/realidade-quantica-dashboard.png)
+
+Quando o workflow termina com sucesso na branch `main`, o GitHub atualiza esta imagem junto com os resultados da rodada. É um painel de snapshots por execução, não uma visualização contínua ou interativa.
 
 ## Abra o laboratório MATLAB
 

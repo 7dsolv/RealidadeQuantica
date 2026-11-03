@@ -64,3 +64,34 @@ jobs:
             echo
             echo 'O painel PNG, os dados CSV, o arquivo MAT e a simulacao SystemVerilog estao em **Actions → Artifacts → resultados-do-laboratorio**.'
           } >> "$GITHUB_STEP_SUMMARY"
+
+  atualizar-painel:
+    name: Atualizar imagem do README
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: executar-modelos
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Baixar a branch principal
+        uses: actions/checkout@v7
+
+      - name: Baixar os resultados desta execução
+        uses: actions/download-artifact@v8
+        with:
+          name: resultados-do-laboratorio
+          path: artifacts
+
+      - name: Publicar o painel na página do repositório
+        run: |
+          mkdir -p assets
+          cp artifacts/realidade-quantica-dashboard.png assets/realidade-quantica-dashboard.png
+          git add -- assets/realidade-quantica-dashboard.png
+          if git diff --cached --quiet; then
+            echo 'O painel do README já corresponde a esta execução.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Atualiza painel visual [skip ci]'
+          git push origin HEAD:main
