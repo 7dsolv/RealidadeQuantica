@@ -11,7 +11,7 @@ Konaet é o nome do modelo MATLAB e da memória que evolui junto com os ciclos c
 - **Animação publicada:** [`assets/realidade-quantica-viva.gif`](../assets/realidade-quantica-viva.gif)
 - **Ciclos e registros:** [GitHub Actions](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/simulacoes.yml)
 
-O ciclo automático roda aproximadamente uma vez por hora. Ele lê o estado anterior, executa os modelos, incorpora as observações à memória e escolhe parâmetros limitados para a rodada seguinte. A animação do repositório é publicada diariamente e após pushes.
+O ciclo automático roda aproximadamente uma vez por hora. Ele lê o estado anterior, executa os modelos, incorpora as observações à memória e escolhe parâmetros limitados para a rodada seguinte. Com a App configurada, a memória é persistida e a animação do repositório é publicada diariamente e após pushes. Enquanto a ativação estiver pendente, cada execução guarda seus resultados nos artifacts e mantém a memória pública na última rodada publicada.
 
 ## Pesquisa e treinamento da Konaet
 
@@ -21,14 +21,16 @@ Os dois projetos compartilham a identidade Konaet, mas têm funções diferentes
 
 ## Identidade do bot no GitHub
 
-O usuário `github-actions[bot]` pertence à infraestrutura do GitHub e não pode ser renomeado. Para que a automação apareça como `konaet[bot]`, o workflow já aceita uma GitHub App própria chamada **Konaet**. O nome exibido do app vira o nome do bot; seus commits recebem a identidade `konaet[bot]`.
+O usuário `github-actions[bot]` pertence à infraestrutura do GitHub e não pode ser renomeado. A identidade própria é uma GitHub App chamada **Konaet**. O slug confirmado pelo GitHub determina o login do bot; a Action exige o slug `konaet` e consulta o ID real de `konaet[bot]` antes de publicar.
 
-1. Abra [Criar GitHub App](https://github.com/settings/apps/new), dê o nome **Konaet** e use o repositório como URL inicial.
-2. Desative Webhooks e dê somente a permissão de repositório **Contents: Read and write**.
-3. Crie o app, instale-o somente em `7dsolv/RealidadeQuantica` e gere uma chave privada.
+O pacote reutilizável está em [`7dsolv/konaet-bot`](https://github.com/7dsolv/konaet-bot), com a [configuração na raiz](https://github.com/7dsolv/konaet-bot/blob/main/github-app.json), helper MATLAB e workflow de commit/push/pull request para aprovação humana.
+
+1. Use o [cadastro oficial já preenchido](https://github.com/settings/apps/new?name=Konaet&description=Automacao%20Konaet%20com%20identidade%20propria%2C%20commits%20e%20propostas%20para%20revisao%20humana.&url=https%3A%2F%2Fgithub.com%2F7dsolv%2Fkonaet-bot&public=true&webhook_active=false&contents=write&pull_requests=write) na sessão da conta **7dsolv** e conclua **Create GitHub App**.
+2. A configuração pública usa Webhooks desativados e permissões **Contents** e **Pull requests: Read and write**. O GitHub confirma a disponibilidade do nome ao enviar o formulário.
+3. Instale a App nos repositórios `7dsolv/RealidadeQuantica` e `7dsolv/konaet-bot` e gere uma chave privada.
 4. Em **Settings → Secrets and variables → Actions**, crie a variável `KONAET_APP_CLIENT_ID` com o Client ID do app e o segredo `KONAET_APP_PRIVATE_KEY` com o arquivo de chave privada.
 
-O workflow usa a GitHub App nos commits automáticos quando essa variável e esse segredo existem. Até lá, ele continua usando o token padrão e atribui o autor do commit a Konaet. Não cole a chave privada no chat nem no repositório. Os commits antigos do bot padrão permanecem no histórico; os próximos passam a usar `konaet[bot]` depois da instalação.
+Depois, execute **Verificar identidade real da App** no pacote `konaet-bot`. O workflow do laboratório publica somente com a App autenticada; enquanto o cadastro estiver pendente, os modelos executam e geram artifacts, e o job de publicação fica desativado. Não cole a chave privada no chat nem no repositório. Os commits antigos do bot padrão permanecem no histórico e podem continuar na lista de contribuidores; os próximos passam a usar a identidade da App depois da ativação.
 
 ## Modelo atual
 
