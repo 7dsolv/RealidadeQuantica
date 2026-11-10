@@ -52,6 +52,7 @@ jobs:
           cp models/anomalynet/NOTICE.txt artifacts/integrated/AnomalyNet-NOTICE.txt
       - uses: matlab-actions/setup-matlab@v3
       - name: Treinar candidato proprio e avaliar dados bloqueados
+        id: models
         uses: matlab-actions/run-command@v3
         with:
           command: executar_konaet;
@@ -70,6 +71,10 @@ jobs:
             systemverilog/konaet_adc_quantizer.sv systemverilog/konaet_adc_quantizer_tb.sv
           vvp build/konaet_adc_tb | tee artifacts/integrated/adc.log
           grep -q KONAET_ADC_PASS artifacts/integrated/adc.log
+          iverilog -g2012 -s konaet_ads1115_tb -o build/konaet_ads_tb \
+            systemverilog/konaet_i2c_byte.sv systemverilog/konaet_ads1115.sv systemverilog/konaet_ads1115_tb.sv
+          vvp build/konaet_ads_tb | tee artifacts/integrated/ads1115.log
+          grep -q KONAET_ADS1115_PASS artifacts/integrated/ads1115.log
       - name: Sintetizar e rotear FPGA alvo a 12 MHz
         run: |
           set -euo pipefail
@@ -81,6 +86,7 @@ jobs:
             2>&1 | tee artifacts/integrated/nextpnr.log
           icepack artifacts/integrated/konaet-ice40.asc artifacts/integrated/konaet-ice40.bin
       - name: Verificar esquema, conectividade e PCB nativos
+        if: ${{ !cancelled() && steps.models.outcome == 'success' }}
         run: |
           set -euo pipefail
           base='artifacts/integrated/hardware/x02-acquisition'

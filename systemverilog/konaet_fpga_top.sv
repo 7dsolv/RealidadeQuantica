@@ -9,7 +9,7 @@ module konaet_fpga_top(input wire clk,input wire reset_n,
   .output_valid(quant_valid),.quantized(quantized),.busy(quant_busy));
  wire ready,busy,result_valid,anomaly,invalid; wire signed [31:0] l0,l1; wire [15:0] cycles;
  reg last_anomaly=0,last_invalid=1;
- konaet_int8_core network(.clk(clk),.rst(rst),.sample_valid(quant_valid && ready),.sample(quantized),
+ konaet_int8_core network(.clk(clk),.rst(rst || error),.sample_valid(quant_valid && ready),.sample(quantized),
   .sample_ready(ready),.busy(busy),.result_valid(result_valid),.anomaly(anomaly),
   .invalid_result(invalid),.logit0(l0),.logit1(l1),.cycle_count(cycles));
  always @(posedge clk) begin
