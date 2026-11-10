@@ -7,7 +7,7 @@ case "$module" in
   copy_files assets/integrated agent-memory.json agent-experiments.json benchmark.json hard-decisions.csv \
     circuit-report.json circuit-tolerances.csv circuit-trace.csv test-report.json app-report.json visual-report.json stream-report.json \
     live-trace.csv summary.json summary.txt konaet-live.gif konaet-live.png konaet-app.png benchmark.png nextpnr-report.json \
-    rtl.log i2c.log adc.log ads1115.log KONAET-LICENSE.txt AnomalyNet-LICENSE.txt AnomalyNet-NOTICE.txt NAB-LICENSE.txt konaet-ice40.bin
+    rtl.log i2c.log adc.log ads1115.log top.log KONAET-LICENSE.txt AnomalyNet-LICENSE.txt AnomalyNet-NOTICE.txt NAB-LICENSE.txt konaet-ice40.bin
   cp "$src"/nab-*-decisions.csv assets/integrated/
   mkdir -p assets/integrated/model assets/integrated/rtl state hardware/x02-acquisition
   for file in fc1_weight.f32 fc1_bias.f32 fc2_weight.f32 fc2_bias.f32 konaet-int8.bin quantization.json model-card.json model-bundle.json;do

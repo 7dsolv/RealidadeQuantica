@@ -1,9 +1,9 @@
-module konaet_fpga_top(input wire clk,input wire reset_n,
+module konaet_fpga_top #(parameter CLOCK_HZ=12000000,parameter I2C_DIVIDER=30)(input wire clk,input wire reset_n,
  inout wire scl,inout wire sda,output wire normal_led_n,output wire anomaly_led_n);
  reg [3:0] startup=0; always @(posedge clk) if(!(&startup)) startup<=startup+1;
  wire rst=(!reset_n)||(!(&startup));
  wire valid,error; wire signed [15:0] code;
- konaet_ads1115 adc(.clk(clk),.rst(rst),.scl(scl),.sda(sda),.sample_valid(valid),.sample_code(code),.error(error));
+ konaet_ads1115 #(.CLOCK_HZ(CLOCK_HZ),.I2C_DIVIDER(I2C_DIVIDER)) adc(.clk(clk),.rst(rst),.scl(scl),.sda(sda),.sample_valid(valid),.sample_code(code),.error(error));
  wire signed [7:0] quantized; wire quant_valid,quant_busy;
  konaet_adc_quantizer converter(.clk(clk),.rst(rst),.input_valid(valid),.code(code),
   .output_valid(quant_valid),.quantized(quantized),.busy(quant_busy));

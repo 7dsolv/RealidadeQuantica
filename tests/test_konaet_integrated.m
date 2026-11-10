@@ -7,7 +7,7 @@ tests={@gradient_check,@reproducible_data,@reproducible_training,@locked_test, .
     @rc_passivity,@metrics_abstention,@memory_resume,@csv_interface, ...
     @bundle_tampering,@metadata_tampering,@memory_rejects_incompatible, ...
     @contract_covers_dependencies,@context_is_label_free,@uncertainty_reproducible, ...
-    @local_memory_compare_and_swap};
+    @local_memory_compare_and_swap,@bounded_stream_history};
 report=struct('source_revision',getenv('GITHUB_SHA'),'passed',0,'failed',0,'total',numel(tests), ...
     'cases',struct('name',{},'passed',{},'message',{}));
 for k=1:numel(tests)
@@ -171,6 +171,13 @@ assert(report.failed==0,'Konaet: %d testes falharam.',report.failed);
         konaet_commit_memory(file,[2 3 4],expected); assert(isequal(readmatrix(file),[2 3 4]));
         rejects(@()konaet_commit_memory(file,[9 9 9],expected));
         assert(isequal(readmatrix(file),[2 3 4]) && ~isfile([file '.lock']));
+    end
+    function bounded_stream_history()
+        s=konaet_stream_init(123);
+        controls=struct('noise_V',0,'step_enabled',false,'step_V',0,'dropout',false);
+        for j=1:305,[s,view]=konaet_stream_step(s,data.m,data.q,controls);end
+        assert(s.samples==305 && numel(s.time)==300 && numel(s.window_C)==32);
+        assert(isfinite(view.node_V) && view.class>=0 && all(diff(s.time)>0));
     end
     function folder=fixture(name)
         folder=fullfile(output,'fixtures',name); if ~isfolder(folder),mkdir(folder);end
