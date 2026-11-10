@@ -1,0 +1,63 @@
+name: KONAET - agente integrado, pesquisa e FPGA
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    branches: [main]
+    paths:
+      - 'matlab/integrated/**'
+      - 'systemverilog/konaet_*'
+      - 'datasets/nab/**'
+      - 'tests/test_konaet_*'
+      - 'executar_konaet.m'
+      - 'abrir_konaet.m'
+      - '.github/workflows/integrated.yml'
+  pull_request:
+    paths:
+      - 'matlab/integrated/**'
+      - 'systemverilog/konaet_*'
+      - 'datasets/nab/**'
+      - 'tests/test_konaet_*'
+      - 'executar_konaet.m'
+      - 'abrir_konaet.m'
+      - '.github/workflows/integrated.yml'
+
+permissions:
+  contents: read
+concurrency:
+  group: konaet-integrated-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Preparar ferramentas de calculo e FPGA
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gfortran iverilog yosys nextpnr-ice40 fpga-icestorm
+          mkdir -p build artifacts/integrated
+          gfortran -std=f2008 -Wall -Wextra -fcheck=all -O2 fortran/tiny_anomalynet.f90 -o build/tiny_anomalynet
+          yosys -V > artifacts/integrated/yosys-version.txt
+          nextpnr-ice40 --version > artifacts/integrated/nextpnr-version.txt 2>&1
+          cp datasets/nab/LICENSE.txt artifacts/integrated/NAB-LICENSE.txt
+          cp models/anomalynet/LICENSE.txt artifacts/integrated/AnomalyNet-LICENSE.txt
+          cp models/anomalynet/NOTICE.txt artifacts/integrated/AnomalyNet-NOTICE.txt
+      - uses: matlab-actions/setup-matlab@v3
+      - name: Treinar candidato proprio e avaliar dados bloqueados
+        uses: matlab-actions/run-command@v3
+        with:
+          command: addpath('matlab/integrated','matlab/tiny'); konaet_benchmark(pwd,fullfile(pwd,'artifacts','integrated'));
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: konaet-integrated
+          path: artifacts/integrated/
+          retention-days: 30
+          if-no-files-found: warn

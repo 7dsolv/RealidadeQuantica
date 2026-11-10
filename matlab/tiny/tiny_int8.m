@@ -14,6 +14,7 @@ status.hidden_saturations=sum(requant>127,1);
 qh=int8(min(requant,127));
 acc2=repmat(q.b2,1,size(x,2));
 for j=1:24, acc2=acc2+int32(q.W2(:,j)).*int32(qh(j,:)); end
+status.input_int8=qx; status.hidden_int8=qh; status.accumulators_int32=acc2;
 logits=double(acc2)*(q.hidden_scale*q.w2_scale);
 [~,label]=max(acc2,[],1); label=label-1;
 label(~status.representable)=-1; % invalido e diferente de normal
