@@ -1,0 +1,11 @@
+{
+  "revision": "dddb38c47441019ab18e582658b707650741c913",
+  "passed": 4,
+  "total": 4,
+  "checks": [
+    "app construction and calculation",
+    "rendered app dimensions",
+    "all three controls connected to calculation",
+    "recalculation updates output and restores button"
+  ]
+}

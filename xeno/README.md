@@ -72,4 +72,4 @@ O X-01 não especifica uma nova molécula, sequência genética ou processo de s
 
 Não é uma célula sintética, elemento químico, forma de vida ou evidência de consciência. A regressão é uma calibração numérica restrita, sem pesos importados de outro projeto. Este módulo é clássico; Q# permanece no experimento Ramsey separado, pois o X-01 não demonstra vantagem de computação quântica.
 
-[Laboratório principal](../README.md) · [Modelo matemático](MODEL.md) · [Fontes e antecedentes](PRIOR_ART.md) · [Plano de validação física](VALIDATION_PLAN.md)
+[Laboratório principal](../README.md) · [Modelo matemático](MODEL.md) · [Resultados](RESULTS.md) · [Fontes e antecedentes](PRIOR_ART.md) · [Plano de validação física](VALIDATION_PLAN.md)

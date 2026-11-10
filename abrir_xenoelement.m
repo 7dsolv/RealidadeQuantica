@@ -3,7 +3,7 @@ function fig = abrir_xenoelement(run_on_open)
 if nargin<1, run_on_open=true; end
 root=fileparts(mfilename('fullpath')); addpath(fullfile(root,'matlab','xeno'));
 C.bg=[0.035 0.022 0.070]; C.panel=[0.070 0.054 0.115]; C.white=[0.94 0.93 0.98];
-C.muted=[0.68 0.65 0.78]; C.violet=[0.74 0.41 1]; C.cyan=[0.30 0.91 0.86];
+C.muted=[0.68 0.65 0.78]; C.violet=[0.74 0.41 1]; C.cyan=[0.30 0.91 0.86]; C.amber=[1 0.73 0.39];
 fig=uifigure('Name','KONAET | XENOELEMENT X-01','Color',C.bg,'Position',[70 50 1400 900]);
 g=uigridlayout(fig,[3 2],'RowHeight',{68,'1x',38},'ColumnWidth',{250,'1x'},'BackgroundColor',C.bg);
 head=uilabel(g,'Text','KONAET / XENOELEMENT X-01','FontSize',25,'FontWeight','bold','FontColor',C.white);
@@ -40,14 +40,18 @@ if run_on_open, run_model(); end
             r=xeno_simulate(p);
             imagesc(ax(1),r.time_s,1e6*r.depth_m,squeeze(mean(r.concentration,2)));
             ax(1).YDir='reverse'; title(ax(1),'Concentração / mol m^{-3}','Color',C.white);
-            xlabel(ax(1),'Tempo / s'); ylabel(ax(1),'Profundidade / µm'); colorbar(ax(1));
+            xlabel(ax(1),'Tempo / s'); ylabel(ax(1),'Profundidade / µm'); cb=colorbar(ax(1)); cb.Color=C.muted;
             imagesc(ax(2),r.time_s,p.wavelength_nm,r.reflectance); ax(2).YDir='normal';
-            title(ax(2),'Refletância espectral','Color',C.white); xlabel(ax(2),'Tempo / s'); ylabel(ax(2),'λ / nm'); colorbar(ax(2));
+            title(ax(2),'Refletância espectral','Color',C.white); xlabel(ax(2),'Tempo / s'); ylabel(ax(2),'λ / nm'); cb=colorbar(ax(2)); cb.Color=C.muted;
             theta=squeeze(mean(r.occupancy,1)).';
-            plot(ax(3),r.time_s,theta,'LineWidth',1.8);
+            traces=plot(ax(3),r.time_s,theta,'LineWidth',1.8);
+            traces(1).Color=C.cyan; traces(2).Color=C.violet;
             title(ax(3),'Ocupação dos dois receptores','Color',C.white); xlabel(ax(3),'Tempo / s'); ylim(ax(3),[0 1]);
-            plot(ax(4),r.time_s,[r.target_nm r.bragg_nm],'LineWidth',1.8);
+            legend(ax(3),{'Esquerdo','Direito'},'Color',C.panel,'TextColor',C.white,'Location','northeast');
+            traces=plot(ax(4),r.time_s,[r.target_nm r.bragg_nm],'LineWidth',1.8);
+            traces(1).Color=C.amber; traces(1).LineStyle='--'; traces(2).Color=C.cyan;
             title(ax(4),'Alvo e centro de Bragg / nm','Color',C.white); xlabel(ax(4),'Tempo / s');
+            legend(ax(4),{'Alvo','Resposta PI'},'Color',C.panel,'TextColor',C.white,'Location','northeast');
             for j=1:4
                 set(ax(j),'Color',C.panel,'XColor',C.muted,'YColor',C.muted);
                 grid(ax(j),'on');

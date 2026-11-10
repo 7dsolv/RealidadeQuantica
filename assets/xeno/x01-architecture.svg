@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="529.872mm" height="275.872mm"
+ viewBox="0 0 1502 782"
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<title>Qt SVG Document</title>
+<desc>MATLAB, The MathWorks, Inc. Version 26.2.0.3433840 R2026b Update 1</desc>
+<defs>
+</defs>
+<g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
+
+<g fill="#090612" fill-opacity="1" stroke="none" transform="matrix(1,0,0,1,1,1)"
+font-family="Sans Serif" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M-1,-1 L1502,-1 L1502,782 L-1,782 L-1,-1 Z "/>
+</g>
+
+<g fill="#090612" fill-opacity="1" stroke="none" transform="matrix(0.0001,0,0,0.0001,1,1)"
+font-family="Sans Serif" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M10000,7.79e+06 L1.499e+07,7.79e+06 L1.499e+07,10000 L10000,10000 L10000,7.79e+06 Z "/>
+</g>
+
+<g fill="none" stroke="#120e1d" stroke-opacity="1" stroke-width="0.5" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="5" transform="matrix(1,0,0,1,1,1)"
+font-family="Sans Serif" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M1,779 L1499,779 L1499,1 L1,1 L1,779 Z "/>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,71)"
+font-family="DejaVu Sans" font-size="32" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.296875" font-family="DejaVu Sans" font-size="32" font-weight="700" font-style="normal" 
+ >KONAET / XENOELEMENT X-01</text>
+</g>
+
+<g fill="#aba8c4" fill-opacity="1" stroke="#aba8c4" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,122)"
+font-family="DejaVu Sans" font-size="19" font-weight="700" font-style="normal" 
+>
+<text fill="#aba8c4" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.375" font-family="DejaVu Sans" font-size="19" font-weight="700" font-style="normal" 
+ >Uma cadeia calculável de estímulo, percepção e resposta.</text>
+</g>
+
+<g fill="#120e1d" fill-opacity="1" stroke="none" transform="matrix(0.0001,0,0,0.0001,1,1)"
+font-family="DejaVu Sans" font-size="19" font-weight="700" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M650000,2.186e+06 L650000,5.354e+06 L650141,5.35832e+06 L650564,5.36261e+06 L651268,5.36688e+06 L652248,5.37108e+06 L653502,5.37522e+06 L655023,5.37926e+06 L656806,5.38319e+06 L658842,5.387e+06 L661123,5.39067e+06 L663638,5.39418e+06 L666378,5.39752e+06 L669331,5.40067e+06 L672483,5.40362e+06 L675821,5.40636e+06 L679332,5.40888e+06 L683000,5.41116e+06 L686808,5.41319e+06 L690742,5.41498e+06 L694785,5.4165e+06 L698917,5.41775e+06 L703124,5.41873e+06 L707385,5.41944e+06 L711683,5.41986e+06 L716000,5.42e+06 L4.584e+06,5.42e+06 L4.58832e+06,5.41986e+06 L4.59261e+06,5.41944e+06 L4.59688e+06,5.41873e+06 L4.60108e+06,5.41775e+06 L4.60522e+06,5.4165e+06 L4.60926e+06,5.41498e+06 L4.61319e+06,5.41319e+06 L4.617e+06,5.41116e+06 L4.62067e+06,5.40888e+06 L4.62418e+06,5.40636e+06 L4.62752e+06,5.40362e+06 L4.63067e+06,5.40067e+06 L4.63362e+06,5.39752e+06 L4.63636e+06,5.39418e+06 L4.63888e+06,5.39067e+06 L4.64116e+06,5.387e+06 L4.64319e+06,5.38319e+06 L4.64498e+06,5.37926e+06 L4.6465e+06,5.37522e+06 L4.64775e+06,5.37108e+06 L4.64873e+06,5.36688e+06 L4.64944e+06,5.36261e+06 L4.64986e+06,5.35832e+06 L4.65e+06,5.354e+06 L4.65e+06,2.186e+06 L4.64986e+06,2.18168e+06 L4.64944e+06,2.17739e+06 L4.64873e+06,2.17312e+06 L4.64775e+06,2.16892e+06 L4.6465e+06,2.16479e+06 L4.64498e+06,2.16074e+06 L4.64319e+06,2.15681e+06 L4.64116e+06,2.153e+06 L4.63888e+06,2.14933e+06 L4.63636e+06,2.14582e+06 L4.63362e+06,2.14248e+06 L4.63067e+06,2.13933e+06 L4.62752e+06,2.13638e+06 L4.62418e+06,2.13364e+06 L4.62067e+06,2.13112e+06 L4.617e+06,2.12884e+06 L4.61319e+06,2.12681e+06 L4.60926e+06,2.12502e+06 L4.60522e+06,2.1235e+06 L4.60108e+06,2.12225e+06 L4.59688e+06,2.12127e+06 L4.59261e+06,2.12056e+06 L4.58832e+06,2.12014e+06 L4.584e+06,2.12e+06 L716000,2.12e+06 L711683,2.12014e+06 L707385,2.12056e+06 L703124,2.12127e+06 L698917,2.12225e+06 L694785,2.1235e+06 L690742,2.12502e+06 L686808,2.12681e+06 L683000,2.12884e+06 L679332,2.13112e+06 L675821,2.13364e+06 L672483,2.13638e+06 L669331,2.13933e+06 L666378,2.14248e+06 L663638,2.14582e+06 L661123,2.14933e+06 L658842,2.153e+06 L656806,2.15681e+06 L655023,2.16074e+06 L653502,2.16479e+06 L652248,2.16892e+06 L651268,2.17312e+06 L650564,2.17739e+06 L650141,2.18168e+06 L650000,2.186e+06 Z "/>
+</g>
+
+<g fill="none" stroke="#4de8db" stroke-opacity="1" stroke-width="1.2" stroke-linecap="butt" stroke-linejoin="round" transform="matrix(1,0,0,1,1,1)"
+font-family="DejaVu Sans" font-size="19" font-weight="700" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M65,535.4 L65.0141,535.832 L65.0565,536.261 L65.1268,536.688 L65.2249,537.108 L65.3503,537.521 L65.5024,537.926 L65.6806,538.319 L65.8842,538.7 L66.1123,539.067 L66.3639,539.418 L66.6379,539.752 L66.9331,540.067 L67.2483,540.362 L67.5822,540.636 L67.9332,540.888 L68.3,541.116 L68.6809,541.319 L69.0743,541.498 L69.4785,541.65 L69.8918,541.775 L70.3124,541.873 L70.7385,541.944 L71.1683,541.986 L71.6,542 L458.4,542 L458.832,541.986 L459.261,541.944 L459.688,541.873 L460.108,541.775 L460.522,541.65 L460.926,541.498 L461.319,541.319 L461.7,541.116 L462.067,540.888 L462.418,540.636 L462.752,540.362 L463.067,540.067 L463.362,539.752 L463.636,539.418 L463.888,539.067 L464.116,538.7 L464.319,538.319 L464.498,537.926 L464.65,537.521 L464.775,537.108 L464.873,536.688 L464.944,536.261 L464.986,535.832 L465,535.4 L465,218.6 L464.986,218.168 L464.944,217.739 L464.873,217.312 L464.775,216.892 L464.65,216.479 L464.498,216.074 L464.319,215.681 L464.116,215.3 L463.888,214.933 L463.636,214.582 L463.362,214.248 L463.067,213.933 L462.752,213.638 L462.418,213.364 L462.067,213.112 L461.7,212.884 L461.319,212.681 L460.926,212.502 L460.522,212.35 L460.108,212.225 L459.688,212.127 L459.261,212.056 L458.832,212.014 L458.4,212 L71.6,212 L71.1683,212.014 L70.7385,212.056 L70.3124,212.127 L69.8918,212.225 L69.4785,212.35 L69.0743,212.502 L68.6809,212.681 L68.3,212.884 L67.9332,213.112 L67.5822,213.364 L67.2483,213.638 L66.9331,213.933 L66.6379,214.248 L66.3639,214.582 L66.1123,214.933 L65.8842,215.3 L65.6806,215.681 L65.5024,216.074 L65.3503,216.479 L65.2249,216.892 L65.1268,217.312 L65.0565,217.739 L65.0141,218.168 L65,218.6 L65,535.4 Z "/>
+</g>
+
+<g fill="#4de8db" fill-opacity="1" stroke="#4de8db" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,90,261)"
+font-family="DejaVu Sans" font-size="20" font-weight="700" font-style="normal" 
+>
+<text fill="#4de8db" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.4375" font-family="DejaVu Sans" font-size="20" font-weight="700" font-style="normal" 
+ >01 / ESTÍMULOS</text>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,90,325)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.296875" font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+ >Dois canais químicos</text>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,90,392)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.296875" font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+ >Difusão + adsorção</text>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,90,459)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.296875" font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+ >Conservação de massa</text>
+</g>
+
+<g fill="#4de8db" fill-opacity="1" stroke="#4de8db" stroke-opacity="1" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" transform="matrix(1,0,0,1,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<polyline fill="none" vector-effect="none" points="465,390 545,390 " />
+</g>
+
+<g fill="#4de8db" fill-opacity="1" stroke="none" transform="matrix(0.0001,0,0,0.0001,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M5.43655e+06,3.9e+06 L5.36673e+06,3.85969e+06 L5.36673e+06,3.94031e+06 L5.43655e+06,3.9e+06 Z "/>
+</g>
+
+<g fill="none" stroke="#4de8db" stroke-opacity="1" stroke-width="0.5" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="5" transform="matrix(1,0,0,1,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M543.655,390 L536.672,385.969 L536.672,394.031 L543.655,390 Z "/>
+</g>
+
+<g fill="#120e1d" fill-opacity="1" stroke="none" transform="matrix(0.0001,0,0,0.0001,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M5.5e+06,2.186e+06 L5.5e+06,5.354e+06 L5.50014e+06,5.35832e+06 L5.50056e+06,5.36261e+06 L5.50127e+06,5.36688e+06 L5.50225e+06,5.37108e+06 L5.5035e+06,5.37522e+06 L5.50502e+06,5.37926e+06 L5.50681e+06,5.38319e+06 L5.50884e+06,5.387e+06 L5.51112e+06,5.39067e+06 L5.51364e+06,5.39418e+06 L5.51638e+06,5.39752e+06 L5.51933e+06,5.40067e+06 L5.52248e+06,5.40362e+06 L5.52582e+06,5.40636e+06 L5.52933e+06,5.40888e+06 L5.533e+06,5.41116e+06 L5.53681e+06,5.41319e+06 L5.54074e+06,5.41498e+06 L5.54479e+06,5.4165e+06 L5.54892e+06,5.41775e+06 L5.55312e+06,5.41873e+06 L5.55739e+06,5.41944e+06 L5.56168e+06,5.41986e+06 L5.566e+06,5.42e+06 L9.434e+06,5.42e+06 L9.43832e+06,5.41986e+06 L9.44262e+06,5.41944e+06 L9.44688e+06,5.41873e+06 L9.45108e+06,5.41775e+06 L9.45522e+06,5.4165e+06 L9.45926e+06,5.41498e+06 L9.46319e+06,5.41319e+06 L9.467e+06,5.41116e+06 L9.47067e+06,5.40888e+06 L9.47418e+06,5.40636e+06 L9.47752e+06,5.40362e+06 L9.48067e+06,5.40067e+06 L9.48362e+06,5.39752e+06 L9.48636e+06,5.39418e+06 L9.48888e+06,5.39067e+06 L9.49116e+06,5.387e+06 L9.49319e+06,5.38319e+06 L9.49498e+06,5.37926e+06 L9.4965e+06,5.37522e+06 L9.49775e+06,5.37108e+06 L9.49873e+06,5.36688e+06 L9.49944e+06,5.36261e+06 L9.49986e+06,5.35832e+06 L9.5e+06,5.354e+06 L9.5e+06,2.186e+06 L9.49986e+06,2.18168e+06 L9.49944e+06,2.17739e+06 L9.49873e+06,2.17312e+06 L9.49775e+06,2.16892e+06 L9.4965e+06,2.16479e+06 L9.49498e+06,2.16074e+06 L9.49319e+06,2.15681e+06 L9.49116e+06,2.153e+06 L9.48888e+06,2.14933e+06 L9.48636e+06,2.14582e+06 L9.48362e+06,2.14248e+06 L9.48067e+06,2.13933e+06 L9.47752e+06,2.13638e+06 L9.47418e+06,2.13364e+06 L9.47067e+06,2.13112e+06 L9.467e+06,2.12884e+06 L9.46319e+06,2.12681e+06 L9.45926e+06,2.12502e+06 L9.45522e+06,2.1235e+06 L9.45108e+06,2.12225e+06 L9.44688e+06,2.12127e+06 L9.44262e+06,2.12056e+06 L9.43832e+06,2.12014e+06 L9.434e+06,2.12e+06 L5.566e+06,2.12e+06 L5.56168e+06,2.12014e+06 L5.55739e+06,2.12056e+06 L5.55312e+06,2.12127e+06 L5.54892e+06,2.12225e+06 L5.54479e+06,2.1235e+06 L5.54074e+06,2.12502e+06 L5.53681e+06,2.12681e+06 L5.533e+06,2.12884e+06 L5.52933e+06,2.13112e+06 L5.52582e+06,2.13364e+06 L5.52248e+06,2.13638e+06 L5.51933e+06,2.13933e+06 L5.51638e+06,2.14248e+06 L5.51364e+06,2.14582e+06 L5.51112e+06,2.14933e+06 L5.50884e+06,2.153e+06 L5.50681e+06,2.15681e+06 L5.50502e+06,2.16074e+06 L5.5035e+06,2.16479e+06 L5.50225e+06,2.16892e+06 L5.50127e+06,2.17312e+06 L5.50056e+06,2.17739e+06 L5.50014e+06,2.18168e+06 L5.5e+06,2.186e+06 Z "/>
+</g>
+
+<g fill="none" stroke="#bd69ff" stroke-opacity="1" stroke-width="1.2" stroke-linecap="butt" stroke-linejoin="round" transform="matrix(1,0,0,1,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M550,535.4 L550.014,535.832 L550.056,536.261 L550.127,536.688 L550.225,537.108 L550.35,537.521 L550.502,537.926 L550.681,538.319 L550.884,538.7 L551.112,539.067 L551.364,539.418 L551.638,539.752 L551.933,540.067 L552.248,540.362 L552.582,540.636 L552.933,540.888 L553.3,541.116 L553.681,541.319 L554.074,541.498 L554.479,541.65 L554.892,541.775 L555.312,541.873 L555.739,541.944 L556.168,541.986 L556.6,542 L943.4,542 L943.832,541.986 L944.261,541.944 L944.688,541.873 L945.108,541.775 L945.521,541.65 L945.926,541.498 L946.319,541.319 L946.7,541.116 L947.067,540.888 L947.418,540.636 L947.752,540.362 L948.067,540.067 L948.362,539.752 L948.636,539.418 L948.888,539.067 L949.116,538.7 L949.319,538.319 L949.498,537.926 L949.65,537.521 L949.775,537.108 L949.873,536.688 L949.944,536.261 L949.986,535.832 L950,535.4 L950,218.6 L949.986,218.168 L949.944,217.739 L949.873,217.312 L949.775,216.892 L949.65,216.479 L949.498,216.074 L949.319,215.681 L949.116,215.3 L948.888,214.933 L948.636,214.582 L948.362,214.248 L948.067,213.933 L947.752,213.638 L947.418,213.364 L947.067,213.112 L946.7,212.884 L946.319,212.681 L945.926,212.502 L945.521,212.35 L945.108,212.225 L944.688,212.127 L944.261,212.056 L943.832,212.014 L943.4,212 L556.6,212 L556.168,212.014 L555.739,212.056 L555.312,212.127 L554.892,212.225 L554.479,212.35 L554.074,212.502 L553.681,212.681 L553.3,212.884 L552.933,213.112 L552.582,213.364 L552.248,213.638 L551.933,213.933 L551.638,214.248 L551.364,214.582 L551.112,214.933 L550.884,215.3 L550.681,215.681 L550.502,216.074 L550.35,216.479 L550.225,216.892 L550.127,217.312 L550.056,217.739 L550.014,218.168 L550,218.6 L550,535.4 Z "/>
+</g>
+
+<g fill="#bd69ff" fill-opacity="1" stroke="#bd69ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,575,261)"
+font-family="DejaVu Sans" font-size="20" font-weight="700" font-style="normal" 
+>
+<text fill="#bd69ff" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.4375" font-family="DejaVu Sans" font-size="20" font-weight="700" font-style="normal" 
+ >02 / PERCEPÇÃO</text>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,575,325)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.296875" font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+ >Pressão e capacitância</text>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,575,392)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.296875" font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+ >Regressão ridge calibrada</text>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,575,459)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.296875" font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+ >Teste sintético separado</text>
+</g>
+
+<g fill="#bd69ff" fill-opacity="1" stroke="#bd69ff" stroke-opacity="1" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" transform="matrix(1,0,0,1,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<polyline fill="none" vector-effect="none" points="950,390 1030,390 " />
+</g>
+
+<g fill="#bd69ff" fill-opacity="1" stroke="none" transform="matrix(0.0001,0,0,0.0001,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M1.02866e+07,3.9e+06 L1.02167e+07,3.85969e+06 L1.02167e+07,3.94031e+06 L1.02866e+07,3.9e+06 Z "/>
+</g>
+
+<g fill="none" stroke="#bd69ff" stroke-opacity="1" stroke-width="0.5" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="5" transform="matrix(1,0,0,1,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M1028.66,390 L1021.67,385.969 L1021.67,394.031 L1028.66,390 Z "/>
+</g>
+
+<g fill="#120e1d" fill-opacity="1" stroke="none" transform="matrix(0.0001,0,0,0.0001,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M1.035e+07,2.186e+06 L1.035e+07,5.354e+06 L1.03501e+07,5.35832e+06 L1.03506e+07,5.36261e+06 L1.03513e+07,5.36688e+06 L1.03522e+07,5.37108e+06 L1.03535e+07,5.37522e+06 L1.0355e+07,5.37926e+06 L1.03568e+07,5.38319e+06 L1.03588e+07,5.387e+06 L1.03611e+07,5.39067e+06 L1.03636e+07,5.39418e+06 L1.03664e+07,5.39752e+06 L1.03693e+07,5.40067e+06 L1.03725e+07,5.40362e+06 L1.03758e+07,5.40636e+06 L1.03793e+07,5.40888e+06 L1.0383e+07,5.41116e+06 L1.03868e+07,5.41319e+06 L1.03907e+07,5.41498e+06 L1.03948e+07,5.4165e+06 L1.03989e+07,5.41775e+06 L1.04031e+07,5.41873e+06 L1.04074e+07,5.41944e+06 L1.04117e+07,5.41986e+06 L1.0416e+07,5.42e+06 L1.4284e+07,5.42e+06 L1.42883e+07,5.41986e+06 L1.42926e+07,5.41944e+06 L1.42969e+07,5.41873e+06 L1.43011e+07,5.41775e+06 L1.43052e+07,5.4165e+06 L1.43093e+07,5.41498e+06 L1.43132e+07,5.41319e+06 L1.4317e+07,5.41116e+06 L1.43207e+07,5.40888e+06 L1.43242e+07,5.40636e+06 L1.43275e+07,5.40362e+06 L1.43307e+07,5.40067e+06 L1.43336e+07,5.39752e+06 L1.43364e+07,5.39418e+06 L1.43389e+07,5.39067e+06 L1.43412e+07,5.387e+06 L1.43432e+07,5.38319e+06 L1.4345e+07,5.37926e+06 L1.43465e+07,5.37522e+06 L1.43478e+07,5.37108e+06 L1.43487e+07,5.36688e+06 L1.43494e+07,5.36261e+06 L1.43499e+07,5.35832e+06 L1.435e+07,5.354e+06 L1.435e+07,2.186e+06 L1.43499e+07,2.18168e+06 L1.43494e+07,2.17739e+06 L1.43487e+07,2.17312e+06 L1.43478e+07,2.16892e+06 L1.43465e+07,2.16479e+06 L1.4345e+07,2.16074e+06 L1.43432e+07,2.15681e+06 L1.43412e+07,2.153e+06 L1.43389e+07,2.14933e+06 L1.43364e+07,2.14582e+06 L1.43336e+07,2.14248e+06 L1.43307e+07,2.13933e+06 L1.43275e+07,2.13638e+06 L1.43242e+07,2.13364e+06 L1.43207e+07,2.13112e+06 L1.4317e+07,2.12884e+06 L1.43132e+07,2.12681e+06 L1.43093e+07,2.12502e+06 L1.43052e+07,2.1235e+06 L1.43011e+07,2.12225e+06 L1.42969e+07,2.12127e+06 L1.42926e+07,2.12056e+06 L1.42883e+07,2.12014e+06 L1.4284e+07,2.12e+06 L1.0416e+07,2.12e+06 L1.04117e+07,2.12014e+06 L1.04074e+07,2.12056e+06 L1.04031e+07,2.12127e+06 L1.03989e+07,2.12225e+06 L1.03948e+07,2.1235e+06 L1.03907e+07,2.12502e+06 L1.03868e+07,2.12681e+06 L1.0383e+07,2.12884e+06 L1.03793e+07,2.13112e+06 L1.03758e+07,2.13364e+06 L1.03725e+07,2.13638e+06 L1.03693e+07,2.13933e+06 L1.03664e+07,2.14248e+06 L1.03636e+07,2.14582e+06 L1.03611e+07,2.14933e+06 L1.03588e+07,2.153e+06 L1.03568e+07,2.15681e+06 L1.0355e+07,2.16074e+06 L1.03535e+07,2.16479e+06 L1.03522e+07,2.16892e+06 L1.03513e+07,2.17312e+06 L1.03506e+07,2.17739e+06 L1.03501e+07,2.18168e+06 L1.035e+07,2.186e+06 Z "/>
+</g>
+
+<g fill="none" stroke="#ffba63" stroke-opacity="1" stroke-width="1.2" stroke-linecap="butt" stroke-linejoin="round" transform="matrix(1,0,0,1,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M1035,535.4 L1035.01,535.832 L1035.06,536.261 L1035.13,536.688 L1035.22,537.108 L1035.35,537.521 L1035.5,537.926 L1035.68,538.319 L1035.88,538.7 L1036.11,539.067 L1036.36,539.418 L1036.64,539.752 L1036.93,540.067 L1037.25,540.362 L1037.58,540.636 L1037.93,540.888 L1038.3,541.116 L1038.68,541.319 L1039.07,541.498 L1039.48,541.65 L1039.89,541.775 L1040.31,541.873 L1040.74,541.944 L1041.17,541.986 L1041.6,542 L1428.4,542 L1428.83,541.986 L1429.26,541.944 L1429.69,541.873 L1430.11,541.775 L1430.52,541.65 L1430.93,541.498 L1431.32,541.319 L1431.7,541.116 L1432.07,540.888 L1432.42,540.636 L1432.75,540.362 L1433.07,540.067 L1433.36,539.752 L1433.64,539.418 L1433.89,539.067 L1434.12,538.7 L1434.32,538.319 L1434.5,537.926 L1434.65,537.521 L1434.78,537.108 L1434.87,536.688 L1434.94,536.261 L1434.99,535.832 L1435,535.4 L1435,218.6 L1434.99,218.168 L1434.94,217.739 L1434.87,217.312 L1434.78,216.892 L1434.65,216.479 L1434.5,216.074 L1434.32,215.681 L1434.12,215.3 L1433.89,214.933 L1433.64,214.582 L1433.36,214.248 L1433.07,213.933 L1432.75,213.638 L1432.42,213.364 L1432.07,213.112 L1431.7,212.884 L1431.32,212.681 L1430.93,212.502 L1430.52,212.35 L1430.11,212.225 L1429.69,212.127 L1429.26,212.056 L1428.83,212.014 L1428.4,212 L1041.6,212 L1041.17,212.014 L1040.74,212.056 L1040.31,212.127 L1039.89,212.225 L1039.48,212.35 L1039.07,212.502 L1038.68,212.681 L1038.3,212.884 L1037.93,213.112 L1037.58,213.364 L1037.25,213.638 L1036.93,213.933 L1036.64,214.248 L1036.36,214.582 L1036.11,214.933 L1035.88,215.3 L1035.68,215.681 L1035.5,216.074 L1035.35,216.479 L1035.22,216.892 L1035.13,217.312 L1035.06,217.739 L1035.01,218.168 L1035,218.6 L1035,535.4 Z "/>
+</g>
+
+<g fill="#ffba63" fill-opacity="1" stroke="#ffba63" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,1060,261)"
+font-family="DejaVu Sans" font-size="20" font-weight="700" font-style="normal" 
+>
+<text fill="#ffba63" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.4375" font-family="DejaVu Sans" font-size="20" font-weight="700" font-style="normal" 
+ >03 / RESPOSTA</text>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,1060,325)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.296875" font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+ >Controle PI com limites</text>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,1060,392)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.296875" font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+ >Lâminas ópticas + R/T</text>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,1060,459)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.296875" font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+ >Consumo elétrico assumido</text>
+</g>
+
+<g fill="none" stroke="#bd69ff" stroke-opacity="1" stroke-width="1.2" stroke-linecap="butt" stroke-linejoin="round" transform="matrix(1,0,0,1,1,1)"
+font-family="DejaVu Sans" font-size="18" font-weight="700" font-style="normal" 
+>
+<polyline fill="none" vector-effect="none" points="1235,542 1235,600 750,600 750,542 " />
+</g>
+
+<g fill="#bd69ff" fill-opacity="1" stroke="#bd69ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,821,628)"
+font-family="DejaVu Sans" font-size="16" font-weight="700" font-style="normal" 
+>
+<text fill="#bd69ff" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.15625" font-family="DejaVu Sans" font-size="16" font-weight="700" font-style="normal" 
+ >realimentação óptica simulada</text>
+</g>
+
+<g fill="#f0edfa" fill-opacity="1" stroke="#f0edfa" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,688)"
+font-family="DejaVu Sans" font-size="15" font-weight="700" font-style="normal" 
+>
+<text fill="#f0edfa" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="-0.078125" font-family="DejaVu Sans" font-size="15" font-weight="700" font-style="normal" 
+ >MATLAB / física e gráficos     FORTRAN / óptica independente     SYSTEMVERILOG / fusão fixa</text>
+</g>
+
+<g fill="#aba8c4" fill-opacity="1" stroke="#aba8c4" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,66,733)"
+font-family="DejaVu Sans" font-size="12" font-weight="700" font-style="normal" 
+>
+<text fill="#aba8c4" fill-opacity="1" stroke="none" xml:space="preserve" x="0" y="0.125" font-family="DejaVu Sans" font-size="12" font-weight="700" font-style="normal" 
+ >DADOS SINTÉTICOS · SEM MATERIAL FABRICADO · Q# NÃO É NECESSÁRIO PARA ESTE MODELO CLÁSSICO</text>
+</g>
+</g>
+</svg>
