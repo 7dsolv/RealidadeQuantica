@@ -9,7 +9,9 @@ if isfile(memory_path)
     existing=jsondecode(fileread(memory_path));
     if isfield(existing,'research_contract') && strcmp(existing.research_contract,contract)
         [previous_model,~]=konaet_load_model(fullfile(root,'assets','integrated','model'));
-        assert(strcmp(previous_model.source.research_contract,contract)); previous=existing;
+        assert(strcmp(previous_model.source.research_contract,contract));
+        assert(previous_model.source.training_seed==existing.best_seed,'Memoria e pesos nao correspondem ao mesmo candidato.');
+        previous=existing;
     end
 end
 [m,memory,experiments]=konaet_agent_search(train_x,train_y,dev_x,dev_y,output,previous,previous_model);
