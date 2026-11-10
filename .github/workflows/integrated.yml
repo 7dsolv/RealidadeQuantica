@@ -3,6 +3,8 @@ name: KONAET - agente integrado, pesquisa e FPGA
 on:
   workflow_dispatch:
   workflow_call:
+  schedule:
+    - cron: '27 6 * * 2,5'
   push:
     branches: [main]
     paths:
@@ -126,3 +128,85 @@ jobs:
             !artifacts/integrated/live-frame.png
           retention-days: 30
           if-no-files-found: warn
+
+  publicar:
+    needs: validar
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: konaet-publish-${{ github.repository }}
+      cancel-in-progress: false
+    steps:
+      - name: Autenticar App quando configurada
+        if: vars.KONAET_APP_CLIENT_ID != ''
+        id: app
+        uses: 7dsolv/konaet-bot@488671c980ae433a4714de3321d10e58415cf9d0 # v1.1.1
+        with:
+          client-id: ${{ vars.KONAET_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KONAET_APP_PRIVATE_KEY }}
+          expected-slug: konaet
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ steps.app.outputs.token || github.token }}
+          ref: main
+      - uses: actions/download-artifact@v8
+        with:
+          name: konaet-integrated
+          path: artifacts/integrated
+      - name: Publicar memoria, pesos, PCB e evidencias
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token || github.token }}
+          APP_LOGIN: ${{ steps.app.outputs.bot-login }}
+        run: |
+          set -euo pipefail
+          identity="$(gh api --hostname github.com '/users/konaet[bot]' --jq '[.id,.login,.type] | @tsv')"
+          [ "$identity" = $'352182232\tkonaet[bot]\tBot' ]
+          mkdir -p assets/integrated/model assets/integrated/rtl state hardware/x02-acquisition
+          for file in agent-memory.json agent-experiments.json benchmark.json hard-decisions.csv \
+            nab-1-decisions.csv nab-2-decisions.csv circuit-report.json circuit-tolerances.csv \
+            circuit-trace.csv test-report.json app-report.json visual-report.json stream-report.json \
+            live-trace.csv summary.json summary.txt konaet-live.gif konaet-live.png konaet-app.png \
+            benchmark.png nextpnr-report.json rtl.log i2c.log adc.log ads1115.log \
+            KONAET-LICENSE.txt AnomalyNet-LICENSE.txt AnomalyNet-NOTICE.txt NAB-LICENSE.txt \
+            konaet-ice40.bin; do
+            cp "artifacts/integrated/$file" "assets/integrated/$file"
+            git add -- "assets/integrated/$file"
+          done
+          for file in fc1_weight.f32 fc1_bias.f32 fc2_weight.f32 fc2_bias.f32 \
+            konaet-int8.bin quantization.json model-card.json; do
+            cp "artifacts/integrated/model/$file" "assets/integrated/model/$file"
+            git add -- "assets/integrated/model/$file"
+          done
+          for file in weights.mem bias.mem input.mem expected.mem konaet_model_params.vh rtl-vectors.json; do
+            cp "artifacts/integrated/rtl/$file" "assets/integrated/rtl/$file"
+            git add -- "assets/integrated/rtl/$file"
+          done
+          cp artifacts/integrated/agent-memory.json state/konaet-research-memory.json
+          git add -- state/konaet-research-memory.json
+          for file in x02-acquisition.kicad_sch x02-acquisition.kicad_pcb x02-acquisition.kicad_pro \
+            KONAET.kicad_sym sym-lib-table fp-lib-table board-source.json eda-report.json geometry.json \
+            bom.csv erc.json erc-errors.json drc.json drc-errors.json x02-kicad.png x02-acquisition.stl; do
+            cp "artifacts/integrated/hardware/$file" "hardware/x02-acquisition/$file"
+            git add -- "hardware/x02-acquisition/$file"
+          done
+          for folder in KONAET_X02.pretty models layers; do
+            mkdir -p "hardware/x02-acquisition/$folder"
+            cp "artifacts/integrated/hardware/$folder/"* "hardware/x02-acquisition/$folder/"
+            git add -- "hardware/x02-acquisition/$folder"
+          done
+          if git diff --cached --quiet; then exit 0; fi
+          if [ -n "$APP_LOGIN" ]; then
+            [ "$APP_LOGIN" = 'konaet[bot]' ]
+            committer='konaet[bot]'
+            email='352182232+konaet[bot]@users.noreply.github.com'
+          else
+            committer='github-actions[bot]'
+            email='41898282+github-actions[bot]@users.noreply.github.com'
+          fi
+          GIT_AUTHOR_NAME='konaet[bot]' GIT_AUTHOR_EMAIL='352182232+konaet[bot]@users.noreply.github.com' \
+            GIT_COMMITTER_NAME="$committer" GIT_COMMITTER_EMAIL="$email" \
+            git commit -m 'KONAET aprende, verifica e publica agente integrado [skip ci]'
+          git push origin HEAD:main
+          printf 'Memoria e pesos publicados juntos; executor: %s.\n' "$committer" >> "$GITHUB_STEP_SUMMARY"
