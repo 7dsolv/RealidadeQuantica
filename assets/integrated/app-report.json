@@ -1,0 +1,32 @@
+{
+  "source_revision": "844fd5eef21d60aef4144a1fa7387f2ec329551c",
+  "passed": 6,
+  "failed": 0,
+  "total": 6,
+  "tests": [
+    {
+      "name": "live_circuit_and_inference",
+      "passed": true
+    },
+    {
+      "name": "step_control_changes_circuit",
+      "passed": true
+    },
+    {
+      "name": "sensor_fault_is_invalid",
+      "passed": true
+    },
+    {
+      "name": "sensor_window_recovers",
+      "passed": true
+    },
+    {
+      "name": "reset_preserves_app",
+      "passed": true
+    },
+    {
+      "name": "timer_start_pause_advances_samples",
+      "passed": true
+    }
+  ]
+}

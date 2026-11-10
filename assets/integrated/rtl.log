@@ -1,0 +1,2 @@
+KONAET_RTL_PASS cases=391 cycles_min=2472 cycles_max=2472
+systemverilog/konaet_int8_tb.sv:53: $finish called at 9794690000 (1ps)

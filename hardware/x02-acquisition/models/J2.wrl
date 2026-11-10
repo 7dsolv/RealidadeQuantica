@@ -1,0 +1,6 @@
+#VRML V2.0 utf8
+# KONAET authored approximate part envelope, not vendor STEP
+Transform { translation 0.000000 -1.000000 0.511811 children [ Shape { appearance Appearance { material Material { diffuseColor 0.180 0.140 0.220 } } geometry Box { size 0.984252 3.000000 0.984252 } } ] }
+Transform { translation 0.000000 -0.000000 0.787402 children [ Shape { appearance Appearance { material Material { diffuseColor 0.700 0.700 0.720 } } geometry Box { size 0.251969 0.251969 3.149606 } } ] }
+Transform { translation 0.000000 -1.000000 0.787402 children [ Shape { appearance Appearance { material Material { diffuseColor 0.700 0.700 0.720 } } geometry Box { size 0.251969 0.251969 3.149606 } } ] }
+Transform { translation 0.000000 -2.000000 0.787402 children [ Shape { appearance Appearance { material Material { diffuseColor 0.700 0.700 0.720 } } geometry Box { size 0.251969 0.251969 3.149606 } } ] }

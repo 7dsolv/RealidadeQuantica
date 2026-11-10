@@ -1,0 +1,11 @@
+{
+  "frames": 48,
+  "frame_pixels": [
+    1440,
+    900
+  ],
+  "gif_bytes": 3.194155E+6,
+  "animation_data": "computed voltage, current, capacitor charge and hidden activations, not decorative particle motion",
+  "source_revision": "844fd5eef21d60aef4144a1fa7387f2ec329551c",
+  "physical_live_telemetry": false
+}

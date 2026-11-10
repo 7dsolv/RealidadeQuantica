@@ -1,0 +1,38 @@
+{
+  "source_revision": "844fd5eef21d60aef4144a1fa7387f2ec329551c",
+  "cases": 390,
+  "multiply_accumulate_per_window": 816,
+  "first_layer_abs_bounds": [
+    146344,
+    83819,
+    159082,
+    138641,
+    70367,
+    12668,
+    53747,
+    134216,
+    1567,
+    27332,
+    157338,
+    34798,
+    136461,
+    150408,
+    156127,
+    135232,
+    175328,
+    52795,
+    149416,
+    156429,
+    83948,
+    157494,
+    79570,
+    102132
+  ],
+  "second_layer_abs_bounds": [
+    127187,
+    125663
+  ],
+  "max_requantized_product": 7.52127138912E+11,
+  "hardware_measurement": "NOT_MEASURED",
+  "comparison": "both signed INT32 logits and decision, not only label"
+}

@@ -1,0 +1,2 @@
+KONAET_ADC_PASS cases=65536
+systemverilog/konaet_adc_quantizer_tb.sv:20: $finish called at 17039390000 (1ps)
