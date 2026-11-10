@@ -1,0 +1,2 @@
+PASS: complex Q1.15 product, raw signed Q30 outputs: real=335544320 imag=0
+systemverilog/complex_mul_q15_demo_tb.sv:31: $finish called at 1 (1s)
