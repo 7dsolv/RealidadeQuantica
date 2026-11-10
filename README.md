@@ -6,6 +6,10 @@
 
 **[Abrir página da KONAET](konaet/README.md)** · **[Abrir App KONAET](https://github.com/apps/konaet)**
 
+**[Novo laboratório: KONAET XENOELEMENT X-01 — membrana sensorial bioinspirada](xeno/README.md)**
+
+O X-01 conecta transporte químico, adsorção, toque, calibração sintética, controle e óptica multicamada. Inclui app MATLAB, referência Fortran, módulo SystemVerilog, testes, dados e animação. É um protótipo computacional com parâmetros hipotéticos; material físico não fabricado. [Equações e unidades](xeno/MODEL.md) · [Fontes e antecedentes](xeno/PRIOR_ART.md).
+
 O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**, com demonstração de aritmética para FPGA. O GitHub Actions executa ciclos numéricos automáticos a cada hora; a memória acompanha os ciclos e a animação pública é renovada diariamente. Os novos commits dos resultados têm autoria atribuída a **`konaet[bot]`**. O repositório não usa HTML, JavaScript ou Python.
 
 ## KONAET em movimento
@@ -37,7 +41,7 @@ addpath('matlab')
 abrir_laboratorio
 ```
 
-O app tem quatro áreas:
+O app tem cinco áreas:
 
 | Área | Experimento |
 | --- | --- |
@@ -45,6 +49,7 @@ O app tem quatro áreas:
 | **Onda quântica** | Pacote gaussiano livre com controles de largura, número de onda e tempo; compara MATLAB com Fortran quando `gfortran` está instalado. |
 | **Cosmologia FLRW** | Fator de escala, expansão normalizada, desaceleração e curvatura calculados pela equação de Friedmann. |
 | **Módulos** | Navegador de código-fonte MATLAB, Fortran, Q# e SystemVerilog, com ações para abrir e copiar cada arquivo. |
+| **XENOELEMENT X-01** | Abre `abrir_xenoelement`: transporte/adsorção, compressão, espectros ópticos e controle com parâmetros ajustáveis. |
 
 ## Execute os modelos no GitHub
 

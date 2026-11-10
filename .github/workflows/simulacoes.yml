@@ -5,6 +5,12 @@ on:
     branches: [main]
   pull_request:
   workflow_dispatch:
+    inputs:
+      module:
+        description: Modulo a executar manualmente
+        type: choice
+        options: [physics, xeno]
+        default: physics
   schedule:
     - cron: '17 * * * *'
 
@@ -18,6 +24,7 @@ concurrency:
 jobs:
   executar-modelos:
     name: MATLAB, Fortran e SystemVerilog
+    if: github.event_name != 'workflow_dispatch' || inputs.module != 'xeno'
     runs-on: ubuntu-latest
     env:
       MLM_LICENSE_TOKEN: ${{ secrets.MLM_LICENSE_TOKEN }}
@@ -71,10 +78,20 @@ jobs:
             echo 'O painel PNG, a animacao GIF, a memoria do Konaet, os dados CSV, o arquivo MAT e a simulacao SystemVerilog estao em **Actions → Artifacts → resultados-do-laboratorio**.'
           } >> "$GITHUB_STEP_SUMMARY"
 
+  xenoelement:
+    if: github.event_name == 'workflow_dispatch' && inputs.module == 'xeno'
+    permissions:
+      contents: write
+    uses: ./.github/workflows/xenoelement.yml
+    secrets: inherit
+
   atualizar-painel:
     name: Konaet - memoria e graficos do README
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: executar-modelos
+    concurrency:
+      group: konaet-publish-${{ github.repository }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write

@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "revision": "dddb38c47441019ab18e582658b707650741c913",
+  "mode": "synthetic-numerical-validation",
+  "physical_material": "NOT_FABRICATED",
+  "planned": 26,
+  "passed": 26,
+  "failed": 0,
+  "cases": [
+    {
+      "name": "test_xeno/reaction_mass",
+      "passed": true,
+      "duration_s": 0.007944,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/reaction_equilibrium",
+      "passed": true,
+      "duration_s": 0.001757,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/reaction_analytic",
+      "passed": true,
+      "duration_s": 0.001915,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/reaction_zero",
+      "passed": true,
+      "duration_s": 0.00068,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/diffusion_uniform",
+      "passed": true,
+      "duration_s": 0.0022,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/diffusion_closed",
+      "passed": true,
+      "duration_s": 0.00893,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/diffusion_balance",
+      "passed": true,
+      "duration_s": 0.0009,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/diffusion_invalid_step",
+      "passed": true,
+      "duration_s": 0.002315,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/mechanics_analytic",
+      "passed": true,
+      "duration_s": 0.001252,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/mechanics_release",
+      "passed": true,
+      "duration_s": 0.000235,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/mechanics_invalid",
+      "passed": true,
+      "duration_s": 0.001061,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/optics_fresnel",
+      "passed": true,
+      "duration_s": 0.004873,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/optics_balance",
+      "passed": true,
+      "duration_s": 0.003118,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/optics_design",
+      "passed": true,
+      "duration_s": 0.001807,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/optics_invalid",
+      "passed": true,
+      "duration_s": 0.002886,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/calibration_holdout",
+      "passed": true,
+      "duration_s": 0.001501,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/calibration_invalid",
+      "passed": true,
+      "duration_s": 0.001866,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/seed_reproducibility",
+      "passed": true,
+      "duration_s": 0.047837,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/coupled_bounds",
+      "passed": true,
+      "duration_s": 0.002897,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/coupled_mass",
+      "passed": true,
+      "duration_s": 0.000126,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/controller_tracking",
+      "passed": true,
+      "duration_s": 0.098557,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/time_convergence",
+      "passed": true,
+      "duration_s": 0.135613,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/space_convergence",
+      "passed": true,
+      "duration_s": 0.211479,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/fixed_geometry",
+      "passed": true,
+      "duration_s": 0.002659,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/fortran_comparison",
+      "passed": true,
+      "duration_s": 0.87872,
+      "message": ""
+    },
+    {
+      "name": "test_xeno/fpga_simulation",
+      "passed": true,
+      "duration_s": 0.006353,
+      "message": ""
+    }
+  ],
+  "total": 26,
+  "complete": true
+}
