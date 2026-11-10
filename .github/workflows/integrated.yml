@@ -40,8 +40,9 @@ jobs:
       - name: Preparar ferramentas de calculo e FPGA
         run: |
           set -euo pipefail
+          sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gfortran iverilog yosys nextpnr-ice40 fpga-icestorm
+          sudo apt-get install -y --no-install-recommends gfortran iverilog yosys nextpnr-ice40 fpga-icestorm kicad xvfb xauth
           mkdir -p build artifacts/integrated
           gfortran -std=f2008 -Wall -Wextra -fcheck=all -O2 fortran/tiny_anomalynet.f90 -o build/tiny_anomalynet
           yosys -V > artifacts/integrated/yosys-version.txt
@@ -53,7 +54,7 @@ jobs:
       - name: Treinar candidato proprio e avaliar dados bloqueados
         uses: matlab-actions/run-command@v3
         with:
-          command: addpath('matlab/integrated','matlab/tiny','tests'); out=fullfile(pwd,'artifacts','integrated'); konaet_benchmark(pwd,out); data=load(fullfile(out,'benchmark.mat'),'q','hard_x'); konaet_export_rtl(data.q,data.hard_x,out); konaet_circuit(out); test_konaet_integrated(pwd,out);
+          command: addpath('matlab/integrated','matlab/tiny','tests'); out=fullfile(pwd,'artifacts','integrated'); konaet_benchmark(pwd,out); data=load(fullfile(out,'benchmark.mat'),'q','hard_x'); konaet_export_rtl(data.q,data.hard_x,out); konaet_circuit(out); konaet_write_eda(out); test_konaet_integrated(pwd,out);
       - name: Conferir inferencia RTL bit a bit
         run: |
           set -euo pipefail
@@ -61,6 +62,35 @@ jobs:
             -o build/konaet_int8_tb systemverilog/konaet_int8_core.sv systemverilog/konaet_int8_tb.sv
           vvp build/konaet_int8_tb | tee artifacts/integrated/rtl.log
           grep -q KONAET_RTL_PASS artifacts/integrated/rtl.log
+          iverilog -g2012 -s konaet_i2c_tb -o build/konaet_i2c_tb \
+            systemverilog/konaet_i2c_byte.sv systemverilog/konaet_i2c_tb.sv
+          vvp build/konaet_i2c_tb | tee artifacts/integrated/i2c.log
+          grep -q KONAET_I2C_PASS artifacts/integrated/i2c.log
+      - name: Sintetizar e rotear FPGA alvo a 12 MHz
+        run: |
+          set -euo pipefail
+          yosys -Q -T -l artifacts/integrated/synthesis.log -p \
+            'read_verilog -sv -Iartifacts/integrated/rtl systemverilog/konaet_int8_core.sv systemverilog/konaet_i2c_byte.sv systemverilog/konaet_ads1115.sv systemverilog/konaet_fpga_top.sv; synth_ice40 -dsp -top konaet_fpga_top -json artifacts/integrated/konaet-ice40.json'
+          nextpnr-ice40 --up5k --package sg48 --freq 12 --seed 42 \
+            --pcf hardware/icebreaker/konaet.pcf --json artifacts/integrated/konaet-ice40.json \
+            --asc artifacts/integrated/konaet-ice40.asc --report artifacts/integrated/nextpnr-report.json \
+            2>&1 | tee artifacts/integrated/nextpnr.log
+          icepack artifacts/integrated/konaet-ice40.asc artifacts/integrated/konaet-ice40.bin
+      - name: Verificar esquema, conectividade e PCB nativos
+        run: |
+          set -euo pipefail
+          base='artifacts/integrated/hardware/x02-acquisition'
+          kicad-cli sch erc --format json --severity-all --output artifacts/integrated/hardware/erc.json "$base.kicad_sch"
+          kicad-cli sch erc --format json --severity-error --exit-code-violations --output artifacts/integrated/hardware/erc-errors.json "$base.kicad_sch"
+          kicad-cli pcb drc --format json --severity-all --schematic-parity --output artifacts/integrated/hardware/drc.json "$base.kicad_pcb"
+          kicad-cli pcb drc --format json --severity-error --exit-code-violations --schematic-parity --output artifacts/integrated/hardware/drc-errors.json "$base.kicad_pcb"
+          jq -e '.unconnected_items | length == 0' artifacts/integrated/hardware/drc.json
+          mkdir -p artifacts/integrated/hardware/layers
+          kicad-cli pcb export svg --mode-multi --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts --output artifacts/integrated/hardware/layers/ "$base.kicad_pcb"
+          kicad-cli sch export svg --output artifacts/integrated/hardware/layers/ "$base.kicad_sch"
+          xvfb-run --auto-servernum kicad-cli pcb render --width 1800 --height 1100 --quality high --background opaque \
+            --rotate '315,0,35' --define-var "KIPRJMOD=$PWD/artifacts/integrated/hardware" \
+            --output artifacts/integrated/hardware/x02-kicad.png "$base.kicad_pcb"
       - uses: actions/upload-artifact@v7
         if: always()
         with:
