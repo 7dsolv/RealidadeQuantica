@@ -4,7 +4,10 @@ data=load(fullfile(output,'benchmark.mat')); result=data.result;
 tests={@gradient_check,@reproducible_data,@reproducible_training,@locked_test, ...
     @weights_are_new,@training_loss,@quantized_fidelity,@model_roundtrip, ...
     @source_interop,@real_data_audit,@invalid_sensor,@rc_step,@rc_energy, ...
-    @rc_passivity,@metrics_abstention,@memory_resume,@csv_interface};
+    @rc_passivity,@metrics_abstention,@memory_resume,@csv_interface, ...
+    @bundle_tampering,@metadata_tampering,@memory_rejects_incompatible, ...
+    @contract_covers_dependencies,@context_is_label_free,@uncertainty_reproducible, ...
+    @local_memory_compare_and_swap,@bounded_stream_history,@no_representable_calibration};
 report=struct('source_revision',getenv('GITHUB_SHA'),'passed',0,'failed',0,'total',numel(tests), ...
     'cases',struct('name',{},'passed',{},'message',{}));
 for k=1:numel(tests)
@@ -22,9 +25,13 @@ assert(report.failed==0,'Konaet: %d testes falharam.',report.failed);
         [~,g]=konaet_loss(m,x,y,1e-4); fields={'W1','b1','W2','b2'};
         for j=1:4
             name=fields{j}; plus=m; minus=m; h=single(0.001);
-            plus.(name)(1)=plus.(name)(1)+h; minus.(name)(1)=minus.(name)(1)-h;
-            numeric=(konaet_loss(plus,x,y,1e-4)-konaet_loss(minus,x,y,1e-4))/(2*double(h));
-            assert(abs(numeric-double(g.(name)(1)))<3e-4,'Gradiente incorreto: %s',name);
+            indices=unique([1 ceil(numel(m.(name))/2) numel(m.(name))]);
+            for index=indices
+                plus=m; minus=m;
+                plus.(name)(index)=plus.(name)(index)+h; minus.(name)(index)=minus.(name)(index)-h;
+                numeric=(konaet_loss(plus,x,y,1e-4)-konaet_loss(minus,x,y,1e-4))/(2*double(h));
+                assert(abs(numeric-double(g.(name)(index)))<3e-4,'Gradiente incorreto: %s/%d',name,index);
+            end
         end
     end
     function reproducible_data()
@@ -68,12 +75,14 @@ assert(report.failed==0,'Konaet: %d testes falharam.',report.failed);
         assert(max(abs(independent-double(own.')),[],'all')<2e-4);
     end
     function real_data_audit()
-        assert(numel(result.real_data)==2);
+        assert(numel(result.real_data)==6);
         assert(all(~[result.real_data.model_training_used_this_series]));
         assert(all([result.real_data.normalization_prefix_samples]>32));
         assert(all([result.real_data.native_sample_interval_s]>10));
         assert(any([result.real_data.source_nonmonotonic_steps]>0));
         assert(all(~[result.real_data.official_NAB_score]));
+        assert(sum(strcmp({result.real_data.evaluation_role},'new_external_fixed_protocol'))==4);
+        assert(sum(strcmp({result.real_data.evaluation_role},'legacy_retrospective'))==2);
     end
     function invalid_sensor()
         x=ones(32,3)*50; x(1,1)=NaN; x(2,2)=Inf; x(3,3)=120;
@@ -105,8 +114,8 @@ assert(report.failed==0,'Konaet: %d testes falharam.',report.failed);
     end
     function memory_resume()
         folder=fullfile(output,'fixtures','resume'); if ~isfolder(folder), mkdir(folder); end
-        [x,y]=konaet_windows(64,86); previous=result.agent_memory;
-        [~,state,experiments]=konaet_agent_search(x,y,x,y,folder,previous,data.m);
+        [x,y]=konaet_windows(64,86); [dev_x,dev_y]=konaet_windows(768,39002); previous=result.agent_memory;
+        [~,state,experiments]=konaet_agent_search(x,y,dev_x,dev_y,folder,previous,data.m);
         assert(state.resumed && state.cycle==previous.cycle+1);
         assert(sum(state.counts)==sum(previous.counts)+6 && numel(experiments)==6);
     end
@@ -117,5 +126,70 @@ assert(report.failed==0,'Konaet: %d testes falharam.',report.failed);
         r=konaet_classificar(input,target,fullfile(output,'model'));
         assert(r.windows==3 && all(r.classes(2:3)==-1));
         assert(isfile(target) && strcmp(r.model,'KONAET Sense 842 INT8'));
+    end
+    function bundle_tampering()
+        folder=fixture('bundle'); copyfile(fullfile(output,'model','*'),folder);
+        file=fullfile(folder,'fc1_weight.f32'); fid=fopen(file,'r+'); assert(fid>0);
+        byte=fread(fid,1,'uint8'); fseek(fid,0,'bof'); fwrite(fid,bitxor(uint8(byte),uint8(1)),'uint8'); fclose(fid);
+        rejects(@()konaet_load_model(folder));
+    end
+    function metadata_tampering()
+        folder=fixture('metadata'); copyfile(fullfile(output,'model','*'),folder);
+        file=fullfile(folder,'quantization.json'); meta=jsondecode(fileread(file));
+        meta.input_scale=meta.input_scale*2; konaet_write_json(file,meta);
+        rejects(@()tiny_load_int8(folder));
+    end
+    function memory_rejects_incompatible()
+        state=result.agent_memory; state.counts(1)=state.counts(1)+1;
+        rejects(@()konaet_validate_memory(state,data.m));
+        state=result.agent_memory; state.reward_sum(1)=Inf;
+        rejects(@()konaet_validate_memory(state,data.m));
+        state=result.agent_memory; state.best_seed=state.best_seed+1;
+        rejects(@()konaet_validate_memory(state,data.m));
+    end
+    function contract_covers_dependencies()
+        [~,names]=konaet_research_contract(root);
+        assert(any(strcmp(names,'matlab/integrated/konaet_metrics.m')));
+        assert(any(strcmp(names,'matlab/tiny/tiny_fp32.m')));
+        assert(any(strcmp(names,'matlab/tiny/tiny_int8.m')));
+        assert(any(strcmp(names,'integrated/evaluation-protocol.json')));
+    end
+    function context_is_label_free()
+        cal=data.cal_x(:,1:100); x=data.hard_x(:,1:50);
+        a=konaet_context_detector(cal,x); b=konaet_context_detector(cal,x);
+        assert(isequal(a,b) && numel(a.prediction)==50 && all(ismember(a.prediction,[0 1])));
+    end
+    function uncertainty_reproducible()
+        truth=repmat([0 0 1 1],1,40); prediction=repmat([0 1 1 1],1,40);
+        a=konaet_uncertainty(truth,prediction,8,256,66113); b=konaet_uncertainty(truth,prediction,8,256,66113);
+        assert(isequal(a,b));
+        assert(a.balanced_accuracy_95(1)<=0.75 && a.balanced_accuracy_95(2)>=0.75);
+    end
+    function local_memory_compare_and_swap()
+        addpath(fullfile(root,'matlab')); folder=fixture('memory'); file=fullfile(folder,'memory.csv');
+        writematrix([1 2 3],file); expected=fileread(file);
+        konaet_commit_memory(file,[2 3 4],expected); assert(isequal(readmatrix(file),[2 3 4]));
+        rejects(@()konaet_commit_memory(file,[9 9 9],expected));
+        assert(isequal(readmatrix(file),[2 3 4]) && ~isfile([file '.lock']));
+    end
+    function bounded_stream_history()
+        s=konaet_stream_init(123);
+        controls=struct('noise_V',0,'step_enabled',false,'step_V',0,'dropout',false);
+        for j=1:305,[s,view]=konaet_stream_step(s,data.m,data.q,controls);end
+        assert(s.samples==305 && numel(s.time)==300 && numel(s.window_C)==32);
+        assert(isfinite(view.node_V) && view.class>=0 && all(diff(s.time)>0));
+    end
+    function no_representable_calibration()
+        x=ones(32,8)*50; cal=ones(32,8)*120;
+        [records,paired]=konaet_evaluate(struct('name',{},'kind',{},'value',{}),x,[0 1 0 1 0 1 0 1],cal,'empty_calibration');
+        assert(numel(records)==4 && all(paired.KONAET_CONTEXT==-1));
+        assert(all(arrayfun(@(r)r.metrics.coverage==0,records)));
+    end
+    function folder=fixture(name)
+        folder=fullfile(output,'fixtures',name); if ~isfolder(folder),mkdir(folder);end
+    end
+    function rejects(operation)
+        rejected=false; try,operation();catch,rejected=true;end
+        assert(rejected,'Entrada invalida foi aceita.');
     end
 end

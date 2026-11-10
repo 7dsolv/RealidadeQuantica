@@ -10,8 +10,13 @@ state=struct('schema_version',1,'objective','validation balanced accuracy minus 
 experiments=struct('round',{},'arm',{},'seed',{},'reward',{},'validation',{},'loss_initial',{},'loss_final',{});
 state.cycle=1; state.resumed=false; best=[];
 if nargin>=7 && ~isempty(previous)
+    konaet_validate_memory(previous,previous_model);
     state=previous; state.counts=state.counts(:).'; state.reward_sum=state.reward_sum(:).';
-    assert(numel(state.counts)==3 && all(state.counts>=0));
+    [~,prediction]=tiny_fp32(previous_model,dev_x);
+    rechecked=konaet_metrics(dev_y,prediction);
+    assert(abs(rechecked.utility-state.best_reward)<1e-8,'Konaet:InvalidResearchState', ...
+        'A recompensa do candidato mudou; reinicie o contrato de pesquisa.');
+    state.revalidated_best_reward=rechecked.utility;
     state.cycle=state.cycle+1; state.resumed=true; best=previous_model;
 end
 state.before_counts=state.counts; state.before_reward_sum=state.reward_sum;

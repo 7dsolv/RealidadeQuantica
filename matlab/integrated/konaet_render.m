@@ -74,17 +74,19 @@ for k=1:numel(records)
     a=find(strcmp(models,records(k).model));b=find(strcmp(suites,records(k).suite));values(a,b)=records(k).metrics.balanced_accuracy;
 end
 f=figure('Visible','off','Color','white','Position',[20 20 1500 850]);guard=onCleanup(@() close(f)); %#ok<NASGU>
-ax=axes(f,'Position',[0.18 0.23 0.73 0.63]);imagesc(ax,values,[0 1]);
+ax=axes(f,'Position',[0.18 0.32 0.73 0.56]);imagesc(ax,values,[0 1]);
 colormap(ax,interp1([0 0.5 1],[0.95 0.92 0.98;0.7 0.48 0.85;0.27 0.08 0.43],linspace(0,1,256)));colorbar(ax);
-xticks(ax,1:numel(suites));xticklabels(ax,{'Sintetico dificil','Sintetico simples','Ruido forte','Maquina real NAB','Ambiente real NAB'});
+labels=strrep(strrep(suites,'.csv',''),'_',' ');
+labels(1:3)={'Sintetico dificil','Sintetico simples','Ruido forte'};
+xticks(ax,1:numel(suites));xticklabels(ax,labels);xtickangle(ax,25);
 yticks(ax,1:numel(models));yticklabels(ax,models);ax.TickLabelInterpreter='none';ax.FontSize=12;
 for a=1:numel(models),for b=1:numel(suites)
     color=[0.15 0.07 0.25];if values(a,b)>0.7,color=[1 1 1];end
-    text(ax,b,a,sprintf('%.1f%%',100*values(a,b)),'Color',color,'FontSize',15,'FontWeight','bold','HorizontalAlignment','center');
+    text(ax,b,a,sprintf('%.1f%%',100*values(a,b)),'Color',color,'FontSize',11,'FontWeight','bold','HorizontalAlignment','center');
 end,end
 title(ax,'KONAET / ACURACIA BALANCEADA / MESMO DOMINIO DE ENTRADA','FontSize',18);
 annotation(f,'textbox',[0.18 0.05 0.73 0.1],'String', ...
     'Teste final separado da escolha. Abstencoes contam como erros. NAB: janelas temporais normalizadas; nao e o score oficial NAB nem um ensaio fisico KONAET.', ...
     'FontSize',12,'EdgeColor','none');
-exportgraphics(f,fullfile(output,'benchmark.png'),'Width',1800,'Height',1020,'Units','pixels','Padding','figure','BackgroundColor','white');
+exportgraphics(f,fullfile(output,'benchmark.png'),'Width',2100,'Height',1190,'Units','pixels','Padding','figure','BackgroundColor','white');
 end

@@ -15,4 +15,5 @@ q.mean_C=50; q.scale_C=20;
 q.parameters=842;
 q.payload_bytes=numel(q.W1)+numel(q.W2)+4*(numel(q.b1)+numel(q.b2));
 q.activation_policy='out-of-domain input is flagged; no safety assertion';
+tiny_validate_int8(q);
 end

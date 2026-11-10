@@ -1,10 +1,11 @@
 function series = konaet_nab(root)
-%KONAET_NAB Avaliacao temporal de duas series reais, distinta do score NAB.
+%KONAET_NAB Avaliacao temporal de series reais, distinta do score NAB.
 folder=fullfile(root,'datasets','nab'); source=jsondecode(fileread(fullfile(folder,'source.json')));
 for k=1:numel(source.files)
     entry=source.files(k); assert(strcmp(konaet_sha256(fullfile(folder,entry.name)),entry.sha256));
 end
 labels=jsondecode(fileread(fullfile(folder,'selected-labels.json')));
+protocol=jsondecode(fileread(fullfile(root,'integrated','evaluation-protocol.json')));
 for k=1:numel(labels.series)
     item=labels.series(k); data=readtable(fullfile(folder,item.name),'TextType','string');
     if isdatetime(data.timestamp), times=data.timestamp;
@@ -48,6 +49,8 @@ for k=1:numel(labels.series)
         'split','early 20% normal-only calibration, 31-sample boundary guard, remaining future samples for test', ...
         'official_NAB_score',false,'overlapping_windows_within_test',true, ...
         'model_training_used_this_series',false,'source_revision',source.revision);
+    meta.evaluation_role='new_external_fixed_protocol';
+    if any(strcmp(item.name,protocol.legacy_retrospective)),meta.evaluation_role='legacy_retrospective';end
     series(k)=struct('meta',meta,'calibration',calibration,'x',testing,'y',targets, ...
         'endpoint_indices',endpoints,'source_values',values,'source_times',times); %#ok<AGROW>
 end

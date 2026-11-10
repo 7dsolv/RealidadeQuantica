@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "protocol": "KONAET external evaluation v1",
+  "frozen_before_new_results": "2026-11-10",
+  "selection_rule": "Four named public NAB series selected before executing the new detector; no tuning on their future labels",
+  "legacy_retrospective": ["machine_temperature_system_failure.csv", "ambient_temperature_system_failure.csv"],
+  "new_external_series": ["cpu_utilization_asg_misconfiguration.csv", "ec2_request_latency_system_failure.csv", "nyc_taxi.csv", "ec2_cpu_utilization_5f5533.csv"],
+  "calibration_fraction": 0.2,
+  "window_samples": 32,
+  "stride_samples": 8,
+  "normal_calibration_quantile": 0.995,
+  "bootstrap_replicates": 256,
+  "bootstrap_block_windows": 32,
+  "bootstrap_seed": 66113,
+  "labels_used_for_model_selection": false,
+  "official_NAB_score": false,
+  "claim": "Public reproducible research evaluation, not an independent third-party certification or physical test"
+}

@@ -1,0 +1,83 @@
+name: KONAET - propostas de resultados
+on:
+  workflow_call:
+    inputs:
+      module:
+        required: true
+        type: string
+      artifact:
+        required: true
+        type: string
+    secrets:
+      KONAET_APP_PRIVATE_KEY:
+        required: true
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash
+jobs:
+  propose:
+    if: vars.KONAET_APP_CLIENT_ID != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    concurrency:
+      group: konaet-publish-${{ github.repository }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: 7dsolv/konaet-bot@a27acebb28894beb79a7f83409788d4122a9fd41 # validated v1.3.0 source
+        id: app
+        with:
+          client-id: ${{ vars.KONAET_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KONAET_APP_PRIVATE_KEY }}
+          expected-slug: konaet
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: ${{ inputs.artifact }}
+          path: artifacts/publication
+      - name: Conferir origem e preparar proposta sem sobrescrever a main
+        id: prepare
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          MODULE: ${{ inputs.module }}
+        run: |
+          bash .github/scripts/prepare-publication.sh "$MODULE" artifacts/publication
+          bash .github/scripts/copy-publication.sh "$MODULE" artifacts/publication
+          case "$MODULE" in
+            integrated) paths=$'assets/integrated\nhardware/x02-acquisition\nstate/konaet-research-memory.json';;
+            physics) paths=$'assets/physics\nassets/realidade-quantica-dashboard.png\nassets/realidade-quantica-viva.gif\nstate/konaet_memory.csv';;
+            offline) paths=$'assets/offline\nhardware/x01-carrier';;
+            xeno) paths='assets/xeno';;
+            *) exit 64;;
+          esac
+          { echo 'paths<<KONAET_PATHS';echo "$paths";echo KONAET_PATHS; } >> "$GITHUB_OUTPUT"
+      - uses: 7dsolv/konaet-bot/propose@a27acebb28894beb79a7f83409788d4122a9fd41 # validated v1.3.0 source
+        id: proposal
+        with:
+          token: ${{ steps.app.outputs.token }}
+          bot-login: ${{ steps.app.outputs.bot-login }}
+          bot-id: ${{ steps.app.outputs.bot-id }}
+          branch: ${{ steps.prepare.outputs.branch }}
+          paths: ${{ steps.prepare.outputs.paths }}
+          title: 'KONAET: resultados verificados / ${{ inputs.module }}'
+          commit-message: 'KONAET: resultados verificados / ${{ inputs.module }}'
+          body: |
+            Resultados gerados por ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+            O manifesto liga codigo, ferramentas e estado anterior a esta rodada.
+            A main recebe a proposta somente depois dos checks exigidos. Nenhum ensaio fisico esta sendo declarado.
+      - name: Aguardar checks obrigatorios antes de integrar
+        if: steps.proposal.outputs.pr-url != ''
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          PR_URL: ${{ steps.proposal.outputs.pr-url }}
+        run: |
+          gh pr merge "$PR_URL" --auto --squash
+          printf 'Proposta KONAET: %s. Integracao depende da protecao da main e dos checks.\n' "$PR_URL" >> "$GITHUB_STEP_SUMMARY"

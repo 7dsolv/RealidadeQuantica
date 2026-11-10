@@ -1,0 +1,54 @@
+name: KONAET - QSharp simulator
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - 'qsharp/**'
+      - '.github/workflows/qsharp.yml'
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash
+jobs:
+  qsharp:
+    name: QSharp Ramsey simulator
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          repository: microsoft/qdk
+          ref: 5cda25157c87fc8d912ea3bce8875bfa80423cc6
+          path: .tools/qdk
+          persist-credentials: false
+      - name: Compilar QSharp com o harness oficial sem alterar fontes Rust
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/qsharp
+          rustup toolchain install 1.99.1 --profile minimal
+          rustup run 1.99.1 rustc --version > artifacts/qsharp/rust-version.txt
+          sed '/@EntryPoint()/d' qsharp/ramsey_interferometry.qs > .tools/qdk/samples/language/Unit.qs
+          cat qsharp/ramsey_validation.qs >> .tools/qdk/samples/language/Unit.qs
+          cargo +1.99.1 test --locked --manifest-path .tools/qdk/Cargo.toml -p samples_test \
+            tests::language_generated::run_Unit -- --exact 2>&1 | tee artifacts/qsharp/ramsey.log
+          grep -q '1 passed; 0 failed' artifacts/qsharp/ramsey.log
+          cargo +1.99.1 test --locked --manifest-path .tools/qdk/Cargo.toml -p samples_test \
+            tests::language_generated::debug_Unit -- --exact 2>&1 | tee artifacts/qsharp/ramsey-debug.log
+          grep -q '1 passed; 0 failed' artifacts/qsharp/ramsey-debug.log
+          jq -n --arg source "$GITHUB_SHA" \
+            '{source_revision:$source,qdk_revision:"5cda25157c87fc8d912ea3bce8875bfa80423cc6",rust:"1.99.1",harness_runs_passed:2,checks_per_run:3,quantum_hardware:false}' \
+            > artifacts/qsharp/report.json
+          echo 'QSharp: phase 0, phase pi and Born-rule frequencies passed in the official QDK simulator (normal and debug harnesses). No quantum hardware was used.' >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        if: always()
+        with:
+          name: konaet-qsharp
+          path: artifacts/qsharp/
+          if-no-files-found: warn
+          retention-days: 30

@@ -36,6 +36,74 @@
                                    ],
                        "name":  "ambient_temperature_system_failure.csv",
                        "upstream_key":  "realKnownCause/ambient_temperature_system_failure.csv"
+                   },
+                   {
+                       "windows":  [
+                                       {
+                                           "start":  "2014-07-10 12:29:00.000000",
+                                           "end":  "2014-07-15 17:19:00.000000"
+                                       }
+                                   ],
+                       "name":  "cpu_utilization_asg_misconfiguration.csv",
+                       "upstream_key":  "realKnownCause/cpu_utilization_asg_misconfiguration.csv"
+                   },
+                   {
+                       "windows":  [
+                                       {
+                                           "start":  "2014-03-14 03:31:00.000000",
+                                           "end":  "2014-03-14 14:41:00.000000"
+                                       },
+                                       {
+                                           "start":  "2014-03-18 17:06:00.000000",
+                                           "end":  "2014-03-19 04:16:00.000000"
+                                       },
+                                       {
+                                           "start":  "2014-03-20 21:26:00.000000",
+                                           "end":  "2014-03-21 03:41:00.000000"
+                                       }
+                                   ],
+                       "name":  "ec2_request_latency_system_failure.csv",
+                       "upstream_key":  "realKnownCause/ec2_request_latency_system_failure.csv"
+                   },
+                   {
+                       "windows":  [
+                                       {
+                                           "start":  "2014-10-30 15:30:00.000000",
+                                           "end":  "2014-11-03 22:30:00.000000"
+                                       },
+                                       {
+                                           "start":  "2014-11-25 12:00:00.000000",
+                                           "end":  "2014-11-29 19:00:00.000000"
+                                       },
+                                       {
+                                           "start":  "2014-12-23 11:30:00.000000",
+                                           "end":  "2014-12-27 18:30:00.000000"
+                                       },
+                                       {
+                                           "start":  "2014-12-29 21:30:00.000000",
+                                           "end":  "2015-01-03 04:30:00.000000"
+                                       },
+                                       {
+                                           "start":  "2015-01-24 20:30:00.000000",
+                                           "end":  "2015-01-29 03:30:00.000000"
+                                       }
+                                   ],
+                       "name":  "nyc_taxi.csv",
+                       "upstream_key":  "realKnownCause/nyc_taxi.csv"
+                   },
+                   {
+                       "windows":  [
+                                       {
+                                           "start":  "2014-02-18 16:02:00.000000",
+                                           "end":  "2014-02-19 08:42:00.000000"
+                                       },
+                                       {
+                                           "start":  "2014-02-24 10:17:00.000000",
+                                           "end":  "2014-02-25 02:57:00.000000"
+                                       }
+                                   ],
+                       "name":  "ec2_cpu_utilization_5f5533.csv",
+                       "upstream_key":  "realAWSCloudwatch/ec2_cpu_utilization_5f5533.csv"
                    }
                ]
 }

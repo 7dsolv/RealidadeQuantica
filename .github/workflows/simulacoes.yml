@@ -3,6 +3,21 @@ name: Konaet - ciclos autonomos do laboratorio
 on:
   push:
     branches: [main]
+    paths:
+      - 'matlab/**'
+      - 'tests/**'
+      - 'fortran/**'
+      - 'systemverilog/**'
+      - 'qsharp/**'
+      - 'src/**'
+      - 'models/**'
+      - 'datasets/**'
+      - 'hardware/icebreaker/**'
+      - '*.m'
+      - '.github/**'
+      - 'integrated/evaluation-protocol.json'
+      - 'LICENSE'
+      - 'THIRD_PARTY_NOTICES.md'
   pull_request:
   workflow_dispatch:
     inputs:
@@ -17,25 +32,33 @@ on:
 permissions:
   contents: read
 
+defaults:
+  run:
+    shell: bash
+env:
+  MLM_LICENSE_TOKEN: ${{ secrets.MLM_LICENSE_TOKEN }}
+
 concurrency:
   group: konaet-laboratorio-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   executar-modelos:
-    name: MATLAB, Fortran e SystemVerilog
+    name: Physics MATLAB Fortran RTL
     if: github.event_name != 'workflow_dispatch' || inputs.module == 'physics'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       MLM_LICENSE_TOKEN: ${{ secrets.MLM_LICENSE_TOKEN }}
     steps:
       - name: Baixar o repositorio
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
 
       - name: Instalar compiladores Fortran e SystemVerilog
         run: |
-          sudo apt-get update
-          sudo apt-get install -y gfortran iverilog
+          bash .github/scripts/publication-inputs.sh capture physics artifacts
+          bash .github/scripts/install-tools.sh physics artifacts
           mkdir -p build artifacts
 
       - name: Compilar e executar o modelo Fortran
@@ -52,15 +75,17 @@ jobs:
           vvp build/complex_mul_demo | tee artifacts/systemverilog.log
 
       - name: Preparar MATLAB
-        uses: matlab-actions/setup-matlab@v3
+        uses: matlab-actions/setup-matlab@f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d # v3
+        with:
+          release: R2026b
 
       - name: Executar os modelos MATLAB em modo batch
-        uses: matlab-actions/run-command@v3
+        uses: matlab-actions/run-command@bfa857648f4895aa98a446fe41c85e0788421ed5 # v3
         with:
           command: addpath('matlab'); executar_pipeline(true)
 
       - name: Guardar os resultados da simulacao
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
           name: resultados-do-laboratorio
           path: artifacts/
@@ -82,6 +107,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && inputs.module == 'xeno'
     permissions:
       contents: write
+      pull-requests: write
     uses: ./.github/workflows/xenoelement.yml
     secrets: inherit
 
@@ -89,6 +115,7 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && inputs.module == 'offline'
     permissions:
       contents: write
+      pull-requests: write
     uses: ./.github/workflows/offline.yml
     secrets: inherit
 
@@ -96,109 +123,18 @@ jobs:
     if: github.event_name == 'workflow_dispatch' && inputs.module == 'agent'
     permissions:
       contents: write
+      pull-requests: write
     uses: ./.github/workflows/integrated.yml
     secrets: inherit
 
-  atualizar-painel:
-    name: Konaet - memoria e graficos do README
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+  publicar:
     needs: executar-modelos
-    concurrency:
-      group: konaet-publish-${{ github.repository }}
-      cancel-in-progress: false
-    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     permissions:
       contents: write
-    steps:
-      - name: Autenticar a identidade real Konaet
-        if: vars.KONAET_APP_CLIENT_ID != ''
-        id: konaet
-        uses: 7dsolv/konaet-bot@488671c980ae433a4714de3321d10e58415cf9d0 # v1.1.1
-        with:
-          client-id: ${{ vars.KONAET_APP_CLIENT_ID }}
-          private-key: ${{ secrets.KONAET_APP_PRIVATE_KEY }}
-          expected-slug: konaet
-
-      - name: Conferir a autoria da KONAET
-        id: autoria
-        env:
-          GH_TOKEN: ${{ steps.konaet.outputs.token || github.token }}
-          GH_HOST: github.com
-          APP_LOGIN: ${{ steps.konaet.outputs.bot-login }}
-        run: |
-          set -euo pipefail
-          identity="$(gh api --hostname github.com '/users/konaet[bot]' --jq '[.id,.login,.type] | @tsv')"
-          IFS=$'\t' read -r bot_id bot_login bot_type <<< "$identity"
-          if [ "$bot_id" != '352182232' ] || [ "$bot_login" != 'konaet[bot]' ] || [ "$bot_type" != 'Bot' ]; then
-            echo '::error::A API nao confirmou a conta KONAET registrada por este projeto.'
-            exit 1
-          fi
-          if [ -n "$APP_LOGIN" ]; then
-            [ "$APP_LOGIN" = "$bot_login" ] || exit 1
-            mode='github-app'
-            committer_id="$bot_id"
-            committer_login="$bot_login"
-          else
-            mode='github-actions-author-attribution'
-            executor="$(gh api --hostname github.com '/users/github-actions[bot]' --jq '[.id,.login,.type] | @tsv')"
-            IFS=$'\t' read -r committer_id committer_login committer_type <<< "$executor"
-            if ! [[ "$committer_id" =~ ^[1-9][0-9]*$ ]] || [ "$committer_login" != 'github-actions[bot]' ] || [ "$committer_type" != 'Bot' ]; then
-              echo '::error::Executor do GitHub Actions nao confirmado.'
-              exit 1
-            fi
-          fi
-          {
-            echo "login=$bot_login"
-            echo "email=${bot_id}+${bot_login}@users.noreply.github.com"
-            echo "committer-login=$committer_login"
-            echo "committer-email=${committer_id}+${committer_login}@users.noreply.github.com"
-            echo "mode=$mode"
-          } >> "$GITHUB_OUTPUT"
-          {
-            printf 'Autoria dos resultados: `%s` (ID %s).\n\n' "$bot_login" "$bot_id"
-            if [ "$mode" = 'github-app' ]; then
-              echo 'Publicacao autenticada pela GitHub App KONAET.'
-            else
-              echo 'Publicacao pelo GITHUB_TOKEN do GitHub Actions, com autoria atribuida a KONAET. A App KONAET nao foi autenticada nesta execucao.'
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
-
-      - name: Baixar a branch principal
-        uses: actions/checkout@v7
-        with:
-          token: ${{ steps.konaet.outputs.token || github.token }}
-          ref: main
-
-      - name: Baixar os resultados desta execução
-        uses: actions/download-artifact@v8
-        with:
-          name: resultados-do-laboratorio
-          path: artifacts
-
-      - name: Publicar o painel na página do repositório
-        env:
-          KONAET_BOT_LOGIN: ${{ steps.autoria.outputs.login }}
-          KONAET_BOT_EMAIL: ${{ steps.autoria.outputs.email }}
-          PUBLISHER_LOGIN: ${{ steps.autoria.outputs.committer-login }}
-          PUBLISHER_EMAIL: ${{ steps.autoria.outputs.committer-email }}
-        run: |
-          set -euo pipefail
-          mkdir -p assets state
-          cp artifacts/konaet_memory.csv state/konaet_memory.csv
-          git add -- state/konaet_memory.csv
-          utc_hour="$(date -u +%H)"
-          if [ "$GITHUB_EVENT_NAME" != 'schedule' ] || [ "$utc_hour" = '00' ]; then
-            cp artifacts/realidade-quantica-dashboard.png assets/realidade-quantica-dashboard.png
-            cp artifacts/realidade-quantica-viva.gif assets/realidade-quantica-viva.gif
-            git add -- assets/realidade-quantica-dashboard.png assets/realidade-quantica-viva.gif
-          else
-            echo 'A memoria foi atualizada; os graficos serao publicados no ciclo diario.'
-          fi
-          if git diff --cached --quiet; then
-            echo 'A memoria e os graficos ja correspondem a esta execucao.'
-            exit 0
-          fi
-          GIT_AUTHOR_NAME="$KONAET_BOT_LOGIN" GIT_AUTHOR_EMAIL="$KONAET_BOT_EMAIL" \
-            GIT_COMMITTER_NAME="$PUBLISHER_LOGIN" GIT_COMMITTER_EMAIL="$PUBLISHER_EMAIL" \
-            git commit -m 'Konaet evolui memoria e visualizacao [skip ci]'
-          git push origin HEAD:main
+      pull-requests: write
+    uses: ./.github/workflows/publish-results.yml
+    with:
+      module: physics
+      artifact: resultados-do-laboratorio
+    secrets: inherit

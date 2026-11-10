@@ -30,6 +30,8 @@ konaet_write_json(fullfile(folder,'rtl-vectors.json'),report);
 fid=fopen(fullfile(folder,'konaet_model_params.vh'),'w'); assert(fid>=0); guard=onCleanup(@() fclose(fid)); %#ok<NASGU>
 fprintf(fid,'`ifndef KONAET_MODEL_PARAMS\n`define KONAET_MODEL_PARAMS\n');
 fprintf(fid,'`define KONAET_REQUANT_MULTIPLIER 32''d%.0f\n',double(q.multiplier));
+[~,zero_class]=tiny_int8(q,ones(32,1)*50);
+fprintf(fid,'`define KONAET_ZERO_ANOMALY %d\n',zero_class);
 fprintf(fid,'`define KONAET_TEST_CASES %d\n`endif\n',size(cases,2));
 end
 function write_hex(path,values,width)
