@@ -1,0 +1,2 @@
+KONAET_TOP_PASS cases=3 samples=64 normal=native-bus invalidation=NACK recovery=32-samples
+systemverilog/konaet_fpga_top_tb.sv:62: $finish called at 7840780000 (1ps)

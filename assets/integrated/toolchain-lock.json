@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "runner": "ubuntu-24.04",
+  "matlab_release": "R2026b",
+  "ppa": "ppa:kicad/kicad-10.0-releases",
+  "packages": {
+    "gfortran": "4:13.2.0-7ubuntu1",
+    "iverilog": "12.0-2build2",
+    "yosys": "0.33-5build2",
+    "yosys-abc": "0.33-5build2",
+    "nextpnr-ice40": "0.6-3build5",
+    "nextpnr-ice40-chipdb": "0.6-3build5",
+    "fpga-icestorm": "0~20230218gitd20a5e9-1",
+    "kicad": "10.0.8~ubuntu24.04.1",
+    "xvfb": "2:21.1.12-1ubuntu1.9",
+    "xauth": "1:1.1.2-1build1"
+  },
+  "scope": "Exact direct package versions observed in the validated Ubuntu run. Base-image and transitive packages are recorded in provenance; this is not a bit-for-bit OS image lock."
+}

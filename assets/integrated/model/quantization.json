@@ -15,5 +15,5 @@
   "format": "W1 row-major int8[24,32], b1 int32[24], W2 row-major int8[2,24], b2 int32[2]; little endian",
   "model_credit": "KONAET Sense 842, trained by 7dsolv from random initialization, MIT",
   "source_url": "https://github.com/7dsolv/RealidadeQuantica/tree/main/integrated",
-  "source_revision": "1540c5e36c909b9b3d9363927563d3996aa608d8"
+  "source_revision": "397144d52225f472e9ee61372b8377edf1500f05"
 }
