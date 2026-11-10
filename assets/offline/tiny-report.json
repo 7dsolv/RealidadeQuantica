@@ -1,0 +1,123 @@
+{
+  "revision": "ef721f26c450ab53f41fa86158b5a164df2ea5c1",
+  "source_model": "eoinedge/AnomalyNet",
+  "source_revision": "bb9db962cebb0f506496dc51e824cfc15b8a7ab1",
+  "weights_trained_by": "Eoin Jordan",
+  "data_origin": "KONAET synthetic evaluation, not original training/test set",
+  "calibration_seed": 7301,
+  "evaluation_seed": 7302,
+  "calibration_windows": 512,
+  "evaluation_windows": 1024,
+  "accuracy_fp32": 1,
+  "accuracy_int8": 1,
+  "decision_agreement": 1,
+  "invalid_windows": 0,
+  "hidden_saturations": 0,
+  "fp32_confusion": [
+    [
+      512,
+      0
+    ],
+    [
+      0,
+      512
+    ]
+  ],
+  "int8_confusion": [
+    [
+      512,
+      0
+    ],
+    [
+      0,
+      512
+    ]
+  ],
+  "by_anomaly_type": [
+    {
+      "kind": "spike",
+      "windows": 128,
+      "recall_fp32": 1,
+      "recall_int8": 1
+    },
+    {
+      "kind": "dropout",
+      "windows": 128,
+      "recall_fp32": 1,
+      "recall_int8": 1
+    },
+    {
+      "kind": "runaway_ramp",
+      "windows": 128,
+      "recall_fp32": 1,
+      "recall_int8": 1
+    },
+    {
+      "kind": "noise_burst",
+      "windows": 128,
+      "recall_fp32": 1,
+      "recall_int8": 1
+    }
+  ],
+  "model_fp32_bytes": 3368,
+  "model_int8_payload_bytes": 920,
+  "mcu_latency": "NOT_MEASURED",
+  "mcu_flash_ram": "NOT_MEASURED",
+  "device_integration": "NOT_DEPLOYED",
+  "network_required_for_inference": false,
+  "passed": 10,
+  "failed": 0,
+  "tests": [
+    {
+      "name": "evaluate_tiny/reference_logits",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "evaluate_tiny/parameter_count",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "evaluate_tiny/quantized_types",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "evaluate_tiny/paired_agreement",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "evaluate_tiny/invalid_input",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "evaluate_tiny/batch_consistency",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "evaluate_tiny/determinism",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "evaluate_tiny/hash_rejection",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "evaluate_tiny/export_roundtrip",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "evaluate_tiny/fortran_logits",
+      "passed": true,
+      "message": ""
+    }
+  ],
+  "total": 10
+}

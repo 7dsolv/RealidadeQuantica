@@ -1,0 +1,9 @@
+Reference,Value,Kind,X_mm,Y_mm
+J1,Power 3.3V,header,6,6.5
+J2,Sensors L/R,header,5,15
+J3,External ADC/MCU,header,43,10
+R1,10000 Ohm 1%,resistor,16,15.08
+R2,10000 Ohm 1%,resistor,16,24
+C1,4.7 uF 20%,capacitor,26,16.08
+C2,4.7 uF 20%,capacitor,26,25
+C3,100 nF,capacitor,36,8

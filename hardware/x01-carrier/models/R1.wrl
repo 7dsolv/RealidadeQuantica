@@ -1,0 +1,5 @@
+#VRML V2.0 utf8
+# KONAET generic envelope, dimensions in KiCad legacy 0.1 inch units
+Transform { translation 0.000000 -0.000000 0.127953 children [ Shape { appearance Appearance { material Material { diffuseColor 0.1300 0.1200 0.1700 } } geometry Box { size 0.787402 0.492126 0.216535 } } ] }
+Transform { translation -0.393701 -0.000000 0.110236 children [ Shape { appearance Appearance { material Material { diffuseColor 0.7500 0.7600 0.7900 } } geometry Box { size 0.196850 0.433071 0.196850 } } ] }
+Transform { translation 0.393701 -0.000000 0.110236 children [ Shape { appearance Appearance { material Material { diffuseColor 0.7500 0.7600 0.7900 } } geometry Box { size 0.196850 0.433071 0.196850 } } ] }

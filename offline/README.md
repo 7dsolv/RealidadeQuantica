@@ -2,6 +2,8 @@
 
 **[Explorar a placa em 3D](../hardware/x01-carrier/x01-carrier.stl)** · **[PCB para KiCad](../hardware/x01-carrier/x01-carrier.kicad_pcb)** · [Componentes na src](../src/board/x01_board.m) · [Testes e resultados](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/offline.yml)
 
+[Resultados medidos nesta avaliação e seus limites](RESULTS.md)
+
 Componentes, conexões e geometria descritos em MATLAB geram uma placa de sensores conceitual, circuito RC, modelos 3D e desenhos. Um adaptador local executa o **AnomalyNet**, de **Eoin Jordan**, em FP32 ou INT8, e compara as decisões. A implementação não precisa acessar a rede para inferir.
 
 ![KONAET: montagem conceitual e caminho ilustrado do sinal](../hardware/x01-carrier/x01-board-motion.gif)

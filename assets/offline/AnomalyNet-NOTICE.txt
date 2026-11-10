@@ -1,0 +1,15 @@
+AnomalyNet
+Copyright (c) 2026 Eoin Jordan
+SPDX-License-Identifier: Apache-2.0
+Source: https://huggingface.co/eoinedge/AnomalyNet
+Revision: bb9db962cebb0f506496dc51e824cfc15b8a7ab1
+
+The four .f32 files contain the original, unchanged tensor bytes extracted
+from anomaly_net.pt. Serialization was changed to raw little-endian float32
+so MATLAB and Fortran can read the data without executing Python or pickle.
+reference.json transcribes the published numeric test vector.
+
+The KONAET adapters, quantization, local evaluation and circuit prototype
+are separate project contributions. AnomalyNet was not trained by KONAET.
+The author's reported accuracy and MCU timings are not KONAET measurements.
+See LICENSE.txt and source.json for license and provenance.

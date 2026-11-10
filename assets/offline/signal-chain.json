@@ -1,0 +1,13 @@
+{
+  "source_revision": "ef721f26c450ab53f41fa86158b5a164df2ea5c1",
+  "input": "Synthetic voltage, ideal RC, ideal sampler",
+  "voltage_temperature_mapping": "T_C = 50 + 20 * (V - 1.65); illustrative, NOT_SENSOR_CALIBRATION",
+  "sample_rate_Hz": 10,
+  "window_samples": 32,
+  "windows": 33,
+  "fp32_int8_agreement": 1,
+  "int8_anomaly_windows": 25,
+  "invalid_windows": 0,
+  "actuation": "NONE",
+  "energy_balance_residual_J": 5.0663158157647839E-20
+}

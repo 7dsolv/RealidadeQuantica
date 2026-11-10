@@ -1,0 +1,570 @@
+{
+  "name": "KONAET X-01 / SENSOR CARRIER",
+  "revision": "0.1",
+  "size_mm": [
+    50,
+    35,
+    1.6
+  ],
+  "supply_V": 3.3,
+  "nets": [
+    "",
+    "+3V3",
+    "GND",
+    "RAW_L",
+    "RAW_R",
+    "ADC_L",
+    "ADC_R"
+  ],
+  "resistance_Ohm": 10000,
+  "capacitance_F": 4.7E-6,
+  "resistor_tolerance": 0.01,
+  "capacitor_tolerance": 0.2,
+  "decoupling_F": 1E-7,
+  "sample_rate_Hz": 10,
+  "components": [
+    {
+      "ref": "J1",
+      "value": "Power 3.3V",
+      "kind": "header",
+      "xy_mm": [
+        6,
+        6.5
+      ],
+      "pads_mm": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2.54
+        ]
+      ],
+      "net_codes": [
+        1,
+        2
+      ],
+      "body_mm": [
+        2.5,
+        5.08,
+        2.5
+      ]
+    },
+    {
+      "ref": "J2",
+      "value": "Sensors L/R",
+      "kind": "header",
+      "xy_mm": [
+        5,
+        15
+      ],
+      "pads_mm": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2.54
+        ],
+        [
+          0,
+          5.08
+        ]
+      ],
+      "net_codes": [
+        3,
+        4,
+        2
+      ],
+      "body_mm": [
+        2.5,
+        7.62,
+        2.5
+      ]
+    },
+    {
+      "ref": "J3",
+      "value": "External ADC/MCU",
+      "kind": "header",
+      "xy_mm": [
+        43,
+        10
+      ],
+      "pads_mm": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          2.54
+        ],
+        [
+          0,
+          5.08
+        ],
+        [
+          0,
+          7.62
+        ]
+      ],
+      "net_codes": [
+        1,
+        2,
+        5,
+        6
+      ],
+      "body_mm": [
+        2.5,
+        10.16,
+        2.5
+      ]
+    },
+    {
+      "ref": "R1",
+      "value": "10000 Ohm 1%",
+      "kind": "resistor",
+      "xy_mm": [
+        16,
+        15.08
+      ],
+      "pads_mm": [
+        [
+          -1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "net_codes": [
+        3,
+        5
+      ],
+      "body_mm": [
+        2,
+        1.25,
+        0.55
+      ]
+    },
+    {
+      "ref": "R2",
+      "value": "10000 Ohm 1%",
+      "kind": "resistor",
+      "xy_mm": [
+        16,
+        24
+      ],
+      "pads_mm": [
+        [
+          -1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "net_codes": [
+        4,
+        6
+      ],
+      "body_mm": [
+        2,
+        1.25,
+        0.55
+      ]
+    },
+    {
+      "ref": "C1",
+      "value": "4.7 uF 20%",
+      "kind": "capacitor",
+      "xy_mm": [
+        26,
+        16.08
+      ],
+      "pads_mm": [
+        [
+          0,
+          -1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "net_codes": [
+        5,
+        2
+      ],
+      "body_mm": [
+        1.25,
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "C2",
+      "value": "4.7 uF 20%",
+      "kind": "capacitor",
+      "xy_mm": [
+        26,
+        25
+      ],
+      "pads_mm": [
+        [
+          0,
+          -1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "net_codes": [
+        6,
+        2
+      ],
+      "body_mm": [
+        1.25,
+        2,
+        1.2
+      ]
+    },
+    {
+      "ref": "C3",
+      "value": "100 nF",
+      "kind": "capacitor",
+      "xy_mm": [
+        36,
+        8
+      ],
+      "pads_mm": [
+        [
+          0,
+          -1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "net_codes": [
+        1,
+        2
+      ],
+      "body_mm": [
+        1.25,
+        2,
+        1.2
+      ]
+    }
+  ],
+  "holes_mm": [
+    [
+      3,
+      3
+    ],
+    [
+      47,
+      3
+    ],
+    [
+      47,
+      32
+    ],
+    [
+      3,
+      32
+    ]
+  ],
+  "hole_diameter_mm": 2.2,
+  "vias_mm": [
+    [
+      28,
+      17.08
+    ],
+    [
+      28,
+      26
+    ],
+    [
+      38,
+      9
+    ]
+  ],
+  "routes": [
+    {
+      "net": 1,
+      "layer": "F.Cu",
+      "points_mm": [
+        [
+          6,
+          6.5
+        ],
+        [
+          6,
+          5
+        ],
+        [
+          36,
+          5
+        ],
+        [
+          43,
+          5
+        ],
+        [
+          43,
+          10
+        ]
+      ],
+      "width_mm": 0.35
+    },
+    {
+      "net": 1,
+      "layer": "F.Cu",
+      "points_mm": [
+        [
+          36,
+          7
+        ],
+        [
+          36,
+          5
+        ]
+      ],
+      "width_mm": 0.35
+    },
+    {
+      "net": 3,
+      "layer": "F.Cu",
+      "points_mm": [
+        [
+          5,
+          15
+        ],
+        [
+          15,
+          15.08
+        ]
+      ],
+      "width_mm": 0.35
+    },
+    {
+      "net": 4,
+      "layer": "F.Cu",
+      "points_mm": [
+        [
+          5,
+          17.54
+        ],
+        [
+          8,
+          17.54
+        ],
+        [
+          8,
+          24
+        ],
+        [
+          15,
+          24
+        ]
+      ],
+      "width_mm": 0.35
+    },
+    {
+      "net": 5,
+      "layer": "F.Cu",
+      "points_mm": [
+        [
+          17,
+          15.08
+        ],
+        [
+          26,
+          15.08
+        ],
+        [
+          43,
+          15.08
+        ]
+      ],
+      "width_mm": 0.35
+    },
+    {
+      "net": 6,
+      "layer": "F.Cu",
+      "points_mm": [
+        [
+          17,
+          24
+        ],
+        [
+          26,
+          24
+        ],
+        [
+          38,
+          24
+        ],
+        [
+          38,
+          17.62
+        ],
+        [
+          43,
+          17.62
+        ]
+      ],
+      "width_mm": 0.35
+    },
+    {
+      "net": 2,
+      "layer": "F.Cu",
+      "points_mm": [
+        [
+          26,
+          17.08
+        ],
+        [
+          28,
+          17.08
+        ]
+      ],
+      "width_mm": 0.5
+    },
+    {
+      "net": 2,
+      "layer": "F.Cu",
+      "points_mm": [
+        [
+          26,
+          26
+        ],
+        [
+          28,
+          26
+        ]
+      ],
+      "width_mm": 0.5
+    },
+    {
+      "net": 2,
+      "layer": "F.Cu",
+      "points_mm": [
+        [
+          36,
+          9
+        ],
+        [
+          38,
+          9
+        ]
+      ],
+      "width_mm": 0.5
+    },
+    {
+      "net": 2,
+      "layer": "B.Cu",
+      "points_mm": [
+        [
+          6,
+          9.04
+        ],
+        [
+          2,
+          9.04
+        ],
+        [
+          2,
+          20.08
+        ],
+        [
+          2,
+          30
+        ],
+        [
+          28,
+          30
+        ],
+        [
+          40,
+          30
+        ],
+        [
+          46,
+          30
+        ],
+        [
+          46,
+          12.54
+        ],
+        [
+          43,
+          12.54
+        ]
+      ],
+      "width_mm": 0.5
+    },
+    {
+      "net": 2,
+      "layer": "B.Cu",
+      "points_mm": [
+        [
+          5,
+          20.08
+        ],
+        [
+          2,
+          20.08
+        ]
+      ],
+      "width_mm": 0.5
+    },
+    {
+      "net": 2,
+      "layer": "B.Cu",
+      "points_mm": [
+        [
+          28,
+          17.08
+        ],
+        [
+          28,
+          26
+        ],
+        [
+          28,
+          30
+        ]
+      ],
+      "width_mm": 0.5
+    },
+    {
+      "net": 2,
+      "layer": "B.Cu",
+      "points_mm": [
+        [
+          38,
+          9
+        ],
+        [
+          40,
+          9
+        ],
+        [
+          40,
+          30
+        ]
+      ],
+      "width_mm": 0.5
+    }
+  ],
+  "status": "CONCEPT_NOT_FABRICATED",
+  "notes": "Generic footprints and approximate envelopes; external ADC must be reviewed for source impedance, sampling and input protection."
+}

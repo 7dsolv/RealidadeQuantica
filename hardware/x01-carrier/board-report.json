@@ -1,0 +1,56 @@
+{
+  "revision": "ef721f26c450ab53f41fa86158b5a164df2ea5c1",
+  "status": "CONCEPT_NOT_FABRICATED",
+  "nominal_tau_s": 0.047,
+  "nominal_cutoff_Hz": 3.3862753849339433,
+  "tolerance_tau_s": [
+    0.037224,
+    0.056964
+  ],
+  "tolerances": "Illustrative 1% R, 20% C; no specific purchased part or DC-bias model",
+  "tests": [
+    {
+      "name": "build_x01_board/step_solution",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "build_x01_board/energy_conservation",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "build_x01_board/passivity",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "build_x01_board/dc_gain",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "build_x01_board/invalid_parameters",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "build_x01_board/source_consistency",
+      "passed": true,
+      "message": ""
+    }
+  ],
+  "passed": 6,
+  "failed": 0,
+  "energy_balance_residual_J": 1.4399560103323106E-20,
+  "mesh": {
+    "units": "mm",
+    "triangles": 736,
+    "geometry": "Board with four holes and generic component envelopes; not manufacturer-specific mechanical CAD",
+    "stl_bytes": 103141,
+    "animation_frames": 24,
+    "animation": "Illustrated signal path, not live telemetry"
+  },
+  "native_kicad": "Checked separately by kicad-cli; see kicad-report.json",
+  "total": 6
+}
