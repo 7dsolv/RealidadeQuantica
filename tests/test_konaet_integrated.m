@@ -4,7 +4,7 @@ data=load(fullfile(output,'benchmark.mat')); result=data.result;
 tests={@gradient_check,@reproducible_data,@reproducible_training,@locked_test, ...
     @weights_are_new,@training_loss,@quantized_fidelity,@model_roundtrip, ...
     @source_interop,@real_data_audit,@invalid_sensor,@rc_step,@rc_energy, ...
-    @rc_passivity,@metrics_abstention,@memory_resume};
+    @rc_passivity,@metrics_abstention,@memory_resume,@csv_interface};
 report=struct('source_revision',getenv('GITHUB_SHA'),'passed',0,'failed',0,'total',numel(tests), ...
     'cases',struct('name',{},'passed',{},'message',{}));
 for k=1:numel(tests)
@@ -109,5 +109,13 @@ assert(report.failed==0,'Konaet: %d testes falharam.',report.failed);
         [~,state,experiments]=konaet_agent_search(x,y,x,y,folder,previous,data.m);
         assert(state.resumed && state.cycle==previous.cycle+1);
         assert(sum(state.counts)==sum(previous.counts)+6 && numel(experiments)==6);
+    end
+    function csv_interface()
+        folder=fullfile(output,'fixtures','csv');if ~isfolder(folder),mkdir(folder);end
+        x=ones(3,32)*50;x(2,7)=NaN;x(3,9)=120;
+        input=fullfile(folder,'input.csv');target=fullfile(folder,'result.json');writematrix(x,input);
+        r=konaet_classificar(input,target,fullfile(output,'model'));
+        assert(r.windows==3 && all(r.classes(2:3)==-1));
+        assert(isfile(target) && strcmp(r.model,'KONAET Sense 842 INT8'));
     end
 end

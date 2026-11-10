@@ -16,6 +16,9 @@ drop.Value=false;for k=1:33,callbacks.step();end
 assert(fig.UserData.view.class>=0);tests(end+1)=struct('name','sensor_window_recovers','passed',true);
 exportapp(fig,fullfile(output,'konaet-app.png'));
 callbacks.reset();assert(fig.UserData.state.samples==1);tests(end+1)=struct('name','reset_preserves_app','passed',true);
+run=findobj(fig,'Tag','konaet-run');callback=run.ButtonPushedFcn;callback();pause(0.45);callback();
+assert(strcmp(callbacks.timer.Running,'off') && fig.UserData.state.samples>=2);
+tests(end+1)=struct('name','timer_start_pause_advances_samples','passed',true);
 report=struct('source_revision',getenv('GITHUB_SHA'),'passed',numel(tests),'failed',0,'total',numel(tests),'tests',tests);
 konaet_write_json(fullfile(output,'app-report.json'),report);
 end

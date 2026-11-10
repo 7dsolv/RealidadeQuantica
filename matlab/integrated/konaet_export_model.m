@@ -15,7 +15,7 @@ card.physical_deployment='NOT_MEASURED';
 konaet_write_json(fullfile(output,'model-card.json'),card);
 provenance=struct('model_credit','KONAET Sense 842, trained by 7dsolv from random initialization, MIT', ...
     'source_url','https://github.com/7dsolv/RealidadeQuantica/tree/main/integrated', ...
-    'source_revision',getenv('GITHUB_SHA'));
+    'source_revision',getenv('GITHUB_SHA'),'payload_file','konaet-int8.bin');
 tiny_export_int8(q,output,provenance);
 save(fullfile(output,'konaet-model.mat'),'m','q');
 end

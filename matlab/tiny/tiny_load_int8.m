@@ -4,7 +4,9 @@ q=jsondecode(fileread(fullfile(folder,'quantization.json')));
 assert(q.parameters==842 && q.payload_bytes==920 && q.shift==30);
 assert(all(isfinite([q.input_scale q.hidden_scale q.w1_scale q.w2_scale])));
 assert(all([q.input_scale q.hidden_scale q.w1_scale q.w2_scale]>0));
-path=fullfile(folder,'anomalynet-int8.bin');
+filename='anomalynet-int8.bin';if isfield(q,'payload_file'),filename=q.payload_file;end
+assert(any(strcmp(filename,{'anomalynet-int8.bin','konaet-int8.bin'})));
+path=fullfile(folder,filename);
 fid=fopen(path,'rb'); assert(fid>=0); guard=onCleanup(@() fclose(fid));
 bytes=fread(fid,inf,'*uint8'); clear guard;
 digest=java.security.MessageDigest.getInstance('SHA-256'); digest.update(bytes);

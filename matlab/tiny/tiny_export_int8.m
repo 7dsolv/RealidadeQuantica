@@ -1,6 +1,9 @@
 function tiny_export_int8(q,folder,provenance)
 %TINY_EXPORT_INT8 Payload sem runtime, com escalas, hash e procedencia.
-path=fullfile(folder,'anomalynet-int8.bin');
+filename='anomalynet-int8.bin';
+if nargin>=3 && isfield(provenance,'payload_file'), filename=provenance.payload_file; end
+assert(any(strcmp(filename,{'anomalynet-int8.bin','konaet-int8.bin'})));
+path=fullfile(folder,filename);
 fid=fopen(path,'wb','ieee-le'); assert(fid>=0); guard=onCleanup(@() fclose(fid));
 fwrite(fid,q.W1.','int8'); fwrite(fid,q.b1,'int32'); fwrite(fid,q.W2.','int8'); fwrite(fid,q.b2,'int32'); clear guard;
 assert(dir(path).bytes==920);
@@ -8,6 +11,7 @@ fid=fopen(path,'rb'); assert(fid>=0); guard=onCleanup(@() fclose(fid));
 bytes=fread(fid,inf,'*uint8'); clear guard;
 digest=java.security.MessageDigest.getInstance('SHA-256'); digest.update(bytes);
 meta=rmfield(q,{'W1','W2','b1','b2'});
+meta.payload_file=filename;
 meta.payload_sha256=lower(reshape(dec2hex(typecast(digest.digest(),'uint8'),2).',1,[]));
 meta.format='W1 row-major int8[24,32], b1 int32[24], W2 row-major int8[2,24], b2 int32[2]; little endian';
 if nargin<3
