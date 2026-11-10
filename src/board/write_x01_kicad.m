@@ -35,6 +35,12 @@ for k=1:numel(b.components)
             fprintf(fid,'  (pad "%d" smd rect (at %.4f %.4f) (size %.4f %.4f) (layers "F.Cu" "F.Paste" "F.Mask") (net %d "%s"))\n',j,pos,sz,n,b.nets{n+1});
         end
     end
+    % Courtyard conservador dos envelopes genericos, com margem de 0,25 mm.
+    lower=min(p.pads_mm,[],1)-[0.85 0.85]; upper=max(p.pads_mm,[],1)+[0.85 0.85];
+    body_center=[0 0]; if isheader, body_center(2)=mean(p.pads_mm(:,2)); end
+    lower=min(lower,body_center-p.body_mm(1:2)/2)-0.25;
+    upper=max(upper,body_center+p.body_mm(1:2)/2)+0.25;
+    fprintf(fid,'  (fp_rect (start %.4f %.4f) (end %.4f %.4f) (stroke (width 0.05) (type default)) (fill none) (layer "F.CrtYd"))\n',lower,upper);
     % Generic shapes, authored here; no stock footprint/3D library required.
     fprintf(fid,'  (model "${KIPRJMOD}/models/%s.wrl" (offset (xyz 0 0 0)) (scale (xyz 1 1 1)) (rotate (xyz 0 0 0)))\n )\n',p.ref);
     write_model(p,fullfile(models,[p.ref '.wrl']));

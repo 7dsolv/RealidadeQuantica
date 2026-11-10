@@ -62,7 +62,7 @@ jobs:
             --output artifacts/offline/board/kicad-errors.json "$board"
           jq -e 'has("unconnected_items") and (.unconnected_items | type == "array") and (.unconnected_items | length == 0)' artifacts/offline/board/kicad-report.json
           mkdir -p artifacts/offline/board/layers
-          kicad-cli pcb export svg --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts \
+          kicad-cli pcb export svg --mode-multi --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts \
             --output artifacts/offline/board/layers/ "$board"
           kicad-cli pcb render --width 1600 --height 1000 --quality high \
             --background opaque --rotate=-45,0,35 \
