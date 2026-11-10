@@ -1,16 +1,17 @@
 {
   "schema_version": 1,
-  "source_revision": "1540c5e36c909b9b3d9363927563d3996aa608d8",
-  "numerical_tests": 17,
+  "source_revision": "397144d52225f472e9ee61372b8377edf1500f05",
+  "numerical_tests": 26,
   "app_tests": 6,
   "rtl_cases": 391,
   "adc_codes_exhaustive": 65536,
   "i2c_ack_nack_cases": 4,
   "adc_protocol": "4 valid samples, 10 Hz scaled cadence, NACK recovery",
+  "top_integration": "ADS1115 bus -> ADC quantization -> 32-sample inference -> LEDs; NACK invalidation and recovery in RTL simulation",
   "rtl_cycles_after_last_input": 2472,
   "reference_clock_Hz": 1.2E+7,
   "rtl_compute_latency_at_12MHz_us": 206,
-  "place_route_achieved_clock_MHz": 20.167797088623047,
+  "place_route_achieved_clock_MHz": 19.997600555419922,
   "utilization": {
     "ICESTORM_DSP": {
       "available": 8,
@@ -22,7 +23,7 @@
     },
     "ICESTORM_LC": {
       "available": 5280,
-      "used": 1873
+      "used": 1870
     },
     "ICESTORM_LFOSC": {
       "available": 1,

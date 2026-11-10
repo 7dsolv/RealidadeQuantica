@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_revision": "1540c5e36c909b9b3d9363927563d3996aa608d8",
+  "source_revision": "397144d52225f472e9ee61372b8377edf1500f05",
   "train_seed": 39001,
   "development_seed": 39002,
   "locked_test_seed": 39003,
@@ -14,197 +14,197 @@
     "objective": "validation balanced accuracy minus 0.15 FPR",
     "policy": "UCB1 over three training configurations",
     "counts": [
-      6,
-      6,
-      6
+      2,
+      2,
+      2
     ],
     "reward_sum": [
-      4.608723958333333,
-      4.7424479166666664,
-      4.4384114583333334
+      1.535546875,
+      1.5705729166666667,
+      1.47578125
     ],
     "best_reward": 0.809375,
     "best_arm": 2,
     "test_used_for_selection": false,
-    "cycle": 3,
-    "resumed": true,
+    "cycle": 1,
+    "resumed": false,
     "before_counts": [
-      4,
-      4,
-      4
+      0,
+      0,
+      0
     ],
     "before_reward_sum": [
-      3.096875,
-      3.126302083333333,
-      2.9483072916666666
+      0,
+      0,
+      0
     ],
     "best_seed": 7805,
     "experiments": 6,
     "training_complete": true,
     "policy_scores": [
-      0.76812065972222221,
-      0.79040798611111107,
-      0.7397352430555556
+      0.7677734375,
+      0.78528645833333333,
+      0.737890625
     ],
-    "source_revision": "1540c5e36c909b9b3d9363927563d3996aa608d8",
-    "research_contract": "573134a3b9887fb53e4882726100bae7f275fef0f6c4bd369d40462172f784d2"
+    "source_revision": "397144d52225f472e9ee61372b8377edf1500f05",
+    "research_contract": "f739eeffee0d0388146ec3bb5bec04227d2dcfdf416d157b42d093f90a570729"
   },
   "experiments": [
     {
       "round": 1,
-      "arm": 2,
-      "seed": 8004,
-      "reward": 0.80846354166666667,
+      "arm": 1,
+      "seed": 7802,
+      "reward": 0.7514322916666667,
       "validation": {
         "samples": 768,
-        "tp": 259,
-        "fp": 17,
-        "tn": 367,
-        "fn": 125,
+        "tp": 249,
+        "fp": 43,
+        "tn": 341,
+        "fn": 135,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.81510416666666663,
-        "precision": 0.93840579710144922,
-        "recall": 0.67447916666666663,
-        "f1": 0.7848484848484848,
-        "false_positive_rate": 0.044270833333333336,
-        "normal_resolution": 0.95572916666666663,
-        "balanced_accuracy": 0.81510416666666663,
-        "utility": 0.80846354166666667
+        "accuracy": 0.76822916666666663,
+        "precision": 0.85273972602739723,
+        "recall": 0.6484375,
+        "f1": 0.73668639053254437,
+        "false_positive_rate": 0.11197916666666667,
+        "normal_resolution": 0.88802083333333337,
+        "balanced_accuracy": 0.76822916666666674,
+        "utility": 0.7514322916666667
       },
-      "loss_initial": 0.68236176825839956,
-      "loss_final": 0.40015326995608169
+      "loss_initial": 0.69514196687202279,
+      "loss_final": 0.45620215757543731
     },
     {
       "round": 2,
-      "arm": 1,
-      "seed": 8005,
-      "reward": 0.7290364583333333,
+      "arm": 2,
+      "seed": 7803,
+      "reward": 0.7611979166666667,
       "validation": {
         "samples": 768,
-        "tp": 276,
-        "fp": 77,
-        "tn": 307,
-        "fn": 108,
+        "tp": 263,
+        "fp": 48,
+        "tn": 336,
+        "fn": 121,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.75911458333333337,
-        "precision": 0.78186968838526916,
-        "recall": 0.71875,
-        "f1": 0.74898236092265935,
-        "false_positive_rate": 0.20052083333333334,
-        "normal_resolution": 0.79947916666666663,
-        "balanced_accuracy": 0.75911458333333326,
-        "utility": 0.7290364583333333
+        "accuracy": 0.77994791666666663,
+        "precision": 0.84565916398713825,
+        "recall": 0.68489583333333337,
+        "f1": 0.75683453237410081,
+        "false_positive_rate": 0.125,
+        "normal_resolution": 0.875,
+        "balanced_accuracy": 0.77994791666666674,
+        "utility": 0.7611979166666667
       },
-      "loss_initial": 0.691217037104341,
-      "loss_final": 0.46249769247489719
+      "loss_initial": 0.673005929733085,
+      "loss_final": 0.43354590292994316
     },
     {
       "round": 3,
       "arm": 3,
-      "seed": 8006,
-      "reward": 0.745703125,
+      "seed": 7804,
+      "reward": 0.75677083333333328,
       "validation": {
         "samples": 768,
-        "tp": 255,
-        "fp": 51,
-        "tn": 333,
-        "fn": 129,
+        "tp": 244,
+        "fp": 36,
+        "tn": 348,
+        "fn": 140,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.765625,
-        "precision": 0.83333333333333337,
-        "recall": 0.6640625,
-        "f1": 0.73913043478260876,
-        "false_positive_rate": 0.1328125,
-        "normal_resolution": 0.8671875,
-        "balanced_accuracy": 0.765625,
-        "utility": 0.745703125
+        "accuracy": 0.77083333333333337,
+        "precision": 0.87142857142857144,
+        "recall": 0.63541666666666663,
+        "f1": 0.73493975903614461,
+        "false_positive_rate": 0.09375,
+        "normal_resolution": 0.90625,
+        "balanced_accuracy": 0.77083333333333326,
+        "utility": 0.75677083333333328
       },
-      "loss_initial": 0.69936173875978924,
-      "loss_final": 0.501811509176679
+      "loss_initial": 0.696388546190391,
+      "loss_final": 0.4896131555170003
     },
     {
       "round": 4,
       "arm": 2,
-      "seed": 8007,
-      "reward": 0.80768229166666661,
+      "seed": 7805,
+      "reward": 0.809375,
       "validation": {
         "samples": 768,
         "tp": 274,
-        "fp": 29,
-        "tn": 355,
+        "fp": 28,
+        "tn": 356,
         "fn": 110,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.81901041666666663,
-        "precision": 0.90429042904290424,
+        "accuracy": 0.8203125,
+        "precision": 0.9072847682119205,
         "recall": 0.71354166666666663,
-        "f1": 0.79767103347889368,
-        "false_positive_rate": 0.075520833333333329,
-        "normal_resolution": 0.92447916666666663,
-        "balanced_accuracy": 0.81901041666666663,
-        "utility": 0.80768229166666661
+        "f1": 0.7988338192419826,
+        "false_positive_rate": 0.072916666666666671,
+        "normal_resolution": 0.92708333333333337,
+        "balanced_accuracy": 0.8203125,
+        "utility": 0.809375
       },
-      "loss_initial": 0.66319254030251773,
-      "loss_final": 0.38768831310390695
+      "loss_initial": 0.68404952885655268,
+      "loss_final": 0.401167017535349
     },
     {
       "round": 5,
-      "arm": 1,
-      "seed": 8008,
-      "reward": 0.7828125,
+      "arm": 3,
+      "seed": 7806,
+      "reward": 0.71901041666666676,
       "validation": {
         "samples": 768,
-        "tp": 264,
+        "tp": 215,
         "fp": 36,
         "tn": 348,
-        "fn": 120,
+        "fn": 169,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.796875,
-        "precision": 0.88,
-        "recall": 0.6875,
-        "f1": 0.77192982456140358,
+        "accuracy": 0.73307291666666663,
+        "precision": 0.85657370517928288,
+        "recall": 0.55989583333333337,
+        "f1": 0.67716535433070868,
         "false_positive_rate": 0.09375,
         "normal_resolution": 0.90625,
-        "balanced_accuracy": 0.796875,
-        "utility": 0.7828125
+        "balanced_accuracy": 0.73307291666666674,
+        "utility": 0.71901041666666676
       },
-      "loss_initial": 0.69229461280360338,
-      "loss_final": 0.44431819915648224
+      "loss_initial": 0.71368357946154137,
+      "loss_final": 0.53511848864639788
     },
     {
       "round": 6,
-      "arm": 3,
-      "seed": 8009,
-      "reward": 0.74440104166666665,
+      "arm": 1,
+      "seed": 7807,
+      "reward": 0.78411458333333328,
       "validation": {
         "samples": 768,
-        "tp": 241,
-        "fp": 41,
-        "tn": 343,
-        "fn": 143,
+        "tp": 265,
+        "fp": 36,
+        "tn": 348,
+        "fn": 119,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.76041666666666663,
-        "precision": 0.85460992907801414,
-        "recall": 0.62760416666666663,
-        "f1": 0.72372372372372362,
-        "false_positive_rate": 0.10677083333333333,
-        "normal_resolution": 0.89322916666666663,
-        "balanced_accuracy": 0.76041666666666663,
-        "utility": 0.74440104166666665
+        "accuracy": 0.79817708333333337,
+        "precision": 0.88039867109634551,
+        "recall": 0.69010416666666663,
+        "f1": 0.77372262773722622,
+        "false_positive_rate": 0.09375,
+        "normal_resolution": 0.90625,
+        "balanced_accuracy": 0.79817708333333326,
+        "utility": 0.78411458333333328
       },
-      "loss_initial": 0.69958019264317539,
-      "loss_final": 0.5102017178068583
+      "loss_initial": 0.6855456572497407,
+      "loss_final": 0.430095991003026
     }
   ],
   "records": [
@@ -227,7 +227,28 @@
         "false_positive_rate": 0.087890625,
         "normal_resolution": 0.912109375,
         "balanced_accuracy": 0.818359375,
-        "utility": 0.80517578125
+        "utility": 0.80517578125,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.8023760779204665,
+            0.83382184006747506
+          ],
+          "recall_95": [
+            0.69961977186311786,
+            0.75171065493646139
+          ],
+          "false_positive_rate_95": [
+            0.072834645669291334,
+            0.10414560161779575
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -249,7 +270,28 @@
         "false_positive_rate": 0.087890625,
         "normal_resolution": 0.912109375,
         "balanced_accuracy": 0.8193359375,
-        "utility": 0.80615234375
+        "utility": 0.80615234375,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.8032198719947814,
+            0.83569920471596171
+          ],
+          "recall_95": [
+            0.69912366114897762,
+            0.75467980295566506
+          ],
+          "false_positive_rate_95": [
+            0.07113821138211382,
+            0.10414560161779575
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -271,7 +313,28 @@
         "false_positive_rate": 0.30859375,
         "normal_resolution": 0.69140625,
         "balanced_accuracy": 0.73095703125,
-        "utility": 0.68466796875
+        "utility": 0.68466796875,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.70936568971897018,
+            0.74595386759848
+          ],
+          "recall_95": [
+            0.74574669187145559,
+            0.79354207436399216
+          ],
+          "false_positive_rate_95": [
+            0.2827788649706458,
+            0.34017595307917886
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -293,7 +356,28 @@
         "false_positive_rate": 0.3046875,
         "normal_resolution": 0.6953125,
         "balanced_accuracy": 0.73486328125,
-        "utility": 0.68916015625
+        "utility": 0.68916015625,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.71425615026912792,
+            0.75039112651117057
+          ],
+          "recall_95": [
+            0.74853228962818008,
+            0.79922405431619792
+          ],
+          "false_positive_rate_95": [
+            0.27900287631831255,
+            0.33463035019455251
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -315,7 +399,28 @@
         "false_positive_rate": 0.0087890625,
         "normal_resolution": 0.9912109375,
         "balanced_accuracy": 0.78564453125,
-        "utility": 0.784326171875
+        "utility": 0.784326171875,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.77092836323565184,
+            0.80008722647485753
+          ],
+          "recall_95": [
+            0.55192878338278928,
+            0.60747663551401865
+          ],
+          "false_positive_rate_95": [
+            0.0029702970297029703,
+            0.013631937682570594
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -337,7 +442,28 @@
         "false_positive_rate": 0.013671875,
         "normal_resolution": 0.986328125,
         "balanced_accuracy": 0.68115234375,
-        "utility": 0.6791015625
+        "utility": 0.6791015625,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.66370130520412585,
+            0.69631778676180967
+          ],
+          "recall_95": [
+            0.34317718940936864,
+            0.40388349514563104
+          ],
+          "false_positive_rate_95": [
+            0.0071355759429153924,
+            0.020648967551622419
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -359,7 +485,71 @@
         "false_positive_rate": 0.0078125,
         "normal_resolution": 0.9921875,
         "balanced_accuracy": 0.8115234375,
-        "utility": 0.8103515625
+        "utility": 0.8103515625,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.79748091603053428,
+            0.82561498020380353
+          ],
+          "recall_95": [
+            0.60496183206106868,
+            0.65842055185537585
+          ],
+          "false_positive_rate_95": [
+            0.002843601895734597,
+            0.012782694198623401
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
+      }
+    },
+    {
+      "suite": "hard_synthetic_locked",
+      "model": "KONAET_CONTEXT",
+      "metrics": {
+        "samples": 2048,
+        "tp": 549,
+        "fp": 5,
+        "tn": 1019,
+        "fn": 475,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.765625,
+        "precision": 0.99097472924187724,
+        "recall": 0.5361328125,
+        "f1": 0.69581749049429664,
+        "false_positive_rate": 0.0048828125,
+        "normal_resolution": 0.9951171875,
+        "balanced_accuracy": 0.765625,
+        "utility": 0.764892578125,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.75106050787949008,
+            0.78062155303380709
+          ],
+          "recall_95": [
+            0.50719079578139981,
+            0.56611165523996088
+          ],
+          "false_positive_rate_95": [
+            0.000968054211035818,
+            0.00945179584120983
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -381,7 +571,28 @@
         "false_positive_rate": 0,
         "normal_resolution": 1,
         "balanced_accuracy": 0.99609375,
-        "utility": 0.99609375
+        "utility": 0.99609375,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.99168399168399168,
+            0.99905123339658441
+          ],
+          "recall_95": [
+            0.98336798336798337,
+            0.99810246679316883
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -403,7 +614,28 @@
         "false_positive_rate": 0,
         "normal_resolution": 1,
         "balanced_accuracy": 0.99609375,
-        "utility": 0.99609375
+        "utility": 0.99609375,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.99168399168399168,
+            0.99905123339658441
+          ],
+          "recall_95": [
+            0.98336798336798337,
+            0.99810246679316883
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -425,7 +657,28 @@
         "false_positive_rate": 0,
         "normal_resolution": 1,
         "balanced_accuracy": 0.9990234375,
-        "utility": 0.9990234375
+        "utility": 0.9990234375,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.99606299212598426,
+            1
+          ],
+          "recall_95": [
+            0.99212598425196852,
+            1
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -447,7 +700,28 @@
         "false_positive_rate": 0,
         "normal_resolution": 1,
         "balanced_accuracy": 0.9990234375,
-        "utility": 0.9990234375
+        "utility": 0.9990234375,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.99606299212598426,
+            1
+          ],
+          "recall_95": [
+            0.99212598425196852,
+            1
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -469,7 +743,28 @@
         "false_positive_rate": 0,
         "normal_resolution": 1,
         "balanced_accuracy": 0.875,
-        "utility": 0.875
+        "utility": 0.875,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.859344894026975,
+            0.89494163424124507
+          ],
+          "recall_95": [
+            0.7186897880539499,
+            0.78988326848249024
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -491,7 +786,28 @@
         "false_positive_rate": 0,
         "normal_resolution": 1,
         "balanced_accuracy": 0.8740234375,
-        "utility": 0.8740234375
+        "utility": 0.8740234375,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.8582995951417004,
+            0.89468302658486709
+          ],
+          "recall_95": [
+            0.7165991902834008,
+            0.78936605316973418
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -513,7 +829,71 @@
         "false_positive_rate": 0,
         "normal_resolution": 1,
         "balanced_accuracy": 0.939453125,
-        "utility": 0.939453125
+        "utility": 0.939453125,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.92427385892116187,
+            0.952755905511811
+          ],
+          "recall_95": [
+            0.84854771784232363,
+            0.905511811023622
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
+      }
+    },
+    {
+      "suite": "easy_synthetic",
+      "model": "KONAET_CONTEXT",
+      "metrics": {
+        "samples": 1024,
+        "tp": 512,
+        "fp": 0,
+        "tn": 512,
+        "fn": 0,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 1,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "false_positive_rate": 0,
+        "normal_resolution": 1,
+        "balanced_accuracy": 1,
+        "utility": 1,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            1,
+            1
+          ],
+          "recall_95": [
+            1,
+            1
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -535,7 +915,28 @@
         "false_positive_rate": 0.328125,
         "normal_resolution": 0.671875,
         "balanced_accuracy": 0.7451171875,
-        "utility": 0.6958984375
+        "utility": 0.6958984375,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.72083938918834378,
+            0.77050752885423834
+          ],
+          "recall_95": [
+            0.78811881188118815,
+            0.85333333333333339
+          ],
+          "false_positive_rate_95": [
+            0.28782287822878228,
+            0.36399217221135027
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -557,7 +958,28 @@
         "false_positive_rate": 0.33203125,
         "normal_resolution": 0.66796875,
         "balanced_accuracy": 0.7431640625,
-        "utility": 0.693359375
+        "utility": 0.693359375,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.71875,
+            0.7710460838637786
+          ],
+          "recall_95": [
+            0.78269617706237427,
+            0.849802371541502
+          ],
+          "false_positive_rate_95": [
+            0.29032258064516131,
+            0.3671875
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -579,7 +1001,28 @@
         "false_positive_rate": 0.52734375,
         "normal_resolution": 0.47265625,
         "balanced_accuracy": 0.6669921875,
-        "utility": 0.587890625
+        "utility": 0.587890625,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.63839611085883929,
+            0.69049363075549652
+          ],
+          "recall_95": [
+            0.82772277227722768,
+            0.8901303538175046
+          ],
+          "false_positive_rate_95": [
+            0.48818897637795278,
+            0.5731225296442688
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -601,7 +1044,28 @@
         "false_positive_rate": 0.52734375,
         "normal_resolution": 0.47265625,
         "balanced_accuracy": 0.6669921875,
-        "utility": 0.587890625
+        "utility": 0.587890625,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.63679905962453676,
+            0.69380607947262407
+          ],
+          "recall_95": [
+            0.83064516129032262,
+            0.88954635108481261
+          ],
+          "false_positive_rate_95": [
+            0.48707753479125249,
+            0.5722543352601156
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -623,7 +1087,28 @@
         "false_positive_rate": 0.498046875,
         "normal_resolution": 0.501953125,
         "balanced_accuracy": 0.662109375,
-        "utility": 0.58740234375
+        "utility": 0.58740234375,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.63362595419847334,
+            0.69243511450381678
+          ],
+          "recall_95": [
+            0.78787878787878785,
+            0.85546875
+          ],
+          "false_positive_rate_95": [
+            0.45660377358490567,
+            0.54027504911591351
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -645,7 +1130,28 @@
         "false_positive_rate": 0.171875,
         "normal_resolution": 0.828125,
         "balanced_accuracy": 0.7080078125,
-        "utility": 0.6822265625
+        "utility": 0.6822265625,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.67974068318831393,
+            0.73570992599374385
+          ],
+          "recall_95": [
+            0.54347826086956519,
+            0.62795275590551181
+          ],
+          "false_positive_rate_95": [
+            0.14150943396226415,
+            0.20384615384615384
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -667,7 +1173,71 @@
         "false_positive_rate": 0.4140625,
         "normal_resolution": 0.5859375,
         "balanced_accuracy": 0.712890625,
-        "utility": 0.65078125
+        "utility": 0.65078125,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.68903442927921221,
+            0.74071562037882632
+          ],
+          "recall_95": [
+            0.80916030534351147,
+            0.86956521739130432
+          ],
+          "false_positive_rate_95": [
+            0.36862745098039218,
+            0.45697896749521988
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
+      }
+    },
+    {
+      "suite": "strong_noise_shift",
+      "model": "KONAET_CONTEXT",
+      "metrics": {
+        "samples": 1024,
+        "tp": 345,
+        "fp": 90,
+        "tn": 422,
+        "fn": 167,
+        "abstentions": 1,
+        "normal_abstentions": 0,
+        "coverage": 0.9990234375,
+        "accuracy": 0.7490234375,
+        "precision": 0.7931034482758621,
+        "recall": 0.673828125,
+        "f1": 0.7286166842661036,
+        "false_positive_rate": 0.17578125,
+        "normal_resolution": 0.82421875,
+        "balanced_accuracy": 0.7490234375,
+        "utility": 0.72265625,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 1,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.7237557363728957,
+            0.77751571426935806
+          ],
+          "recall_95": [
+            0.63672654690618757,
+            0.7167630057803468
+          ],
+          "false_positive_rate_95": [
+            0.14457831325301204,
+            0.20849420849420849
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 512
       }
     },
     {
@@ -689,7 +1259,28 @@
         "false_positive_rate": 0.18040508714083844,
         "normal_resolution": 0.81959491285916153,
         "balanced_accuracy": 0.550642526852116,
-        "utility": 0.52358176378099019
+        "utility": 0.52358176378099019,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 255,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.45014463623647005,
+            0.68799490877800429
+          ],
+          "recall_95": [
+            0.066666666666666666,
+            0.56804733727810652
+          ],
+          "false_positive_rate_95": [
+            0.135,
+            0.23054755043227665
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 414
       }
     },
     {
@@ -711,7 +1302,28 @@
         "false_positive_rate": 0.17710786622703723,
         "normal_resolution": 0.82289213377296277,
         "balanced_accuracy": 0.55581226406958,
-        "utility": 0.52924608413552432
+        "utility": 0.52924608413552432,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 255,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.45336694194283272,
+            0.6817013081469796
+          ],
+          "recall_95": [
+            0.076923076923076927,
+            0.55029585798816572
+          ],
+          "false_positive_rate_95": [
+            0.13239436619718309,
+            0.22431761786600496
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 414
       }
     },
     {
@@ -733,7 +1345,28 @@
         "false_positive_rate": 0.19359397079604335,
         "normal_resolution": 0.80640602920395665,
         "balanced_accuracy": 0.86447062023578114,
-        "utility": 0.8354315246163746
+        "utility": 0.8354315246163746,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 255,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.79899426081327518,
+            0.90567333874267619
+          ],
+          "recall_95": [
+            0.803921568627451,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.14065335753176045,
+            0.25747348119575697
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 414
       }
     },
     {
@@ -755,7 +1388,28 @@
         "false_positive_rate": 0.19594912859161565,
         "normal_resolution": 0.80405087140838438,
         "balanced_accuracy": 0.85625078781686825,
-        "utility": 0.82685841852812592
+        "utility": 0.82685841852812592,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 255,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.784733457117683,
+            0.90365153886280647
+          ],
+          "recall_95": [
+            0.7865168539325843,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.14246823956442831,
+            0.2605566218809981
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 414
       }
     },
     {
@@ -777,7 +1431,28 @@
         "false_positive_rate": 0.022609514837494113,
         "normal_resolution": 0.97739048516250593,
         "balanced_accuracy": 0.5274276369474501,
-        "utility": 0.524036209721826
+        "utility": 0.524036209721826,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 255,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.48992386923421405,
+            0.58855404506131759
+          ],
+          "recall_95": [
+            0,
+            0.208955223880597
+          ],
+          "false_positive_rate_95": [
+            0.0107981220657277,
+            0.033733826247689461
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 414
       }
     },
     {
@@ -799,7 +1474,28 @@
         "false_positive_rate": 0.018841262364578427,
         "normal_resolution": 0.98115873763542161,
         "balanced_accuracy": 0.50114274909940093,
-        "utility": 0.49831655974471417
+        "utility": 0.49831655974471417,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 255,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.48651206814955039,
+            0.53240939693453659
+          ],
+          "recall_95": [
+            0,
+            0.078947368421052627
+          ],
+          "false_positive_rate_95": [
+            0.0089020771513353119,
+            0.030036968576709795
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 414
       }
     },
     {
@@ -821,7 +1517,71 @@
         "false_positive_rate": 0.014130946773433821,
         "normal_resolution": 0.98586905322656615,
         "balanced_accuracy": 0.5034979068949732,
-        "utility": 0.50137826487895809
+        "utility": 0.50137826487895809,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 255,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.48963986186482489,
+            0.53389488365264626
+          ],
+          "recall_95": [
+            0,
+            0.078947368421052627
+          ],
+          "false_positive_rate_95": [
+            0.0052281368821292772,
+            0.024029574861367836
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 414
+      }
+    },
+    {
+      "suite": "machine_temperature_system_failure.csv",
+      "model": "KONAET_CONTEXT",
+      "metrics": {
+        "samples": 2265,
+        "tp": 3,
+        "fp": 32,
+        "tn": 2091,
+        "fn": 139,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.92450331125827812,
+        "precision": 0.085714285714285715,
+        "recall": 0.021126760563380281,
+        "f1": 0.033898305084745763,
+        "false_positive_rate": 0.015073009891662742,
+        "normal_resolution": 0.98492699010833729,
+        "balanced_accuracy": 0.50302687533585877,
+        "utility": 0.50076592385210938,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 255,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.48935163274964505,
+            0.53334049563099839
+          ],
+          "recall_95": [
+            0,
+            0.078947368421052627
+          ],
+          "false_positive_rate_95": [
+            0.0059496567505720821,
+            0.024112829845313922
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 414
       }
     },
     {
@@ -843,7 +1603,28 @@
         "false_positive_rate": 0.87183544303797467,
         "normal_resolution": 0.12816455696202531,
         "balanced_accuracy": 0.49265370705244121,
-        "utility": 0.361878390596745
+        "utility": 0.361878390596745,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.42036960132890366,
+            0.552519437799043
+          ],
+          "recall_95": [
+            0.70909090909090911,
+            0.972972972972973
+          ],
+          "false_positive_rate_95": [
+            0.82426127527216175,
+            0.91247974068071314
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 178
       }
     },
     {
@@ -865,7 +1646,28 @@
         "false_positive_rate": 0.86075949367088611,
         "normal_resolution": 0.13924050632911392,
         "balanced_accuracy": 0.49819168173598549,
-        "utility": 0.36907775768535256
+        "utility": 0.36907775768535256,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.42618355481727577,
+            0.559488808801214
+          ],
+          "recall_95": [
+            0.70909090909090911,
+            0.972972972972973
+          ],
+          "false_positive_rate_95": [
+            0.80972818311874106,
+            0.90453074433656955
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 178
       }
     },
     {
@@ -887,7 +1689,28 @@
         "false_positive_rate": 0.96993670886075944,
         "normal_resolution": 0.030063291139240507,
         "balanced_accuracy": 0.50404263458060927,
-        "utility": 0.35855212825149535
+        "utility": 0.35855212825149535,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.48671214592911166,
+            0.51866251944012443
+          ],
+          "recall_95": [
+            0.94897959183673475,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.95136778115501519,
+            0.9859154929577465
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 178
       }
     },
     {
@@ -909,7 +1732,28 @@
         "false_positive_rate": 0.96993670886075944,
         "normal_resolution": 0.030063291139240507,
         "balanced_accuracy": 0.50953714007511475,
-        "utility": 0.36404663374600083
+        "utility": 0.36404663374600083,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.49304572672836144,
+            0.52077151335311578
+          ],
+          "recall_95": [
+            0.96261682242990654,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.95408163265306123,
+            0.98573692551505543
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 178
       }
     },
     {
@@ -931,7 +1775,28 @@
         "false_positive_rate": 0,
         "normal_resolution": 1,
         "balanced_accuracy": 0.5,
-        "utility": 0.5
+        "utility": 0.5,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.5,
+            0.5
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 178
       }
     },
     {
@@ -953,7 +1818,28 @@
         "false_positive_rate": 0.041139240506329111,
         "normal_resolution": 0.95886075949367089,
         "balanced_accuracy": 0.53986994018639589,
-        "utility": 0.53369905411044649
+        "utility": 0.53369905411044649,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.47165697674418605,
+            0.648787213536089
+          ],
+          "recall_95": [
+            0,
+            0.32222222222222224
+          ],
+          "false_positive_rate_95": [
+            0.0015360983102918587,
+            0.069243156199677941
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 178
       }
     },
     {
@@ -975,7 +1861,1447 @@
         "false_positive_rate": 0.011075949367088608,
         "normal_resolution": 0.98892405063291144,
         "balanced_accuracy": 0.49446202531645572,
-        "utility": 0.49280063291139242
+        "utility": 0.49280063291139242,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.48655063291139239,
+            0.5
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0.026898734177215191
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 178
+      }
+    },
+    {
+      "suite": "ambient_temperature_system_failure.csv",
+      "model": "KONAET_CONTEXT",
+      "metrics": {
+        "samples": 723,
+        "tp": 0,
+        "fp": 0,
+        "tn": 632,
+        "fn": 91,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.87413554633471646,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 1,
+        "balanced_accuracy": 0.5,
+        "utility": 0.5,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.5,
+            0.5
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 178
+      }
+    },
+    {
+      "suite": "cpu_utilization_asg_misconfiguration.csv",
+      "model": "KONAET_FP32",
+      "metrics": {
+        "samples": 1801,
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 188,
+        "abstentions": 1801,
+        "normal_abstentions": 1613,
+        "coverage": 0,
+        "accuracy": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0,
+        "utility": 0,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0,
+            0
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 0
+      }
+    },
+    {
+      "suite": "cpu_utilization_asg_misconfiguration.csv",
+      "model": "KONAET_INT8",
+      "metrics": {
+        "samples": 1801,
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 188,
+        "abstentions": 1801,
+        "normal_abstentions": 1613,
+        "coverage": 0,
+        "accuracy": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0,
+        "utility": 0,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0,
+            0
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 0
+      }
+    },
+    {
+      "suite": "cpu_utilization_asg_misconfiguration.csv",
+      "model": "AnomalyNet_FP32",
+      "metrics": {
+        "samples": 1801,
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 188,
+        "abstentions": 1801,
+        "normal_abstentions": 1613,
+        "coverage": 0,
+        "accuracy": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0,
+        "utility": 0,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0,
+            0
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 0
+      }
+    },
+    {
+      "suite": "cpu_utilization_asg_misconfiguration.csv",
+      "model": "AnomalyNet_INT8",
+      "metrics": {
+        "samples": 1801,
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 188,
+        "abstentions": 1801,
+        "normal_abstentions": 1613,
+        "coverage": 0,
+        "accuracy": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0,
+        "utility": 0,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0,
+            0
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 0
+      }
+    },
+    {
+      "suite": "cpu_utilization_asg_misconfiguration.csv",
+      "model": "max_difference",
+      "metrics": {
+        "samples": 1801,
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 188,
+        "abstentions": 1801,
+        "normal_abstentions": 1613,
+        "coverage": 0,
+        "accuracy": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0,
+        "utility": 0,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0,
+            0
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 0
+      }
+    },
+    {
+      "suite": "cpu_utilization_asg_misconfiguration.csv",
+      "model": "detrended_spread",
+      "metrics": {
+        "samples": 1801,
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 188,
+        "abstentions": 1801,
+        "normal_abstentions": 1613,
+        "coverage": 0,
+        "accuracy": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0,
+        "utility": 0,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0,
+            0
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 0
+      }
+    },
+    {
+      "suite": "cpu_utilization_asg_misconfiguration.csv",
+      "model": "ewma_residual",
+      "metrics": {
+        "samples": 1801,
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 188,
+        "abstentions": 1801,
+        "normal_abstentions": 1613,
+        "coverage": 0,
+        "accuracy": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0,
+        "utility": 0,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0,
+            0
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 0
+      }
+    },
+    {
+      "suite": "cpu_utilization_asg_misconfiguration.csv",
+      "model": "KONAET_CONTEXT",
+      "metrics": {
+        "samples": 1801,
+        "tp": 0,
+        "fp": 0,
+        "tn": 0,
+        "fn": 188,
+        "abstentions": 1801,
+        "normal_abstentions": 1613,
+        "coverage": 0,
+        "accuracy": 0,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0,
+        "utility": 0,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0,
+            0
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 0
+      }
+    },
+    {
+      "suite": "ec2_request_latency_system_failure.csv",
+      "model": "KONAET_FP32",
+      "metrics": {
+        "samples": 398,
+        "tp": 33,
+        "fp": 353,
+        "tn": 2,
+        "fn": 10,
+        "abstentions": 10,
+        "normal_abstentions": 0,
+        "coverage": 0.97487437185929648,
+        "accuracy": 0.087939698492462318,
+        "precision": 0.08549222797927461,
+        "recall": 0.76744186046511631,
+        "f1": 0.15384615384615385,
+        "false_positive_rate": 0.9943661971830986,
+        "normal_resolution": 0.0056338028169014088,
+        "balanced_accuracy": 0.38653783164100886,
+        "utility": 0.23738290206354407,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 252,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.31751023260457223,
+            0.50257731958762886
+          ],
+          "recall_95": [
+            0.63043478260869568,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.98599439775910369,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_request_latency_system_failure.csv",
+      "model": "KONAET_INT8",
+      "metrics": {
+        "samples": 398,
+        "tp": 33,
+        "fp": 353,
+        "tn": 2,
+        "fn": 10,
+        "abstentions": 10,
+        "normal_abstentions": 0,
+        "coverage": 0.97487437185929648,
+        "accuracy": 0.087939698492462318,
+        "precision": 0.08549222797927461,
+        "recall": 0.76744186046511631,
+        "f1": 0.15384615384615385,
+        "false_positive_rate": 0.9943661971830986,
+        "normal_resolution": 0.0056338028169014088,
+        "balanced_accuracy": 0.38653783164100886,
+        "utility": 0.23738290206354407,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 252,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.31751023260457223,
+            0.50257731958762886
+          ],
+          "recall_95": [
+            0.63043478260869568,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.98599439775910369,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_request_latency_system_failure.csv",
+      "model": "AnomalyNet_FP32",
+      "metrics": {
+        "samples": 398,
+        "tp": 33,
+        "fp": 355,
+        "tn": 0,
+        "fn": 10,
+        "abstentions": 10,
+        "normal_abstentions": 0,
+        "coverage": 0.97487437185929648,
+        "accuracy": 0.0829145728643216,
+        "precision": 0.08505154639175258,
+        "recall": 0.76744186046511631,
+        "f1": 0.1531322505800464,
+        "false_positive_rate": 1,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0.38372093023255816,
+        "utility": 0.23372093023255816,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 252,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.31521739130434784,
+            0.5
+          ],
+          "recall_95": [
+            0.63043478260869568,
+            1
+          ],
+          "false_positive_rate_95": [
+            1,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_request_latency_system_failure.csv",
+      "model": "AnomalyNet_INT8",
+      "metrics": {
+        "samples": 398,
+        "tp": 33,
+        "fp": 355,
+        "tn": 0,
+        "fn": 10,
+        "abstentions": 10,
+        "normal_abstentions": 0,
+        "coverage": 0.97487437185929648,
+        "accuracy": 0.0829145728643216,
+        "precision": 0.08505154639175258,
+        "recall": 0.76744186046511631,
+        "f1": 0.1531322505800464,
+        "false_positive_rate": 1,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0.38372093023255816,
+        "utility": 0.23372093023255816,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 252,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.31521739130434784,
+            0.5
+          ],
+          "recall_95": [
+            0.63043478260869568,
+            1
+          ],
+          "false_positive_rate_95": [
+            1,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_request_latency_system_failure.csv",
+      "model": "max_difference",
+      "metrics": {
+        "samples": 398,
+        "tp": 4,
+        "fp": 73,
+        "tn": 282,
+        "fn": 39,
+        "abstentions": 10,
+        "normal_abstentions": 0,
+        "coverage": 0.97487437185929648,
+        "accuracy": 0.71859296482412061,
+        "precision": 0.051948051948051951,
+        "recall": 0.093023255813953487,
+        "f1": 0.066666666666666652,
+        "false_positive_rate": 0.20563380281690141,
+        "normal_resolution": 0.79436619718309864,
+        "balanced_accuracy": 0.44369472649852604,
+        "utility": 0.41284965607599083,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 252,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.3602015113350126,
+            0.553030303030303
+          ],
+          "recall_95": [
+            0,
+            0.27272727272727271
+          ],
+          "false_positive_rate_95": [
+            0.12793733681462141,
+            0.2949438202247191
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_request_latency_system_failure.csv",
+      "model": "detrended_spread",
+      "metrics": {
+        "samples": 398,
+        "tp": 0,
+        "fp": 25,
+        "tn": 330,
+        "fn": 43,
+        "abstentions": 10,
+        "normal_abstentions": 0,
+        "coverage": 0.97487437185929648,
+        "accuracy": 0.82914572864321612,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0.070422535211267609,
+        "normal_resolution": 0.92957746478873238,
+        "balanced_accuracy": 0.46478873239436619,
+        "utility": 0.45422535211267606,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 252,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.43841642228739003,
+            0.483695652173913
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0.032608695652173912,
+            0.12316715542521994
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_request_latency_system_failure.csv",
+      "model": "ewma_residual",
+      "metrics": {
+        "samples": 398,
+        "tp": 7,
+        "fp": 8,
+        "tn": 347,
+        "fn": 36,
+        "abstentions": 10,
+        "normal_abstentions": 0,
+        "coverage": 0.97487437185929648,
+        "accuracy": 0.88944723618090449,
+        "precision": 0.46666666666666667,
+        "recall": 0.16279069767441862,
+        "f1": 0.24137931034482765,
+        "false_positive_rate": 0.022535211267605635,
+        "normal_resolution": 0.9774647887323944,
+        "balanced_accuracy": 0.57012774320340653,
+        "utility": 0.56674746151326572,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 252,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.48489010989010989,
+            0.63656013586536975
+          ],
+          "recall_95": [
+            0,
+            0.29411764705882354
+          ],
+          "false_positive_rate_95": [
+            0.005434782608695652,
+            0.052478134110787174
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_request_latency_system_failure.csv",
+      "model": "KONAET_CONTEXT",
+      "metrics": {
+        "samples": 398,
+        "tp": 7,
+        "fp": 67,
+        "tn": 288,
+        "fn": 36,
+        "abstentions": 10,
+        "normal_abstentions": 0,
+        "coverage": 0.97487437185929648,
+        "accuracy": 0.74120603015075381,
+        "precision": 0.0945945945945946,
+        "recall": 0.16279069767441862,
+        "f1": 0.11965811965811968,
+        "false_positive_rate": 0.18873239436619718,
+        "normal_resolution": 0.81126760563380285,
+        "balanced_accuracy": 0.48702915165411076,
+        "utility": 0.4587192924991812,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 252,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.37726098191214469,
+            0.57458303969931879
+          ],
+          "recall_95": [
+            0,
+            0.32
+          ],
+          "false_positive_rate_95": [
+            0.095959595959595953,
+            0.29014084507042254
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "nyc_taxi.csv",
+      "model": "KONAET_FP32",
+      "metrics": {
+        "samples": 1029,
+        "tp": 128,
+        "fp": 899,
+        "tn": 1,
+        "fn": 1,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.12536443148688048,
+        "precision": 0.124634858812074,
+        "recall": 0.99224806201550386,
+        "f1": 0.22145328719723184,
+        "false_positive_rate": 0.99888888888888894,
+        "normal_resolution": 0.0011111111111111111,
+        "balanced_accuracy": 0.49667958656330746,
+        "utility": 0.34684625322997409,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.48907914449857848,
+            0.50174418604651161
+          ],
+          "recall_95": [
+            0.97701149425287359,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.99644970414201184,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 255
+      }
+    },
+    {
+      "suite": "nyc_taxi.csv",
+      "model": "KONAET_INT8",
+      "metrics": {
+        "samples": 1029,
+        "tp": 128,
+        "fp": 899,
+        "tn": 1,
+        "fn": 1,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.12536443148688048,
+        "precision": 0.124634858812074,
+        "recall": 0.99224806201550386,
+        "f1": 0.22145328719723184,
+        "false_positive_rate": 0.99888888888888894,
+        "normal_resolution": 0.0011111111111111111,
+        "balanced_accuracy": 0.49667958656330746,
+        "utility": 0.34684625322997409,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.48907914449857848,
+            0.50174418604651161
+          ],
+          "recall_95": [
+            0.97701149425287359,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.99644970414201184,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 255
+      }
+    },
+    {
+      "suite": "nyc_taxi.csv",
+      "model": "AnomalyNet_FP32",
+      "metrics": {
+        "samples": 1029,
+        "tp": 129,
+        "fp": 900,
+        "tn": 0,
+        "fn": 0,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.12536443148688048,
+        "precision": 0.12536443148688048,
+        "recall": 1,
+        "f1": 0.22279792746113991,
+        "false_positive_rate": 1,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0.5,
+        "utility": 0.35,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.5,
+            0.5
+          ],
+          "recall_95": [
+            1,
+            1
+          ],
+          "false_positive_rate_95": [
+            1,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 255
+      }
+    },
+    {
+      "suite": "nyc_taxi.csv",
+      "model": "AnomalyNet_INT8",
+      "metrics": {
+        "samples": 1029,
+        "tp": 129,
+        "fp": 900,
+        "tn": 0,
+        "fn": 0,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.12536443148688048,
+        "precision": 0.12536443148688048,
+        "recall": 1,
+        "f1": 0.22279792746113991,
+        "false_positive_rate": 1,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0.5,
+        "utility": 0.35,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.5,
+            0.5
+          ],
+          "recall_95": [
+            1,
+            1
+          ],
+          "false_positive_rate_95": [
+            1,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 255
+      }
+    },
+    {
+      "suite": "nyc_taxi.csv",
+      "model": "max_difference",
+      "metrics": {
+        "samples": 1029,
+        "tp": 4,
+        "fp": 0,
+        "tn": 900,
+        "fn": 125,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.87852283770651118,
+        "precision": 1,
+        "recall": 0.031007751937984496,
+        "f1": 0.060150375939849621,
+        "false_positive_rate": 0,
+        "normal_resolution": 1,
+        "balanced_accuracy": 0.51550387596899228,
+        "utility": 0.51550387596899228,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.5,
+            0.54651162790697672
+          ],
+          "recall_95": [
+            0,
+            0.093023255813953487
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 255
+      }
+    },
+    {
+      "suite": "nyc_taxi.csv",
+      "model": "detrended_spread",
+      "metrics": {
+        "samples": 1029,
+        "tp": 1,
+        "fp": 45,
+        "tn": 855,
+        "fn": 128,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.83187560738581146,
+        "precision": 0.021739130434782608,
+        "recall": 0.0077519379844961239,
+        "f1": 0.011428571428571427,
+        "false_positive_rate": 0.05,
+        "normal_resolution": 0.95,
+        "balanced_accuracy": 0.47887596899224805,
+        "utility": 0.47137596899224804,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.47019122609673791,
+            0.4890183346065699
+          ],
+          "recall_95": [
+            0,
+            0.027272727272727271
+          ],
+          "false_positive_rate_95": [
+            0.03614457831325301,
+            0.063420158550396372
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 255
+      }
+    },
+    {
+      "suite": "nyc_taxi.csv",
+      "model": "ewma_residual",
+      "metrics": {
+        "samples": 1029,
+        "tp": 16,
+        "fp": 249,
+        "tn": 651,
+        "fn": 113,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.64820213799805637,
+        "precision": 0.060377358490566038,
+        "recall": 0.12403100775193798,
+        "f1": 0.081218274111675134,
+        "false_positive_rate": 0.27666666666666667,
+        "normal_resolution": 0.72333333333333338,
+        "balanced_accuracy": 0.42368217054263568,
+        "utility": 0.3821821705426357,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.3737373737373737,
+            0.48046295380354143
+          ],
+          "recall_95": [
+            0.043478260869565216,
+            0.21666666666666667
+          ],
+          "false_positive_rate_95": [
+            0.21577217962760131,
+            0.34337349397590361
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 255
+      }
+    },
+    {
+      "suite": "nyc_taxi.csv",
+      "model": "KONAET_CONTEXT",
+      "metrics": {
+        "samples": 1029,
+        "tp": 5,
+        "fp": 0,
+        "tn": 900,
+        "fn": 124,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.87949465500485913,
+        "precision": 1,
+        "recall": 0.03875968992248062,
+        "f1": 0.074626865671641784,
+        "false_positive_rate": 0,
+        "normal_resolution": 1,
+        "balanced_accuracy": 0.51937984496124034,
+        "utility": 0.51937984496124034,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.5,
+            0.54887218045112784
+          ],
+          "recall_95": [
+            0,
+            0.097744360902255634
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 255
+      }
+    },
+    {
+      "suite": "ec2_cpu_utilization_5f5533.csv",
+      "model": "KONAET_FP32",
+      "metrics": {
+        "samples": 400,
+        "tp": 45,
+        "fp": 309,
+        "tn": 41,
+        "fn": 5,
+        "abstentions": 4,
+        "normal_abstentions": 0,
+        "coverage": 0.99,
+        "accuracy": 0.215,
+        "precision": 0.1271186440677966,
+        "recall": 0.9,
+        "f1": 0.22277227722772278,
+        "false_positive_rate": 0.8828571428571429,
+        "normal_resolution": 0.11714285714285715,
+        "balanced_accuracy": 0.50857142857142856,
+        "utility": 0.37614285714285711,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.41013824884792627,
+            0.59230769230769231
+          ],
+          "recall_95": [
+            0.70588235294117652,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.78869047619047616,
+            0.96416938110749184
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_cpu_utilization_5f5533.csv",
+      "model": "KONAET_INT8",
+      "metrics": {
+        "samples": 400,
+        "tp": 45,
+        "fp": 307,
+        "tn": 43,
+        "fn": 5,
+        "abstentions": 4,
+        "normal_abstentions": 0,
+        "coverage": 0.99,
+        "accuracy": 0.22,
+        "precision": 0.12784090909090909,
+        "recall": 0.9,
+        "f1": 0.22388059701492535,
+        "false_positive_rate": 0.87714285714285711,
+        "normal_resolution": 0.12285714285714286,
+        "balanced_accuracy": 0.51142857142857145,
+        "utility": 0.37985714285714289,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.41417050691244239,
+            0.59827784156142372
+          ],
+          "recall_95": [
+            0.70588235294117652,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.7767857142857143,
+            0.96571428571428575
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_cpu_utilization_5f5533.csv",
+      "model": "AnomalyNet_FP32",
+      "metrics": {
+        "samples": 400,
+        "tp": 46,
+        "fp": 349,
+        "tn": 1,
+        "fn": 4,
+        "abstentions": 4,
+        "normal_abstentions": 0,
+        "coverage": 0.99,
+        "accuracy": 0.1175,
+        "precision": 0.11645569620253164,
+        "recall": 0.92,
+        "f1": 0.20674157303370785,
+        "false_positive_rate": 0.99714285714285711,
+        "normal_resolution": 0.0028571428571428571,
+        "balanced_accuracy": 0.46142857142857147,
+        "utility": 0.31185714285714294,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.38235294117647056,
+            0.50276243093922657
+          ],
+          "recall_95": [
+            0.76470588235294112,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.99382716049382713,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_cpu_utilization_5f5533.csv",
+      "model": "AnomalyNet_INT8",
+      "metrics": {
+        "samples": 400,
+        "tp": 46,
+        "fp": 349,
+        "tn": 1,
+        "fn": 4,
+        "abstentions": 4,
+        "normal_abstentions": 0,
+        "coverage": 0.99,
+        "accuracy": 0.1175,
+        "precision": 0.11645569620253164,
+        "recall": 0.92,
+        "f1": 0.20674157303370785,
+        "false_positive_rate": 0.99714285714285711,
+        "normal_resolution": 0.0028571428571428571,
+        "balanced_accuracy": 0.46142857142857147,
+        "utility": 0.31185714285714294,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.38235294117647056,
+            0.50276243093922657
+          ],
+          "recall_95": [
+            0.76470588235294112,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.99382716049382713,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_cpu_utilization_5f5533.csv",
+      "model": "max_difference",
+      "metrics": {
+        "samples": 400,
+        "tp": 7,
+        "fp": 4,
+        "tn": 346,
+        "fn": 43,
+        "abstentions": 4,
+        "normal_abstentions": 0,
+        "coverage": 0.99,
+        "accuracy": 0.8825,
+        "precision": 0.63636363636363635,
+        "recall": 0.14,
+        "f1": 0.22950819672131148,
+        "false_positive_rate": 0.011428571428571429,
+        "normal_resolution": 0.98857142857142855,
+        "balanced_accuracy": 0.56428571428571428,
+        "utility": 0.56257142857142861,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.49430199430199429,
+            0.65628192032686417
+          ],
+          "recall_95": [
+            0,
+            0.31818181818181818
+          ],
+          "false_positive_rate_95": [
+            0,
+            0.024024024024024024
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_cpu_utilization_5f5533.csv",
+      "model": "detrended_spread",
+      "metrics": {
+        "samples": 400,
+        "tp": 0,
+        "fp": 0,
+        "tn": 350,
+        "fn": 50,
+        "abstentions": 4,
+        "normal_abstentions": 0,
+        "coverage": 0.99,
+        "accuracy": 0.875,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 1,
+        "balanced_accuracy": 0.5,
+        "utility": 0.5,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.5,
+            0.5
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_cpu_utilization_5f5533.csv",
+      "model": "ewma_residual",
+      "metrics": {
+        "samples": 400,
+        "tp": 0,
+        "fp": 0,
+        "tn": 350,
+        "fn": 50,
+        "abstentions": 4,
+        "normal_abstentions": 0,
+        "coverage": 0.99,
+        "accuracy": 0.875,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0,
+        "false_positive_rate": 0,
+        "normal_resolution": 1,
+        "balanced_accuracy": 0.5,
+        "utility": 0.5,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.5,
+            0.5
+          ],
+          "recall_95": [
+            0,
+            0
+          ],
+          "false_positive_rate_95": [
+            0,
+            0
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
+      }
+    },
+    {
+      "suite": "ec2_cpu_utilization_5f5533.csv",
+      "model": "KONAET_CONTEXT",
+      "metrics": {
+        "samples": 400,
+        "tp": 27,
+        "fp": 305,
+        "tn": 45,
+        "fn": 23,
+        "abstentions": 4,
+        "normal_abstentions": 0,
+        "coverage": 0.99,
+        "accuracy": 0.18,
+        "precision": 0.081325301204819275,
+        "recall": 0.54,
+        "f1": 0.14136125654450263,
+        "false_positive_rate": 0.87142857142857144,
+        "normal_resolution": 0.12857142857142856,
+        "balanced_accuracy": 0.3342857142857143,
+        "utility": 0.2035714285714286,
+        "bootstrap": {
+          "method": "moving-block bootstrap, conditional on this series",
+          "block_windows": 32,
+          "replicates": 256,
+          "valid_replicates": 256,
+          "seed": 66113,
+          "balanced_accuracy_95": [
+            0.13662714097496706,
+            0.51010101010101
+          ],
+          "recall_95": [
+            0.18181818181818182,
+            1
+          ],
+          "false_positive_rate_95": [
+            0.74774774774774777,
+            1
+          ],
+          "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
+        },
+        "calibration_representable_windows": 97
       }
     }
   ],
@@ -999,7 +3325,8 @@
       "official_NAB_score": false,
       "overlapping_windows_within_test": true,
       "model_training_used_this_series": false,
-      "source_revision": "ea702d75cc2258d9d7dd35ca8e5e2539d71f3140"
+      "source_revision": "ea702d75cc2258d9d7dd35ca8e5e2539d71f3140",
+      "evaluation_role": "legacy_retrospective"
     },
     {
       "name": "ambient_temperature_system_failure.csv",
@@ -1020,7 +3347,96 @@
       "official_NAB_score": false,
       "overlapping_windows_within_test": true,
       "model_training_used_this_series": false,
-      "source_revision": "ea702d75cc2258d9d7dd35ca8e5e2539d71f3140"
+      "source_revision": "ea702d75cc2258d9d7dd35ca8e5e2539d71f3140",
+      "evaluation_role": "legacy_retrospective"
+    },
+    {
+      "name": "cpu_utilization_asg_misconfiguration.csv",
+      "origin": "NAB real sensor measurements and upstream interval labels",
+      "unit": "affine normalized source units; not physical Celsius",
+      "normalization_center": 32.1335,
+      "normalization_IQR": 3.01199999999999,
+      "normalization_prefix_samples": 3610,
+      "native_sample_interval_s": 300,
+      "window_samples": 32,
+      "stride_samples": 8,
+      "original_rows": 18050,
+      "source_nonmonotonic_steps": 0,
+      "duplicate_rows_aggregated": 0,
+      "duplicate_policy": "sort timestamp, median of values sharing timestamp",
+      "label_rule": "endpoint inside upstream labeled interval",
+      "split": "early 20% normal-only calibration, 31-sample boundary guard, remaining future samples for test",
+      "official_NAB_score": false,
+      "overlapping_windows_within_test": true,
+      "model_training_used_this_series": false,
+      "source_revision": "ea702d75cc2258d9d7dd35ca8e5e2539d71f3140",
+      "evaluation_role": "new_external_fixed_protocol"
+    },
+    {
+      "name": "ec2_request_latency_system_failure.csv",
+      "origin": "NAB real sensor measurements and upstream interval labels",
+      "unit": "affine normalized source units; not physical Celsius",
+      "normalization_center": 44.718,
+      "normalization_IQR": 2.2779999999999916,
+      "normalization_prefix_samples": 804,
+      "native_sample_interval_s": 300,
+      "window_samples": 32,
+      "stride_samples": 8,
+      "original_rows": 4032,
+      "source_nonmonotonic_steps": 11,
+      "duplicate_rows_aggregated": 11,
+      "duplicate_policy": "sort timestamp, median of values sharing timestamp",
+      "label_rule": "endpoint inside upstream labeled interval",
+      "split": "early 20% normal-only calibration, 31-sample boundary guard, remaining future samples for test",
+      "official_NAB_score": false,
+      "overlapping_windows_within_test": true,
+      "model_training_used_this_series": false,
+      "source_revision": "ea702d75cc2258d9d7dd35ca8e5e2539d71f3140",
+      "evaluation_role": "new_external_fixed_protocol"
+    },
+    {
+      "name": "nyc_taxi.csv",
+      "origin": "NAB real sensor measurements and upstream interval labels",
+      "unit": "affine normalized source units; not physical Celsius",
+      "normalization_center": 16594.5,
+      "normalization_IQR": 8409,
+      "normalization_prefix_samples": 2064,
+      "native_sample_interval_s": 1800,
+      "window_samples": 32,
+      "stride_samples": 8,
+      "original_rows": 10320,
+      "source_nonmonotonic_steps": 0,
+      "duplicate_rows_aggregated": 0,
+      "duplicate_policy": "sort timestamp, median of values sharing timestamp",
+      "label_rule": "endpoint inside upstream labeled interval",
+      "split": "early 20% normal-only calibration, 31-sample boundary guard, remaining future samples for test",
+      "official_NAB_score": false,
+      "overlapping_windows_within_test": true,
+      "model_training_used_this_series": false,
+      "source_revision": "ea702d75cc2258d9d7dd35ca8e5e2539d71f3140",
+      "evaluation_role": "new_external_fixed_protocol"
+    },
+    {
+      "name": "ec2_cpu_utilization_5f5533.csv",
+      "origin": "NAB real sensor measurements and upstream interval labels",
+      "unit": "affine normalized source units; not physical Celsius",
+      "normalization_center": 46.184,
+      "normalization_IQR": 5.3519999999999968,
+      "normalization_prefix_samples": 806,
+      "native_sample_interval_s": 300,
+      "window_samples": 32,
+      "stride_samples": 8,
+      "original_rows": 4032,
+      "source_nonmonotonic_steps": 0,
+      "duplicate_rows_aggregated": 0,
+      "duplicate_policy": "sort timestamp, median of values sharing timestamp",
+      "label_rule": "endpoint inside upstream labeled interval",
+      "split": "early 20% normal-only calibration, 31-sample boundary guard, remaining future samples for test",
+      "official_NAB_score": false,
+      "overlapping_windows_within_test": true,
+      "model_training_used_this_series": false,
+      "source_revision": "ea702d75cc2258d9d7dd35ca8e5e2539d71f3140",
+      "evaluation_role": "new_external_fixed_protocol"
     }
   ],
   "hard_definition": {
@@ -3083,5 +5499,33 @@
   "hardware_latency": "NOT_MEASURED",
   "physical_device": "NOT_DEPLOYED",
   "quantized_agreement": 0.986328125,
+  "external_protocol": {
+    "schema_version": 1,
+    "protocol": "KONAET external evaluation v1",
+    "frozen_before_new_results": "2026-11-10",
+    "selection_rule": "Four named public NAB series selected before executing the new detector; no tuning on their future labels",
+    "legacy_retrospective": [
+      "machine_temperature_system_failure.csv",
+      "ambient_temperature_system_failure.csv"
+    ],
+    "new_external_series": [
+      "cpu_utilization_asg_misconfiguration.csv",
+      "ec2_request_latency_system_failure.csv",
+      "nyc_taxi.csv",
+      "ec2_cpu_utilization_5f5533.csv"
+    ],
+    "calibration_fraction": 0.2,
+    "window_samples": 32,
+    "stride_samples": 8,
+    "normal_calibration_quantile": 0.995,
+    "bootstrap_replicates": 256,
+    "bootstrap_block_windows": 32,
+    "bootstrap_seed": 66113,
+    "labels_used_for_model_selection": false,
+    "official_NAB_score": false,
+    "claim": "Public reproducible research evaluation, not an independent third-party certification or physical test"
+  },
+  "external_protocol_sha256": "2103c7c3201ab1deb99f1e95f7c9b708aaddb3e6f617032c77464793dffbab64",
+  "context_comparator": "Normal-only calibration, fixed level/shape envelope. Separate research method; not part of deployed neural weights or FPGA.",
   "all_methods_same_input_domain": "10..90 equivalent C; abstentions are counted and never treated as normal"
 }
