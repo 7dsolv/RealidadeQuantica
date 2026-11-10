@@ -107,6 +107,16 @@ tab_lattice = uitab(tabs, 'Title', '  01  /  LATTICE SU(3)  ');
 tab_wave = uitab(tabs, 'Title', '  02  /  ONDA QUANTICA  ');
 tab_cosmology = uitab(tabs, 'Title', '  03  /  COSMOLOGIA  ');
 tab_engines = uitab(tabs, 'Title', '  04  /  MODULOS  ');
+tab_xeno = uitab(tabs, 'Title', '  05  /  XENOELEMENT  ');
+xeno_grid = uigridlayout(tab_xeno, [4, 1], 'RowHeight', {60, 80, 48, '1x'}, ...
+    'Padding', [32, 28, 32, 28], 'BackgroundColor', C.panel);
+uilabel(xeno_grid, 'Text', 'KONAET / XENOELEMENT X-01', 'FontSize', 25, ...
+    'FontColor', C.violet, 'FontWeight', 'bold');
+uilabel(xeno_grid, 'Text', ['Membrana sensorial hipotetica: difusao, adsorcao, toque, ' ...
+    'resposta optica e controle. Prototipo numerico com dados sinteticos; nenhum material fabricado.'], ...
+    'WordWrap', 'on', 'FontSize', 16, 'FontColor', C.text);
+uibutton(xeno_grid, 'Text', 'ABRIR SIMULADOR X-01', 'BackgroundColor', C.violet, ...
+    'FontColor', C.background, 'ButtonPushedFcn', @(~, ~) abrir_xenoelement());
 
 build_lattice_tab();
 build_wave_tab();

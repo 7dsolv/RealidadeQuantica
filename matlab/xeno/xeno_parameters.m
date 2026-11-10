@@ -1,0 +1,43 @@
+function p = xeno_parameters()
+%XENO_PARAMETERS Hipoteses de projeto X-01; nao sao medidas de um material.
+% Unidades internas SI, exceto comprimentos de onda (nm) explicitamente nomeados.
+p.name = 'KONAET XENOELEMENT X-01';
+p.seed = 4101;
+p.cells = 25;
+p.length_m = 60e-6;
+p.diffusivity_m2_s = 6e-11;
+p.site_capacity_mol_m3 = 0.18;
+p.kon_m3_mol_s = 1.6;
+p.koff_s = 0.10;
+p.concentration_max_mol_m3 = 0.35;
+p.duration_s = 72;
+p.sample_s = 0.2;
+p.max_step_s = 0.02;
+p.young_Pa = 180e3;
+p.viscosity_Pa_s = 45e3;
+p.pressure_max_Pa = 12e3;
+p.electrode_area_m2 = 1e-6;
+p.dielectric_thickness_m = 200e-6;
+p.relative_permittivity = 3.0;
+p.optical_periods = 6;
+p.n_high = 1.65;
+p.n_low = 1.34;
+p.n_incident = 1.0;
+p.n_substrate = 1.50;
+p.design_nm = 470;
+p.wavelength_nm = (380:2:780).';
+p.actuator_tau_s = 0.8;
+p.kp_per_nm = 0.006;
+p.ki_per_nm_s = 0.010;
+p.voltage_max_V = 3;
+p.load_ohm = 5000;
+p.occupancy_noise_sd = 0.003;
+p.capacitance_noise_sd = 0.001;
+p.calibration_train_seed = 901;
+p.calibration_test_seed = 2901;
+p.calibration_train_count = 800;
+p.calibration_test_count = 300;
+p.ridge = 1e-5;
+p.closed_loop = true;
+p.spectra = true;
+end
