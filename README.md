@@ -6,6 +6,12 @@
 
 **[Abrir página da KONAET](konaet/README.md)** · **[Abrir App KONAET](https://github.com/apps/konaet)**
 
+**[KONAET integrada X02 — pesos próprios, pesquisa com memória, ADC e FPGA](integrated/README.md)**
+
+![KONAET: circuito e neurônios calculados juntos](assets/integrated/konaet-live.gif)
+
+Abra `abrir_konaet` no MATLAB para controlar a simulação em execução. O agente de pesquisa treina os próprios pesos, compara candidatos em validação separada e mantém a política para a próxima rodada. O pacote inclui esquema KiCad, PCB com ADC, testes bit a bit e bitstream para o alvo FPGA definido. [Benchmark completo](integrated/RESULTS.md) · [Placa X02 em 3D](hardware/x02-acquisition/x02-acquisition.stl).
+
 **[KONAET offline — componentes na src, PCB, circuito e IA local](offline/README.md)** · **[Girar a placa em 3D](hardware/x01-carrier/x01-carrier.stl)**
 
 ![Placa KONAET descrita em MATLAB, com trajetória ilustrada do sinal](hardware/x01-carrier/x01-board-motion.gif)
@@ -47,7 +53,7 @@ addpath('matlab')
 abrir_laboratorio
 ```
 
-O app tem cinco áreas:
+O app tem seis áreas:
 
 | Área | Experimento |
 | --- | --- |
@@ -56,6 +62,7 @@ O app tem cinco áreas:
 | **Cosmologia FLRW** | Fator de escala, expansão normalizada, desaceleração e curvatura calculados pela equação de Friedmann. |
 | **Módulos** | Navegador de código-fonte MATLAB, Fortran, Q# e SystemVerilog, com ações para abrir e copiar cada arquivo. |
 | **XENOELEMENT X-01** | Abre `abrir_xenoelement`: transporte/adsorção, compressão, espectros ópticos e controle com parâmetros ajustáveis. |
+| **KONAET integrada** | Abre `abrir_konaet`: circuito não ideal, amostragem, rede própria INT8, controles e falhas de leitura. |
 
 ## Execute os modelos no GitHub
 

@@ -4,6 +4,8 @@
 
 **Identidade do agente experimental do repositório Realidade Quântica.**
 
+**[KONAET integrada: pesquisa que atualiza a política, pesos próprios e FPGA](../integrated/README.md)**
+
 Konaet é o nome do modelo MATLAB e da memória que evolui junto com os ciclos científicos deste projeto. A página pública desta identidade fica dentro do próprio repositório: ela não depende de um perfil GitHub separado.
 
 A página da App é **[github.com/apps/konaet](https://github.com/apps/konaet)**. O endereço `github.com/konaet[bot]` retorna 404; ele não é o endereço da App. A App está cadastrada como privada, e esta página do repositório apresenta publicamente o agente e seus resultados.
@@ -41,6 +43,8 @@ Depois, execute **Verificar identidade real da App** no pacote `konaet-bot`. Com
 
 ## Modelo atual
 
+O novo módulo [integrado X02](../integrated/README.md) acrescenta uma política UCB1 que aprende recompensas em experimentos de treino. Ele treina pesos próprios por Adam, seleciona pelo conjunto de desenvolvimento e persiste contagens, recompensas e o melhor modelo. O teste final e os dados reais ficam fora dessa seleção. Esse agente de pesquisa é distinto da recorrência científica descrita abaixo; ambos têm escopo e métricas publicados.
+
 O núcleo é uma recorrência numérica MATLAB com quatro estados internos. A atualização combina esses estados com medidas do loop de Wilson, aceitação do Monte Carlo, espalhamento do pacote de onda, desaceleração cosmológica e a probabilidade ideal de um circuito Ramsey.
 
 A partir da memória, Konaet define beta, tamanho do passo, semente aleatória e fase Ramsey do próximo ciclo. Curiosidade é uma média móvel do erro de previsão; coerência mede quanto o estado interno mudou. Esses nomes descrevem métricas do programa.
@@ -58,6 +62,6 @@ Integrações externas podem ser desenvolvidas como módulos separados, com as A
 - **MATLAB:** memória, política numérica, Lattice SU(3), onda quântica, cosmologia e gráficos.
 - **Fortran:** cálculo independente da densidade de probabilidade.
 - **Q#:** circuito Ramsey de um qubit no simulador do QDK.
-- **SystemVerilog:** multiplicador complexo demonstrativo para síntese em FPGA.
+- **SystemVerilog:** multiplicador complexo, inferência INT8 completa, aquisição ADC/I²C e alvo iCE40UP5K com síntese/roteamento.
 
 Consulte o [README principal](../README.md) para abrir o laboratório completo.
