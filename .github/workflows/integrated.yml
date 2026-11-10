@@ -53,7 +53,7 @@ jobs:
       - name: Treinar candidato proprio e avaliar dados bloqueados
         uses: matlab-actions/run-command@v3
         with:
-          command: addpath('matlab/integrated','matlab/tiny'); out=fullfile(pwd,'artifacts','integrated'); konaet_benchmark(pwd,out); data=load(fullfile(out,'benchmark.mat'),'q','hard_x'); konaet_export_rtl(data.q,data.hard_x,out);
+          command: addpath('matlab/integrated','matlab/tiny','tests'); out=fullfile(pwd,'artifacts','integrated'); konaet_benchmark(pwd,out); data=load(fullfile(out,'benchmark.mat'),'q','hard_x'); konaet_export_rtl(data.q,data.hard_x,out); konaet_circuit(out); test_konaet_integrated(pwd,out);
       - name: Conferir inferencia RTL bit a bit
         run: |
           set -euo pipefail
@@ -65,6 +65,8 @@ jobs:
         if: always()
         with:
           name: konaet-integrated
-          path: artifacts/integrated/
+          path: |
+            artifacts/integrated/
+            !artifacts/integrated/fixtures/
           retention-days: 30
           if-no-files-found: warn

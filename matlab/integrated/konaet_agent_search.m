@@ -1,4 +1,4 @@
-function [m,state,experiments] = konaet_agent_search(training_x,training_y,dev_x,dev_y,output)
+function [m,state,experiments] = konaet_agent_search(training_x,training_y,dev_x,dev_y,output,previous,previous_model)
 %KONAET_AGENT_SEARCH Agente restrito de pesquisa: UCB e politica atualizada.
 % Objetivo e conjunto de validacao definidos antes de consultar o teste final.
 arms=[struct('learning_rate',0.003,'regularization',1e-4,'epochs',40), ...
@@ -8,15 +8,21 @@ state=struct('schema_version',1,'objective','validation balanced accuracy minus 
     'policy','UCB1 over three training configurations','counts',zeros(1,3), ...
     'reward_sum',zeros(1,3),'best_reward',-inf,'best_arm',0,'test_used_for_selection',false);
 experiments=struct('round',{},'arm',{},'seed',{},'reward',{},'validation',{},'loss_initial',{},'loss_final',{});
-best=[];
+state.cycle=1; state.resumed=false; best=[];
+if nargin>=7 && ~isempty(previous)
+    state=previous; state.counts=state.counts(:).'; state.reward_sum=state.reward_sum(:).';
+    assert(numel(state.counts)==3 && all(state.counts>=0));
+    state.cycle=state.cycle+1; state.resumed=true; best=previous_model;
+end
+state.before_counts=state.counts; state.before_reward_sum=state.reward_sum;
 for round=1:6
     unknown=find(state.counts==0,1);
     if ~isempty(unknown), arm=unknown;
     else
-        upper=state.reward_sum./state.counts+sqrt(2*log(round)./state.counts);
+        upper=state.reward_sum./state.counts+sqrt(2*log(sum(state.counts)+1)./state.counts);
         [~,arm]=max(upper);
     end
-    seed=7700+round;
+    seed=7700+101*state.cycle+round;
     [candidate,loss]=konaet_train(training_x,training_y,arms(arm),seed);
     [~,pred]=tiny_fp32(candidate,dev_x); metrics=konaet_metrics(dev_y,pred);
     reward=metrics.utility;

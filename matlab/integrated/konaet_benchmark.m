@@ -3,7 +3,18 @@ function result = konaet_benchmark(root,output)
 if ~isfolder(output), mkdir(output); end
 [train_x,train_y]=konaet_windows(4096,39001);
 [dev_x,dev_y]=konaet_windows(768,39002);
-[m,memory,experiments]=konaet_agent_search(train_x,train_y,dev_x,dev_y,output);
+contract=konaet_research_contract(root); previous=[]; previous_model=[];
+memory_path=fullfile(root,'state','konaet-research-memory.json');
+if isfile(memory_path)
+    existing=jsondecode(fileread(memory_path));
+    if isfield(existing,'research_contract') && strcmp(existing.research_contract,contract)
+        [previous_model,~]=konaet_load_model(fullfile(root,'assets','integrated','model'));
+        assert(strcmp(previous_model.source.research_contract,contract)); previous=existing;
+    end
+end
+[m,memory,experiments]=konaet_agent_search(train_x,train_y,dev_x,dev_y,output,previous,previous_model);
+memory.research_contract=contract; m.source.research_contract=contract;
+konaet_write_json(fullfile(output,'agent-memory.json'),memory);
 [cal_x,cal_y]=konaet_windows(1024,39004); q=tiny_quantize(m,cal_x);
 own_folder=fullfile(output,'model'); konaet_export_model(m,q,own_folder);
 original=tiny_load_model(root); original_q=tiny_quantize(original,cal_x);
@@ -17,10 +28,10 @@ models=[struct('name','KONAET_FP32','kind','fp32','value',m), ...
 [records,paired]=konaet_evaluate(models,hard_x,hard_y,cal_x(:,cal_y==0),'hard_synthetic_locked');
 [more,~]=konaet_evaluate(models,easy_x,easy_y,cal_x(:,cal_y==0),'easy_synthetic'); records=[records more];
 [more,~]=konaet_evaluate(models,noisy_x,noisy_y,cal_x(:,cal_y==0),'strong_noise_shift'); records=[records more];
-nab=konaet_nab(root); metadata=struct([]);
+nab=konaet_nab(root); metadata=[nab.meta];
 for k=1:numel(nab)
     [more,decisions]=konaet_evaluate(models,nab(k).x,nab(k).y,nab(k).calibration,nab(k).meta.name);
-    records=[records more]; metadata(k)=nab(k).meta; %#ok<AGROW>
+    records=[records more]; %#ok<AGROW>
     names=fieldnames(decisions); table_data=table(nab(k).endpoint_indices.',nab(k).y.','VariableNames',{'endpoint_index','truth'});
     for j=1:numel(names), table_data.(names{j})=decisions.(names{j}).'; end
     writetable(table_data,fullfile(output,['nab-' num2str(k) '-decisions.csv']));
