@@ -2,7 +2,6 @@
 set -euo pipefail
 netgit() { git -c http.https://github.com/.extraheader= -c credential.helper= -c 'credential.helper=!gh auth git-credential' "$@"; }
 netgit fetch --no-tags origin 'refs/heads/main:refs/remotes/origin/main'
-repo_name="${GITHUB_REPOSITORY#*/}";owner="${GITHUB_REPOSITORY%/*}"
 temporary="$(mktemp -d)";trap 'rm -rf -- "$temporary"' EXIT
 gh api --paginate "repos/$GITHUB_REPOSITORY/pulls?state=open&per_page=100" \
   --jq '.[] | select(.user.id==352182232 and .base.ref=="main") | [.number,.head.ref,.head.sha,.head.repo.full_name] | @tsv' > "$temporary/prs"

@@ -1,5 +1,7 @@
 # Realidade Quântica
 
+**Scientific-computing laboratory with reproducible MATLAB, Fortran, QSharp and RTL evidence.** [Run, evaluate and maintain](docs/MAINTENANCE.md) · [Publication contract](integrated/PUBLISHING.md) · [Third-party notices](THIRD_PARTY_NOTICES.md).
+
 ### Konaet: um agente computacional experimental para explorar campos, ondas, matéria e expansão cósmica.
 
 ![Status do laboratório](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/simulacoes.yml/badge.svg?branch=main)
@@ -7,7 +9,7 @@
 [![Agente, treinamento e FPGA](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml/badge.svg?branch=main)](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml)
 [![Sistema offline e KiCad](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/offline.yml/badge.svg?branch=main)](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/offline.yml)
 [![Release pública](https://img.shields.io/github/v/release/7dsolv/RealidadeQuantica?label=release&color=8b5cf6)](https://github.com/7dsolv/RealidadeQuantica/releases/latest)
-[![Licença do módulo integrado](https://img.shields.io/badge/integrado-MIT-20c997)](integrated/LICENSE.txt)
+[![Licença MIT](https://img.shields.io/badge/license-MIT-20c997)](LICENSE)
 
 [O que cada selo comprova](integrated/VERIFICATION.md) · [Ativação das credenciais KONAET](https://github.com/7dsolv/konaet-bot/blob/main/docs/ACTIVATION.md)
 
@@ -15,7 +17,7 @@
 
 **[Abrir página da KONAET](konaet/README.md)** · **[Abrir App KONAET](https://github.com/apps/konaet)**
 
-**[KONAET integrada X02 — pesos próprios, pesquisa com memória, ADC e FPGA](integrated/README.md)** · **[Baixar a versão 0.2.0](https://github.com/7dsolv/RealidadeQuantica/releases/tag/integrated-v0.2.0)**
+**[KONAET integrada X02 — pesos próprios, pesquisa com memória, ADC e FPGA](integrated/README.md)** · **[Baixar a versão atual](https://github.com/7dsolv/RealidadeQuantica/releases/latest)**
 
 ![KONAET: circuito e neurônios calculados juntos](assets/integrated/konaet-live.gif)
 
@@ -31,7 +33,7 @@ O novo módulo gera PCB para KiCad, modelos 3D e cálculos RC a partir do códig
 
 O X-01 conecta transporte químico, adsorção, toque, calibração sintética, controle e óptica multicamada. Inclui app MATLAB, referência Fortran, módulo SystemVerilog, testes, dados e animação. É um protótipo computacional com parâmetros hipotéticos; material físico não fabricado. [Equações e unidades](xeno/MODEL.md) · [Fontes e antecedentes](xeno/PRIOR_ART.md).
 
-O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**, com demonstração de aritmética para FPGA. O GitHub Actions executa ciclos numéricos automáticos a cada hora; a memória acompanha os ciclos e a animação pública é renovada diariamente. Os novos commits dos resultados têm autoria atribuída a **`konaet[bot]`**. O repositório não usa HTML, JavaScript ou Python.
+O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**, com demonstração de aritmética para FPGA. O GitHub Actions executa ciclos numéricos automáticos a cada hora; a memória acompanha os ciclos e a animação pública é renovada após validação e integração da PR. Os novos commits dos resultados têm autoria atribuída a **`konaet[bot]`**. O repositório não usa HTML, JavaScript ou Python.
 
 ## KONAET em movimento
 
@@ -41,7 +43,7 @@ O projeto reúne modelos científicos em **MATLAB, Fortran, Q# e SystemVerilog**
 
 ![Konaet em animação: SU(3), pacote de onda, expansão cósmica e memória interna](assets/realidade-quantica-viva.gif)
 
-Cada ciclo lê a memória numérica de [`state/konaet_memory.csv`](state/konaet_memory.csv), ajusta os parâmetros da simulação e gera novos quadros e um próximo estado nos artifacts. Esse estado é publicado aproximadamente de hora em hora; o GIF publicado se move continuamente e é renovado diariamente ou após um push para `main`.
+Cada ciclo lê a memória numérica de [`state/konaet_memory.csv`](state/konaet_memory.csv), ajusta os parâmetros da simulação e gera novos quadros e um próximo estado nos artifacts. Esse estado é publicado aproximadamente de hora em hora; o GIF publicado reproduz a rodada validada. Memória e imagens seguem juntas em uma PR; a integração depende dos checks exigidos.
 
 Konaet é um agente computacional experimental com memória recorrente e política limitada aos parâmetros da simulação. Seu índice de curiosidade é uma média do erro de previsão, e coerência mede a variação do estado interno entre ciclos. Isso não demonstra consciência ou vontade própria, nem constitui um agente universal ou um resultado no ARC-AGI. O circuito Ramsey em Q# é um experimento separado no simulador do QDK; a probabilidade de Born correspondente também entra no modelo MATLAB, sem alegar execução em hardware quântico físico.
 

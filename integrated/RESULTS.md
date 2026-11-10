@@ -4,6 +4,48 @@
 
 O campo `source_revision` identifica o código de cada resultado. As imagens usam os valores dessa execução. Mudanças na política ou no candidato podem alterar os resultados de rodadas posteriores; os arquivos de release preservam o pacote exato de uma versão.
 
+## Avaliação ampliada de 10/11/2026
+
+A [execução completa da correção](https://github.com/7dsolv/RealidadeQuantica/actions/runs/42906445449)
+passou em **26 testes numéricos, 6 do app, 391 vetores RTL, 65.536 códigos ADC e
+3 cenários de integração completa ADC → inferência → LEDs**, além de ERC/DRC e
+roteamento. Esses números representam contratos de software e simulação.
+
+O novo contrato de pesquisa reiniciou o ciclo e escolheu outro candidato somente
+pelo desenvolvimento original. Portanto, a mudança em relação à referência
+histórica abaixo não isola o efeito de um único algoritmo. No sintético difícil,
+a KONAET INT8 marcou 80,71%; na série já conhecida da máquina, 69,69% contra
+85,63% da AnomalyNet. O intervalo de 95% por bootstrap da KONAET nessa série foi
+59,76–79,38%, condicional aos dados e ao tamanho de bloco declarado.
+
+| Série real | KONAET INT8: BA | AnomalyNet INT8: BA | KONAET_CONTEXT: BA | Cobertura das entradas |
+| --- | ---: | ---: | ---: | ---: |
+| Máquina — retrospectiva | 69,69% | 85,63% | 50,30% | 100% |
+| Ambiente — retrospectiva | 49,61% | 50,95% | 50,00% | 100% |
+| CPU ASG — nova série | 0,00% | 0,00% | 0,00% | **0%** |
+| Latência EC2 — nova série | 38,65% | 38,37% | 48,70% | 97,49% |
+| Táxis NYC — nova série | 49,67% | 50,00% | 51,94% | 100% |
+| CPU EC2 5f5533 — nova série | 48,86% | 46,14% | 33,43% | 99,00% |
+
+BA é acurácia balanceada, contando abstenções como casos não resolvidos.
+**Zero falsos positivos com cobertura zero não significa detecção correta.**
+A normalização declarada da CPU ASG produz janelas fora do domínio; nenhum
+método resolve esses casos. A série permanece publicada. Quando não existem
+cinco janelas de calibração representáveis, as regras também se abstêm, sem
+inventar um limiar ou modificar o corte temporal depois de ver os resultados.
+
+O [protocolo](evaluation-protocol.json) fixou quatro novas séries antes da primeira
+execução do comparador, prefixo de 20%, janela 32, passo 8 e 256 réplicas de
+bootstrap. O comparador contextual é uma regra MATLAB separada dos 842 pesos
+neurais e da FPGA. Seu 100% no sintético simples é restrito àquele conjunto;
+seu desempenho real inclui os resultados baixos da tabela. Não foi ajustado aos
+rótulos futuros após esta execução. Os oito métodos, decisões por janela,
+recall, falsos positivos, cobertura e intervalos ficam no benchmark completo.
+
+Esses resultados não demonstram superioridade geral. Para avançar, o projeto
+precisa tratar a transferência de domínio com dados de treinamento apropriados
+e avaliar a próxima hipótese em outras séries ainda não usadas para ajustes.
+
 ## Primeira referência de treinamento
 
 Na [revisão `4c1b0fa`](https://github.com/7dsolv/RealidadeQuantica/actions/runs/42867747308), antes da integração final de PCB/painel, os 16 testes numéricos e 391 vetores RTL passaram. Os dois logits INT32 foram idênticos à referência MATLAB em todos os casos. Cada inferência consumiu **2.472 ciclos após a última entrada**. A seleção do candidato usou o desenvolvimento, sem acesso ao teste final.

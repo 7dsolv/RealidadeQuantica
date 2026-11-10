@@ -2,7 +2,26 @@
 
 Os selos do README apontam para execuções, releases e licenças reais. O selo de um workflow representa o resultado daquele workflow; seu alcance está na tabela abaixo. A [release integrada 0.2.0](https://github.com/7dsolv/RealidadeQuantica/releases/tag/integrated-v0.2.0) preserva os arquivos e hashes de uma execução completa.
 
-## O que foi verificado
+## Correções verificadas em 10/11/2026
+
+A [suíte ampliada](https://github.com/7dsolv/RealidadeQuantica/actions/runs/42906445449)
+passou nos 26 casos numéricos, 6 do app, 391 vetores RTL, todos os códigos ADC e
+3 cenários do caminho completo. O relatório de roteamento estimou 20,04 MHz para
+o alvo de 12 MHz. O [QSharp](https://github.com/7dsolv/RealidadeQuantica/actions/runs/42906445142)
+passou nas três verificações Ramsey nos dois modos do harness oficial QDK.
+
+Os regressivos cobrem modelo misturado/adulterado, escalas inválidas, contagens
+e recompensas incompatíveis, continuidade no desenvolvimento original,
+concorrência da memória local, histórico limitado e calibração sem janelas
+representáveis. O contrato de publicação tem 11 cenários com Git real que
+distinguem mudanças em código/estado de mudanças em saídas de outro módulo.
+
+A [nova autenticação da App](https://github.com/7dsolv/konaet-bot/actions/runs/42905908141)
+e a [nova proposta real](https://github.com/7dsolv/konaet-bot/actions/runs/42907122091)
+passaram com o módulo endurecido. Consulte [publicação](PUBLISHING.md),
+[manutenção](../docs/MAINTENANCE.md) e os [resultados ampliados](RESULTS.md).
+
+## Histórico anterior às correções
 
 | Verificação | Evidência pública | Alcance |
 | --- | --- | --- |

@@ -5,7 +5,7 @@
 
 [Escopo das verificações e conquistas](VERIFICATION.md)
 
-**[Baixar versão 0.2.0](https://github.com/7dsolv/RealidadeQuantica/releases/tag/integrated-v0.2.0)** · **[Explorar placa 3D](../hardware/x02-acquisition/x02-acquisition.stl)** · **[Esquema e PCB](../hardware/x02-acquisition)** · **[Resultados auditáveis](RESULTS.md)** · **[Execuções](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml)**
+**[Baixar versão atual](https://github.com/7dsolv/RealidadeQuantica/releases/latest)** · **[Explorar placa 3D](../hardware/x02-acquisition/x02-acquisition.stl)** · **[Esquema e PCB](../hardware/x02-acquisition)** · **[Resultados auditáveis](RESULTS.md)** · **[Execuções](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml)**
 
 A KONAET integra uma pesquisa autônoma restrita, detector treinado do zero, inferência INT8 em SystemVerilog, circuito não ideal, ADC e painel MATLAB. O agente escolhe configurações, treina candidatos, mede a validação e persiste suas recompensas para a próxima rodada. Os pesos novos se chamam **KONAET Sense 842**.
 
@@ -45,9 +45,9 @@ Treinamento: 4.096 episódios sintéticos, desenvolvimento: 768, calibração de
 
 ## Comparação que inclui resultados desfavoráveis
 
-![Comparativo pareado em cinco conjuntos](../assets/integrated/benchmark.png)
+![Comparativo pareado em nove conjuntos](../assets/integrated/benchmark.png)
 
-Comparamos KONAET FP32/INT8, [AnomalyNet de Eoin Jordan](https://huggingface.co/eoinedge/AnomalyNet) FP32/INT8 e três regras estatísticas. Os pesos AnomalyNet permanecem separados, com atribuição e Apache-2.0; **não foram transferidos para o treino da KONAET**. Modelos e regras recebem os mesmos casos e o mesmo domínio de entrada. Abstencões contam como erros e são informadas à parte.
+Comparamos KONAET FP32/INT8, [AnomalyNet de Eoin Jordan](https://huggingface.co/eoinedge/AnomalyNet) FP32/INT8 e quatro regras estatísticas, incluindo o comparador contextual KONAET_CONTEXT. Este comparador de pesquisa permanece separado da rede e da FPGA. Os pesos AnomalyNet permanecem separados, com atribuição e Apache-2.0; **não foram transferidos para o treino da KONAET**. Modelos e regras recebem os mesmos casos e o mesmo domínio de entrada. Abstencões contam como erros e são informadas à parte.
 
 As séries reais do [Numenta Anomaly Benchmark](https://github.com/numenta/NAB) mantêm seus rótulos de origem, intervalos de amostragem e procedência. A normalização usa apenas o prefixo temporal de calibração; o teste usa o futuro com uma margem de 31 amostras. Horários são ordenados e duplicatas recebem a mediana, com contagem registrada. Essa avaliação por janelas **não é o score oficial NAB**, e a transformação afim não converte os valores originais em temperatura física Celsius. Janelas de teste se sobrepõem e não são observações independentes.
 
