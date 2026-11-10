@@ -1,5 +1,10 @@
 # KONAET / Agente integrado X02
 
+[![Treinamento, app, ADC, RTL e KiCad](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml/badge.svg?branch=main)](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml)
+[![Release pública](https://img.shields.io/github/v/release/7dsolv/RealidadeQuantica?label=release&color=8b5cf6)](https://github.com/7dsolv/RealidadeQuantica/releases/latest)
+
+[Escopo das verificações e conquistas](VERIFICATION.md)
+
 **[Baixar versão 0.2.0](https://github.com/7dsolv/RealidadeQuantica/releases/tag/integrated-v0.2.0)** · **[Explorar placa 3D](../hardware/x02-acquisition/x02-acquisition.stl)** · **[Esquema e PCB](../hardware/x02-acquisition)** · **[Resultados auditáveis](RESULTS.md)** · **[Execuções](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml)**
 
 A KONAET integra uma pesquisa autônoma restrita, detector treinado do zero, inferência INT8 em SystemVerilog, circuito não ideal, ADC e painel MATLAB. O agente escolhe configurações, treina candidatos, mede a validação e persiste suas recompensas para a próxima rodada. Os pesos novos se chamam **KONAET Sense 842**.

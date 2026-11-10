@@ -4,6 +4,13 @@
 
 ![Status do laboratório](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/simulacoes.yml/badge.svg?branch=main)
 
+[![Agente, treinamento e FPGA](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml/badge.svg?branch=main)](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml)
+[![Sistema offline e KiCad](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/offline.yml/badge.svg?branch=main)](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/offline.yml)
+[![Release pública](https://img.shields.io/github/v/release/7dsolv/RealidadeQuantica?label=release&color=8b5cf6)](https://github.com/7dsolv/RealidadeQuantica/releases/latest)
+[![Licença do módulo integrado](https://img.shields.io/badge/integrado-MIT-20c997)](integrated/LICENSE.txt)
+
+[O que cada selo comprova](integrated/VERIFICATION.md) · [Ativação das credenciais KONAET](https://github.com/7dsolv/konaet-bot/blob/main/docs/ACTIVATION.md)
+
 **[Abrir página da KONAET](konaet/README.md)** · **[Abrir App KONAET](https://github.com/apps/konaet)**
 
 **[KONAET integrada X02 — pesos próprios, pesquisa com memória, ADC e FPGA](integrated/README.md)** · **[Baixar a versão 0.2.0](https://github.com/7dsolv/RealidadeQuantica/releases/tag/integrated-v0.2.0)**
