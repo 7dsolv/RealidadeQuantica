@@ -32,7 +32,7 @@ Esses números identificam documentos publicados. Não foi realizada análise ju
 
 Os métodos científicos empregados — Fick, Langmuir, Kelvin–Voigt, matrizes de transferência, regressão ridge e controle PI — são métodos conhecidos e são identificados como tais. Implementar métodos conhecidos com código próprio não transforma o método ou o conceito em invenção inédita.
 
-Não foram incorporados trechos de código, imagens, tabelas de dados ou pesos de terceiros. Os artigos são citados pela contribuição científica, sem reutilizar suas figuras. O texto anexado pelo proprietário foi tratado como contexto de projeto, não como evidência de novidade ou fonte de parâmetros medidos.
+O núcleo físico X-01 não incorpora código, imagens, tabelas de dados ou pesos dos artigos citados; eles são citados pela contribuição científica, sem reutilizar suas figuras. A extensão [offline](../offline/README.md), adicionada separadamente, incorpora pesos AnomalyNet de Eoin Jordan e seu vetor numérico de referência, com [procedência e licença Apache-2.0](../models/anomalynet/NOTICE.txt). O texto anexado pelo proprietário foi tratado como contexto de projeto, não como evidência de novidade ou fonte de parâmetros medidos.
 
 O nome **XENOELEMENT** é um rótulo de projeto; não foi feita busca completa de disponibilidade de marca. A licença do repositório continua sendo decisão do proprietário, conforme o README principal. Nenhuma licença de software foi inferida a partir das licenças dos artigos.
 

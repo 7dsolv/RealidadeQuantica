@@ -1,5 +1,7 @@
 # KONAET XENOELEMENT X-01
 
+**[Extensão offline: circuito, PCB 3D e AnomalyNet](../offline/README.md)**
+
 **Membrana sensorial bioinspirada — protótipo computacional com dados sintéticos.**
 
 Uma cadeia reproduzível que liga dois canais químicos, deformação mecânica, calibração estatística e resposta óptica. O modelo calcula uma hipótese de material; nenhum material foi fabricado e nenhuma proteína foi simulada em nível atômico.
@@ -70,6 +72,6 @@ O código e a composição dos gráficos foram desenvolvidos para este projeto, 
 
 O X-01 não especifica uma nova molécula, sequência genética ou processo de síntese. Os canais detectam um analito abstrato, não identificam substâncias reais. Os parâmetros precisam ser substituídos por medidas de difusão, ligação, deformação e elipsometria de um candidato físico antes de orientar fabricação.
 
-Não é uma célula sintética, elemento químico, forma de vida ou evidência de consciência. A regressão é uma calibração numérica restrita, sem pesos importados de outro projeto. Este módulo é clássico; Q# permanece no experimento Ramsey separado, pois o X-01 não demonstra vantagem de computação quântica.
+Não é uma célula sintética, elemento químico, forma de vida ou evidência de consciência. A regressão deste núcleo físico é uma calibração numérica restrita, sem pesos importados. A extensão [offline](../offline/README.md) usa separadamente os pesos AnomalyNet de Eoin Jordan, com atribuição Apache-2.0. Este módulo é clássico; Q# permanece no experimento Ramsey separado, pois o X-01 não demonstra vantagem de computação quântica.
 
 [Laboratório principal](../README.md) · [Modelo matemático](MODEL.md) · [Resultados](RESULTS.md) · [Fontes e antecedentes](PRIOR_ART.md) · [Plano de validação física](VALIDATION_PLAN.md)

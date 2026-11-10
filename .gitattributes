@@ -1,2 +1,8 @@
 assets/xeno/* linguist-generated=true
 assets/xeno/*.svg -whitespace
+assets/offline/* linguist-generated=true
+hardware/x01-carrier/* linguist-generated=true
+hardware/x01-carrier/README.md linguist-generated=false
+hardware/x01-carrier/models/* linguist-generated=true
+hardware/x01-carrier/layers/* linguist-generated=true
+hardware/**/*.svg -whitespace
