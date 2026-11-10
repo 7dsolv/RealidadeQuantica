@@ -10,7 +10,7 @@ manifest() {
     [[ "$file" != *$'\n'* && "$file" != *$'\r'* ]] || exit 65
     include=false
     case "$file" in
-      *.m|*.f90|*.sv|qsharp/*|.github/*|models/*|datasets/*|hardware/icebreaker/*|LICENSE|THIRD_PARTY_NOTICES.md|integrated/evaluation-protocol.json) include=true;;
+      *.m|*.f90|*.sv|qsharp/*|.github/*|tests/*|.gitattributes|.gitmodules|models/*|datasets/*|hardware/icebreaker/*|LICENSE|THIRD_PARTY_NOTICES.md|integrated/evaluation-protocol.json) include=true;;
     esac
     case "$module:$file" in
       physics:state/konaet_memory.csv|integrated:state/konaet-research-memory.json|integrated:assets/integrated/model/*) include=true;;

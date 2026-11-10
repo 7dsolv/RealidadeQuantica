@@ -4,7 +4,7 @@ source_script="$(pwd)/.github/scripts/publication-inputs.sh"
 fixture="$(mktemp -d)"
 trap 'rm -rf -- "$fixture"' EXIT
 cd "$fixture";git init -q;git config user.name Test;git config user.email test@example.invalid
-mkdir -p matlab/tiny matlab/integrated hardware/icebreaker state assets/integrated/model assets/offline .github
+mkdir -p matlab/tiny matlab/integrated hardware/icebreaker state assets/integrated/model assets/offline .github tests
 printf one > matlab/tiny/tiny_fp32.m
 printf one > matlab/integrated/konaet_metrics.m
 printf one > hardware/icebreaker/konaet.pcf
@@ -12,12 +12,14 @@ printf one > state/konaet-research-memory.json
 printf one > state/konaet_memory.csv
 printf one > assets/integrated/model/model-bundle.json
 printf one > .github/lock.json
+printf one > .gitattributes
+printf one > tests/contract.sh
 git add .;git commit -qm initial
 bash "$source_script" capture integrated "$fixture/result"
 bash "$source_script" verify integrated "$fixture/result"
 base="$(git rev-parse HEAD)";passed=1
 for file in matlab/tiny/tiny_fp32.m matlab/integrated/konaet_metrics.m hardware/icebreaker/konaet.pcf \
-  state/konaet-research-memory.json assets/integrated/model/model-bundle.json .github/lock.json;do
+  state/konaet-research-memory.json assets/integrated/model/model-bundle.json .github/lock.json .gitattributes tests/contract.sh;do
   printf changed >> "$file";git add "$file";git commit -qm change
   if bash "$source_script" verify integrated "$fixture/result" >/dev/null 2>&1;then
     echo "Stale inputs accepted: $file";exit 1
