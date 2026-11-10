@@ -153,6 +153,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           token: ${{ steps.konaet.outputs.token || github.token }}
+          ref: main
 
       - name: Baixar os resultados desta execução
         uses: actions/download-artifact@v8
