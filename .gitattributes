@@ -8,3 +8,8 @@ hardware/x01-carrier/layers/* linguist-generated=true
 hardware/**/*.svg -whitespace
 *.f32 binary
 *.bin binary
+datasets/nab/*.csv -text
+datasets/nab/combined_windows.json -text
+datasets/nab/LICENSE.txt -text
+datasets/nab/UPSTREAM-DATA.md -text
+datasets/nab/* linguist-vendored=true
