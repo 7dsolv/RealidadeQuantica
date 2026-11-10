@@ -7,7 +7,7 @@ tests={@gradient_check,@reproducible_data,@reproducible_training,@locked_test, .
     @rc_passivity,@metrics_abstention,@memory_resume,@csv_interface, ...
     @bundle_tampering,@metadata_tampering,@memory_rejects_incompatible, ...
     @contract_covers_dependencies,@context_is_label_free,@uncertainty_reproducible, ...
-    @local_memory_compare_and_swap,@bounded_stream_history};
+    @local_memory_compare_and_swap,@bounded_stream_history,@no_representable_calibration};
 report=struct('source_revision',getenv('GITHUB_SHA'),'passed',0,'failed',0,'total',numel(tests), ...
     'cases',struct('name',{},'passed',{},'message',{}));
 for k=1:numel(tests)
@@ -178,6 +178,12 @@ assert(report.failed==0,'Konaet: %d testes falharam.',report.failed);
         for j=1:305,[s,view]=konaet_stream_step(s,data.m,data.q,controls);end
         assert(s.samples==305 && numel(s.time)==300 && numel(s.window_C)==32);
         assert(isfinite(view.node_V) && view.class>=0 && all(diff(s.time)>0));
+    end
+    function no_representable_calibration()
+        x=ones(32,8)*50; cal=ones(32,8)*120;
+        [records,paired]=konaet_evaluate(struct('name',{},'kind',{},'value',{}),x,[0 1 0 1 0 1 0 1],cal,'empty_calibration');
+        assert(numel(records)==4 && all(paired.KONAET_CONTEXT==-1));
+        assert(all(arrayfun(@(r)r.metrics.coverage==0,records)));
     end
     function folder=fixture(name)
         folder=fullfile(output,'fixtures',name); if ~isfolder(folder),mkdir(folder);end

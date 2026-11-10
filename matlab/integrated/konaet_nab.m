@@ -1,5 +1,5 @@
 function series = konaet_nab(root)
-%KONAET_NAB Avaliacao temporal de duas series reais, distinta do score NAB.
+%KONAET_NAB Avaliacao temporal de series reais, distinta do score NAB.
 folder=fullfile(root,'datasets','nab'); source=jsondecode(fileread(fullfile(folder,'source.json')));
 for k=1:numel(source.files)
     entry=source.files(k); assert(strcmp(konaet_sha256(fullfile(folder,entry.name)),entry.sha256));
