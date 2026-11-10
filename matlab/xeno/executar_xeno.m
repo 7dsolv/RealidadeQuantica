@@ -22,15 +22,27 @@ evidence.metrics.feedforward_rmse_nm=uncontrolled.metrics.tracking_rmse_nm;
 evidence.calibration=model;
 evidence.sensitivity_scenarios=size(sweep.factors,1);
 evidence.sensitivity_interpretation=sweep.interpretation;
+evidence.comparison.controllers={'PI with feedforward','feedforward only'};
+evidence.comparison.paired_scenarios=size(sweep.factors,1);
+evidence.comparison.pi_lower_error_count=sweep.pi_lower_error_count;
+evidence.comparison.pi_rmse_nm=sweep.tracking_rmse_nm;
+evidence.comparison.feedforward_rmse_nm=sweep.feedforward_rmse_nm;
+evidence.comparison.pi_energy_J=sweep.energy_pi_J;
+evidence.comparison.feedforward_energy_J=sweep.energy_feedforward_J;
+evidence.comparison.scope='same synthetic task, stimuli and noise; not an AGI benchmark';
 write_json(fullfile(output,'parameters.json'),p);
 write_json(fullfile(output,'evidence.json'),evidence);
-table=table_from_run(r);
-writetable(table,fullfile(output,'trajectory.csv'));
+trajectory=table_from_run(r);
+writetable(trajectory,fullfile(output,'trajectory.csv'));
 writematrix([r.depth_m squeeze(r.concentration(:,1,:))],fullfile(output,'depth_left_mol_m3.csv'));
 writematrix([p.wavelength_nm r.reflectance],fullfile(output,'reflectance.csv'));
 writematrix([p.wavelength_nm r.transmittance],fullfile(output,'transmittance.csv'));
 writematrix([r.time_s sweep.bragg_nm],fullfile(output,'sensitivity_nm.csv'));
 writematrix(sweep.factors,fullfile(output,'sensitivity_factors.csv'));
+comparison=table((1:size(sweep.factors,1)).',sweep.tracking_rmse_nm,sweep.feedforward_rmse_nm, ...
+    sweep.energy_pi_J,sweep.energy_feedforward_J,'VariableNames', ...
+    {'scenario','pi_rmse_nm','feedforward_rmse_nm','pi_energy_J','feedforward_energy_J'});
+writetable(comparison,fullfile(output,'controller_comparison.csv'));
 save(fullfile(output,'x01.mat'),'p','r','model','sweep','uncontrolled','evidence');
 fid=fopen(fullfile(output,'summary.txt'),'w','n','UTF-8'); assert(fid>=0);
 guard=onCleanup(@() fclose(fid));
@@ -42,6 +54,8 @@ fprintf(fid,'Bragg tracking RMSE: %.6f nm; feedforward: %.6f nm\n',r.metrics.tra
 fprintf(fid,'Synthetic held-out calibration RMSE (normalized c, P): %.6f %.6f\n',model.validation_rmse_normalized);
 fprintf(fid,'Assumed electrical load energy: %.6f J, peak strain: %.6f\n',r.metrics.energy_J,r.metrics.peak_strain);
 fprintf(fid,'Sensitivity: %d synthetic scenarios; range is not a measured confidence interval.\n',size(sweep.factors,1));
+fprintf(fid,'Paired control comparison: PI has lower error in %d/%d scenarios; energy is reported separately.\n', ...
+    sweep.pi_lower_error_count,size(sweep.factors,1));
 clear guard;
 if render_media, render_xeno(output,r,sweep,evidence); end
 disp(fileread(fullfile(output,'summary.txt')));

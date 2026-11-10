@@ -12,7 +12,7 @@ A animação reproduz 72 segundos de **tempo simulado**, comprimidos em 36 quadr
 
 ## Executar e explorar
 
-No MATLAB, na raiz deste repositório:
+No MATLAB R2025a ou mais recente, na raiz deste repositório:
 
 ```matlab
 abrir_xenoelement
@@ -55,6 +55,8 @@ O workflow **KONAET XENOELEMENT X-01** pode ser iniciado manualmente e roda diar
 ![Painel do X-01](../assets/xeno/x01-dashboard.png)
 
 O [relatório de testes](../assets/xeno/test-report.json) registra o nome e o resultado de cada caso. A [evidência numérica](../assets/xeno/evidence.json) e o [manifesto visual](../assets/xeno/visual-manifest.json) identificam a revisão de origem. Em **Actions → Artifacts → xenoelement-x01** ficam as trajetórias CSV, espectros R/T, dados de sensibilidade, parâmetros e o arquivo MATLAB completo `x01.mat`.
+
+O comparativo `controller_comparison.csv` usa os mesmos 12 cenários, estímulos e ruído para o PI e para controle por antecipação sem realimentação. Publica erro **e energia** de ambos, inclusive cenários em que um controlador seja pior. Essa avaliação mede esta tarefa sintética; não compara agentes universais nem demonstra superioridade em ARC-AGI ou sobre outros sistemas de IA.
 
 A validação cobre soluções analíticas, balanço de massa, positividade, balanço óptico, refinamento espacial/temporal, sementes reproduzíveis, calibração separada, controle limitado, comparação MATLAB/Fortran e a bancada SystemVerilog. Os testes verificam a implementação dessas hipóteses; não demonstram que um dispositivo físico terá o mesmo comportamento.
 

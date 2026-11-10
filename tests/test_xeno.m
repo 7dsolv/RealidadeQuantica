@@ -11,7 +11,7 @@ cases = {@reaction_mass,@reaction_equilibrium,@reaction_analytic,@reaction_zero,
     @mechanics_analytic,@mechanics_release,@mechanics_invalid, ...
     @optics_fresnel,@optics_balance,@optics_design,@optics_invalid, ...
     @calibration_holdout,@calibration_invalid,@seed_reproducibility, ...
-    @coupled_bounds,@coupled_mass,@controller_tracking,@time_convergence,@space_convergence};
+    @coupled_bounds,@coupled_mass,@controller_tracking,@time_convergence,@space_convergence,@fixed_geometry};
 if require_compiled, cases = [cases {@fortran_comparison,@fpga_simulation}]; end
 report.schema_version = 1;
 report.revision = getenv('GITHUB_SHA');
@@ -171,6 +171,12 @@ fprintf('X-01: %d/%d cenarios aprovados.\n',report.passed,report.total);
         [R,T]=xeno_optics(data(:,1),n,d,p.n_incident,p.n_substrate);
         error=max(abs([R T]-data(:,2:3)),[],'all');
         assert(error<1e-12, 'MATLAB/Fortran: erro %.3g',error);
+    end
+    function fixed_geometry()
+        [~,base,b]=xeno_stack(0,0,p);
+        q=p; q.n_high=q.n_high+0.025;
+        [~,varied,shift]=xeno_stack(0,0,q);
+        assert(isequal(base,varied) && shift>b);
     end
     function fpga_simulation()
         log=fileread(fullfile(output,'fpga.log'));

@@ -48,7 +48,10 @@ if run_on_open, run_model(); end
             title(ax(3),'Ocupação dos dois receptores','Color',C.white); xlabel(ax(3),'Tempo / s'); ylim(ax(3),[0 1]);
             plot(ax(4),r.time_s,[r.target_nm r.bragg_nm],'LineWidth',1.8);
             title(ax(4),'Alvo e centro de Bragg / nm','Color',C.white); xlabel(ax(4),'Tempo / s');
-            for j=1:4, grid(ax(j),'on'); end
+            for j=1:4
+                set(ax(j),'Color',C.panel,'XColor',C.muted,'YColor',C.muted);
+                grid(ax(j),'on');
+            end
             status.Text=sprintf('RMSE: %.2f nm\nMassa: %.1e mol/m²\nR+T−1: %.1e', ...
                 r.metrics.tracking_rmse_nm,r.metrics.max_mass_error_mol_m2,r.metrics.optical_balance_error);
             fig.UserData=r;

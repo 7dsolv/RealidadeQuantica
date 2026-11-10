@@ -6,9 +6,12 @@ C.violet=[0.74 0.41 1]; C.cyan=[0.30 0.91 0.86]; C.amber=[1 0.73 0.39];
 f=figure('Visible','off','Color',C.bg,'Position',[40 40 1460 950],'InvertHardcopy','off');
 guard=onCleanup(@() close(f));
 layout=tiledlayout(f,2,2,'TileSpacing','compact','Padding','loose');
-heading=title(layout,'KONAET / XENOELEMENT X-01','FontName','DejaVu Sans','FontSize',24,'FontWeight','bold','Color',C.white);
-subtitle(layout,'SIMULAÇÃO SINTÉTICA  /  72 s de experimento numérico  /  material não fabricado', ...
-    'FontSize',12,'Color',C.muted,'FontName','DejaVu Sans');
+layout.OuterPosition=[0.015 0.055 0.97 0.83];
+heading=annotation(f,'textbox',[0.035 0.93 0.93 0.05],'String','KONAET / XENOELEMENT X-01', ...
+    'FontName','DejaVu Sans','FontSize',24,'FontWeight','bold','Color',C.white,'EdgeColor','none','Margin',0);
+annotation(f,'textbox',[0.035 0.895 0.93 0.03], ...
+    'String','SIMULAÇÃO SINTÉTICA / 72 s de experimento numérico / material não fabricado', ...
+    'FontSize',12,'Color',C.muted,'FontName','DejaVu Sans','EdgeColor','none','Margin',0);
 ax1=nexttile(layout); style(ax1,C);
 depth=1e6*r.depth_m; p=r.parameters;
 field=squeeze(mean(r.concentration,2));
@@ -44,8 +47,14 @@ xlabel(ax4,'Tempo / s'); ylabel(ax4,'Centro de Bragg estimado / nm');
 legend(ax4,{'12 cenários hipotéticos','Alvo do controlador','Resposta PI'},'TextColor',C.white,'Color',C.panel,'Location','northwest','FontSize',9);
 footer=sprintf('%d/%d testes | massa: %.1e mol/m² | R+T−1: %.1e | calibração: validação sintética separada', ...
     evidence.tests.passed,evidence.tests.total,r.metrics.max_mass_error_mol_m2,r.metrics.optical_balance_error);
-xlabel(layout,footer,'Color',C.muted,'FontName','DejaVu Sans','FontSize',10);
-exportgraphics(f,fullfile(output,'x01-dashboard.png'),'Resolution',120,'BackgroundColor',C.bg);
+annotation(f,'textbox',[0.035 0.008 0.93 0.03],'String',footer,'Color',C.muted, ...
+    'FontName','DejaVu Sans','FontSize',10,'EdgeColor','none','Margin',0);
+for ax=[ax1 ax2 ax3 ax4], style(ax,C); xticks(ax,0:12:p.duration_s); end
+xlim(ax1,[0 p.duration_s]); ylim(ax1,[0 p.length_m*1e6]);
+xlim(ax2,[0 p.duration_s]); yticks(ax1,0:15:60); yticks(ax2,400:80:720);
+drawnow;
+exportgraphics(f,fullfile(output,'x01-dashboard.png'),'Width',1900,'Height',1240, ...
+    'Units','pixels','Padding','figure','PreserveAspectRatio','on','BackgroundColor',C.bg);
 frame_file=fullfile(output,'x01-frame.png'); gif_file=fullfile(output,'x01-motion.gif');
 frames=36; selected=round(linspace(1,numel(r.time_s),frames));
 [palette,lookup]=palette_map();
@@ -63,7 +72,8 @@ for j=1:frames
         'YData',[sweep.minimum_nm(1:k);flipud(sweep.maximum_nm(1:k))]);
     heading.String=sprintf('KONAET / XENOELEMENT X-01   ·   t = %04.1f s',r.time_s(k));
     drawnow;
-    exportgraphics(f,frame_file,'Resolution',85,'BackgroundColor',C.bg);
+    exportgraphics(f,frame_file,'Width',1600,'Height',1040,'Units','pixels', ...
+        'Padding','figure','PreserveAspectRatio','on','BackgroundColor',C.bg);
     rgb=imread(frame_file);
     red=lookup(double(rgb(:,:,1))+1); green=lookup(double(rgb(:,:,2))+1);
     blue=floor(double(rgb(:,:,3))/64);
