@@ -10,6 +10,7 @@
   "parameters": 842,
   "payload_bytes": 920,
   "activation_policy": "out-of-domain input is flagged; no safety assertion",
+  "payload_file": "anomalynet-int8.bin",
   "payload_sha256": "4557b37c81b7018f106ae89360b0987b7b06d08e128596ec95e03921cca46d50",
   "format": "W1 row-major int8[24,32], b1 int32[24], W2 row-major int8[2,24], b2 int32[2]; little endian",
   "model_credit": "AnomalyNet, Copyright 2026 Eoin Jordan, Apache-2.0",

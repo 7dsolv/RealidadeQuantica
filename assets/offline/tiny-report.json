@@ -1,5 +1,5 @@
 {
-  "revision": "a8373dda4e3492ed79234125650bbd5589d60106",
+  "revision": "8d28fd9c138e2cb154ce142a04b7a1ac99e6728c",
   "source_model": "eoinedge/AnomalyNet",
   "source_revision": "bb9db962cebb0f506496dc51e824cfc15b8a7ab1",
   "weights_trained_by": "Eoin Jordan",
