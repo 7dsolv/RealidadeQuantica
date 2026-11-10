@@ -1,0 +1,41 @@
+{
+  "model": "KONAET Sense 842",
+  "author": "7dsolv",
+  "initialization": "random He initialization, no imported weights",
+  "architecture": "standard dense 32-24-2 ReLU; compatible comparison interface",
+  "revision": "844fd5eef21d60aef4144a1fa7387f2ec329551c",
+  "training_seed": 7805,
+  "training_config": {
+    "learning_rate": 0.008,
+    "regularization": 0.0001,
+    "epochs": 40
+  },
+  "training_origin": "KONAET synthetic independent episodes; no NAB test data",
+  "research_contract": "573134a3b9887fb53e4882726100bae7f275fef0f6c4bd369d40462172f784d2",
+  "files": [
+    {
+      "name": "fc1_weight.f32",
+      "bytes": 3072,
+      "sha256": "b0f225372f44081a584174d06bcafb1662a3ebbd363997c049152a5c0f993301"
+    },
+    {
+      "name": "fc1_bias.f32",
+      "bytes": 96,
+      "sha256": "c8e57c9243fe547e68136c14a0328bc157061940ad6832325a2b5293f95eb97a"
+    },
+    {
+      "name": "fc2_weight.f32",
+      "bytes": 192,
+      "sha256": "f7cb290135db3b4da29c233ea185ab973ea39cfe7f6a8c6e6e28286ca1bd0248"
+    },
+    {
+      "name": "fc2_bias.f32",
+      "bytes": 8,
+      "sha256": "858874765de45deb6ab1936948120e67802751612551e592ac4620517bdb2ee9"
+    }
+  ],
+  "parameters": 842,
+  "license": "MIT for the new KONAET Sense weights and integrated implementation",
+  "scope": "Binary anomaly research classifier; not a general intelligence model",
+  "physical_deployment": "NOT_MEASURED"
+}

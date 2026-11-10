@@ -1,0 +1,32 @@
+{
+  "source_revision": "844fd5eef21d60aef4144a1fa7387f2ec329551c",
+  "parameters": {
+    "resistance_Ohm": 10000,
+    "source_resistance_Ohm": 250,
+    "capacitance_F": 4.7E-6,
+    "esr_Ohm": 0.5,
+    "leak_resistance_Ohm": 2.0E+7,
+    "adc_resistance_Ohm": 1.5E+7,
+    "supply_V": 3.3,
+    "origin": "Illustrative equivalent circuit; input impedance is a static approximation, not ADS1115 switched-capacitor simulation"
+  },
+  "monte_carlo_cases": 256,
+  "monte_carlo_seed": 66001,
+  "nominal_tau_s": 0.04811980713257108,
+  "dc_gain": 0.99880559498708277,
+  "tau_range_s": [
+    0.03021754757647448,
+    0.05838786485306878
+  ],
+  "energy": {
+    "source_J": 1.2555869513848981E-5,
+    "series_heat_J": 1.0311560837657551E-5,
+    "esr_heat_J": 5.02899501896748E-10,
+    "adc_heat_J": 1.3846435406309364E-6,
+    "leak_heat_J": 1.0384826125025162E-6,
+    "capacitor_change_J": -1.7932037991093263E-7,
+    "balance_residual_J": 3.4670128969005606E-15
+  },
+  "capacitor_bias_factor": "Assumed 0.75..1, not manufacturer characterization",
+  "measurement_status": "SIMULATED_NOT_MEASURED"
+}

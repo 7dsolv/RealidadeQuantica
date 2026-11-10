@@ -1,0 +1,2 @@
+KONAET_I2C_PASS cases=4
+systemverilog/konaet_i2c_tb.sv:55: $finish called at 5030000 (1ps)

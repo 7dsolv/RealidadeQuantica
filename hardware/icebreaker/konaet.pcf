@@ -1,0 +1,8 @@
+# iCEBreaker v1.x / iCE40UP5K SG48. Pin map checked against board sources.
+# https://github.com/YosysHQ/icestorm/blob/main/examples/icebreaker/icebreaker.pcf
+set_io clk 35
+set_io reset_n 10
+set_io normal_led_n 37
+set_io anomaly_led_n 11
+set_io scl 4
+set_io sda 2

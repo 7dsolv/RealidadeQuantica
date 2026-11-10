@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "source_revision": "844fd5eef21d60aef4144a1fa7387f2ec329551c",
+  "numerical_tests": 17,
+  "app_tests": 6,
+  "rtl_cases": 391,
+  "adc_codes_exhaustive": 65536,
+  "i2c_ack_nack_cases": 4,
+  "adc_protocol": "4 valid samples, 10 Hz scaled cadence, NACK recovery",
+  "rtl_cycles_after_last_input": 2472,
+  "reference_clock_Hz": 1.2E+7,
+  "rtl_compute_latency_at_12MHz_us": 206,
+  "place_route_achieved_clock_MHz": 20.167797088623047,
+  "utilization": {
+    "ICESTORM_DSP": {
+      "available": 8,
+      "used": 5
+    },
+    "ICESTORM_HFOSC": {
+      "available": 1,
+      "used": 0
+    },
+    "ICESTORM_LC": {
+      "available": 5280,
+      "used": 1873
+    },
+    "ICESTORM_LFOSC": {
+      "available": 1,
+      "used": 0
+    },
+    "ICESTORM_PLL": {
+      "available": 1,
+      "used": 0
+    },
+    "ICESTORM_RAM": {
+      "available": 30,
+      "used": 2
+    },
+    "ICESTORM_SPRAM": {
+      "available": 4,
+      "used": 0
+    },
+    "IO_I3C": {
+      "available": 2,
+      "used": 0
+    },
+    "SB_GB": {
+      "available": 8,
+      "used": 8
+    },
+    "SB_I2C": {
+      "available": 2,
+      "used": 0
+    },
+    "SB_IO": {
+      "available": 96,
+      "used": 6
+    },
+    "SB_LEDDA_IP": {
+      "available": 1,
+      "used": 0
+    },
+    "SB_RGBA_DRV": {
+      "available": 1,
+      "used": 0
+    },
+    "SB_SPI": {
+      "available": 2,
+      "used": 0
+    },
+    "SB_WARMBOOT": {
+      "available": 1,
+      "used": 0
+    }
+  },
+  "pcb_violations": 0,
+  "pcb_unconnected": 0,
+  "schematic_parity_issues": 0,
+  "erc_violations": 0,
+  "quantized_agreement": 0.986328125,
+  "physical_power": "NOT_MEASURED",
+  "physical_latency": "NOT_MEASURED",
+  "manufacturing": "NOT_FABRICATED",
+  "clock_results": "Tool timing estimate and RTL cycle count, not measured device benchmark"
+}

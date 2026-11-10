@@ -9,7 +9,7 @@ on:
       module:
         description: Modulo a executar manualmente
         type: choice
-        options: [physics, xeno, offline]
+        options: [physics, xeno, offline, agent]
         default: physics
   schedule:
     - cron: '17 * * * *'
@@ -90,6 +90,13 @@ jobs:
     permissions:
       contents: write
     uses: ./.github/workflows/offline.yml
+    secrets: inherit
+
+  agent:
+    if: github.event_name == 'workflow_dispatch' && inputs.module == 'agent'
+    permissions:
+      contents: write
+    uses: ./.github/workflows/integrated.yml
     secrets: inherit
 
   atualizar-painel:

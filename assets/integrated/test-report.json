@@ -1,0 +1,93 @@
+{
+  "source_revision": "844fd5eef21d60aef4144a1fa7387f2ec329551c",
+  "passed": 17,
+  "failed": 0,
+  "total": 17,
+  "cases": [
+    {
+      "name": "test_konaet_integrated/gradient_check",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/reproducible_data",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/reproducible_training",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/locked_test",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/weights_are_new",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/training_loss",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/quantized_fidelity",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/model_roundtrip",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/source_interop",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/real_data_audit",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/invalid_sensor",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/rc_step",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/rc_energy",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/rc_passivity",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/metrics_abstention",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/memory_resume",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/csv_interface",
+      "passed": true,
+      "message": ""
+    }
+  ]
+}

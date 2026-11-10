@@ -1,0 +1,2 @@
+KONAET_ADS1115_PASS samples=4 cadence_cycles=12000 nack_recovery=1
+systemverilog/konaet_ads1115_tb.sv:58: $finish called at 615665000 (1ps)

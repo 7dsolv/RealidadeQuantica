@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "filename": "x02-acquisition.kicad_pro",
+    "version": 1
+  },
+  "net_settings": {
+    "version": 3,
+    "classes": [
+      {
+        "name": "Default",
+        "clearance": 0.2,
+        "track_width": 0.2,
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "diff_pair_width": 0.2,
+        "diff_pair_gap": 0.2
+      }
+    ]
+  }
+}

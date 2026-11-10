@@ -1,0 +1,212 @@
+name: KONAET - agente integrado, pesquisa e FPGA
+
+on:
+  workflow_dispatch:
+  workflow_call:
+  schedule:
+    - cron: '27 6 * * 2,5'
+  push:
+    branches: [main]
+    paths:
+      - 'matlab/integrated/**'
+      - 'systemverilog/konaet_*'
+      - 'datasets/nab/**'
+      - 'tests/test_konaet_*'
+      - 'executar_konaet.m'
+      - 'abrir_konaet.m'
+      - '.github/workflows/integrated.yml'
+  pull_request:
+    paths:
+      - 'matlab/integrated/**'
+      - 'systemverilog/konaet_*'
+      - 'datasets/nab/**'
+      - 'tests/test_konaet_*'
+      - 'executar_konaet.m'
+      - 'abrir_konaet.m'
+      - '.github/workflows/integrated.yml'
+
+permissions:
+  contents: read
+concurrency:
+  group: konaet-integrated-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validar:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Preparar ferramentas de calculo e FPGA
+        run: |
+          set -euo pipefail
+          sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends gfortran iverilog yosys nextpnr-ice40 fpga-icestorm kicad xvfb xauth
+          mkdir -p build artifacts/integrated
+          gfortran -std=f2008 -Wall -Wextra -fcheck=all -O2 fortran/tiny_anomalynet.f90 -o build/tiny_anomalynet
+          yosys -V > artifacts/integrated/yosys-version.txt
+          nextpnr-ice40 --version > artifacts/integrated/nextpnr-version.txt 2>&1
+          cp datasets/nab/LICENSE.txt artifacts/integrated/NAB-LICENSE.txt
+          cp models/anomalynet/LICENSE.txt artifacts/integrated/AnomalyNet-LICENSE.txt
+          cp models/anomalynet/NOTICE.txt artifacts/integrated/AnomalyNet-NOTICE.txt
+          cp integrated/LICENSE.txt artifacts/integrated/KONAET-LICENSE.txt
+      - uses: matlab-actions/setup-matlab@v3
+      - name: Treinar candidato proprio e avaliar dados bloqueados
+        id: models
+        uses: matlab-actions/run-command@v3
+        with:
+          command: executar_konaet;
+      - name: Conferir inferencia RTL bit a bit
+        run: |
+          set -euo pipefail
+          iverilog -g2012 -I artifacts/integrated/rtl -s konaet_int8_tb \
+            -o build/konaet_int8_tb systemverilog/konaet_int8_core.sv systemverilog/konaet_int8_tb.sv
+          vvp build/konaet_int8_tb | tee artifacts/integrated/rtl.log
+          grep -q KONAET_RTL_PASS artifacts/integrated/rtl.log
+          iverilog -g2012 -s konaet_i2c_tb -o build/konaet_i2c_tb \
+            systemverilog/konaet_i2c_byte.sv systemverilog/konaet_i2c_tb.sv
+          vvp build/konaet_i2c_tb | tee artifacts/integrated/i2c.log
+          grep -q KONAET_I2C_PASS artifacts/integrated/i2c.log
+          iverilog -g2012 -s konaet_adc_quantizer_tb -o build/konaet_adc_tb \
+            systemverilog/konaet_adc_quantizer.sv systemverilog/konaet_adc_quantizer_tb.sv
+          vvp build/konaet_adc_tb | tee artifacts/integrated/adc.log
+          grep -q KONAET_ADC_PASS artifacts/integrated/adc.log
+          iverilog -g2012 -s konaet_ads1115_tb -o build/konaet_ads_tb \
+            systemverilog/konaet_i2c_byte.sv systemverilog/konaet_ads1115.sv systemverilog/konaet_ads1115_tb.sv
+          vvp build/konaet_ads_tb | tee artifacts/integrated/ads1115.log
+          grep -q KONAET_ADS1115_PASS artifacts/integrated/ads1115.log
+      - name: Sintetizar e rotear FPGA alvo a 12 MHz
+        run: |
+          set -euo pipefail
+          yosys -Q -T -l artifacts/integrated/synthesis.log -p \
+            'read_verilog -sv -Iartifacts/integrated/rtl systemverilog/konaet_int8_core.sv systemverilog/konaet_i2c_byte.sv systemverilog/konaet_ads1115.sv systemverilog/konaet_adc_quantizer.sv systemverilog/konaet_fpga_top.sv; synth_ice40 -dsp -top konaet_fpga_top -json artifacts/integrated/konaet-ice40.json'
+          nextpnr-ice40 --up5k --package sg48 --freq 12 --seed 42 \
+            --pcf hardware/icebreaker/konaet.pcf --json artifacts/integrated/konaet-ice40.json \
+            --asc artifacts/integrated/konaet-ice40.asc --report artifacts/integrated/nextpnr-report.json \
+            2>&1 | tee artifacts/integrated/nextpnr.log
+          icepack artifacts/integrated/konaet-ice40.asc artifacts/integrated/konaet-ice40.bin
+      - name: Verificar esquema, conectividade e PCB nativos
+        if: ${{ !cancelled() && steps.models.outcome == 'success' }}
+        run: |
+          set -euo pipefail
+          base='artifacts/integrated/hardware/x02-acquisition'
+          kicad-cli sch erc --format json --severity-all --output artifacts/integrated/hardware/erc.json "$base.kicad_sch"
+          kicad-cli sch erc --format json --severity-error --exit-code-violations --output artifacts/integrated/hardware/erc-errors.json "$base.kicad_sch"
+          kicad-cli pcb drc --format json --severity-all --schematic-parity --output artifacts/integrated/hardware/drc.json "$base.kicad_pcb"
+          kicad-cli pcb drc --format json --severity-error --exit-code-violations --schematic-parity --output artifacts/integrated/hardware/drc-errors.json "$base.kicad_pcb"
+          jq -e '.unconnected_items | length == 0' artifacts/integrated/hardware/drc.json
+          jq -e '.schematic_parity | length == 0' artifacts/integrated/hardware/drc.json
+          mkdir -p artifacts/integrated/hardware/layers
+          kicad-cli pcb export svg --mode-multi --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts --output artifacts/integrated/hardware/layers/ "$base.kicad_pcb"
+          kicad-cli sch export svg --output artifacts/integrated/hardware/layers/ "$base.kicad_sch"
+          xvfb-run --auto-servernum kicad-cli pcb render --width 1800 --height 1100 --quality high --background opaque \
+            --rotate '315,0,35' --define-var "KIPRJMOD=$PWD/artifacts/integrated/hardware" \
+            --output artifacts/integrated/hardware/x02-kicad.png "$base.kicad_pcb"
+      - name: Consolidar evidencias das ferramentas
+        uses: matlab-actions/run-command@v3
+        with:
+          command: addpath('matlab/integrated'); konaet_finalize(fullfile(pwd,'artifacts','integrated'));
+      - name: Publicar resumo da verificacao
+        run: |
+          {
+            echo '## KONAET / agente integrado'
+            echo '```text'
+            cat artifacts/integrated/summary.txt
+            echo '```'
+            echo 'O comparativo completo inclui cenarios desfavoraveis. Dados reais NAB nao sao um ensaio fisico KONAET.'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: konaet-integrated
+          path: |
+            artifacts/integrated/
+            !artifacts/integrated/fixtures/
+            !artifacts/integrated/live-frame.png
+          retention-days: 30
+          if-no-files-found: warn
+
+  publicar:
+    needs: validar
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: konaet-publish-${{ github.repository }}
+      cancel-in-progress: false
+    steps:
+      - name: Autenticar App quando configurada
+        if: vars.KONAET_APP_CLIENT_ID != ''
+        id: app
+        uses: 7dsolv/konaet-bot@488671c980ae433a4714de3321d10e58415cf9d0 # v1.1.1
+        with:
+          client-id: ${{ vars.KONAET_APP_CLIENT_ID }}
+          private-key: ${{ secrets.KONAET_APP_PRIVATE_KEY }}
+          expected-slug: konaet
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ steps.app.outputs.token || github.token }}
+          ref: main
+      - uses: actions/download-artifact@v8
+        with:
+          name: konaet-integrated
+          path: artifacts/integrated
+      - name: Publicar memoria, pesos, PCB e evidencias
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token || github.token }}
+          APP_LOGIN: ${{ steps.app.outputs.bot-login }}
+        run: |
+          set -euo pipefail
+          identity="$(gh api --hostname github.com '/users/konaet[bot]' --jq '[.id,.login,.type] | @tsv')"
+          [ "$identity" = $'352182232\tkonaet[bot]\tBot' ]
+          mkdir -p assets/integrated/model assets/integrated/rtl state hardware/x02-acquisition
+          for file in agent-memory.json agent-experiments.json benchmark.json hard-decisions.csv \
+            nab-1-decisions.csv nab-2-decisions.csv circuit-report.json circuit-tolerances.csv \
+            circuit-trace.csv test-report.json app-report.json visual-report.json stream-report.json \
+            live-trace.csv summary.json summary.txt konaet-live.gif konaet-live.png konaet-app.png \
+            benchmark.png nextpnr-report.json rtl.log i2c.log adc.log ads1115.log \
+            KONAET-LICENSE.txt AnomalyNet-LICENSE.txt AnomalyNet-NOTICE.txt NAB-LICENSE.txt \
+            konaet-ice40.bin; do
+            cp "artifacts/integrated/$file" "assets/integrated/$file"
+            git add -- "assets/integrated/$file"
+          done
+          for file in fc1_weight.f32 fc1_bias.f32 fc2_weight.f32 fc2_bias.f32 \
+            konaet-int8.bin quantization.json model-card.json; do
+            cp "artifacts/integrated/model/$file" "assets/integrated/model/$file"
+            git add -- "assets/integrated/model/$file"
+          done
+          for file in weights.mem bias.mem input.mem expected.mem konaet_model_params.vh rtl-vectors.json; do
+            cp "artifacts/integrated/rtl/$file" "assets/integrated/rtl/$file"
+            git add -- "assets/integrated/rtl/$file"
+          done
+          cp artifacts/integrated/agent-memory.json state/konaet-research-memory.json
+          git add -- state/konaet-research-memory.json
+          for file in x02-acquisition.kicad_sch x02-acquisition.kicad_pcb x02-acquisition.kicad_pro \
+            KONAET.kicad_sym sym-lib-table fp-lib-table board-source.json eda-report.json geometry.json \
+            bom.csv erc.json erc-errors.json drc.json drc-errors.json x02-kicad.png x02-acquisition.stl; do
+            cp "artifacts/integrated/hardware/$file" "hardware/x02-acquisition/$file"
+            git add -- "hardware/x02-acquisition/$file"
+          done
+          for folder in KONAET_X02.pretty models layers; do
+            mkdir -p "hardware/x02-acquisition/$folder"
+            cp "artifacts/integrated/hardware/$folder/"* "hardware/x02-acquisition/$folder/"
+            git add -- "hardware/x02-acquisition/$folder"
+          done
+          if git diff --cached --quiet; then exit 0; fi
+          if [ -n "$APP_LOGIN" ]; then
+            [ "$APP_LOGIN" = 'konaet[bot]' ]
+            committer='konaet[bot]'
+            email='352182232+konaet[bot]@users.noreply.github.com'
+          else
+            committer='github-actions[bot]'
+            email='41898282+github-actions[bot]@users.noreply.github.com'
+          fi
+          GIT_AUTHOR_NAME='konaet[bot]' GIT_AUTHOR_EMAIL='352182232+konaet[bot]@users.noreply.github.com' \
+            GIT_COMMITTER_NAME="$committer" GIT_COMMITTER_EMAIL="$email" \
+            git commit -m 'KONAET aprende, verifica e publica agente integrado [skip ci]'
+          git push origin HEAD:main
+          printf 'Memoria e pesos publicados juntos; executor: %s.\n' "$committer" >> "$GITHUB_STEP_SUMMARY"

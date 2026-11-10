@@ -1,0 +1,13 @@
+{
+  "sample_rate_Hz": 10,
+  "samples": 180,
+  "source": "synthetic voltage + nonideal RC + ideal quantized ADC",
+  "event_start_s": 4.6,
+  "first_detected_s": 4.6,
+  "detection_delay_s": 0,
+  "normal_prefix_false_alarms": 0,
+  "normal_prefix_decisions": 14,
+  "missing_reading_is_invalid": true,
+  "window_recovery": "32 finite samples after the last missing read",
+  "temperature_conversion": "Illustrative mapping only; not physically calibrated"
+}

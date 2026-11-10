@@ -1,0 +1,24 @@
+{
+  "source_revision": "844fd5eef21d60aef4144a1fa7387f2ec329551c",
+  "status": "CAD_AND_SIMULATION_ONLY_NOT_FABRICATED",
+  "components": 13,
+  "adc": {
+    "part": "ADS1115IDGSR",
+    "address_hex": "48",
+    "gain_range_V": 4.096,
+    "lsb_V": 0.000125,
+    "rate_SPS": 128,
+    "config_AIN0_hex": "C383",
+    "config_AIN1_hex": "D383",
+    "datasheet": "https://www.ti.com/lit/ds/symlink/ads1115.pdf"
+  },
+  "host": {
+    "module": "iCEBreaker iCE40UP5K-SG48",
+    "clock_Hz": 1.2E+7,
+    "source": "https://github.com/icebreaker-fpga/icebreaker",
+    "interface": "Pmod 3V3: SCL pin 1, SDA pin 2, ALERT pin 3; power 6/12, ground 5/11"
+  },
+  "manufacturing": "NOT_FABRICATED",
+  "power": "3V3 externally regulated; no heater or mains connection",
+  "part_selection": "Candidate MPNs require procurement and footprint review; no availability or physical validation claim"
+}
