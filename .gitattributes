@@ -12,12 +12,14 @@ datasets/nab/*.csv -text
 datasets/nab/combined_windows.json -text
 datasets/nab/LICENSE.txt -text
 datasets/nab/UPSTREAM-DATA.md -text
+datasets/nab/UPSTREAM-DATA.md -whitespace
 datasets/nab/* linguist-vendored=true
 assets/integrated/* linguist-generated=true
 assets/integrated/model/* linguist-generated=true
 assets/integrated/rtl/* linguist-generated=true
 hardware/x02-acquisition/* linguist-generated=true
 hardware/x02-acquisition/README.md linguist-generated=false
+hardware/x02-acquisition/KONAET.kicad_sym -whitespace
 hardware/x02-acquisition/KONAET_X02.pretty/* linguist-generated=true
 hardware/x02-acquisition/models/* linguist-generated=true
 hardware/x02-acquisition/layers/* linguist-generated=true
