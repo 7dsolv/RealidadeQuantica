@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="650" viewBox="0 0 1500 650">
+<rect width="1500" height="650" fill="#0c0718"/><g font-family="DejaVu Sans,sans-serif" fill="#f5edff">
+<text x="60" y="65" font-size="30" font-weight="bold">KONAET / COMPONENTES COMO FONTE</text>
+<text x="60" y="105" font-size="18" fill="#b3a1cb">3,3 V / fonte e conversor ADC externos / circuito ideal de dois canais</text>
+<g stroke="#c78aff" stroke-width="3" fill="none"><path d="M110 195 H310 M450 195 H1070"/><rect x="310" y="173" width="140" height="44"/>
+<path d="M700 195 V247 M665 247 H735 M665 260 H735 M700 260 V311 M675 311 H725 M683 321 H717 M692 331 H708"/></g>
+<circle cx="700" cy="195" r="5" fill="#e5caff"/>
+<text x="100" y="160" font-size="19">RAW_L</text><text x="285" y="157" font-size="19">R1 / 10 kOhm</text>
+<text x="760" y="260" font-size="19">C1 / 4.7 uF</text><text x="1080" y="201" font-size="19">ADC_L</text>
+<g stroke="#c78aff" stroke-width="3" fill="none"><path d="M110 380 H310 M450 380 H1070"/><rect x="310" y="358" width="140" height="44"/>
+<path d="M700 380 V432 M665 432 H735 M665 445 H735 M700 445 V496 M675 496 H725 M683 506 H717 M692 516 H708"/></g>
+<circle cx="700" cy="380" r="5" fill="#e5caff"/>
+<text x="100" y="345" font-size="19">RAW_R</text><text x="285" y="342" font-size="19">R2 / 10 kOhm</text>
+<text x="760" y="445" font-size="19">C2 / 4.7 uF</text><text x="1080" y="386" font-size="19">ADC_R</text>
+<text x="60" y="585" font-size="20">tau = R C = 47 ms / fc = 1 / (2 pi R C) = 3.386 Hz</text>
+<text x="60" y="620" font-size="16" fill="#b3a1cb">Conceito de placa passiva. Nao inclui sensores ativos, ADC, MCU, protecao de entrada ou controle termico.</text></g></svg>

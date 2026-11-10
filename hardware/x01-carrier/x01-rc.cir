@@ -1,0 +1,11 @@
+* KONAET X-01 ideal passive RC channels; SPICE netlist, not firmware
+VLEFT RAW_L 0 PULSE(0 3.3 0 1u 1u 0.5 1)
+VRIGHT RAW_R 0 DC 1.65
+R1 RAW_L ADC_L 10000
+R2 RAW_R ADC_R 10000
+C1 ADC_L 0 4.7e-06
+C2 ADC_R 0 4.7e-06
+VSUPPLY VCC 0 DC 3.3
+C3 VCC 0 1e-07
+.tran 1m 1
+.end

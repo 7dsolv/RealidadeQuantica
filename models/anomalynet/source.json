@@ -1,0 +1,48 @@
+{
+    "url":  "https://huggingface.co/eoinedge/AnomalyNet/tree/bb9db962cebb0f506496dc51e824cfc15b8a7ab1",
+    "parameters":  842,
+    "author":  "Eoin Jordan",
+    "revision":  "bb9db962cebb0f506496dc51e824cfc15b8a7ab1",
+    "license":  "Apache-2.0",
+    "files":  [
+                  {
+                      "shape":  [
+                                    24,
+                                    32
+                                ],
+                      "sha256":  "bf52fa926bc5135d1c19000eeb2da53e944949915c7110c234f9e6af704dfe49",
+                      "name":  "fc1_weight.f32",
+                      "bytes":  3072
+                  },
+                  {
+                      "shape":  [
+                                    24,
+                                    1
+                                ],
+                      "sha256":  "759d5ce2938339bad138132d5e263092391c6e564b5c9e89907c4b23fc1a6e03",
+                      "name":  "fc1_bias.f32",
+                      "bytes":  96
+                  },
+                  {
+                      "shape":  [
+                                    2,
+                                    24
+                                ],
+                      "sha256":  "07658c559f5a78a7a91e74bf6059ea45dadfb48752878d5b319e8e5003147440",
+                      "name":  "fc2_weight.f32",
+                      "bytes":  192
+                  },
+                  {
+                      "shape":  [
+                                    2,
+                                    1
+                                ],
+                      "sha256":  "532f8dd745737b720bb30350ad8887cfe46d4bec55e597fff15e45fab6c7a2b1",
+                      "name":  "fc2_bias.f32",
+                      "bytes":  8
+                  }
+              ],
+    "model":  "eoinedge/AnomalyNet",
+    "original_pt_sha256":  "556e735a12c213f1fdb79064655decdfa05ed9676969339c66e81bf481411bbf",
+    "layout":  "little-endian float32; row-major weights; raw tensor bytes unchanged"
+}

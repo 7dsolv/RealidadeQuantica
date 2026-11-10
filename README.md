@@ -6,6 +6,12 @@
 
 **[Abrir página da KONAET](konaet/README.md)** · **[Abrir App KONAET](https://github.com/apps/konaet)**
 
+**[KONAET offline — componentes na src, PCB, circuito e IA local](offline/README.md)** · **[Girar a placa em 3D](hardware/x01-carrier/x01-carrier.stl)**
+
+![Placa KONAET descrita em MATLAB, com trajetória ilustrada do sinal](hardware/x01-carrier/x01-board-motion.gif)
+
+O novo módulo gera PCB para KiCad, modelos 3D e cálculos RC a partir do código. Inclui um adaptador MATLAB/Fortran e quantização própria do AnomalyNet, de Eoin Jordan, com pesos e licença preservados. É uma placa conceitual de sensores de 3,3 V, com controlador externo; a inferência é avaliada offline em dados sintéticos.
+
 **[Novo laboratório: KONAET XENOELEMENT X-01 — membrana sensorial bioinspirada](xeno/README.md)**
 
 O X-01 conecta transporte químico, adsorção, toque, calibração sintética, controle e óptica multicamada. Inclui app MATLAB, referência Fortran, módulo SystemVerilog, testes, dados e animação. É um protótipo computacional com parâmetros hipotéticos; material físico não fabricado. [Equações e unidades](xeno/MODEL.md) · [Fontes e antecedentes](xeno/PRIOR_ART.md).
@@ -30,7 +36,7 @@ A memória do Konaet guarda 16 valores numéricos por ciclo, nesta ordem: ciclo,
 
 ![Painel científico da última execução: SU(3), invariância de gauge, pacote quântico e cosmologia FLRW](assets/realidade-quantica-dashboard.png)
 
-O GIF e este painel são gerados pelo MATLAB durante cada rodada. A página do GitHub reproduz a animação, mas não executa controles nem cálculos dentro do navegador.
+O GIF e este painel são gerados pelo MATLAB durante cada rodada. Os gráficos não recalculam a física no navegador; o [STL da placa](hardware/x01-carrier/x01-carrier.stl) permite girar e ampliar a geometria no visualizador 3D do GitHub.
 
 ## Abra o laboratório MATLAB
 
