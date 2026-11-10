@@ -43,6 +43,8 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends gfortran kicad
           mkdir -p build artifacts/offline
+          cp models/anomalynet/LICENSE.txt artifacts/offline/AnomalyNet-LICENSE.txt
+          cp models/anomalynet/NOTICE.txt artifacts/offline/AnomalyNet-NOTICE.txt
           gfortran -std=f2008 -Wall -Wextra -fcheck=all -O2 \
             fortran/tiny_anomalynet.f90 -o build/tiny_anomalynet
           kicad-cli version | tee artifacts/offline/kicad-version.txt

@@ -36,7 +36,7 @@ A memória do Konaet guarda 16 valores numéricos por ciclo, nesta ordem: ciclo,
 
 ![Painel científico da última execução: SU(3), invariância de gauge, pacote quântico e cosmologia FLRW](assets/realidade-quantica-dashboard.png)
 
-O GIF e este painel são gerados pelo MATLAB durante cada rodada. A página do GitHub reproduz a animação, mas não executa controles nem cálculos dentro do navegador.
+O GIF e este painel são gerados pelo MATLAB durante cada rodada. Os gráficos não recalculam a física no navegador; o [STL da placa](hardware/x01-carrier/x01-carrier.stl) permite girar e ampliar a geometria no visualizador 3D do GitHub.
 
 ## Abra o laboratório MATLAB
 

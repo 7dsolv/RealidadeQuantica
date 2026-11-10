@@ -2,6 +2,8 @@
 
 **[Extensão offline: circuito, PCB 3D e AnomalyNet](../offline/README.md)**
 
+[Versão 0.1.0: baixar resultados completos e SHA-256](https://github.com/7dsolv/RealidadeQuantica/releases/tag/xeno-v0.1.0)
+
 **Membrana sensorial bioinspirada — protótipo computacional com dados sintéticos.**
 
 Uma cadeia reproduzível que liga dois canais químicos, deformação mecânica, calibração estatística e resposta óptica. O modelo calcula uma hipótese de material; nenhum material foi fabricado e nenhuma proteína foi simulada em nível atômico.

@@ -85,7 +85,7 @@ freq=logspace(-1,3,500); gain=1./sqrt(1+(2*pi*freq*report.nominal_tau_s).^2);
 ax2=nexttile; semilogx(ax2,freq,20*log10(gain),'Color',[0.47 0.12 0.73],'LineWidth',2);
 grid(ax2,'on'); xline(ax2,report.nominal_cutoff_Hz,'--');
 xlabel(ax2,'Frequencia / Hz'); ylabel(ax2,'Ganho / dB');
-title(ax2,sprintf('R = 10 kOhm | C = 4,7 uF | tau = 47 ms | fc = %.3f Hz',report.nominal_cutoff_Hz));
+title(ax2,sprintf('tau = %.3f ms | fc = %.3f Hz',report.nominal_tau_s*1000,report.nominal_cutoff_Hz));
 title(tl,'MODELO IDEAL / sem carga ADC, ESR, fuga, tolerancia dinamica ou parasitas');
 set([ax ax2],'Color','white','XColor',[0.16 0.12 0.22],'YColor',[0.16 0.12 0.22],'FontSize',12);
 exportgraphics(f,fullfile(folder,'rc-response.png'),'Width',1600,'Height',860,'Units','pixels','Padding','figure','BackgroundColor','white');
@@ -96,7 +96,7 @@ fprintf(fid,'* KONAET X-01 ideal passive RC channels; SPICE netlist, not firmwar
 fprintf(fid,'VLEFT RAW_L 0 PULSE(0 3.3 0 1u 1u 0.5 1)\nVRIGHT RAW_R 0 DC 1.65\n');
 fprintf(fid,'R1 RAW_L ADC_L %.12g\nR2 RAW_R ADC_R %.12g\n',b.resistance_Ohm,b.resistance_Ohm);
 fprintf(fid,'C1 ADC_L 0 %.12g\nC2 ADC_R 0 %.12g\n',b.capacitance_F,b.capacitance_F);
-fprintf(fid,'VSUPPLY VCC 0 DC 3.3\nC3 VCC 0 100n\n.tran 1m 1\n.end\n');
+fprintf(fid,'VSUPPLY VCC 0 DC %.12g\nC3 VCC 0 %.12g\n.tran 1m 1\n.end\n',b.supply_V,b.decoupling_F);
 end
 function write_diagram(b,path)
 fid=fopen(path,'w','n','UTF-8'); assert(fid>=0); guard=onCleanup(@() fclose(fid)); %#ok<NASGU>
@@ -110,8 +110,8 @@ for k=1:2
     fprintf(fid,'<path d="M700 %d V%d M665 %d H735 M665 %d H735 M700 %d V%d M675 %d H725 M683 %d H717 M692 %d H708"/></g>\n',y,y+52,y+52,y+65,y+65,y+116,y+116,y+126,y+136);
     fprintf(fid,'<circle cx="700" cy="%d" r="5" fill="#e5caff"/>\n',y);
     suffix='L'; if k==2, suffix='R'; end
-    fprintf(fid,'<text x="100" y="%d" font-size="19">RAW_%s</text><text x="315" y="%d" font-size="19">R%d / 10 kOhm</text>\n',y-35,suffix,y-38,k);
-    fprintf(fid,'<text x="760" y="%d" font-size="19">C%d / 4,7 uF</text><text x="1080" y="%d" font-size="19">ADC_%s</text>\n',y+65,k,y+6,suffix);
+    fprintf(fid,'<text x="100" y="%d" font-size="19">RAW_%s</text><text x="285" y="%d" font-size="19">R%d / %.6g kOhm</text>\n',y-35,suffix,y-38,k,b.resistance_Ohm/1000);
+    fprintf(fid,'<text x="760" y="%d" font-size="19">C%d / %.6g uF</text><text x="1080" y="%d" font-size="19">ADC_%s</text>\n',y+65,k,b.capacitance_F*1e6,y+6,suffix);
 end
 fprintf(fid,'<text x="60" y="585" font-size="20">tau = R C = %.0f ms / fc = 1 / (2 pi R C) = %.3f Hz</text>\n',1000*b.resistance_Ohm*b.capacitance_F,1/(2*pi*b.resistance_Ohm*b.capacitance_F));
 fprintf(fid,'<text x="60" y="620" font-size="16" fill="#b3a1cb">Conceito de placa passiva. Nao inclui sensores ativos, ADC, MCU, protecao de entrada ou controle termico.</text></g></svg>\n');
