@@ -28,7 +28,7 @@ jobs:
       contents: write
       pull-requests: write
     steps:
-      - uses: 7dsolv/konaet-bot@a27acebb28894beb79a7f83409788d4122a9fd41 # validated v1.3.0 source
+      - uses: 7dsolv/konaet-bot@7506bfda2a6fb503e0457132e149f560fd83295a # validated v1.3.1 source
         id: app
         with:
           client-id: ${{ vars.KONAET_APP_CLIENT_ID }}
@@ -59,7 +59,7 @@ jobs:
             *) exit 64;;
           esac
           { echo 'paths<<KONAET_PATHS';echo "$paths";echo KONAET_PATHS; } >> "$GITHUB_OUTPUT"
-      - uses: 7dsolv/konaet-bot/propose@a27acebb28894beb79a7f83409788d4122a9fd41 # validated v1.3.0 source
+      - uses: 7dsolv/konaet-bot/propose@7506bfda2a6fb503e0457132e149f560fd83295a # validated v1.3.1 source
         id: proposal
         with:
           token: ${{ steps.app.outputs.token }}
