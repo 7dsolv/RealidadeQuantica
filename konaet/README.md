@@ -29,7 +29,7 @@ Os dois projetos compartilham a identidade Konaet, mas têm funções diferentes
 
 O usuário `github-actions[bot]` pertence à infraestrutura do GitHub e não pode ser renomeado. A App própria **KONAET** já está registrada, e sua conta `konaet[bot]` tem ID `352182232`. O workflow confere login, ID e tipo `Bot` na API antes de atribuir a autoria dos resultados a essa conta.
 
-Na configuração atual, os commits usam `konaet[bot]` como autor e `github-actions[bot]` como committer, pois o envio usa o token do GitHub Actions. Atribuição de autoria é metadado do Git; não comprova autenticação da App ou assinatura criptográfica. O modo usado aparece no resumo de cada execução. As contribuições antigas continuam no histórico e podem permanecer na lista de contribuidores.
+As credenciais foram configuradas na conta `7dsolv` em **10/11/2026**. A [identidade real da App](https://github.com/7dsolv/konaet-bot/actions/runs/42883494662) foi verificada, e o [laboratório integrado](https://github.com/7dsolv/RealidadeQuantica/actions/runs/42883960821) publicou com autor e committer `konaet[bot]`, usando o token da App. [Evidência da publicação](../assets/integrated/publication-proof.json). A autenticação da App e a assinatura criptográfica de commits são verificações distintas. As contribuições antigas continuam no histórico e podem permanecer na lista de contribuidores.
 
 O pacote reutilizável está em [`7dsolv/konaet-bot`](https://github.com/7dsolv/konaet-bot), com a [configuração na raiz](https://github.com/7dsolv/konaet-bot/blob/main/github-app.json), helper MATLAB e workflow de commit/push/pull request para aprovação humana.
 
