@@ -99,6 +99,6 @@ As grandezas de potência são $R=|r|^2$, $T=(n_s/n_0)|t|^2$, com $R+T=1$. O mod
 
 Um circuito ilustrativo usa $V_{max}=3\,V$, $R_{carga}=5\,k\Omega$, potência $P_e=(V_{max}u)^2/R_{carga}$ e energia $\int P_e dt$. Isso é uma carga assumida, sem representar o circuito eletroquímico de reflectina nem incluir toda a eletrônica.
 
-Os 12 cenários variam $D$ em ±30%, $E$ em ±25% e $n_{H0}$ em ±0.025. As escolhas uniformes têm seed fixa e não são distribuições inferidas de experimentos. A faixa exibida é apenas mínimo/máximo dos cenários amostrados.
+Os 12 cenários variam $D$ em ±30%, $E$ em ±25% e o índice alto em ±0.025, preservando as espessuras de projeto nominais. Assim, a mudança do índice não é cancelada por um novo ajuste da espessura. As escolhas uniformes têm seed fixa e não são distribuições inferidas de experimentos. A faixa exibida é apenas mínimo/máximo dos cenários amostrados.
 
 O SystemVerilog calcula $q=\lfloor(3q_c+q_t+2)/4\rfloor$ para entradas unsigned de 12 bits. A saída registrada tem um ciclo de latência, `valid` e reset síncrono. Essa fusão fixa não é a regressão nem o PI MATLAB, e não foi sintetizada ou medida em FPGA física. A bancada verifica aritmética, limites, monotonicidade, retenção e reset.

@@ -27,6 +27,8 @@ evidence = executar_xeno(false, true);
 
 Essa chamada testa o núcleo MATLAB, calcula os cenários e exporta gráficos e dados em `artifacts/xeno/`. O CI usa `executar_xeno(true,true)`: exige também a referência Fortran e a simulação SystemVerilog compiladas.
 
+Na aba **Actions**, também é possível abrir **Konaet - ciclos autonomos do laboratorio → Run workflow** e selecionar `module: xeno`. O valor `physics` mantém os experimentos SU(3), onda e cosmologia.
+
 ## O que é calculado
 
 | Bloco | Modelo e resultado |
