@@ -16,6 +16,8 @@ datasets/nab/UPSTREAM-DATA.md -whitespace
 datasets/nab/* linguist-vendored=true
 assets/integrated/* linguist-generated=true
 assets/integrated/model/* linguist-generated=true
+assets/integrated/model/*.json -text
+*.sha256 -text
 assets/integrated/rtl/* linguist-generated=true
 hardware/x02-acquisition/* linguist-generated=true
 hardware/x02-acquisition/README.md linguist-generated=false

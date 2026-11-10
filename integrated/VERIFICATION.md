@@ -13,8 +13,10 @@ passou nas três verificações Ramsey nos dois modos do harness oficial QDK.
 Os regressivos cobrem modelo misturado/adulterado, escalas inválidas, contagens
 e recompensas incompatíveis, continuidade no desenvolvimento original,
 concorrência da memória local, histórico limitado e calibração sem janelas
-representáveis. O contrato de publicação tem 13 cenários com Git real que
+representáveis. O contrato de publicação tem 14 cenários com Git real que
 distinguem mudanças em código/estado de mudanças em saídas de outro módulo.
+O checkout com `autocrlf=true` preserva os bytes dos JSONs ligados ao bundle
+e dos manifestos SHA-256, evitando hashes diferentes no Windows.
 
 A [nova autenticação da App](https://github.com/7dsolv/konaet-bot/actions/runs/42905908141)
 e a [nova proposta real](https://github.com/7dsolv/konaet-bot/actions/runs/42907122091)
