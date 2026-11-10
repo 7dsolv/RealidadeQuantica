@@ -41,7 +41,7 @@ jobs:
           set -euo pipefail
           sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends gfortran kicad
+          sudo apt-get install -y --no-install-recommends gfortran kicad xvfb xauth
           mkdir -p build artifacts/offline
           cp models/anomalynet/LICENSE.txt artifacts/offline/AnomalyNet-LICENSE.txt
           cp models/anomalynet/NOTICE.txt artifacts/offline/AnomalyNet-NOTICE.txt
@@ -66,8 +66,8 @@ jobs:
           mkdir -p artifacts/offline/board/layers
           kicad-cli pcb export svg --mode-multi --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts \
             --output artifacts/offline/board/layers/ "$board"
-          kicad-cli pcb render --width 1600 --height 1000 --quality high \
-            --background opaque --rotate=-45,0,35 \
+          xvfb-run --auto-servernum kicad-cli pcb render --width 1600 --height 1000 --quality high \
+            --background opaque --rotate '315,0,35' \
             --define-var "KIPRJMOD=$PWD/artifacts/offline/board" \
             --output artifacts/offline/board/x01-kicad.png "$board"
       - name: Resumir verificacoes reais
