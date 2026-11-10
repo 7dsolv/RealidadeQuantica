@@ -1,7 +1,7 @@
 function manifest = render_x01_board(b, folder)
 %RENDER_X01_BOARD Montagem geometrica em mm, STL e animacao ilustrativa.
 [v,f]=plate_mesh(b);
-parts=struct('vertices',v,'faces',f,'color',[0.19 0.065 0.30]);
+parts=struct('vertices',v,'faces',f,'color',[0.28 0.10 0.45]);
 for k=1:numel(b.components)
     p=b.components(k); sz=p.body_mm; center=[p.xy_mm b.size_mm(3)+0.05+sz(3)/2];
     if strcmp(p.kind,'header'), center(2)=center(2)+mean(p.pads_mm(:,2)); col=[0.09 0.08 0.13];
@@ -24,7 +24,7 @@ guard=onCleanup(@() close(fig)); %#ok<NASGU>
 ax=axes(fig,'Position',[0.02 0.14 0.69 0.72]); hold(ax,'on');
 for k=1:numel(parts)
     p=parts(k); patch(ax,'Vertices',p.vertices,'Faces',p.faces,'FaceColor',p.color, ...
-        'EdgeColor','none','FaceLighting','gouraud','AmbientStrength',0.45);
+        'EdgeColor','none','FaceLighting','flat','AmbientStrength',0.65);
 end
 for k=1:numel(b.routes)
     r=b.routes(k); z=b.size_mm(3)+0.035;

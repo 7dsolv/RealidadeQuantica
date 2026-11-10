@@ -39,12 +39,14 @@ jobs:
       - name: Preparar compilador e KiCad nativo
         run: |
           set -euo pipefail
+          sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
           sudo apt-get update -qq
           sudo apt-get install -y --no-install-recommends gfortran kicad
           mkdir -p build artifacts/offline
           gfortran -std=f2008 -Wall -Wextra -fcheck=all -O2 \
             fortran/tiny_anomalynet.f90 -o build/tiny_anomalynet
           kicad-cli version | tee artifacts/offline/kicad-version.txt
+          kicad-cli version | grep -Eq '^10\.'
       - uses: matlab-actions/setup-matlab@v3
       - name: Inferir, comparar e gerar placa em MATLAB
         uses: matlab-actions/run-command@v3
@@ -62,6 +64,10 @@ jobs:
           mkdir -p artifacts/offline/board/layers
           kicad-cli pcb export svg --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts \
             --output artifacts/offline/board/layers/ "$board"
+          kicad-cli pcb render --width 1600 --height 1000 --quality high \
+            --background opaque --rotate=-45,0,35 \
+            --define-var "KIPRJMOD=$PWD/artifacts/offline/board" \
+            --output artifacts/offline/board/x01-kicad.png "$board"
       - name: Resumir verificacoes reais
         run: |
           {
@@ -129,7 +135,7 @@ jobs:
           git add -- assets/offline/AnomalyNet-LICENSE.txt assets/offline/AnomalyNet-NOTICE.txt
           for file in board-source.json board-report.json bom.csv x01-rc.cir \
             x01-circuit.svg x01-carrier.kicad_pcb x01-carrier.stl x01-board.png \
-            x01-board-motion.gif rc-response.csv rc-response.png kicad-report.json kicad-errors.json; do
+            x01-board-motion.gif x01-kicad.png rc-response.csv rc-response.png kicad-report.json kicad-errors.json; do
             cp "artifacts/offline/board/$file" "hardware/x01-carrier/$file"
             git add -- "hardware/x01-carrier/$file"
           done

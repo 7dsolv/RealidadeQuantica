@@ -6,11 +6,12 @@ m=tiny_load_model(root);
 [calibration,~]=tiny_windows(512,7301);
 [data,truth]=tiny_windows(1024,7302);
 q=tiny_quantize(m,calibration);
+tiny_export_int8(q,output);
 [fp,fp_label]=tiny_fp32(m,data);
 [iq,iq_label,status]=tiny_int8(q,data);
 reference=jsondecode(fileread(fullfile(root,'models','anomalynet','reference.json')));
 tests={@reference_logits,@parameter_count,@quantized_types,@paired_agreement, ...
-    @invalid_input,@batch_consistency,@determinism,@hash_rejection};
+    @invalid_input,@batch_consistency,@determinism,@hash_rejection,@export_roundtrip};
 if compiled, tests=[tests {@fortran_logits}]; end
 report.revision=getenv('GITHUB_SHA'); report.source_model=m.source.model;
 report.source_revision=m.source.revision; report.weights_trained_by='Eoin Jordan';
@@ -26,6 +27,13 @@ report.fp32_confusion=[sum(truth==0 & fp_label==0),sum(truth==0 & fp_label==1); 
     sum(truth==1 & fp_label==0),sum(truth==1 & fp_label==1)];
 report.int8_confusion=[sum(truth==0 & iq_label==0),sum(truth==0 & iq_label==1); ...
     sum(truth==1 & iq_label==0),sum(truth==1 & iq_label==1)];
+kinds={'spike','dropout','runaway_ramp','noise_burst'};
+anomaly_indices=find(truth==1);
+for k=1:4
+    indices=anomaly_indices(k:4:end);
+    report.by_anomaly_type(k)=struct('kind',kinds{k},'windows',numel(indices), ...
+        'recall_fp32',mean(fp_label(indices)==1),'recall_int8',mean(iq_label(indices)==1));
+end
 report.model_fp32_bytes=3368; report.model_int8_payload_bytes=q.payload_bytes;
 report.mcu_latency='NOT_MEASURED'; report.mcu_flash_ram='NOT_MEASURED';
 report.device_integration='NOT_DEPLOYED'; report.network_required_for_inference=false;
@@ -44,26 +52,26 @@ assert(report.failed==0,'Tiny: %d testes falharam.',report.failed);
 writetable(table(truth.',fp_label.',iq_label.',fp(1,:).',fp(2,:).',iq(1,:).',iq(2,:).', ...
     'VariableNames',{'truth','fp32_label','int8_label','fp32_normal_logit','fp32_anomaly_logit', ...
     'int8_normal_logit','int8_anomaly_logit'}),fullfile(output,'tiny-predictions.csv'));
-fid=fopen(fullfile(output,'anomalynet-int8.bin'),'wb','ieee-le'); assert(fid>=0);
-guard=onCleanup(@() fclose(fid));
-fwrite(fid,q.W1.','int8'); fwrite(fid,q.b1,'int32'); fwrite(fid,q.W2.','int8'); fwrite(fid,q.b2,'int32'); clear guard;
-assert(dir(fullfile(output,'anomalynet-int8.bin')).bytes==920);
-meta=rmfield(q,{'W1','W2','b1','b2'});
-meta.format='W1 row-major int8[24,32], b1 int32[24], W2 row-major int8[2,24], b2 int32[2]; little endian';
-meta.model_credit='AnomalyNet, Copyright 2026 Eoin Jordan, Apache-2.0';
-write_json(fullfile(output,'quantization.json'),meta);
 save(fullfile(output,'tiny-model.mat'),'m','q','report');
-f=figure('Visible','off','Color',[0.04 0.025 0.07],'Position',[30 30 1250 620]);
+f=figure('Visible','off','Color','white','Position',[30 30 1250 620]);
 guard=onCleanup(@() close(f)); %#ok<NASGU>
 tiledlayout(f,1,2,'Padding','loose');
 ax=nexttile; imagesc(ax,report.int8_confusion); colorbar(ax);
+colormap(ax,interp1([0 1],[0.95 0.92 0.99;0.36 0.12 0.58],linspace(0,1,256)));
 xticks(ax,[1 2]); yticks(ax,[1 2]); xticklabels(ax,{'Normal','Anomalia'}); yticklabels(ax,{'Normal','Anomalia'});
 xlabel(ax,'Classe prevista INT8'); ylabel(ax,'Classe sintética real');
-for a=1:2, for b=1:2, text(ax,b,a,num2str(report.int8_confusion(a,b)),'HorizontalAlignment','center','FontWeight','bold','FontSize',24,'Color','white'); end, end
+for a=1:2, for b=1:2
+    color=[0.15 0.10 0.22]; if report.int8_confusion(a,b)>max(report.int8_confusion,[],'all')/2, color=[1 1 1]; end
+    text(ax,b,a,num2str(report.int8_confusion(a,b)),'HorizontalAlignment','center','FontWeight','bold','FontSize',24,'Color',color);
+end, end
 title(ax,'KONAET / ADAPTADOR ANOMALYNET');
-ax2=nexttile; scatter(ax2,fp(2,:)-fp(1,:),iq(2,:)-iq(1,:),8,double(truth),'filled');
+ax2=nexttile; margin_fp=fp(2,:)-fp(1,:); margin_iq=iq(2,:)-iq(1,:);
+scatter(ax2,margin_fp(truth==0),margin_iq(truth==0),12,[0.36 0.12 0.58],'filled'); hold(ax2,'on');
+scatter(ax2,margin_fp(truth==1),margin_iq(truth==1),12,[0.05 0.5 0.5],'filled');
+legend(ax2,{'Normal sintetico','Anomalia sintetica'},'Location','northwest');
 grid(ax2,'on'); xlabel(ax2,'Margem FP32'); ylabel(ax2,'Margem INT8');
 title(ax2,sprintf('Concordância: %.2f%% / 1.024 janelas sintéticas',100*report.decision_agreement));
+set([ax ax2],'Color','white','XColor',[0.16 0.12 0.22],'YColor',[0.16 0.12 0.22],'FontSize',12);
 exportgraphics(f,fullfile(output,'tiny-evaluation.png'),'Width',1500,'Height',740,'Units','pixels','Padding','figure','BackgroundColor','white');
 fprintf('Tiny: %d/%d testes; FP32 %.2f%%, INT8 %.2f%%; payload %d bytes.\n', ...
     report.passed,report.total,100*report.accuracy_fp32,100*report.accuracy_int8,q.payload_bytes);
@@ -117,6 +125,13 @@ fprintf('Tiny: %d/%d testes; FP32 %.2f%%, INT8 %.2f%%; payload %d bytes.\n', ...
         values=readmatrix(result);
         assert(isequal(size(values),[64 2]));
         assert(max(abs(values-double(fp(:,1:64).')),[],'all')<2e-4);
+    end
+    function export_roundtrip()
+        restored=tiny_load_int8(output);
+        [values,pred]=tiny_int8(restored,data);
+        assert(isequal(q.W1,restored.W1) && isequal(q.b1,restored.b1));
+        assert(isequal(q.W2,restored.W2) && isequal(q.b2,restored.b2));
+        assert(isequal(values,iq) && isequal(pred,iq_label));
     end
 end
 

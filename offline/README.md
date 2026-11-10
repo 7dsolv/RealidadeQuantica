@@ -72,8 +72,12 @@ addpath('matlab/tiny')
 m = tiny_load_model(pwd);
 [logits, classe] = tiny_fp32(m, 50 * ones(32,1));
 % 0 = normal; 1 = anomalia. Nao e uma funcao de controle de seguranca.
+
+q = tiny_load_int8(fullfile(pwd,'assets','offline'));
+[logits_int8, classe_int8, estado] = tiny_int8(q, 50 * ones(32,1));
+% O payload e conferido por SHA-256 antes da leitura.
 ```
 
 A execução local requer MATLAB; compilador e KiCad são necessários apenas para suas verificações respectivas. A placa não foi fabricada ou ensaiada. DRC verifica regras geométricas e conectividade; não certifica funcionamento elétrico, compatibilidade com um ADC específico, segurança ou prontidão para fabricação.
 
-[Laboratório XENOELEMENT](../xeno/README.md) · [Laboratório principal](../README.md) · [KiCad CLI](https://docs.kicad.org/8.0/en/cli/cli.html) · [Visualizador STL do GitHub](https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files#3d-file-viewer)
+[Laboratório XENOELEMENT](../xeno/README.md) · [Laboratório principal](../README.md) · [KiCad CLI](https://docs.kicad.org/10.0/en/cli/cli.html) · [Visualizador STL do GitHub](https://docs.github.com/en/repositories/working-with-files/using-files/working-with-non-code-files#3d-file-viewer)
