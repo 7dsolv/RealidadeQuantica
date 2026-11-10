@@ -1,8 +1,8 @@
 {
-  "source_revision": "1540c5e36c909b9b3d9363927563d3996aa608d8",
-  "passed": 17,
+  "source_revision": "397144d52225f472e9ee61372b8377edf1500f05",
+  "passed": 26,
   "failed": 0,
-  "total": 17,
+  "total": 26,
   "cases": [
     {
       "name": "test_konaet_integrated/gradient_check",
@@ -86,6 +86,51 @@
     },
     {
       "name": "test_konaet_integrated/csv_interface",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/bundle_tampering",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/metadata_tampering",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/memory_rejects_incompatible",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/contract_covers_dependencies",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/context_is_label_free",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/uncertainty_reproducible",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/local_memory_compare_and_swap",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/bounded_stream_history",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/no_representable_calibration",
       "passed": true,
       "message": ""
     }

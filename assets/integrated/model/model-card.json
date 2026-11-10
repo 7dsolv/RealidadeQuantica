@@ -3,7 +3,7 @@
   "author": "7dsolv",
   "initialization": "random He initialization, no imported weights",
   "architecture": "standard dense 32-24-2 ReLU; compatible comparison interface",
-  "revision": "844fd5eef21d60aef4144a1fa7387f2ec329551c",
+  "revision": "397144d52225f472e9ee61372b8377edf1500f05",
   "training_seed": 7805,
   "training_config": {
     "learning_rate": 0.008,
@@ -11,7 +11,7 @@
     "epochs": 40
   },
   "training_origin": "KONAET synthetic independent episodes; no NAB test data",
-  "research_contract": "573134a3b9887fb53e4882726100bae7f275fef0f6c4bd369d40462172f784d2",
+  "research_contract": "f739eeffee0d0388146ec3bb5bec04227d2dcfdf416d157b42d093f90a570729",
   "files": [
     {
       "name": "fc1_weight.f32",

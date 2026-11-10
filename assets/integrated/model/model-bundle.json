@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "training_seed": 7805,
+  "research_contract": "f739eeffee0d0388146ec3bb5bec04227d2dcfdf416d157b42d093f90a570729",
+  "files": [
+    {
+      "name": "fc1_weight.f32",
+      "sha256": "b0f225372f44081a584174d06bcafb1662a3ebbd363997c049152a5c0f993301"
+    },
+    {
+      "name": "fc1_bias.f32",
+      "sha256": "c8e57c9243fe547e68136c14a0328bc157061940ad6832325a2b5293f95eb97a"
+    },
+    {
+      "name": "fc2_weight.f32",
+      "sha256": "f7cb290135db3b4da29c233ea185ab973ea39cfe7f6a8c6e6e28286ca1bd0248"
+    },
+    {
+      "name": "fc2_bias.f32",
+      "sha256": "858874765de45deb6ab1936948120e67802751612551e592ac4620517bdb2ee9"
+    },
+    {
+      "name": "model-card.json",
+      "sha256": "4d54bde2f11d0051abc739a8af45a5f71caf92fb8d6aaeea193babb12a68f53c"
+    },
+    {
+      "name": "quantization.json",
+      "sha256": "4d911c5c6b06fb6f2b16e939af9ae2fb0dc618fde25d9fecc6a1f4e80b790f43"
+    },
+    {
+      "name": "konaet-int8.bin",
+      "sha256": "68d5030e3a42215863e1b23f3271d43bf48ee7bafdcc6688f959533b44fcb203"
+    }
+  ]
+}
