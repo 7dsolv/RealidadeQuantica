@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "source_revision": "397144d52225f472e9ee61372b8377edf1500f05",
+  "module": "offline",
+  "input_manifest_sha256": "e4b2b844a1e29f68a4b19b94fbce8301bfa6dc8f6f9adeb31581fba1327e0fb6",
+  "run_url": "https://github.com/7dsolv/RealidadeQuantica/actions/runs/42909079145"
+}
