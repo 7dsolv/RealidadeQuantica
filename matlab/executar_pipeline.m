@@ -21,6 +21,7 @@ memory_path = fullfile(state_dir, 'konaet_memory.csv');
 if ~isfile(memory_path)
     error('Memoria inicial do agente nao encontrada em %s.', memory_path);
 end
+memory_original = fileread(memory_path);
 memory_history = readmatrix(memory_path);
 if isempty(memory_history) || size(memory_history, 2) ~= 16
     error('Memoria do agente precisa conter 16 colunas numericas.');
@@ -78,8 +79,6 @@ curiosity = agent_memory(6);
 coherence = agent_memory(7);
 prediction_error = agent_memory(16);
 memory_history = [memory_history; agent_memory];
-writematrix(memory_history, memory_path);
-writematrix(memory_history, fullfile(artifact_dir, 'konaet_memory.csv'));
 
 writematrix([(1:numel(wilson_history)).', wilson_history], ...
     fullfile(artifact_dir, 'wilson_history.csv'));
@@ -168,6 +167,9 @@ save(fullfile(artifact_dir, 'modelos.mat'), 'wilson_history', ...
     'ramsey_phase', 'ramsey_probability', 'curiosity', ...
     'coherence', 'prediction_error');
 fprintf('Numerical outputs saved under %s\n', artifact_dir);
+writematrix(memory_history, fullfile(artifact_dir, 'konaet_memory.csv'));
+% Commit local state only after every required validation and render passed.
+konaet_commit_memory(memory_path,memory_history,memory_original);
 end
 
 function render_dashboard(output_dir, wilson_history, plaquettes, ...

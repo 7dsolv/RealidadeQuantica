@@ -35,6 +35,34 @@
                       "name":  "combined_windows.json",
                       "bytes":  15359,
                       "sha256":  "1e1fbc4601321aad8d0f8b3784c8134299379f68f6c1f7777565f8ffd57ab6b1"
+                  },
+                  {
+                      "path":  "data/realKnownCause/cpu_utilization_asg_misconfiguration.csv",
+                      "url":  "https://raw.githubusercontent.com/numenta/NAB/ea702d75cc2258d9d7dd35ca8e5e2539d71f3140/data/realKnownCause/cpu_utilization_asg_misconfiguration.csv",
+                      "name":  "cpu_utilization_asg_misconfiguration.csv",
+                      "bytes":  539274,
+                      "sha256":  "58ba65dc0737cfbac11b51514476d50c438d44011232144bb8d93f392df58f9f"
+                  },
+                  {
+                      "path":  "data/realKnownCause/ec2_request_latency_system_failure.csv",
+                      "url":  "https://raw.githubusercontent.com/numenta/NAB/ea702d75cc2258d9d7dd35ca8e5e2539d71f3140/data/realKnownCause/ec2_request_latency_system_failure.csv",
+                      "name":  "ec2_request_latency_system_failure.csv",
+                      "bytes":  123428,
+                      "sha256":  "98378580aa80157e057c61d59d81daddccc6c65a2c0c800e3f01f603b8215c3f"
+                  },
+                  {
+                      "path":  "data/realKnownCause/nyc_taxi.csv",
+                      "url":  "https://raw.githubusercontent.com/numenta/NAB/ea702d75cc2258d9d7dd35ca8e5e2539d71f3140/data/realKnownCause/nyc_taxi.csv",
+                      "name":  "nyc_taxi.csv",
+                      "bytes":  265771,
+                      "sha256":  "d8fa6f7f0734bf5c8be12c52a94e20a82664c397d9dec4449156bd453d32856d"
+                  },
+                  {
+                      "path":  "data/realAWSCloudwatch/ec2_cpu_utilization_5f5533.csv",
+                      "url":  "https://raw.githubusercontent.com/numenta/NAB/ea702d75cc2258d9d7dd35ca8e5e2539d71f3140/data/realAWSCloudwatch/ec2_cpu_utilization_5f5533.csv",
+                      "name":  "ec2_cpu_utilization_5f5533.csv",
+                      "bytes":  119229,
+                      "sha256":  "01613e6f632d067f11a5dfd40a188b0789752b388d9bc77a398bd06333878a76"
                   }
               ],
     "license":  "MIT as supplied by this pinned repository snapshot",

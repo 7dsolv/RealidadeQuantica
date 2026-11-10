@@ -1,0 +1,11 @@
+* @7dsolv
+# Generated outputs are eligible for automatic merge after ALL required checks.
+/assets/
+/state/
+/hardware/x01-carrier/
+/hardware/x02-acquisition/
+# Documentation, inputs, pin maps and generators still require owner review.
+/hardware/x01-carrier/README.md @7dsolv
+/hardware/x02-acquisition/README.md @7dsolv
+/hardware/icebreaker/ @7dsolv
+/.github/ @7dsolv

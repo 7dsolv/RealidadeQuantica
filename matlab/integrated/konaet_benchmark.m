@@ -49,6 +49,9 @@ result=struct('schema_version',1,'source_revision',getenv('GITHUB_SHA'), ...
     'records',records,'real_data',metadata,'hard_definition',hard_meta, ...
     'hardware_latency','NOT_MEASURED','physical_device','NOT_DEPLOYED');
 result.quantized_agreement=mean(paired.KONAET_FP32==paired.KONAET_INT8);
+result.external_protocol=jsondecode(fileread(fullfile(root,'integrated','evaluation-protocol.json')));
+result.external_protocol_sha256=konaet_sha256(fullfile(root,'integrated','evaluation-protocol.json'));
+result.context_comparator='Normal-only calibration, fixed level/shape envelope. Separate research method; not part of deployed neural weights or FPGA.';
 result.all_methods_same_input_domain='10..90 equivalent C; abstentions are counted and never treated as normal';
 konaet_write_json(fullfile(output,'benchmark.json'),result);
 save(fullfile(output,'benchmark.mat'),'result','m','q','original','original_q','hard_x','hard_y','cal_x');

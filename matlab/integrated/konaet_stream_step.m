@@ -19,4 +19,10 @@ view=struct('temperature_C',celsius,'sample_V',sample_V,'code',code,'class',pred
     'model_status','own KONAET weights; synthetic source; no physical sensor');
 s.time(end+1)=s.time_s; s.input(end+1)=u(end); s.node(end+1)=trace.node_V(end);
 s.current(end+1)=view.current_uA; s.charge(end+1)=view.charge_uC; s.classes(end+1)=pred;
+% Bound display history while preserving the causal sample window/RNG.
+if numel(s.time)>300
+    for name={'time','input','node','current','charge','classes'}
+        s.(name{1})=s.(name{1})(end-299:end);
+    end
+end
 end

@@ -42,7 +42,7 @@ if options.AutoStart, start(loop); else, run.Text='Iniciar'; end
         if ~isvalid(fig), return; end
         controls=struct('noise_V',0.04,'step_enabled',step.Value,'step_V',1.1,'dropout',drop.Value);
         [state,view]=konaet_stream_step(state,m,q,controls);
-        range=max(1,numel(state.time)-299):numel(state.time);
+        range=1:numel(state.time);
         input_line.XData=state.time(range);input_line.YData=state.input(range);
         node_line.XData=state.time(range);node_line.YData=state.node(range);
         current_line.XData=state.time(range);current_line.YData=state.current(range);

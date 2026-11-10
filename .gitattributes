@@ -24,3 +24,5 @@ hardware/x02-acquisition/KONAET_X02.pretty/* linguist-generated=true
 hardware/x02-acquisition/models/* linguist-generated=true
 hardware/x02-acquisition/layers/* linguist-generated=true
 *.stl binary
+*.sh text eol=lf
+*.yml text eol=lf

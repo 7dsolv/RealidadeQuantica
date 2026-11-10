@@ -14,9 +14,16 @@ for k=1:numel(models)
 end
 cal_valid=all(isfinite(calibration) & calibration>=10 & calibration<=90,1);
 rules=konaet_baselines(calibration(:,cal_valid),x);
+context=konaet_context_detector(calibration(:,cal_valid),x);
+rules(end+1)=struct('name',context.name,'threshold',context.threshold,'prediction',context.prediction);
 for k=1:numel(rules)
     pred=rules(k).prediction; pred(~valid)=-1;
     records(end+1)=struct('suite',suite,'model',rules(k).name,'metrics',konaet_metrics(y,pred)); %#ok<AGROW>
     paired.(rules(k).name)=pred;
+end
+block=1;if endsWith(suite,'.csv'),block=32;end
+for k=1:numel(records)
+    prediction=paired.(matlab.lang.makeValidName(records(k).model));
+    records(k).metrics.bootstrap=konaet_uncertainty(y,prediction,block,256,66113);
 end
 end

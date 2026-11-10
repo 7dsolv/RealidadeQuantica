@@ -1,0 +1,30 @@
+name: KONAET - integridade da publicacao
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - '.github/**'
+permissions:
+  contents: read
+defaults:
+  run:
+    shell: bash
+jobs:
+  publication-contract:
+    name: Publication contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Reproduzir mudancas de fonte e estado em Git real
+        run: bash tests/publication-inputs.sh
+      - name: Validar inputs contra a base da proposta
+        if: github.event_name == 'pull_request'
+        env:
+          PR_BRANCH: ${{ github.head_ref }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+        run: bash .github/scripts/check-publication.sh

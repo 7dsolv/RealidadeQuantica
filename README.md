@@ -138,4 +138,4 @@ Os resultados são experimentos numéricos reproduzíveis, com aproximações e 
 
 ## Créditos e licença
 
-Projeto original de Adilson Oliveira. O README anterior continha avisos de licença conflitantes; esta evolução não escolhe nem cria uma licença. A decisão permanece com o proprietário do repositório.
+As contribuições próprias do projeto são disponibilizadas sob [MIT](LICENSE), incluindo os módulos compartilhados MATLAB/Fortran. Pesos e dados de terceiros conservam suas licenças e avisos, conforme [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Consulte a [política de segurança](SECURITY.md) antes de relatar vulnerabilidades.
