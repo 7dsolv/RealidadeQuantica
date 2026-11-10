@@ -4,6 +4,8 @@
 
 [Resultados medidos nesta avaliação e seus limites](RESULTS.md)
 
+[Baixar versão 0.1.0: PCB, modelos, resultados completos e SHA-256](https://github.com/7dsolv/RealidadeQuantica/releases/tag/offline-v0.1.0)
+
 Componentes, conexões e geometria descritos em MATLAB geram uma placa de sensores conceitual, circuito RC, modelos 3D e desenhos. Um adaptador local executa o **AnomalyNet**, de **Eoin Jordan**, em FP32 ou INT8, e compara as decisões. A implementação não precisa acessar a rede para inferir.
 
 ![KONAET: montagem conceitual e caminho ilustrado do sinal](../hardware/x01-carrier/x01-board-motion.gif)
