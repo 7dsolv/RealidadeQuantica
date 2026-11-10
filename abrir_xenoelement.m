@@ -12,12 +12,12 @@ panel=uigridlayout(g,[10 1],'RowHeight',{30,22,36,22,36,22,36,44,62,'1x'},'Backg
 panel.Layout.Row=2; panel.Layout.Column=1;
 uilabel(panel,'Text','HIPÓTESES DE PROJETO','FontWeight','bold','FontColor',C.violet);
 uilabel(panel,'Text','Difusividade / 10^{-11} m²/s','Interpreter','tex','FontColor',C.muted);
-D=uieditfield(panel,'numeric','Limits',[2 12],'Value',6);
+D=uieditfield(panel,'numeric','Limits',[2 12],'Value',6,'Tag','xeno-diffusivity');
 uilabel(panel,'Text','Módulo elástico / kPa','FontColor',C.muted);
-E=uieditfield(panel,'numeric','Limits',[140 300],'Value',180);
+E=uieditfield(panel,'numeric','Limits',[140 300],'Value',180,'Tag','xeno-elasticity');
 uilabel(panel,'Text','Estímulo químico máximo / mol m^{-3}','Interpreter','tex','FontColor',C.muted);
-chem=uieditfield(panel,'numeric','Limits',[0.05 0.6],'Value',0.35);
-button=uibutton(panel,'Text','SIMULAR X-01','BackgroundColor',C.violet,'ButtonPushedFcn',@run_model);
+chem=uieditfield(panel,'numeric','Limits',[0.05 0.6],'Value',0.35,'Tag','xeno-chemical');
+button=uibutton(panel,'Text','SIMULAR X-01','BackgroundColor',C.violet,'ButtonPushedFcn',@run_model,'Tag','xeno-run');
 status=uilabel(panel,'Text','Parâmetros hipotéticos. Calibração sintética, sem medidas físicas.','WordWrap','on','FontColor',C.muted);
 uilabel(panel,'Text',['A cor do gráfico representa refletância, não uma previsão RGB do material. ' ...
     'O botão executa o modelo e atualiza as curvas; não acessa sensores reais.'],'WordWrap','on','FontColor',C.muted,'VerticalAlignment','top');

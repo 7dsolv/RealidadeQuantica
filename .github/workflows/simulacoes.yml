@@ -89,6 +89,9 @@ jobs:
     name: Konaet - memoria e graficos do README
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: executar-modelos
+    concurrency:
+      group: konaet-publish-${{ github.repository }}
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     permissions:
       contents: write

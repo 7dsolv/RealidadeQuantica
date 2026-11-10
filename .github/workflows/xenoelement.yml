@@ -58,7 +58,7 @@ jobs:
       - name: Verificar app MATLAB
         uses: matlab-actions/run-command@v3
         with:
-          command: set(groot,'defaultFigureVisible','off'); f=abrir_xenoelement(true); assert(isgraphics(f) && isstruct(f.UserData) && isfield(f.UserData,'bragg_nm')); close(f);
+          command: addpath('tests'); test_xeno_app(fullfile(pwd,'artifacts','xeno'));
       - name: Resumir evidencias
         run: |
           {
@@ -80,6 +80,9 @@ jobs:
     needs: validar
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    concurrency:
+      group: konaet-publish-${{ github.repository }}
+      cancel-in-progress: false
     permissions:
       contents: write
     steps:
@@ -109,7 +112,7 @@ jobs:
           mkdir -p assets/xeno
           for file in x01-dashboard.png x01-motion.gif x01-motion-preview.png \
             x01-architecture.png x01-architecture.svg evidence.json parameters.json \
-            test-report.json visual-manifest.json; do
+            test-report.json visual-manifest.json x01-app.png app-report.json controller_comparison.csv; do
             cp "artifacts/xeno/$file" "assets/xeno/$file"
             git add -- "assets/xeno/$file"
           done

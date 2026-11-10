@@ -20,6 +20,8 @@ abrir_xenoelement
 
 O app permite variar difusividade, módulo elástico e amplitude química, recalcular os modelos e comparar as curvas. A quinta aba de `abrir_laboratorio` abre o mesmo simulador. Os controles funcionam no MATLAB local.
 
+![Interface MATLAB do X-01](../assets/xeno/x01-app.png)
+
 ```matlab
 addpath('matlab/xeno')
 evidence = executar_xeno(false, true);
@@ -57,6 +59,8 @@ O workflow **KONAET XENOELEMENT X-01** pode ser iniciado manualmente e roda diar
 O [relatório de testes](../assets/xeno/test-report.json) registra o nome e o resultado de cada caso. A [evidência numérica](../assets/xeno/evidence.json) e o [manifesto visual](../assets/xeno/visual-manifest.json) identificam a revisão de origem. Em **Actions → Artifacts → xenoelement-x01** ficam as trajetórias CSV, espectros R/T, dados de sensibilidade, parâmetros e o arquivo MATLAB completo `x01.mat`.
 
 O comparativo `controller_comparison.csv` usa os mesmos 12 cenários, estímulos e ruído para o PI e para controle por antecipação sem realimentação. Publica erro **e energia** de ambos, inclusive cenários em que um controlador seja pior. Essa avaliação mede esta tarefa sintética; não compara agentes universais nem demonstra superioridade em ARC-AGI ou sobre outros sistemas de IA.
+
+A [verificação da interface](../assets/xeno/app-report.json) constrói o app, exporta uma captura e altera os três controles antes de acionar o recálculo e conferir as saídas.
 
 A validação cobre soluções analíticas, balanço de massa, positividade, balanço óptico, refinamento espacial/temporal, sementes reproduzíveis, calibração separada, controle limitado, comparação MATLAB/Fortran e a bancada SystemVerilog. Os testes verificam a implementação dessas hipóteses; não demonstram que um dispositivo físico terá o mesmo comportamento.
 
