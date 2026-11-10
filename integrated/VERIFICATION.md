@@ -13,8 +13,9 @@ Os selos do README apontam para execuções, releases e licenças reais. O selo 
 | Comunicação | [I²C](../assets/integrated/i2c.log) e [ADS1115](../assets/integrated/ads1115.log) | ACK/NACK, ordem dos registros, cadência e recuperação no testbench. |
 | FPGA | [Relatório de roteamento](../assets/integrated/nextpnr-report.json) | Alvo de 12 MHz atingido; estimativa de 20,17 MHz. Não é medição física. |
 | Esquema e placa | [ERC](../hardware/x02-acquisition/erc.json), [DRC e paridade](../hardware/x02-acquisition/drc.json) | Zero violações, conexões pendentes ou divergências no conjunto de regras definido. |
-| Pesquisa persistente | [Memória](../state/konaet-research-memory.json) e [experimentos](../assets/integrated/agent-experiments.json) | Segundo ciclo retomado; contagens avançaram de `[2,2,2]` para `[4,4,4]`. |
+| Pesquisa persistente | [Memória](../state/konaet-research-memory.json) e [experimentos](../assets/integrated/agent-experiments.json) | Na ativação autenticada de 10/11/2026, terceiro ciclo retomado; contagens avançaram de `[4,4,4]` para `[6,6,6]`. |
 | Publicação | [Execução de produção](https://github.com/7dsolv/RealidadeQuantica/actions/runs/42874651866) | Validação e publicação de memória, candidato e mídias concluídas. |
+| Publicação autenticada pela App | [Registro público](../assets/integrated/publication-proof.json) e [execução real](https://github.com/7dsolv/RealidadeQuantica/actions/runs/42883960821) | App autenticada; publicação com autor e committer `konaet[bot]`. |
 | Integridade do pacote | [SHA256SUMS](https://github.com/7dsolv/RealidadeQuantica/releases/download/integrated-v0.2.0/SHA256SUMS.txt) | Os arquivos baixados podem ser comparados aos hashes da release. |
 
 Todos os resultados identificam sua revisão de origem. As verificações do circuito e da interface são simulações e checagens de ferramentas. A placa não foi fabricada; potência, latência no dispositivo e confiabilidade em sensores reais permanecem sem medição. Um ERC/DRC limpo não qualifica sozinho uma placa para fabricação.
@@ -23,7 +24,9 @@ Todos os resultados identificam sua revisão de origem. As verificações do cir
 
 O [workflow de identidade real](https://github.com/7dsolv/konaet-bot/actions/workflows/verificar-identidade.yml) é separado dos testes offline e dos ciclos numéricos. Ele só confirma autenticação depois de obter um token da App KONAET e verificar sua identidade e seu escopo. A existência do nome `konaet[bot]` no autor Git não substitui essa prova.
 
-Na inspeção de **10/11/2026**, os dois repositórios estavam sem `KONAET_APP_CLIENT_ID` e `KONAET_APP_PRIVATE_KEY`. As publicações verificadas acima usaram o token do Actions, com autoria KONAET. Consulte a execução de identidade para resultados posteriores. O [ativador MATLAB](https://github.com/7dsolv/konaet-bot/blob/main/docs/ACTIVATION.md) valida a chave local, a conta e as instalações antes de enviar Secrets criptografados.
+A ativação foi concluída em **10/11/2026**. As credenciais estão configuradas nos dois repositórios. A [verificação real da App](https://github.com/7dsolv/konaet-bot/actions/runs/42883494662) confirmou `konaet[bot]`, ID `352182232`, com token restrito ao repositório esperado. O laboratório passou novamente em todas as verificações e publicou o [commit `c71036b`](https://github.com/7dsolv/RealidadeQuantica/commit/c71036b5f7fdbf9d76c615d0037d6d407c67d123) com autor e committer KONAET, usando o token da App. [Evidência da publicação](../assets/integrated/publication-proof.json).
+
+O bot também criou uma [PR real de integração](https://github.com/7dsolv/konaet-bot/pull/2), com alteração restrita ao arquivo permitido; os testes passaram, a conta `7dsolv` revisou e incorporou a proposta. As publicações anteriores que usaram o token do Actions continuam registradas no histórico. O [ativador MATLAB](https://github.com/7dsolv/konaet-bot/blob/main/docs/ACTIVATION.md) permite reproduzir a configuração; chaves privadas não são incluídas no pacote.
 
 ## Conquistas do perfil
 

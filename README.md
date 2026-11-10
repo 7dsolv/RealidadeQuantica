@@ -11,6 +11,8 @@
 
 [O que cada selo comprova](integrated/VERIFICATION.md) · [Ativação das credenciais KONAET](https://github.com/7dsolv/konaet-bot/blob/main/docs/ACTIVATION.md)
 
+**KONAET autenticada:** a App publicou o [ciclo real verificado](https://github.com/7dsolv/RealidadeQuantica/actions/runs/42883960821) com autor e committer `konaet[bot]`. [Evidência da publicação](assets/integrated/publication-proof.json).
+
 **[Abrir página da KONAET](konaet/README.md)** · **[Abrir App KONAET](https://github.com/apps/konaet)**
 
 **[KONAET integrada X02 — pesos próprios, pesquisa com memória, ADC e FPGA](integrated/README.md)** · **[Baixar a versão 0.2.0](https://github.com/7dsolv/RealidadeQuantica/releases/tag/integrated-v0.2.0)**
