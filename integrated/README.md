@@ -1,6 +1,6 @@
 # KONAET / Agente integrado X02
 
-**[Explorar placa 3D](../hardware/x02-acquisition/x02-acquisition.stl)** · **[Esquema e PCB](../hardware/x02-acquisition)** · **[Resultados auditáveis](RESULTS.md)** · **[Execuções](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml)**
+**[Baixar versão 0.2.0](https://github.com/7dsolv/RealidadeQuantica/releases/tag/integrated-v0.2.0)** · **[Explorar placa 3D](../hardware/x02-acquisition/x02-acquisition.stl)** · **[Esquema e PCB](../hardware/x02-acquisition)** · **[Resultados auditáveis](RESULTS.md)** · **[Execuções](https://github.com/7dsolv/RealidadeQuantica/actions/workflows/integrated.yml)**
 
 A KONAET integra uma pesquisa autônoma restrita, detector treinado do zero, inferência INT8 em SystemVerilog, circuito não ideal, ADC e painel MATLAB. O agente escolhe configurações, treina candidatos, mede a validação e persiste suas recompensas para a próxima rodada. Os pesos novos se chamam **KONAET Sense 842**.
 
@@ -33,6 +33,8 @@ Para reproduzir a pesquisa e os gráficos, `executar_konaet`. A checagem Fortran
 [`konaet_agent_search.m`](../matlab/integrated/konaet_agent_search.m) executa seis experimentos por rodada. UCB1 escolhe entre três configurações de treinamento. Adam ajusta os 842 parâmetros de uma rede densa padrão `32 → 24 ReLU → 2 logits`, inicializada aleatoriamente, com gradiente analítico MATLAB e sem toolbox de IA. A arquitetura é conhecida; o projeto não reivindica invenção da rede ou do algoritmo.
 
 A recompensa é **acurácia balanceada − 0,15 × taxa de falsos positivos**, medida no conjunto de desenvolvimento. A política persiste contagens, recompensas e o melhor candidato em [`state/konaet-research-memory.json`](../state/konaet-research-memory.json). Código ou contrato de treinamento alterado reinicia a pesquisa; com o contrato igual, a rodada retoma a memória e os pesos publicados. O teste final e as séries NAB não entram na escolha do candidato.
+
+O workflow integrado roda às **06:27 UTC nas terças e sextas**, em pushes que alteram seus módulos e por acionamento manual em **Actions → KONAET - agente integrado, pesquisa e FPGA → Run workflow**. A pesquisa é periódica; o painel MATLAB recalcula o circuito enquanto estiver aberto. Os ciclos científicos anteriores mantêm seu agendamento separado.
 
 Treinamento: 4.096 episódios sintéticos, desenvolvimento: 768, calibração de quantização: 1.024. O teste sintético difícil usa 2.048 episódios independentes com semente própria. Sementes, configurações, perdas e decisões individuais ficam publicados. Retomar a busca repetidamente no mesmo desenvolvimento pode causar sobreajuste; o desempenho futuro precisa de novo conjunto externo.
 

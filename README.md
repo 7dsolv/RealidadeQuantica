@@ -6,7 +6,7 @@
 
 **[Abrir página da KONAET](konaet/README.md)** · **[Abrir App KONAET](https://github.com/apps/konaet)**
 
-**[KONAET integrada X02 — pesos próprios, pesquisa com memória, ADC e FPGA](integrated/README.md)**
+**[KONAET integrada X02 — pesos próprios, pesquisa com memória, ADC e FPGA](integrated/README.md)** · **[Baixar a versão 0.2.0](https://github.com/7dsolv/RealidadeQuantica/releases/tag/integrated-v0.2.0)**
 
 ![KONAET: circuito e neurônios calculados juntos](assets/integrated/konaet-live.gif)
 
