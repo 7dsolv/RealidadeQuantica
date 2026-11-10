@@ -4,8 +4,8 @@
     1440,
     900
   ],
-  "gif_bytes": 3.13391E+6,
+  "gif_bytes": 3.142002E+6,
   "animation_data": "computed voltage, current, capacitor charge and hidden activations, not decorative particle motion",
-  "source_revision": "8d28fd9c138e2cb154ce142a04b7a1ac99e6728c",
+  "source_revision": "1540c5e36c909b9b3d9363927563d3996aa608d8",
   "physical_live_telemetry": false
 }
