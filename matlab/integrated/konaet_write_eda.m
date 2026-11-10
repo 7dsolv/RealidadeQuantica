@@ -6,9 +6,10 @@ if ~isfolder(library), mkdir(library); end
 modelpath=fullfile(folder,'models'); if ~isfolder(modelpath), mkdir(modelpath); end
 write_schematic(b,folder); write_pcb(b,folder,library,modelpath);
 write_text(fullfile(folder,'fp-lib-table'),sprintf('(fp_lib_table (lib (name "KONAET_X02")(type "KiCad")(uri "${KIPRJMOD}/KONAET_X02.pretty")(options "")(descr "KONAET local footprints")))\n'));
+write_text(fullfile(folder,'sym-lib-table'),sprintf('(sym_lib_table (lib (name "KONAET")(type "KiCad")(uri "${KIPRJMOD}/KONAET.kicad_sym")(options "")(descr "KONAET local symbols")))\n'));
 project=struct('meta',struct('filename',[b.basename '.kicad_pro'],'version',1), ...
-    'net_settings',struct('classes',struct('name','Default','clearance',0.15,'track_width',0.15, ...
-    'via_diameter',0.6,'via_drill',0.3,'diff_pair_width',0.15,'diff_pair_gap',0.2)));
+    'net_settings',struct('version',3,'classes',{{struct('name','Default','clearance',0.20,'track_width',0.20, ...
+    'via_diameter',0.6,'via_drill',0.3,'diff_pair_width',0.20,'diff_pair_gap',0.2)}}));
 konaet_write_json(fullfile(folder,[b.basename '.kicad_pro']),project);
 konaet_write_json(fullfile(folder,'board-source.json'),b);
 refs=string({b.parts.ref})'; values=string({b.parts.value})'; mpns=string({b.parts.mpn})';
@@ -52,7 +53,7 @@ for p=b.parts
     fprintf(fid,' (instances (project "%s" (path "/%s" (reference "%s") (unit 1)))) )\n',b.basename,b.root_uuid,p.ref);
     for j=1:numel(p.nets)
         y=pos(2)+(j-1)*2.54; pin=[pos(1)-7.62 y]; endpoint=[pos(1)-15.24 y];
-        if p.nets(j)==0
+        if p.nets(j)==0 || startsWith(b.nets{p.nets(j)+1},'unconnected-')
             fprintf(fid,' (no_connect (at %.3f %.3f) (uuid "%s"))\n',pin,konaet_uuid([p.ref ' no connect ' num2str(j)]));
         else
             fprintf(fid,' (wire (pts (xy %.3f %.3f) (xy %.3f %.3f)) (stroke (width 0) (type default)) (uuid "%s"))\n',pin,endpoint,konaet_uuid([p.ref ' wire ' num2str(j)]));
@@ -62,6 +63,19 @@ for p=b.parts
 end
 fprintf(fid,' (text "KONAET X02 / ADC ADS1115 + host FPGA externo / 3V3 / prototipo nao fabricado" (at 25 25 0) (effects (font (size 1.6 1.6)) (justify left)) (uuid "%s"))\n',konaet_uuid('x02 heading'));
 fprintf(fid,' (sheet_instances (path "/" (page "1")))\n)\n');
+clear guard;
+% Reuse exactly the embedded symbols as the local library, avoiding drift.
+text=fileread(fullfile(folder,[b.basename '.kicad_sch']));
+first=regexp(text,'\(lib_symbols','once');depth=0;quoted=false;last=first;
+for j=first:numel(text)
+    if text(j)=='"', quoted=~quoted; end
+    if ~quoted
+        if text(j)=='(',depth=depth+1;elseif text(j)==')',depth=depth-1;end
+    end
+    if depth==0,last=j;break;end
+end
+body=text(first+numel('(lib_symbols'):last-1);body=strrep(body,'"KONAET:','"');
+write_text(fullfile(folder,'KONAET.kicad_sym'),sprintf('(kicad_symbol_lib (version 20250114) (generator "konaet_matlab")\n%s\n)\n',body));
 end
 
 function property(fid,name,value,x,y)
@@ -72,7 +86,7 @@ end
 function write_pcb(b,folder,library,modelpath)
 fid=fopen(fullfile(folder,[b.basename '.kicad_pcb']),'w','n','UTF-8'); assert(fid>=0); guard=onCleanup(@() fclose(fid)); %#ok<NASGU>
 fprintf(fid,'(kicad_pcb (version 20240108) (generator "konaet_matlab") (general (thickness 1.6)) (paper "A4")\n');
-fprintf(fid,' (layers (0 "F.Cu" signal) (31 "B.Cu" signal) (34 "B.Paste" user) (35 "F.Paste" user) (36 "B.SilkS" user) (37 "F.SilkS" user) (38 "B.Mask" user) (39 "F.Mask" user) (44 "Edge.Cuts" user) (47 "F.CrtYd" user) (49 "F.Fab" user)) (setup (pad_to_mask_clearance 0))\n');
+fprintf(fid,' (layers (0 "F.Cu" signal) (1 "In1.Cu" signal) (2 "In2.Cu" signal) (31 "B.Cu" signal) (34 "B.Paste" user) (35 "F.Paste" user) (36 "B.SilkS" user) (37 "F.SilkS" user) (38 "B.Mask" user) (39 "F.Mask" user) (44 "Edge.Cuts" user) (47 "F.CrtYd" user) (49 "F.Fab" user)) (setup (pad_to_mask_clearance 0))\n');
 for k=1:numel(b.nets), fprintf(fid,' (net %d "%s")\n',k-1,b.nets{k}); end
 origin=[100 60]; corners=[0 0;b.size_mm(1) 0;b.size_mm(1:2);0 b.size_mm(2);0 0];
 for j=1:4, fprintf(fid,' (gr_line (start %.3f %.3f) (end %.3f %.3f) (stroke (width 0.05) (type default)) (layer "Edge.Cuts"))\n',corners(j,:)+origin,corners(j+1,:)+origin); end
