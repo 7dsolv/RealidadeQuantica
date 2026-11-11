@@ -2,7 +2,12 @@
   "schema_version": 1,
   "runner": "ubuntu-24.04",
   "matlab_release": "R2026b",
+  "kicad_image": "ghcr.io/kicad/kicad:10.0.8@sha256:05f6ac957e351bbbd9e1f9c996be997f61948ed9f94e0c3cab336bfcaf60161c",
+  "kicad_version": "10.0.8",
   "ppa": "ppa:kicad/kicad-10.0-releases",
+  "ppa_repository_url": "https://ppa.launchpadcontent.net/kicad/kicad-10.0-releases/ubuntu",
+  "ppa_key_url": "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xFDA854F61C4D0D9572BB95E5245D5502FAD7A805",
+  "ppa_key_fingerprint": "FDA854F61C4D0D9572BB95E5245D5502FAD7A805",
   "packages": {
     "gfortran": "4:13.2.0-7ubuntu1",
     "iverilog": "12.0-2build2",
