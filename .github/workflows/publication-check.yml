@@ -22,6 +22,10 @@ jobs:
           persist-credentials: false
       - name: Reproduzir mudancas de fonte e estado em Git real
         run: bash tests/publication-inputs.sh
+      - name: Conferir recuperacao limitada de falhas no servico de dependencias
+        run: bash tests/toolchain-retry.sh
+      - name: Conferir isolamento e argumentos da imagem KiCad
+        run: bash tests/kicad-wrapper.sh
       - name: Validar todos os workflows e scripts de infraestrutura
         env:
           ACTIONLINT_SHA256: 8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8
@@ -32,7 +36,7 @@ jobs:
           echo "$ACTIONLINT_SHA256  $archive" | sha256sum --check
           tar -xzf "$archive" -C "$RUNNER_TEMP" actionlint
           "$RUNNER_TEMP/actionlint" .github/workflows/*.yml
-          shellcheck .github/scripts/*.sh tests/publication-inputs.sh
+          shellcheck -x .github/scripts/*.sh tests/publication-inputs.sh tests/toolchain-retry.sh tests/kicad-wrapper.sh
       - name: Validar inputs contra a base da proposta
         if: github.event_name == 'pull_request'
         env:

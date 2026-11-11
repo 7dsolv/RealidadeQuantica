@@ -1,5 +1,7 @@
 # Realidade Quântica
 
+[Ecossistema KONAET: laboratório, bot e recibos Sovereign](ecosystem/README.md)
+
 **Scientific-computing laboratory with reproducible MATLAB, Fortran, QSharp and RTL evidence.** [Run, evaluate and maintain](docs/MAINTENANCE.md) · [Publication contract](integrated/PUBLISHING.md) · [Third-party notices](THIRD_PARTY_NOTICES.md).
 
 ### Konaet: um agente computacional experimental para explorar campos, ondas, matéria e expansão cósmica.

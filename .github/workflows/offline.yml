@@ -44,21 +44,21 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
-      - name: Preparar compilador e KiCad nativo
+      - uses: 7dsol3/konaet-sovereign-spec/infra/setup-ubuntu@4a38e19c0c82901bb2083d2d070b7675ea1a217d
+      - name: Preparar compilador para testes numericos
         run: |
           set -euo pipefail
           bash .github/scripts/publication-inputs.sh capture offline artifacts/offline
-          bash .github/scripts/install-tools.sh offline artifacts/offline
+          bash .github/scripts/install-tools.sh physics artifacts/offline
           mkdir -p build artifacts/offline
           cp models/anomalynet/LICENSE.txt artifacts/offline/AnomalyNet-LICENSE.txt
           cp models/anomalynet/NOTICE.txt artifacts/offline/AnomalyNet-NOTICE.txt
           gfortran -std=f2008 -Wall -Wextra -fcheck=all -O2 \
             fortran/tiny_anomalynet.f90 -o build/tiny_anomalynet
-          kicad-cli version | tee artifacts/offline/kicad-version.txt
-          kicad-cli version | grep -Eq '^10\.'
       - uses: matlab-actions/setup-matlab@f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d # v3
         with:
           release: R2026b
+          cache: true
       - name: Inferir, comparar e gerar placa em MATLAB
         uses: matlab-actions/run-command@bfa857648f4895aa98a446fe41c85e0788421ed5 # v3
         with:
@@ -66,16 +66,19 @@ jobs:
       - name: Validar PCB e exportar camadas no KiCad
         run: |
           set -euo pipefail
+          bash .github/scripts/install-tools.sh offline artifacts/offline
+          bash .github/scripts/kicad.sh version | tee artifacts/offline/kicad-version.txt
+          bash .github/scripts/kicad.sh version | grep -Eq '^10\.'
           board='artifacts/offline/board/x01-carrier.kicad_pcb'
-          kicad-cli pcb drc --format json --severity-all \
+          bash .github/scripts/kicad.sh pcb drc --format json --severity-all \
             --output artifacts/offline/board/kicad-report.json "$board"
-          kicad-cli pcb drc --format json --severity-error --exit-code-violations \
+          bash .github/scripts/kicad.sh pcb drc --format json --severity-error --exit-code-violations \
             --output artifacts/offline/board/kicad-errors.json "$board"
           jq -e 'has("unconnected_items") and (.unconnected_items | type == "array") and (.unconnected_items | length == 0)' artifacts/offline/board/kicad-report.json
           mkdir -p artifacts/offline/board/layers
-          kicad-cli pcb export svg --mode-multi --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts \
+          bash .github/scripts/kicad.sh pcb export svg --mode-multi --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts \
             --output artifacts/offline/board/layers/ "$board"
-          xvfb-run --auto-servernum kicad-cli pcb render --width 1600 --height 1000 --quality high \
+          xvfb-run --auto-servernum bash .github/scripts/kicad.sh pcb render --width 1600 --height 1000 --quality high \
             --background opaque --rotate '315,0,35' \
             --define-var "KIPRJMOD=$PWD/artifacts/offline/board" \
             --output artifacts/offline/board/x01-kicad.png "$board"

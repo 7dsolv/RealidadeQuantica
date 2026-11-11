@@ -4,7 +4,7 @@ module="${1:?module}";src="${2:?artifact folder}"
 copy_files() { local dest="$1";shift;mkdir -p "$dest";for file in "$@";do cp "$src/$file" "$dest/$file";done; }
 case "$module" in
  integrated)
-  copy_files assets/integrated agent-memory.json agent-experiments.json benchmark.json hard-decisions.csv \
+  copy_files assets/integrated agent-memory.json agent-experiments.json benchmark.json benchmark-summary.md model-qualification.json hard-decisions.csv \
     circuit-report.json circuit-tolerances.csv circuit-trace.csv test-report.json app-report.json visual-report.json stream-report.json \
     live-trace.csv summary.json summary.txt konaet-live.gif konaet-live.png konaet-app.png benchmark.png nextpnr-report.json \
     rtl.log i2c.log adc.log ads1115.log top.log KONAET-LICENSE.txt AnomalyNet-LICENSE.txt AnomalyNet-NOTICE.txt NAB-LICENSE.txt konaet-ice40.bin
@@ -51,4 +51,7 @@ case "$module" in
   ;;
  *) exit 64;;
 esac
+if [ "$module" = integrated ] || [ "$module" = offline ];then
+  copy_files "$dest" kicad-image.json kicad-container-packages.tsv kicad-version.txt
+fi
 for file in publication-source.json publication-inputs.sha256 toolchain-lock.json build-provenance.json installed-packages.tsv;do cp "$src/$file" "$dest/$file";done

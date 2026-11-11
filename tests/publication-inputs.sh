@@ -5,7 +5,7 @@ source_attributes="$(pwd)/.gitattributes"
 fixture="$(mktemp -d)"
 trap 'rm -rf -- "$fixture"' EXIT
 cd "$fixture";git init -q;git config user.name Test;git config user.email test@example.invalid
-mkdir -p matlab/tiny matlab/integrated hardware/icebreaker state assets/integrated/model assets/offline .github tests
+mkdir -p matlab/tiny matlab/integrated integrated hardware/icebreaker state assets/integrated/model assets/offline .github tests
 printf one > matlab/tiny/tiny_fp32.m
 printf one > matlab/integrated/konaet_metrics.m
 printf one > hardware/icebreaker/konaet.pcf
@@ -17,6 +17,7 @@ cp "$source_attributes" .gitattributes
 printf '{"line_endings":"LF"}\n' > assets/integrated/model/model-card.json
 printf 'digest  file\n' > assets/integrated/publication-inputs.sha256
 printf one > tests/contract.sh
+printf one > integrated/qualification-profile.json
 git add .;git commit -qm initial
 bash "$source_script" capture integrated "$fixture/result"
 bash "$source_script" verify integrated "$fixture/result"
@@ -26,7 +27,7 @@ cmp assets/integrated/model/model-card.json "$fixture/windows-checkout/assets/in
 cmp assets/integrated/publication-inputs.sha256 "$fixture/windows-checkout/assets/integrated/publication-inputs.sha256"
 passed=$((passed+1))
 for file in matlab/tiny/tiny_fp32.m matlab/integrated/konaet_metrics.m hardware/icebreaker/konaet.pcf \
-  state/konaet-research-memory.json assets/integrated/model/model-bundle.json .github/lock.json .gitattributes tests/contract.sh;do
+  state/konaet-research-memory.json assets/integrated/model/model-bundle.json .github/lock.json .gitattributes tests/contract.sh integrated/qualification-profile.json;do
   printf changed >> "$file";git add "$file";git commit -qm change
   if bash "$source_script" verify integrated "$fixture/result" >/dev/null 2>&1;then
     echo "Stale inputs accepted: $file";exit 1
