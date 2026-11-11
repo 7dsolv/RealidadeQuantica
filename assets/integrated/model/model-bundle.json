@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "training_seed": 7805,
-  "research_contract": "f739eeffee0d0388146ec3bb5bec04227d2dcfdf416d157b42d093f90a570729",
+  "research_contract": "b120cff3dfc64b01198035dfd966db0ada72331a863f41f30ba9a44ad7655292",
   "files": [
     {
       "name": "fc1_weight.f32",
@@ -21,11 +21,11 @@
     },
     {
       "name": "model-card.json",
-      "sha256": "4d54bde2f11d0051abc739a8af45a5f71caf92fb8d6aaeea193babb12a68f53c"
+      "sha256": "5d06d9cd4151bd1c2d397e3b906182c418bcaaf3a44a1d96f1a4e6229ebf8317"
     },
     {
       "name": "quantization.json",
-      "sha256": "a45b0cd8c7acdbd447e576da0c70e63a04dee53be96a87c071c970e7b043c204"
+      "sha256": "86bc1cf423f4f0049edf7804d57cf3fcb786ac6ecf52c8a93dd06d61640c16cf"
     },
     {
       "name": "konaet-int8.bin",

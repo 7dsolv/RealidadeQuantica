@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "source_revision": "566983cd6e7f625ca4fb0f868b64fdaad2e16d69",
+  "profile": "temperature-anomaly-research-v1",
+  "status": "RESEARCH_ONLY",
+  "deployment_qualified": false,
+  "predictive_thresholds_met": false,
+  "new_independent_device_holdout_tested": false,
+  "physical_bench_validated": false,
+  "cases": [
+    {
+      "suite": "machine_temperature_system_failure.csv",
+      "balanced_accuracy": 0.55581226406958,
+      "recall": 0.28873239436619719,
+      "false_positive_rate": 0.17710786622703723,
+      "coverage": 1,
+      "reference_balanced_accuracy": 0.85625078781686825,
+      "predictive_thresholds_met": false
+    },
+    {
+      "suite": "ambient_temperature_system_failure.csv",
+      "balanced_accuracy": 0.49819168173598549,
+      "recall": 0.8571428571428571,
+      "false_positive_rate": 0.86075949367088611,
+      "coverage": 1,
+      "reference_balanced_accuracy": 0.50953714007511475,
+      "predictive_thresholds_met": false
+    },
+    {
+      "suite": "cpu_utilization_asg_misconfiguration.csv",
+      "balanced_accuracy": 0,
+      "recall": 0,
+      "false_positive_rate": 0,
+      "coverage": 0,
+      "reference_balanced_accuracy": 0,
+      "predictive_thresholds_met": false
+    },
+    {
+      "suite": "ec2_request_latency_system_failure.csv",
+      "balanced_accuracy": 0.38653783164100886,
+      "recall": 0.76744186046511631,
+      "false_positive_rate": 0.9943661971830986,
+      "coverage": 0.97487437185929648,
+      "reference_balanced_accuracy": 0.38372093023255816,
+      "predictive_thresholds_met": false
+    },
+    {
+      "suite": "nyc_taxi.csv",
+      "balanced_accuracy": 0.49667958656330746,
+      "recall": 0.99224806201550386,
+      "false_positive_rate": 0.99888888888888894,
+      "coverage": 1,
+      "reference_balanced_accuracy": 0.5,
+      "predictive_thresholds_met": false
+    },
+    {
+      "suite": "ec2_cpu_utilization_5f5533.csv",
+      "balanced_accuracy": 0.51142857142857145,
+      "recall": 0.9,
+      "false_positive_rate": 0.87714285714285711,
+      "coverage": 0.99,
+      "reference_balanced_accuracy": 0.46142857142857147,
+      "predictive_thresholds_met": false
+    }
+  ],
+  "reason": "Observed public series and simulated RTL do not qualify a physical product. New device holdout and bench evidence require separate review.",
+  "benchmark_sha256": "2eb58a6761bf483a9852e0d02b8b128047f867483d04cf8dda6ba8f10719b557",
+  "model_bundle_sha256": "766cefea9192f3bab75976f37e15a0e747ee1e79c96db919057f7fbe540df21a",
+  "profile_sha256": "58128455725cea2c86c232f02c6c64a4109f633afe2e8e1f52442bdf3acd1e2c"
+}

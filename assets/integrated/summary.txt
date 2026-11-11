@@ -1,5 +1,5 @@
 KONAET / pesos proprios / agente de pesquisa com memoria
-Testes numericos: 26 | app: 6 | RTL: 391 | codigos ADC: 65536
+Testes numericos: 29 | app: 6 | RTL: 391 | codigos ADC: 65536
 Clock alvo 12 MHz; estimativa de roteamento 20.00 MHz. Calculo RTL 206.00 us apos ultima entrada.
 DRC: 0 | desconectados: 0 | paridade: 0 | ERC: 0
 Potencia e latencia fisica nao medidas. PCB nao fabricada. Ver benchmark completo, inclusive resultados desfavoraveis.

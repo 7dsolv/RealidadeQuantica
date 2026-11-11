@@ -1,8 +1,8 @@
 {
-  "source_revision": "213dca26b6eb9950d028254b4a6195066b15d683",
-  "passed": 26,
+  "source_revision": "566983cd6e7f625ca4fb0f868b64fdaad2e16d69",
+  "passed": 29,
   "failed": 0,
-  "total": 26,
+  "total": 29,
   "cases": [
     {
       "name": "test_konaet_integrated/gradient_check",
@@ -131,6 +131,21 @@
     },
     {
       "name": "test_konaet_integrated/no_representable_calibration",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/qualification_rejects_abstention",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/evidence_rejects_metric_drift",
+      "passed": true,
+      "message": ""
+    },
+    {
+      "name": "test_konaet_integrated/bench_capture_contract",
       "passed": true,
       "message": ""
     }
