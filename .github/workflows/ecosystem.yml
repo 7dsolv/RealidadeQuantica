@@ -1,0 +1,73 @@
+name: KONAET - ecossistema verificavel
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['ecosystem/**', 'executar_ecossistema.m', '.github/workflows/ecosystem.yml']
+  pull_request:
+    paths: ['ecosystem/**', 'executar_ecossistema.m', '.github/workflows/ecosystem.yml']
+permissions:
+  contents: read
+concurrency:
+  group: konaet-ecosystem-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  receipts:
+    name: Scientific causal receipt
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    env:
+      MLM_LICENSE_TOKEN: ${{ secrets.MLM_LICENSE_TOKEN }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: 7dsol3/konaet-sovereign-spec
+          ref: c40067a56077c66f040af0d56787a192f96d5ab3
+          path: .dependencies/sovereign
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: 7dsolv/konaet-bot
+          ref: 7506bfda2a6fb503e0457132e149f560fd83295a
+          path: .dependencies/bot
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24.22.2'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+        working-directory: .dependencies/sovereign
+      - uses: matlab-actions/setup-matlab@f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d
+        with:
+          release: R2026b
+      - uses: matlab-actions/run-command@bfa857648f4895aa98a446fe41c85e0788421ed5
+        with:
+          command: executar_ecossistema(fullfile(pwd,'.dependencies/sovereign'),fullfile(pwd,'.dependencies/bot'),fullfile(pwd,'artifacts/ecosystem'));
+      - name: Conferir finalizacao do compromisso desta execucao
+        shell: pwsh
+        run: ./.dependencies/sovereign/ecosystem/Test-KonaetReceipt.ps1 -OutputDirectory artifacts/ecosystem
+      - name: Atestar procedencia dos relatorios aprovados na main
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6
+        with:
+          subject-path: artifacts/ecosystem/*.json
+      - name: Conferir assinatura de procedencia
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh attestation verify artifacts/ecosystem/ecosystem-report.json --repo "$GITHUB_REPOSITORY" --source-digest "$GITHUB_SHA" --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/ecosystem.yml"
+          gh attestation verify artifacts/ecosystem/sovereign-finality.json --repo "$GITHUB_REPOSITORY" --source-digest "$GITHUB_SHA" --signer-workflow "$GITHUB_REPOSITORY/.github/workflows/ecosystem.yml"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: konaet-ecosystem-${{ github.run_id }}-${{ github.run_attempt }}
+          path: artifacts/ecosystem
+          if-no-files-found: error
+          retention-days: 30
