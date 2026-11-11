@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: 7dsol3/konaet-sovereign-spec
-          ref: c40067a56077c66f040af0d56787a192f96d5ab3
+          ref: 78b890fb7bc15fca516c978f9ca28b7259c825cc
           path: .dependencies/sovereign
           persist-credentials: false
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
