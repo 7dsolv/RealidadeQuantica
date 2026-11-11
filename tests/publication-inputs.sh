@@ -2,7 +2,10 @@
 set -euo pipefail
 source_script="$(pwd)/.github/scripts/publication-inputs.sh"
 source_attributes="$(pwd)/.gitattributes"
-fixture="$(mktemp -d)"
+temporary_root="$(cd "${TMPDIR:-/tmp}" && pwd -P)"
+fixture="$(mktemp -d "$temporary_root/konaet-publication-test.XXXXXXXX")"
+fixture="$(cd "$fixture" && pwd -P)"
+[[ "$(dirname "$fixture")" == "$temporary_root" && "$(basename "$fixture")" =~ ^konaet-publication-test\.[A-Za-z0-9]{8}$ ]]
 trap 'rm -rf -- "$fixture"' EXIT
 cd "$fixture";git init -q;git config user.name Test;git config user.email test@example.invalid
 mkdir -p matlab/tiny matlab/integrated integrated hardware/icebreaker state assets/integrated/model assets/offline .github tests
@@ -15,9 +18,12 @@ printf one > assets/integrated/model/model-bundle.json
 printf one > .github/lock.json
 cp "$source_attributes" .gitattributes
 printf '{"line_endings":"LF"}\n' > assets/integrated/model/model-card.json
+printf '{"balanced_accuracy":0.55}\n' > assets/integrated/benchmark.json
+printf '{"deployment_qualified":false}\n' > assets/integrated/model-qualification.json
+printf '| method | BA |\n| KONAET | 55.58 |\n' > assets/integrated/benchmark-summary.md
 printf 'digest  file\n' > assets/integrated/publication-inputs.sha256
 printf one > tests/contract.sh
-printf one > integrated/qualification-profile.json
+printf '{"profile":"acceptance"}\n' > integrated/qualification-profile.json
 git add .;git commit -qm initial
 bash "$source_script" capture integrated "$fixture/result"
 bash "$source_script" verify integrated "$fixture/result"
@@ -26,6 +32,11 @@ git -c core.autocrlf=true checkout-index --prefix="$fixture/windows-checkout/" -
 cmp assets/integrated/model/model-card.json "$fixture/windows-checkout/assets/integrated/model/model-card.json"
 cmp assets/integrated/publication-inputs.sha256 "$fixture/windows-checkout/assets/integrated/publication-inputs.sha256"
 passed=$((passed+1))
+for file in assets/integrated/benchmark.json assets/integrated/model-qualification.json \
+  assets/integrated/benchmark-summary.md integrated/qualification-profile.json;do
+  cmp "$file" "$fixture/windows-checkout/$file"
+  passed=$((passed+1))
+done
 for file in matlab/tiny/tiny_fp32.m matlab/integrated/konaet_metrics.m hardware/icebreaker/konaet.pcf \
   state/konaet-research-memory.json assets/integrated/model/model-bundle.json .github/lock.json .gitattributes tests/contract.sh integrated/qualification-profile.json;do
   printf changed >> "$file";git add "$file";git commit -qm change

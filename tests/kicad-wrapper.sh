@@ -2,7 +2,10 @@
 set -euo pipefail
 source_script="$(pwd)/.github/scripts/kicad.sh"
 lock="$(pwd)/.github/toolchain-lock.json"
-fixture="$(mktemp -d)"
+temporary_root="$(cd "${TMPDIR:-/tmp}" && pwd -P)"
+fixture="$(mktemp -d "$temporary_root/konaet-kicad-test.XXXXXXXX")"
+fixture="$(cd "$fixture" && pwd -P)"
+[[ "$(dirname "$fixture")" == "$temporary_root" && "$(basename "$fixture")" =~ ^konaet-kicad-test\.[A-Za-z0-9]{8}$ ]]
 trap 'rm -rf -- "$fixture"' EXIT
 mkdir -p "$fixture/bin" "$fixture/workspace with spaces/.github"
 cp "$lock" "$fixture/workspace with spaces/.github/toolchain-lock.json"

@@ -15,6 +15,9 @@ datasets/nab/UPSTREAM-DATA.md -text
 datasets/nab/UPSTREAM-DATA.md -whitespace
 datasets/nab/* linguist-vendored=true
 assets/integrated/* linguist-generated=true
+assets/integrated/*.json -text
+assets/integrated/benchmark-summary.md -text
+integrated/qualification-profile.json -text
 assets/integrated/model/* linguist-generated=true
 assets/integrated/model/*.json -text
 *.sha256 -text
