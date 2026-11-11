@@ -46,7 +46,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
-      - uses: 7dsol3/konaet-sovereign-spec/infra/setup-ubuntu@441b0f1b92d606cfa4e56ef66f51d451428d7c9d
+      - uses: 7dsol3/konaet-sovereign-spec/infra/setup-ubuntu@4a38e19c0c82901bb2083d2d070b7675ea1a217d
       - name: Compilar referencias independentes
         run: |
           set -euo pipefail
