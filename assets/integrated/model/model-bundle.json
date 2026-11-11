@@ -25,7 +25,7 @@
     },
     {
       "name": "quantization.json",
-      "sha256": "86bc1cf423f4f0049edf7804d57cf3fcb786ac6ecf52c8a93dd06d61640c16cf"
+      "sha256": "47e6e42536f8d13f3cf3ebc2bf529f9023fc3b4e35bbfe3ea8fa779fe4fd86c7"
     },
     {
       "name": "konaet-int8.bin",
