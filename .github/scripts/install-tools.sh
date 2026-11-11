@@ -11,7 +11,21 @@ case "$module" in
   *) exit 64;;
 esac
 if [ "$module" = integrated ] || [ "$module" = offline ];then
-  konaet_retry_network sudo add-apt-repository --yes "$(jq -r .ppa "$lock")"
+  # Register the same PPA directly: its control API is not needed to install
+  # packages. Authenticate the official key by the full published fingerprint.
+  # https://launchpad.net/~kicad/+archive/ubuntu/kicad-10.0-releases
+  key_file="${RUNNER_TEMP:?runner temporary directory}/konaet-kicad.asc"
+  keyring="${RUNNER_TEMP}/konaet-kicad.gpg"
+  konaet_retry_network curl --fail --location --silent --show-error \
+    --connect-timeout 10 --max-time 30 "$(jq -er .ppa_key_url "$lock")" --output "$key_file"
+  fingerprint="$(gpg --batch --with-colons --show-keys "$key_file" | awk -F: '$1=="fpr"{print $10;exit}')"
+  [[ "$fingerprint" == "$(jq -er .ppa_key_fingerprint "$lock")" ]]
+  gpg --batch --yes --dearmor --output "$keyring" "$key_file"
+  sudo install -m 0644 "$keyring" /usr/share/keyrings/konaet-kicad.gpg
+  printf 'deb [signed-by=/usr/share/keyrings/konaet-kicad.gpg] %s noble main\n' \
+    "$(jq -er .ppa_repository_url "$lock")" | sudo tee /etc/apt/sources.list.d/konaet-kicad.list >/dev/null
+  mkdir -p "$output"
+  sha256sum "$key_file" > "$output/kicad-key-observed.sha256"
 fi
 konaet_retry_network sudo apt-get update -qq --error-on=any
 specifications=()
