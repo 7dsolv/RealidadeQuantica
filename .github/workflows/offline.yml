@@ -67,18 +67,18 @@ jobs:
         run: |
           set -euo pipefail
           bash .github/scripts/install-tools.sh offline artifacts/offline
-          kicad-cli version | tee artifacts/offline/kicad-version.txt
-          kicad-cli version | grep -Eq '^10\.'
+          bash .github/scripts/kicad.sh version | tee artifacts/offline/kicad-version.txt
+          bash .github/scripts/kicad.sh version | grep -Eq '^10\.'
           board='artifacts/offline/board/x01-carrier.kicad_pcb'
-          kicad-cli pcb drc --format json --severity-all \
+          bash .github/scripts/kicad.sh pcb drc --format json --severity-all \
             --output artifacts/offline/board/kicad-report.json "$board"
-          kicad-cli pcb drc --format json --severity-error --exit-code-violations \
+          bash .github/scripts/kicad.sh pcb drc --format json --severity-error --exit-code-violations \
             --output artifacts/offline/board/kicad-errors.json "$board"
           jq -e 'has("unconnected_items") and (.unconnected_items | type == "array") and (.unconnected_items | length == 0)' artifacts/offline/board/kicad-report.json
           mkdir -p artifacts/offline/board/layers
-          kicad-cli pcb export svg --mode-multi --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts \
+          bash .github/scripts/kicad.sh pcb export svg --mode-multi --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts \
             --output artifacts/offline/board/layers/ "$board"
-          xvfb-run --auto-servernum kicad-cli pcb render --width 1600 --height 1000 --quality high \
+          xvfb-run --auto-servernum bash .github/scripts/kicad.sh pcb render --width 1600 --height 1000 --quality high \
             --background opaque --rotate '315,0,35' \
             --define-var "KIPRJMOD=$PWD/artifacts/offline/board" \
             --output artifacts/offline/board/x01-kicad.png "$board"

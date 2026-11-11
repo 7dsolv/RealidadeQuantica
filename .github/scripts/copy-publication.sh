@@ -51,4 +51,7 @@ case "$module" in
   ;;
  *) exit 64;;
 esac
+if [ "$module" = integrated ] || [ "$module" = offline ];then
+  copy_files "$dest" kicad-image.json kicad-container-packages.tsv kicad-version.txt
+fi
 for file in publication-source.json publication-inputs.sha256 toolchain-lock.json build-provenance.json installed-packages.tsv;do cp "$src/$file" "$dest/$file";done

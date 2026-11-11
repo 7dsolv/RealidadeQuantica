@@ -8,6 +8,14 @@ Use MATLAB R2026b. Open `abrir_konaet` for the interactive simulation, or compil
 
 The Actions files pin external dependencies by commit. `.github/toolchain-lock.json` records exact direct package versions. Changing versions is a reviewed source change; do not silently fall back to whatever an apt repository serves. Runner and transitive-package provenance accompany each artifact.
 
+KiCad 10.0.8 uses the official `ghcr.io/kicad/kicad` image fixed by its
+linux/amd64 SHA-256 digest. This removes the operational dependency on the
+Launchpad keyserver that failed in the audit. Container digest, package list and
+version are archived separately from the Ubuntu host packages. The wrapper runs
+without network or extra capabilities, maps the current workspace and uid, and
+accepts the temporary Xvfb display only for rendering. It does not receive App
+credentials or the Docker socket. [Official image](https://github.com/KiCad/kicad-docker/pkgs/container/kicad).
+
 All PRs run physics, offline, Xenoelement, integrated FPGA/EDA, QSharp and publication-integrity checks. Broad push filters cover shared numerical dependencies, test files, workflow scripts and FPGA pin constraints. Generated-output pushes do not recursively trigger the producers.
 
 ## Review and support

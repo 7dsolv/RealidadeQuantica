@@ -5,30 +5,25 @@ module="${1:?module}";output="${2:?output}"
 lock='.github/toolchain-lock.json'
 packages=(gfortran iverilog)
 case "$module" in
-  integrated) packages+=(yosys yosys-abc nextpnr-ice40 nextpnr-ice40-chipdb fpga-icestorm kicad xvfb xauth);;
-  offline) packages+=(kicad xvfb xauth);;
+  integrated) packages+=(yosys yosys-abc nextpnr-ice40 nextpnr-ice40-chipdb fpga-icestorm xvfb xauth);;
+  offline) packages+=(xvfb xauth);;
   physics|xeno) ;;
   *) exit 64;;
 esac
 if [ "$module" = integrated ] || [ "$module" = offline ];then
-  # Register the same PPA directly: its control API is not needed to install
-  # packages. Authenticate the official key by the full published fingerprint.
-  # https://launchpad.net/~kicad/+archive/ubuntu/kicad-10.0-releases
-  key_file="${RUNNER_TEMP:?runner temporary directory}/konaet-kicad.asc"
-  keyring="${RUNNER_TEMP}/konaet-kicad.gpg"
-  konaet_retry_network curl --fail --location --silent --show-error \
-    --connect-timeout 10 --max-time 30 "$(jq -er .ppa_key_url "$lock")" --output "$key_file"
-  key_listing="$(gpg --batch --with-colons --show-keys "$key_file")"
-  [[ "$(printf '%s\n' "$key_listing" | awk -F: '$1=="pub"{n++}END{print n+0}')" == 1 ]]
-  fingerprint="$(printf '%s\n' "$key_listing" | awk -F: '$1=="fpr"{print $10;exit}')"
-  [[ "$fingerprint" == "$(jq -er .ppa_key_fingerprint "$lock")" ]]
-  gpg --batch --yes --dearmor --output "$keyring" "$key_file"
-  sudo install -m 0644 "$keyring" /usr/share/keyrings/konaet-kicad.gpg
-  printf 'deb [signed-by=/usr/share/keyrings/konaet-kicad.gpg] %s noble main\n' \
-    "$(jq -er .ppa_repository_url "$lock")" | sudo tee /etc/apt/sources.list.d/konaet-kicad.list >/dev/null
+  # Official KiCad packaging publishes a versioned CI image. Its fixed digest
+  # avoids the unavailable Launchpad API/keyserver without weakening signatures
+  # or silently installing another KiCad version.
+  image="$(jq -er .kicad_image "$lock")"
+  [[ "$image" =~ ^ghcr\.io/kicad/kicad:10\.0\.[0-9]+@sha256:[0-9a-f]{64}$ ]]
+  konaet_retry_network docker pull "$image"
   mkdir -p "$output"
-  cp "$key_file" "$output/kicad-archive-key.asc"
-  (cd "$output" && sha256sum kicad-archive-key.asc) > "$output/kicad-key-observed.sha256"
+  docker image inspect "$image" > "$output/kicad-image.json"
+  docker run --rm --pull=never --network=none --cap-drop=ALL --security-opt=no-new-privileges \
+    --read-only --entrypoint dpkg-query "$image" -W > "$output/kicad-container-packages.tsv"
+  version="$(bash .github/scripts/kicad.sh version)"
+  [[ "$version" == "$(jq -er .kicad_version "$lock")" ]]
+  printf '%s\n' "$version" > "$output/kicad-version.txt"
 fi
 konaet_retry_network sudo apt-get update -qq --error-on=any
 specifications=()
