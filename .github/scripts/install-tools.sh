@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+source .github/scripts/retry-network.sh
 module="${1:?module}";output="${2:?output}"
 lock='.github/toolchain-lock.json'
 packages=(gfortran iverilog)
@@ -10,15 +11,15 @@ case "$module" in
   *) exit 64;;
 esac
 if [ "$module" = integrated ] || [ "$module" = offline ];then
-  sudo add-apt-repository --yes "$(jq -r .ppa "$lock")"
+  konaet_retry_network sudo add-apt-repository --yes "$(jq -r .ppa "$lock")"
 fi
-sudo apt-get update -qq
+konaet_retry_network sudo apt-get update -qq --error-on=any
 specifications=()
 for package in "${packages[@]}";do
   version="$(jq -er --arg package "$package" '.packages[$package]' "$lock")"
   specifications+=("$package=$version")
 done
-sudo apt-get install -y --no-install-recommends "${specifications[@]}"
+konaet_retry_network sudo apt-get install -y --no-install-recommends "${specifications[@]}"
 mkdir -p "$output"
 dpkg-query -W -f='${binary:Package}\t${Version}\n' | LC_ALL=C sort > "$output/installed-packages.tsv"
 gfortran --version > "$output/gfortran-version.txt"
