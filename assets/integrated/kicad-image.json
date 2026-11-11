@@ -1,0 +1,81 @@
+[
+    {
+        "Id": "sha256:435c07bf74fcd24dcb5ad20540c96451ae3d6f8cd1abffea796981acc9921c02",
+        "RepoTags": [],
+        "RepoDigests": [
+            "ghcr.io/kicad/kicad@sha256:05f6ac957e351bbbd9e1f9c996be997f61948ed9f94e0c3cab336bfcaf60161c"
+        ],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-30T16:39:01.684957462Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "kicad",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "LANGUAGE=C.UTF-8",
+                "LC_ALL=C.UTF-8"
+            ],
+            "Cmd": [
+                "bash"
+            ],
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.authors": "https://groups.google.com/a/kicad.org/g/devlist",
+                "org.opencontainers.image.description": "Image containing KiCad EDA, python and the stock symbol and footprint libraries for use in automation workflows",
+                "org.opencontainers.image.documentation": "https://docs.kicad.org/",
+                "org.opencontainers.image.licenses": "GPL-3.0-or-later",
+                "org.opencontainers.image.source": "https://gitlab.com/kicad/kicad-ci/kicad-cli-docker",
+                "org.opencontainers.image.url": "https://kicad.org",
+                "org.opencontainers.image.vendor": "KiCad"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 2609938678,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/4c1453b66961b6bebeefb07b5128a801da00dc9890136cd3e7f75cf00bbe1a5a/diff:/var/lib/docker/overlay2/ac7ab5264b1fd292ba322cb74d723334c82a166ff8a6ab9ef32ed3e583f441cf/diff:/var/lib/docker/overlay2/361922b124caed244cf0ec3b9bb69ef1a9a8af687d9d10190595ea6b87d6d890/diff:/var/lib/docker/overlay2/ac7b9e7f61d0fa949b04f336de8b0a971178ff7f8a4606d17217898582f596ec/diff:/var/lib/docker/overlay2/59f13979eef82929b3e3d52141aa913d9e889c3e2a2502d51f356b174478a5bc/diff:/var/lib/docker/overlay2/50325b0bbd7816b546a2a62fdd03302ba1e3bc4374ffc3eb5c07eb48ddb701e6/diff:/var/lib/docker/overlay2/19eff774ee5355835104821c7854b91f4f52ea6213203d9398678a330ae6dd2d/diff:/var/lib/docker/overlay2/5d72d5ed44f08de4fb1753f0898ffc6f85df35f87ee127c873192ef7b2cb29b1/diff:/var/lib/docker/overlay2/a08a845bf1800811d011951037f903dc37627fc9ddddcaf80fd85dd37b69064b/diff:/var/lib/docker/overlay2/b599d594676e61641c4aa8c038d4e36786051c92fa02f91f8c9d78d3fa650317/diff:/var/lib/docker/overlay2/102d2761983f7c1242b3c37b536861f829a8c23c8d596f070c9471458e7f3b60/diff:/var/lib/docker/overlay2/e2b3cf8a65d6a4b4c2c622d68cc167ad9fc20d0aa004d30712cf2ba2b06ba3c0/diff",
+                "MergedDir": "/var/lib/docker/overlay2/451b72ed1806534f81fc20ce37d7a64472038d501b4be7eea2b9e5103740b6cc/merged",
+                "UpperDir": "/var/lib/docker/overlay2/451b72ed1806534f81fc20ce37d7a64472038d501b4be7eea2b9e5103740b6cc/diff",
+                "WorkDir": "/var/lib/docker/overlay2/451b72ed1806534f81fc20ce37d7a64472038d501b4be7eea2b9e5103740b6cc/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:a5d6d345f6afa08d7c31272055746d60a838b290bfcc82c0a23e8e984d61a933",
+                "sha256:4738c544b5da1f1c9a7ad6411a1a5c37650cd88f8439cea50d88ad8d0667334b",
+                "sha256:6f1e349f496019e1ec7c2000b88f6431909882760138b2446d9d4032324bdcd8",
+                "sha256:5e6607b4ab1e9eec4642ab5f3119e9fb0f515dbea2d2d12552fff6467fffa8c2",
+                "sha256:b1316d046acdb12a57e9d396b3b4d386bba1b2b75df799de30e114a9004bde53",
+                "sha256:71ef92f692d060728bce7a122d007138f6f3ad7d020a2f911bb6c6095decbda6",
+                "sha256:7f12412706f861d0d542e3c8e1d32ed82e6669e09a19334222addf595b374f55",
+                "sha256:f2e669bc9280f657fbf47941927d301fa638a265a71dec0a39c5034ac74e7b78",
+                "sha256:cbc1c2fb602eac6cf86df02109e8cebca3df0308cfe8c0b5e9f16f29458981e5",
+                "sha256:2de88b534ede0a823dcb014034839409bc44a4b6461dc1fb2ad0369b6e4e4f1c",
+                "sha256:fcb849080312f880dff4cc5428aa1b4ab1da76f9c0c82276bd06504e1d8be048",
+                "sha256:00cc05e35165c0dc60fe639b925ada105dff43bc0891564213c5756c3246052d",
+                "sha256:116d3e3714e24a273024cf88f499afca31b1c61c5c91aeaae1a3065d3918ecaa"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "0001-01-01T00:00:00Z"
+        }
+    }
+]
