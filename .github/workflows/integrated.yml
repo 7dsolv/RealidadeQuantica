@@ -20,6 +20,7 @@ on:
       - '*.m'
       - '.github/**'
       - 'integrated/evaluation-protocol.json'
+      - 'integrated/qualification-profile.json'
       - 'LICENSE'
       - 'THIRD_PARTY_NOTICES.md'
   pull_request:
@@ -45,15 +46,14 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
+      - uses: 7dsol3/konaet-sovereign-spec/infra/setup-ubuntu@4a38e19c0c82901bb2083d2d070b7675ea1a217d
       - name: Preparar ferramentas de calculo e FPGA
         run: |
           set -euo pipefail
           bash .github/scripts/publication-inputs.sh capture integrated artifacts/integrated
-          bash .github/scripts/install-tools.sh integrated artifacts/integrated
+          bash .github/scripts/install-tools.sh physics artifacts/integrated
           mkdir -p build artifacts/integrated
           gfortran -std=f2008 -Wall -Wextra -fcheck=all -O2 fortran/tiny_anomalynet.f90 -o build/tiny_anomalynet
-          yosys -V > artifacts/integrated/yosys-version.txt
-          nextpnr-ice40 --version > artifacts/integrated/nextpnr-version.txt 2>&1
           cp datasets/nab/LICENSE.txt artifacts/integrated/NAB-LICENSE.txt
           cp models/anomalynet/LICENSE.txt artifacts/integrated/AnomalyNet-LICENSE.txt
           cp models/anomalynet/NOTICE.txt artifacts/integrated/AnomalyNet-NOTICE.txt
@@ -61,6 +61,7 @@ jobs:
       - uses: matlab-actions/setup-matlab@f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d # v3
         with:
           release: R2026b
+          cache: true
       - name: Treinar candidato proprio e avaliar dados bloqueados
         id: models
         uses: matlab-actions/run-command@bfa857648f4895aa98a446fe41c85e0788421ed5 # v3
@@ -93,6 +94,9 @@ jobs:
       - name: Sintetizar e rotear FPGA alvo a 12 MHz
         run: |
           set -euo pipefail
+          bash .github/scripts/install-tools.sh integrated artifacts/integrated
+          yosys -V > artifacts/integrated/yosys-version.txt
+          nextpnr-ice40 --version > artifacts/integrated/nextpnr-version.txt 2>&1
           yosys -Q -T -l artifacts/integrated/synthesis.log -p \
             'read_verilog -sv -Iartifacts/integrated/rtl systemverilog/konaet_int8_core.sv systemverilog/konaet_i2c_byte.sv systemverilog/konaet_ads1115.sv systemverilog/konaet_adc_quantizer.sv systemverilog/konaet_fpga_top.sv; synth_ice40 -dsp -top konaet_fpga_top -json artifacts/integrated/konaet-ice40.json'
           nextpnr-ice40 --up5k --package sg48 --freq 12 --seed 42 \
@@ -105,16 +109,16 @@ jobs:
         run: |
           set -euo pipefail
           base='artifacts/integrated/hardware/x02-acquisition'
-          kicad-cli sch erc --format json --severity-all --output artifacts/integrated/hardware/erc.json "$base.kicad_sch"
-          kicad-cli sch erc --format json --severity-error --exit-code-violations --output artifacts/integrated/hardware/erc-errors.json "$base.kicad_sch"
-          kicad-cli pcb drc --format json --severity-all --schematic-parity --output artifacts/integrated/hardware/drc.json "$base.kicad_pcb"
-          kicad-cli pcb drc --format json --severity-error --exit-code-violations --schematic-parity --output artifacts/integrated/hardware/drc-errors.json "$base.kicad_pcb"
+          bash .github/scripts/kicad.sh sch erc --format json --severity-all --output artifacts/integrated/hardware/erc.json "$base.kicad_sch"
+          bash .github/scripts/kicad.sh sch erc --format json --severity-error --exit-code-violations --output artifacts/integrated/hardware/erc-errors.json "$base.kicad_sch"
+          bash .github/scripts/kicad.sh pcb drc --format json --severity-all --schematic-parity --output artifacts/integrated/hardware/drc.json "$base.kicad_pcb"
+          bash .github/scripts/kicad.sh pcb drc --format json --severity-error --exit-code-violations --schematic-parity --output artifacts/integrated/hardware/drc-errors.json "$base.kicad_pcb"
           jq -e '.unconnected_items | length == 0' artifacts/integrated/hardware/drc.json
           jq -e '.schematic_parity | length == 0' artifacts/integrated/hardware/drc.json
           mkdir -p artifacts/integrated/hardware/layers
-          kicad-cli pcb export svg --mode-multi --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts --output artifacts/integrated/hardware/layers/ "$base.kicad_pcb"
-          kicad-cli sch export svg --output artifacts/integrated/hardware/layers/ "$base.kicad_sch"
-          xvfb-run --auto-servernum kicad-cli pcb render --width 1800 --height 1100 --quality high --background opaque \
+          bash .github/scripts/kicad.sh pcb export svg --mode-multi --layers F.Cu,B.Cu,F.SilkS,Edge.Cuts --output artifacts/integrated/hardware/layers/ "$base.kicad_pcb"
+          bash .github/scripts/kicad.sh sch export svg --output artifacts/integrated/hardware/layers/ "$base.kicad_sch"
+          xvfb-run --auto-servernum bash .github/scripts/kicad.sh pcb render --width 1800 --height 1100 --quality high --background opaque \
             --rotate '315,0,35' --define-var "KIPRJMOD=$PWD/artifacts/integrated/hardware" \
             --output artifacts/integrated/hardware/x02-kicad.png "$base.kicad_pcb"
       - name: Consolidar evidencias das ferramentas

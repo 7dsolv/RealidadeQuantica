@@ -4,6 +4,7 @@ root=fileparts(mfilename('fullpath'));
 addpath(fullfile(root,'matlab','integrated'),fullfile(root,'matlab','tiny'),fullfile(root,'tests'));
 output=fullfile(root,'artifacts','integrated');
 report.benchmark=konaet_benchmark(root,output);
+report.qualification=konaet_evidence_summary(output,fullfile(root,'integrated','qualification-profile.json'));
 data=load(fullfile(output,'benchmark.mat'),'q','hard_x');
 report.rtl=konaet_export_rtl(data.q,data.hard_x,output);
 report.circuit=konaet_circuit(output); report.eda=konaet_write_eda(output);

@@ -1,4 +1,5 @@
 artifacts/
+.dependencies/
 build/
 /state/*.lock
 .tools/

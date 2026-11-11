@@ -7,7 +7,8 @@ tests={@gradient_check,@reproducible_data,@reproducible_training,@locked_test, .
     @rc_passivity,@metrics_abstention,@memory_resume,@csv_interface, ...
     @bundle_tampering,@metadata_tampering,@memory_rejects_incompatible, ...
     @contract_covers_dependencies,@context_is_label_free,@uncertainty_reproducible, ...
-    @local_memory_compare_and_swap,@bounded_stream_history,@no_representable_calibration};
+    @local_memory_compare_and_swap,@bounded_stream_history,@no_representable_calibration, ...
+    @qualification_rejects_abstention,@evidence_rejects_metric_drift,@bench_capture_contract};
 report=struct('source_revision',getenv('GITHUB_SHA'),'passed',0,'failed',0,'total',numel(tests), ...
     'cases',struct('name',{},'passed',{},'message',{}));
 for k=1:numel(tests)
@@ -19,6 +20,43 @@ end
 konaet_write_json(fullfile(output,'test-report.json'),report);
 assert(report.failed==0,'Konaet: %d testes falharam.',report.failed);
 
+    function qualification_rejects_abstention()
+        profile=jsondecode(fileread(fullfile(root,'integrated','qualification-profile.json')));
+        assessment=konaet_model_qualification(result,profile);
+        assert(~assessment.deployment_qualified && strcmp(assessment.status,'RESEARCH_ONLY'));
+        assert(~assessment.new_independent_device_holdout_tested && ~assessment.physical_bench_validated);
+        empty=assessment.cases([assessment.cases.coverage]==0);
+        assert(~isempty(empty) && all(~[empty.predictive_thresholds_met]));
+    end
+    function evidence_rejects_metric_drift()
+        folder=fullfile(output,'fixtures','metric-drift'); if ~isfolder(folder),mkdir(folder);end
+        copyfile(fullfile(output,'model'),fullfile(folder,'model'));
+        changed=result; changed.records(1).metrics.balanced_accuracy=0.999;
+        konaet_write_json(fullfile(folder,'benchmark.json'),changed);
+        rejected=false;
+        try,konaet_evidence_summary(folder,fullfile(root,'integrated','qualification-profile.json'));
+        catch exception,rejected=strcmp(exception.identifier,'Konaet:Evidence');end
+        assert(rejected && ~isfile(fullfile(folder,'model-qualification.json')));
+    end
+    function bench_capture_contract()
+        folder=fixture('synthetic-bench'); samplesFile=fullfile(folder,'samples.csv'); decisionsFile=fullfile(folder,'decisions.csv');
+        metadataFile=fullfile(folder,'metadata.json');
+        block=table(ones(32,1),(1:32).',13200*ones(32,1),zeros(32,1),(0:31).'/10, ...
+            'VariableNames',{'window_id','sample_index','adc_code','quantized_int8','sample_time_s'});
+        [~,label,status]=tiny_int8(data.q,50*ones(32,1));
+        decisions=table(1,double(status.accumulators_int32(1)),double(status.accumulators_int32(2)),double(label),3.100206,0, ...
+            'VariableNames',{'window_id','logit0_int32','logit1_int32','class_code','decision_time_s','energy_mJ'});
+        meta=struct('schema_version',1,'physical_capture',true,'board_serial','SYNTHETIC_TEST_ONLY','pcb_revision','fixture', ...
+            'instrument_id','fixture','calibration_reference','fixture','operator','fixture','capture_utc','2026-11-11T00:00:00Z', ...
+            'model_bundle_sha256',konaet_sha256(fullfile(output,'model','model-bundle.json')));
+        writetable(block,samplesFile); writetable(decisions,decisionsFile); konaet_write_json(metadataFile,meta);
+        verified=konaet_validate_bench(samplesFile,decisionsFile,metadataFile,fullfile(output,'model'),folder);
+        assert(verified.windows_compared==1 && ~verified.hardware_qualified && ~verified.equipment_authenticity_verified);
+        decisions.logit0_int32=decisions.logit0_int32+1; writetable(decisions,decisionsFile);
+        rejects(@()konaet_validate_bench(samplesFile,decisionsFile,metadataFile,fullfile(output,'model'),folder));
+        block.sample_index(2)=1; writetable(block,samplesFile);
+        rejects(@()konaet_validate_bench(samplesFile,decisionsFile,metadataFile,fullfile(output,'model'),folder));
+    end
     function gradient_check()
         m=data.m; m.W1(:)=0.03; m.b1(:)=0.2; m.W2(:)=0.04; m.W2(2,:)=-0.02; m.b2(:)=0;
         x=[linspace(35,70,32)' linspace(60,25,32)']; y=[0 1];

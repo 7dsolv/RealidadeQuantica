@@ -1,24 +1,37 @@
 #!/usr/bin/env bash
 set -euo pipefail
+source .github/scripts/retry-network.sh
 module="${1:?module}";output="${2:?output}"
 lock='.github/toolchain-lock.json'
 packages=(gfortran iverilog)
 case "$module" in
-  integrated) packages+=(yosys yosys-abc nextpnr-ice40 nextpnr-ice40-chipdb fpga-icestorm kicad xvfb xauth);;
-  offline) packages+=(kicad xvfb xauth);;
+  integrated) packages+=(yosys yosys-abc nextpnr-ice40 nextpnr-ice40-chipdb fpga-icestorm xvfb xauth);;
+  offline) packages+=(xvfb xauth);;
   physics|xeno) ;;
   *) exit 64;;
 esac
 if [ "$module" = integrated ] || [ "$module" = offline ];then
-  sudo add-apt-repository --yes "$(jq -r .ppa "$lock")"
+  # Official KiCad packaging publishes a versioned CI image. Its fixed digest
+  # avoids the unavailable Launchpad API/keyserver without weakening signatures
+  # or silently installing another KiCad version.
+  image="$(jq -er .kicad_image "$lock")"
+  [[ "$image" =~ ^ghcr\.io/kicad/kicad:10\.0\.[0-9]+@sha256:[0-9a-f]{64}$ ]]
+  konaet_retry_network docker pull "$image"
+  mkdir -p "$output"
+  docker image inspect "$image" > "$output/kicad-image.json"
+  docker run --rm --pull=never --network=none --cap-drop=ALL --security-opt=no-new-privileges \
+    --read-only --entrypoint dpkg-query "$image" -W > "$output/kicad-container-packages.tsv"
+  version="$(bash .github/scripts/kicad.sh version)"
+  [[ "$version" == "$(jq -er .kicad_version "$lock")" ]]
+  printf '%s\n' "$version" > "$output/kicad-version.txt"
 fi
-sudo apt-get update -qq
+konaet_retry_network sudo apt-get update -qq --error-on=any
 specifications=()
 for package in "${packages[@]}";do
   version="$(jq -er --arg package "$package" '.packages[$package]' "$lock")"
   specifications+=("$package=$version")
 done
-sudo apt-get install -y --no-install-recommends "${specifications[@]}"
+konaet_retry_network sudo apt-get install -y --no-install-recommends "${specifications[@]}"
 mkdir -p "$output"
 dpkg-query -W -f='${binary:Package}\t${Version}\n' | LC_ALL=C sort > "$output/installed-packages.tsv"
 gfortran --version > "$output/gfortran-version.txt"
