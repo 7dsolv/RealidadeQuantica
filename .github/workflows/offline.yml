@@ -45,21 +45,20 @@ jobs:
         with:
           persist-credentials: false
       - uses: 7dsol3/konaet-sovereign-spec/infra/setup-ubuntu@441b0f1b92d606cfa4e56ef66f51d451428d7c9d
-      - name: Preparar compilador e KiCad nativo
+      - name: Preparar compilador para testes numericos
         run: |
           set -euo pipefail
           bash .github/scripts/publication-inputs.sh capture offline artifacts/offline
-          bash .github/scripts/install-tools.sh offline artifacts/offline
+          bash .github/scripts/install-tools.sh physics artifacts/offline
           mkdir -p build artifacts/offline
           cp models/anomalynet/LICENSE.txt artifacts/offline/AnomalyNet-LICENSE.txt
           cp models/anomalynet/NOTICE.txt artifacts/offline/AnomalyNet-NOTICE.txt
           gfortran -std=f2008 -Wall -Wextra -fcheck=all -O2 \
             fortran/tiny_anomalynet.f90 -o build/tiny_anomalynet
-          kicad-cli version | tee artifacts/offline/kicad-version.txt
-          kicad-cli version | grep -Eq '^10\.'
       - uses: matlab-actions/setup-matlab@f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d # v3
         with:
           release: R2026b
+          cache: true
       - name: Inferir, comparar e gerar placa em MATLAB
         uses: matlab-actions/run-command@bfa857648f4895aa98a446fe41c85e0788421ed5 # v3
         with:
@@ -67,6 +66,9 @@ jobs:
       - name: Validar PCB e exportar camadas no KiCad
         run: |
           set -euo pipefail
+          bash .github/scripts/install-tools.sh offline artifacts/offline
+          kicad-cli version | tee artifacts/offline/kicad-version.txt
+          kicad-cli version | grep -Eq '^10\.'
           board='artifacts/offline/board/x01-carrier.kicad_pcb'
           kicad-cli pcb drc --format json --severity-all \
             --output artifacts/offline/board/kicad-report.json "$board"
