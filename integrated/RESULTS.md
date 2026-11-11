@@ -14,18 +14,23 @@ roteamento. Esses números representam contratos de software e simulação.
 O novo contrato de pesquisa reiniciou o ciclo e escolheu outro candidato somente
 pelo desenvolvimento original. Portanto, a mudança em relação à referência
 histórica abaixo não isola o efeito de um único algoritmo. No sintético difícil,
-a KONAET INT8 marcou 80,71%; na série já conhecida da máquina, 69,69% contra
-85,63% da AnomalyNet. O intervalo de 95% por bootstrap da KONAET nessa série foi
-59,76–79,38%, condicional aos dados e ao tamanho de bloco declarado.
+os números publicados precisam ser lidos com o pacote e a revisão exatos.
+A tabela anterior desta seção continha valores sem correspondência com o
+`benchmark.json` distribuído, incluindo 69,69% na série da máquina. Essa
+apresentação foi corrigida em 11/11/2026: o pacote de origem `213dca26`,
+ciclo 2, candidato de seed 7805, registra **55,58%**, contra 85,63% da referência.
+O novo pipeline gera `benchmark-summary.md` e `model-qualification.json` a
+partir das contagens, hashes e revisão do próprio pacote. Os assets de releases
+imutáveis permanecem preservados; uma nova rodada pode produzir outro modelo.
 
 | Série real | KONAET INT8: BA | AnomalyNet INT8: BA | KONAET_CONTEXT: BA | Cobertura das entradas |
 | --- | ---: | ---: | ---: | ---: |
-| Máquina — retrospectiva | 69,69% | 85,63% | 50,30% | 100% |
-| Ambiente — retrospectiva | 49,61% | 50,95% | 50,00% | 100% |
+| Máquina — retrospectiva | 55,58% | 85,63% | 50,30% | 100% |
+| Ambiente — retrospectiva | 49,82% | 50,95% | 50,00% | 100% |
 | CPU ASG — nova série | 0,00% | 0,00% | 0,00% | **0%** |
 | Latência EC2 — nova série | 38,65% | 38,37% | 48,70% | 97,49% |
 | Táxis NYC — nova série | 49,67% | 50,00% | 51,94% | 100% |
-| CPU EC2 5f5533 — nova série | 48,86% | 46,14% | 33,43% | 99,00% |
+| CPU EC2 5f5533 — nova série | 51,14% | 46,14% | 33,43% | 99,00% |
 
 BA é acurácia balanceada, contando abstenções como casos não resolvidos.
 **Zero falsos positivos com cobertura zero não significa detecção correta.**
@@ -45,6 +50,15 @@ recall, falsos positivos, cobertura e intervalos ficam no benchmark completo.
 Esses resultados não demonstram superioridade geral. Para avançar, o projeto
 precisa tratar a transferência de domínio com dados de treinamento apropriados
 e avaliar a próxima hipótese em outras séries ainda não usadas para ajustes.
+
+## Qualificação para implantação
+
+O [perfil de aceitação](qualification-profile.json) declara metas propostas de
+BA, recall, falsos positivos, cobertura e comparação com a referência. A
+qualificação gerada continua `RESEARCH_ONLY`: as séries públicas já foram
+observadas e o ensaio físico não ocorreu. Um experimento que perde para a
+referência pode passar nos testes de correção e ser publicado; isso não
+promove seu modelo a uso operacional.
 
 ## Primeira referência de treinamento
 

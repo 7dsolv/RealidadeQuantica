@@ -5,7 +5,6 @@ on:
     branches: [main]
     paths: ['ecosystem/**', 'executar_ecossistema.m', '.github/workflows/ecosystem.yml']
   pull_request:
-    paths: ['ecosystem/**', 'executar_ecossistema.m', '.github/workflows/ecosystem.yml']
 permissions:
   contents: read
 concurrency:
@@ -29,7 +28,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           repository: 7dsol3/konaet-sovereign-spec
-          ref: 78b890fb7bc15fca516c978f9ca28b7259c825cc
+          ref: 441b0f1b92d606cfa4e56ef66f51d451428d7c9d
           path: .dependencies/sovereign
           persist-credentials: false
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
@@ -43,6 +42,10 @@ jobs:
           node-version: '24.22.2'
       - run: npm ci --ignore-scripts --no-audit --no-fund
         working-directory: .dependencies/sovereign
+      - uses: 7dsol3/konaet-sovereign-spec/infra/setup-ubuntu@441b0f1b92d606cfa4e56ef66f51d451428d7c9d
+      - name: Capturar contexto independente antes dos calculos
+        shell: pwsh
+        run: ./.dependencies/sovereign/ecosystem/New-KonaetReceiptTrust.ps1 -Laboratory . -Bot .dependencies/bot -Sovereign .dependencies/sovereign -TrustFile "$env:RUNNER_TEMP/konaet-receipt-trust.json"
       - uses: matlab-actions/setup-matlab@f9e43010f1ae678f7cfa0542fe2a4f60f7d1ad8d
         with:
           release: R2026b
@@ -51,7 +54,7 @@ jobs:
           command: executar_ecossistema(fullfile(pwd,'.dependencies/sovereign'),fullfile(pwd,'.dependencies/bot'),fullfile(pwd,'artifacts/ecosystem'));
       - name: Conferir finalizacao do compromisso desta execucao
         shell: pwsh
-        run: ./.dependencies/sovereign/ecosystem/Test-KonaetReceipt.ps1 -OutputDirectory artifacts/ecosystem
+        run: ./.dependencies/sovereign/ecosystem/Test-KonaetReceipt.ps1 -OutputDirectory artifacts/ecosystem -TrustFile "$env:RUNNER_TEMP/konaet-receipt-trust.json"
       - name: Atestar procedencia dos relatorios aprovados na main
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6

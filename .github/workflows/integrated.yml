@@ -20,6 +20,7 @@ on:
       - '*.m'
       - '.github/**'
       - 'integrated/evaluation-protocol.json'
+      - 'integrated/qualification-profile.json'
       - 'LICENSE'
       - 'THIRD_PARTY_NOTICES.md'
   pull_request:
@@ -45,6 +46,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
+      - uses: 7dsol3/konaet-sovereign-spec/infra/setup-ubuntu@441b0f1b92d606cfa4e56ef66f51d451428d7c9d
       - name: Preparar ferramentas de calculo e FPGA
         run: |
           set -euo pipefail
