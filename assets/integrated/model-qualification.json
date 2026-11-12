@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_revision": "566983cd6e7f625ca4fb0f868b64fdaad2e16d69",
+  "source_revision": "a4d8e151bf8fe006259a95098a07daa49bb80d08",
   "profile": "temperature-anomaly-research-v1",
   "status": "RESEARCH_ONLY",
   "deployment_qualified": false,
@@ -64,7 +64,7 @@
     }
   ],
   "reason": "Observed public series and simulated RTL do not qualify a physical product. New device holdout and bench evidence require separate review.",
-  "benchmark_sha256": "2eb58a6761bf483a9852e0d02b8b128047f867483d04cf8dda6ba8f10719b557",
-  "model_bundle_sha256": "766cefea9192f3bab75976f37e15a0e747ee1e79c96db919057f7fbe540df21a",
+  "benchmark_sha256": "e64c77c061600791e6abd02a0bf1e08bb30573cf23279c1a4e3fa7b40d0490f1",
+  "model_bundle_sha256": "eecb1b07c9cceadeaed447719e6695dd800740f96cd825a2f290d14fa59e71be",
   "profile_sha256": "58128455725cea2c86c232f02c6c64a4109f633afe2e8e1f52442bdf3acd1e2c"
 }
