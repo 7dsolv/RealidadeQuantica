@@ -1,9 +1,9 @@
 {
   "input_scale": 0.015748031496062992,
-  "hidden_scale": 0.037281849252896043,
-  "w1_scale": 0.0094582602733702167,
-  "w2_scale": 0.019079334153903751,
-  "multiplier": 4289829,
+  "hidden_scale": 0.0528085963932548,
+  "w1_scale": 0.01144373792362964,
+  "w2_scale": 0.022295328575795092,
+  "multiplier": 3664287,
   "shift": 30,
   "mean_C": 50,
   "scale_C": 20,
@@ -11,9 +11,9 @@
   "payload_bytes": 920,
   "activation_policy": "out-of-domain input is flagged; no safety assertion",
   "payload_file": "konaet-int8.bin",
-  "payload_sha256": "68d5030e3a42215863e1b23f3271d43bf48ee7bafdcc6688f959533b44fcb203",
+  "payload_sha256": "6fe80b9753a776f3c76d99287bcf687a7351ed14d52eedd90df9d4421814b83e",
   "format": "W1 row-major int8[24,32], b1 int32[24], W2 row-major int8[2,24], b2 int32[2]; little endian",
   "model_credit": "KONAET Sense 842, trained by 7dsolv from random initialization, MIT",
   "source_url": "https://github.com/7dsolv/RealidadeQuantica/tree/main/integrated",
-  "source_revision": "a4d8e151bf8fe006259a95098a07daa49bb80d08"
+  "source_revision": "4d0e7532f668bbd59d3e952404a8ab8dc30cd592"
 }

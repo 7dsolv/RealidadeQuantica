@@ -3,8 +3,8 @@
   "author": "7dsolv",
   "initialization": "random He initialization, no imported weights",
   "architecture": "standard dense 32-24-2 ReLU; compatible comparison interface",
-  "revision": "566983cd6e7f625ca4fb0f868b64fdaad2e16d69",
-  "training_seed": 7805,
+  "revision": "4d0e7532f668bbd59d3e952404a8ab8dc30cd592",
+  "training_seed": 8007,
   "training_config": {
     "learning_rate": 0.008,
     "regularization": 0.0001,
@@ -16,22 +16,22 @@
     {
       "name": "fc1_weight.f32",
       "bytes": 3072,
-      "sha256": "b0f225372f44081a584174d06bcafb1662a3ebbd363997c049152a5c0f993301"
+      "sha256": "47cb64bc78013e468249559681e5f952981157f4ea70ab2907cf8ea830297a9c"
     },
     {
       "name": "fc1_bias.f32",
       "bytes": 96,
-      "sha256": "c8e57c9243fe547e68136c14a0328bc157061940ad6832325a2b5293f95eb97a"
+      "sha256": "a06630e5bae8ebe6ed1bd92f4f6b5900eba2b2602e26595ea8c70376064938e2"
     },
     {
       "name": "fc2_weight.f32",
       "bytes": 192,
-      "sha256": "f7cb290135db3b4da29c233ea185ab973ea39cfe7f6a8c6e6e28286ca1bd0248"
+      "sha256": "f17df37fd54e1ee2cae83929409aac365d4631554593579230c4148dbd54d29a"
     },
     {
       "name": "fc2_bias.f32",
       "bytes": 8,
-      "sha256": "858874765de45deb6ab1936948120e67802751612551e592ac4620517bdb2ee9"
+      "sha256": "df331946e380e83cced3804269710317b68828cc455773ba6cf48c587ffaaeee"
     }
   ],
   "parameters": 842,

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_revision": "a4d8e151bf8fe006259a95098a07daa49bb80d08",
+  "source_revision": "4d0e7532f668bbd59d3e952404a8ab8dc30cd592",
   "numerical_tests": 29,
   "app_tests": 6,
   "rtl_cases": 391,
@@ -11,7 +11,7 @@
   "rtl_cycles_after_last_input": 2472,
   "reference_clock_Hz": 1.2E+7,
   "rtl_compute_latency_at_12MHz_us": 206,
-  "place_route_achieved_clock_MHz": 19.997600555419922,
+  "place_route_achieved_clock_MHz": 19.746845245361328,
   "utilization": {
     "ICESTORM_DSP": {
       "available": 8,
@@ -23,7 +23,7 @@
     },
     "ICESTORM_LC": {
       "available": 5280,
-      "used": 1870
+      "used": 1862
     },
     "ICESTORM_LFOSC": {
       "available": 1,
@@ -78,7 +78,7 @@
   "pcb_unconnected": 0,
   "schematic_parity_issues": 0,
   "erc_violations": 0,
-  "quantized_agreement": 0.986328125,
+  "quantized_agreement": 0.96630859375,
   "physical_power": "NOT_MEASURED",
   "physical_latency": "NOT_MEASURED",
   "manufacturing": "NOT_FABRICATED",
