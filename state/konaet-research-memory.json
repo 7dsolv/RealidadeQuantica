@@ -3,39 +3,39 @@
   "objective": "validation balanced accuracy minus 0.15 FPR",
   "policy": "UCB1 over three training configurations",
   "counts": [
+    6,
+    6,
+    6
+  ],
+  "reward_sum": [
+    4.6015625,
+    4.7428385416666661,
+    4.4377604166666664
+  ],
+  "best_reward": 0.8100260416666667,
+  "best_arm": 2,
+  "test_used_for_selection": false,
+  "cycle": 3,
+  "resumed": true,
+  "before_counts": [
     4,
     4,
     4
   ],
-  "reward_sum": [
+  "before_reward_sum": [
     3.096875,
     3.126302083333333,
     2.9483072916666666
   ],
-  "best_reward": 0.809375,
-  "best_arm": 2,
-  "test_used_for_selection": false,
-  "cycle": 2,
-  "resumed": true,
-  "before_counts": [
-    2,
-    2,
-    2
-  ],
-  "before_reward_sum": [
-    1.535546875,
-    1.5705729166666667,
-    1.47578125
-  ],
-  "best_seed": 7805,
+  "best_seed": 8007,
   "experiments": 6,
   "training_complete": true,
   "policy_scores": [
-    0.77421875,
-    0.78157552083333326,
-    0.73707682291666665
+    0.76692708333333337,
+    0.79047309027777768,
+    0.73962673611111107
   ],
-  "source_revision": "a4d8e151bf8fe006259a95098a07daa49bb80d08",
+  "source_revision": "4d0e7532f668bbd59d3e952404a8ab8dc30cd592",
   "research_contract": "b120cff3dfc64b01198035dfd966db0ada72331a863f41f30ba9a44ad7655292",
   "revalidated_best_reward": 0.809375
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_revision": "a4d8e151bf8fe006259a95098a07daa49bb80d08",
+  "source_revision": "4d0e7532f668bbd59d3e952404a8ab8dc30cd592",
   "train_seed": 39001,
   "development_seed": 39002,
   "locked_test_seed": 39003,
@@ -14,39 +14,39 @@
     "objective": "validation balanced accuracy minus 0.15 FPR",
     "policy": "UCB1 over three training configurations",
     "counts": [
+      6,
+      6,
+      6
+    ],
+    "reward_sum": [
+      4.6015625,
+      4.7428385416666661,
+      4.4377604166666664
+    ],
+    "best_reward": 0.8100260416666667,
+    "best_arm": 2,
+    "test_used_for_selection": false,
+    "cycle": 3,
+    "resumed": true,
+    "before_counts": [
       4,
       4,
       4
     ],
-    "reward_sum": [
+    "before_reward_sum": [
       3.096875,
       3.126302083333333,
       2.9483072916666666
     ],
-    "best_reward": 0.809375,
-    "best_arm": 2,
-    "test_used_for_selection": false,
-    "cycle": 2,
-    "resumed": true,
-    "before_counts": [
-      2,
-      2,
-      2
-    ],
-    "before_reward_sum": [
-      1.535546875,
-      1.5705729166666667,
-      1.47578125
-    ],
-    "best_seed": 7805,
+    "best_seed": 8007,
     "experiments": 6,
     "training_complete": true,
     "policy_scores": [
-      0.77421875,
-      0.78157552083333326,
-      0.73707682291666665
+      0.76692708333333337,
+      0.79047309027777768,
+      0.73962673611111107
     ],
-    "source_revision": "a4d8e151bf8fe006259a95098a07daa49bb80d08",
+    "source_revision": "4d0e7532f668bbd59d3e952404a8ab8dc30cd592",
     "research_contract": "b120cff3dfc64b01198035dfd966db0ada72331a863f41f30ba9a44ad7655292",
     "revalidated_best_reward": 0.809375
   },
@@ -54,158 +54,158 @@
     {
       "round": 1,
       "arm": 2,
-      "seed": 7903,
-      "reward": 0.76692708333333326,
+      "seed": 8004,
+      "reward": 0.80651041666666679,
       "validation": {
         "samples": 768,
-        "tp": 270,
-        "fp": 50,
-        "tn": 334,
-        "fn": 114,
+        "tp": 264,
+        "fp": 22,
+        "tn": 362,
+        "fn": 120,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.78645833333333337,
-        "precision": 0.84375,
-        "recall": 0.703125,
-        "f1": 0.76704545454545459,
-        "false_positive_rate": 0.13020833333333334,
-        "normal_resolution": 0.86979166666666663,
-        "balanced_accuracy": 0.78645833333333326,
-        "utility": 0.76692708333333326
+        "accuracy": 0.81510416666666663,
+        "precision": 0.92307692307692313,
+        "recall": 0.6875,
+        "f1": 0.78805970149253735,
+        "false_positive_rate": 0.057291666666666664,
+        "normal_resolution": 0.94270833333333337,
+        "balanced_accuracy": 0.81510416666666674,
+        "utility": 0.80651041666666679
       },
-      "loss_initial": 0.66885876256151144,
-      "loss_final": 0.44048772463368613
+      "loss_initial": 0.68236176990747732,
+      "loss_final": 0.39783288208491829
     },
     {
       "round": 2,
       "arm": 1,
-      "seed": 7904,
-      "reward": 0.79401041666666672,
+      "seed": 8005,
+      "reward": 0.721875,
       "validation": {
         "samples": 768,
-        "tp": 270,
-        "fp": 34,
-        "tn": 350,
-        "fn": 114,
-        "abstentions": 0,
-        "normal_abstentions": 0,
-        "coverage": 1,
-        "accuracy": 0.80729166666666663,
-        "precision": 0.88815789473684215,
-        "recall": 0.703125,
-        "f1": 0.78488372093023262,
-        "false_positive_rate": 0.088541666666666671,
-        "normal_resolution": 0.91145833333333337,
-        "balanced_accuracy": 0.80729166666666674,
-        "utility": 0.79401041666666672
-      },
-      "loss_initial": 0.69679579411843628,
-      "loss_final": 0.42941689516235948
-    },
-    {
-      "round": 3,
-      "arm": 3,
-      "seed": 7905,
-      "reward": 0.738671875,
-      "validation": {
-        "samples": 768,
-        "tp": 234,
-        "fp": 39,
-        "tn": 345,
-        "fn": 150,
+        "tp": 277,
+        "fp": 82,
+        "tn": 302,
+        "fn": 107,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
         "accuracy": 0.75390625,
-        "precision": 0.8571428571428571,
-        "recall": 0.609375,
-        "f1": 0.71232876712328752,
-        "false_positive_rate": 0.1015625,
-        "normal_resolution": 0.8984375,
+        "precision": 0.77158774373259054,
+        "recall": 0.72135416666666663,
+        "f1": 0.74562584118438768,
+        "false_positive_rate": 0.21354166666666666,
+        "normal_resolution": 0.78645833333333337,
         "balanced_accuracy": 0.75390625,
-        "utility": 0.738671875
+        "utility": 0.721875
       },
-      "loss_initial": 0.69553003914696687,
-      "loss_final": 0.514133812013558
+      "loss_initial": 0.691217037029005,
+      "loss_final": 0.46803929484014062
+    },
+    {
+      "round": 3,
+      "arm": 3,
+      "seed": 8006,
+      "reward": 0.749609375,
+      "validation": {
+        "samples": 768,
+        "tp": 258,
+        "fp": 51,
+        "tn": 333,
+        "fn": 126,
+        "abstentions": 0,
+        "normal_abstentions": 0,
+        "coverage": 1,
+        "accuracy": 0.76953125,
+        "precision": 0.83495145631067957,
+        "recall": 0.671875,
+        "f1": 0.74458874458874447,
+        "false_positive_rate": 0.1328125,
+        "normal_resolution": 0.8671875,
+        "balanced_accuracy": 0.76953125,
+        "utility": 0.749609375
+      },
+      "loss_initial": 0.69936173978492977,
+      "loss_final": 0.50114715070816118
     },
     {
       "round": 4,
       "arm": 2,
-      "seed": 7906,
-      "reward": 0.78880208333333335,
+      "seed": 8007,
+      "reward": 0.8100260416666667,
       "validation": {
         "samples": 768,
-        "tp": 266,
-        "fp": 34,
-        "tn": 350,
-        "fn": 118,
+        "tp": 281,
+        "fp": 33,
+        "tn": 351,
+        "fn": 103,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.80208333333333337,
-        "precision": 0.88666666666666671,
-        "recall": 0.69270833333333337,
-        "f1": 0.77777777777777779,
-        "false_positive_rate": 0.088541666666666671,
-        "normal_resolution": 0.91145833333333337,
-        "balanced_accuracy": 0.80208333333333337,
-        "utility": 0.78880208333333335
+        "accuracy": 0.82291666666666663,
+        "precision": 0.89490445859872614,
+        "recall": 0.73177083333333337,
+        "f1": 0.80515759312320923,
+        "false_positive_rate": 0.0859375,
+        "normal_resolution": 0.9140625,
+        "balanced_accuracy": 0.82291666666666674,
+        "utility": 0.8100260416666667
       },
-      "loss_initial": 0.68902260950342209,
-      "loss_final": 0.42527543287240177
+      "loss_initial": 0.66319254171747255,
+      "loss_final": 0.39773805445642718
     },
     {
       "round": 5,
       "arm": 1,
-      "seed": 7907,
-      "reward": 0.76731770833333324,
+      "seed": 8008,
+      "reward": 0.7828125,
       "validation": {
         "samples": 768,
-        "tp": 243,
-        "fp": 29,
-        "tn": 355,
-        "fn": 141,
+        "tp": 264,
+        "fp": 36,
+        "tn": 348,
+        "fn": 120,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.77864583333333337,
-        "precision": 0.89338235294117652,
-        "recall": 0.6328125,
-        "f1": 0.74085365853658536,
-        "false_positive_rate": 0.075520833333333329,
-        "normal_resolution": 0.92447916666666663,
-        "balanced_accuracy": 0.77864583333333326,
-        "utility": 0.76731770833333324
+        "accuracy": 0.796875,
+        "precision": 0.88,
+        "recall": 0.6875,
+        "f1": 0.77192982456140358,
+        "false_positive_rate": 0.09375,
+        "normal_resolution": 0.90625,
+        "balanced_accuracy": 0.796875,
+        "utility": 0.7828125
       },
-      "loss_initial": 0.69306072608171931,
-      "loss_final": 0.45556480144377642
+      "loss_initial": 0.69229461254335611,
+      "loss_final": 0.44431818642486881
     },
     {
       "round": 6,
       "arm": 3,
-      "seed": 7908,
-      "reward": 0.73385416666666659,
+      "seed": 8009,
+      "reward": 0.73984375,
       "validation": {
         "samples": 768,
-        "tp": 229,
-        "fp": 38,
-        "tn": 346,
-        "fn": 155,
+        "tp": 244,
+        "fp": 46,
+        "tn": 338,
+        "fn": 140,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.74869791666666663,
-        "precision": 0.85767790262172283,
-        "recall": 0.59635416666666663,
-        "f1": 0.70353302611367119,
-        "false_positive_rate": 0.098958333333333329,
-        "normal_resolution": 0.90104166666666663,
-        "balanced_accuracy": 0.74869791666666663,
-        "utility": 0.73385416666666659
+        "accuracy": 0.7578125,
+        "precision": 0.8413793103448276,
+        "recall": 0.63541666666666663,
+        "f1": 0.72403560830860525,
+        "false_positive_rate": 0.11979166666666667,
+        "normal_resolution": 0.88020833333333337,
+        "balanced_accuracy": 0.7578125,
+        "utility": 0.73984375
       },
-      "loss_initial": 0.71197898307104113,
-      "loss_final": 0.50943100925170248
+      "loss_initial": 0.69958019179490982,
+      "loss_final": 0.51069867191502349
     }
   ],
   "records": [
@@ -214,21 +214,21 @@
       "model": "KONAET_FP32",
       "metrics": {
         "samples": 2048,
-        "tp": 742,
-        "fp": 90,
-        "tn": 934,
-        "fn": 282,
+        "tp": 756,
+        "fp": 89,
+        "tn": 935,
+        "fn": 268,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.818359375,
-        "precision": 0.89182692307692313,
-        "recall": 0.724609375,
-        "f1": 0.79956896551724133,
-        "false_positive_rate": 0.087890625,
-        "normal_resolution": 0.912109375,
-        "balanced_accuracy": 0.818359375,
-        "utility": 0.80517578125,
+        "accuracy": 0.82568359375,
+        "precision": 0.89467455621301772,
+        "recall": 0.73828125,
+        "f1": 0.8089887640449438,
+        "false_positive_rate": 0.0869140625,
+        "normal_resolution": 0.9130859375,
+        "balanced_accuracy": 0.82568359375,
+        "utility": 0.812646484375,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 1,
@@ -236,16 +236,16 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.8023760779204665,
-            0.83382184006747506
+            0.80946808764275335,
+            0.84062725605516864
           ],
           "recall_95": [
-            0.69961977186311786,
-            0.75171065493646139
+            0.70703125,
+            0.76328052190121154
           ],
           "false_positive_rate_95": [
-            0.072834645669291334,
-            0.10414560161779575
+            0.072380952380952379,
+            0.10372608257804633
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
         },
@@ -257,21 +257,21 @@
       "model": "KONAET_INT8",
       "metrics": {
         "samples": 2048,
-        "tp": 744,
-        "fp": 90,
-        "tn": 934,
-        "fn": 280,
+        "tp": 774,
+        "fp": 128,
+        "tn": 896,
+        "fn": 250,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.8193359375,
-        "precision": 0.8920863309352518,
-        "recall": 0.7265625,
-        "f1": 0.80086114101184069,
-        "false_positive_rate": 0.087890625,
-        "normal_resolution": 0.912109375,
-        "balanced_accuracy": 0.8193359375,
-        "utility": 0.80615234375,
+        "accuracy": 0.8154296875,
+        "precision": 0.85809312638580926,
+        "recall": 0.755859375,
+        "f1": 0.80373831775700944,
+        "false_positive_rate": 0.125,
+        "normal_resolution": 0.875,
+        "balanced_accuracy": 0.8154296875,
+        "utility": 0.7966796875,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 1,
@@ -279,16 +279,16 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.8032198719947814,
-            0.83569920471596171
+            0.79882839342159517,
+            0.831464017579198
           ],
           "recall_95": [
-            0.69912366114897762,
-            0.75467980295566506
+            0.73080757726819545,
+            0.780209324452902
           ],
           "false_positive_rate_95": [
-            0.07113821138211382,
-            0.10414560161779575
+            0.10501419110690634,
+            0.14480077745383868
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
         },
@@ -558,21 +558,21 @@
       "model": "KONAET_FP32",
       "metrics": {
         "samples": 1024,
-        "tp": 508,
+        "tp": 509,
         "fp": 0,
         "tn": 512,
-        "fn": 4,
+        "fn": 3,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.99609375,
+        "accuracy": 0.9970703125,
         "precision": 1,
-        "recall": 0.9921875,
-        "f1": 0.996078431372549,
+        "recall": 0.994140625,
+        "f1": 0.99706170421155726,
         "false_positive_rate": 0,
         "normal_resolution": 1,
-        "balanced_accuracy": 0.99609375,
-        "utility": 0.99609375,
+        "balanced_accuracy": 0.9970703125,
+        "utility": 0.9970703125,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 1,
@@ -580,12 +580,12 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.99168399168399168,
-            0.99905123339658441
+            0.99385245901639352,
+            1
           ],
           "recall_95": [
-            0.98336798336798337,
-            0.99810246679316883
+            0.98770491803278693,
+            1
           ],
           "false_positive_rate_95": [
             0,
@@ -601,21 +601,21 @@
       "model": "KONAET_INT8",
       "metrics": {
         "samples": 1024,
-        "tp": 508,
+        "tp": 509,
         "fp": 0,
         "tn": 512,
-        "fn": 4,
+        "fn": 3,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.99609375,
+        "accuracy": 0.9970703125,
         "precision": 1,
-        "recall": 0.9921875,
-        "f1": 0.996078431372549,
+        "recall": 0.994140625,
+        "f1": 0.99706170421155726,
         "false_positive_rate": 0,
         "normal_resolution": 1,
-        "balanced_accuracy": 0.99609375,
-        "utility": 0.99609375,
+        "balanced_accuracy": 0.9970703125,
+        "utility": 0.9970703125,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 1,
@@ -623,12 +623,12 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.99168399168399168,
-            0.99905123339658441
+            0.99385245901639352,
+            1
           ],
           "recall_95": [
-            0.98336798336798337,
-            0.99810246679316883
+            0.98770491803278693,
+            1
           ],
           "false_positive_rate_95": [
             0,
@@ -902,21 +902,21 @@
       "model": "KONAET_FP32",
       "metrics": {
         "samples": 1024,
-        "tp": 419,
-        "fp": 168,
-        "tn": 344,
-        "fn": 93,
+        "tp": 420,
+        "fp": 161,
+        "tn": 351,
+        "fn": 92,
         "abstentions": 1,
         "normal_abstentions": 0,
         "coverage": 0.9990234375,
-        "accuracy": 0.7451171875,
-        "precision": 0.71379897785349233,
-        "recall": 0.818359375,
-        "f1": 0.76251137397634217,
-        "false_positive_rate": 0.328125,
-        "normal_resolution": 0.671875,
-        "balanced_accuracy": 0.7451171875,
-        "utility": 0.6958984375,
+        "accuracy": 0.7529296875,
+        "precision": 0.72289156626506024,
+        "recall": 0.8203125,
+        "f1": 0.768526989935956,
+        "false_positive_rate": 0.314453125,
+        "normal_resolution": 0.685546875,
+        "balanced_accuracy": 0.7529296875,
+        "utility": 0.70576171875,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 1,
@@ -924,16 +924,16 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.72083938918834378,
-            0.77050752885423834
+            0.72619974059662773,
+            0.77581066895696149
           ],
           "recall_95": [
-            0.78811881188118815,
-            0.85333333333333339
+            0.788235294117647,
+            0.85458167330677293
           ],
           "false_positive_rate_95": [
-            0.28782287822878228,
-            0.36399217221135027
+            0.28313253012048195,
+            0.35349716446124763
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
         },
@@ -945,21 +945,21 @@
       "model": "KONAET_INT8",
       "metrics": {
         "samples": 1024,
-        "tp": 419,
-        "fp": 170,
-        "tn": 342,
-        "fn": 93,
+        "tp": 421,
+        "fp": 186,
+        "tn": 326,
+        "fn": 91,
         "abstentions": 1,
         "normal_abstentions": 0,
         "coverage": 0.9990234375,
-        "accuracy": 0.7431640625,
-        "precision": 0.71137521222410871,
-        "recall": 0.818359375,
-        "f1": 0.7611262488646684,
-        "false_positive_rate": 0.33203125,
-        "normal_resolution": 0.66796875,
-        "balanced_accuracy": 0.7431640625,
-        "utility": 0.693359375,
+        "accuracy": 0.7294921875,
+        "precision": 0.69357495881383857,
+        "recall": 0.822265625,
+        "f1": 0.75245755138516546,
+        "false_positive_rate": 0.36328125,
+        "normal_resolution": 0.63671875,
+        "balanced_accuracy": 0.7294921875,
+        "utility": 0.675,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 1,
@@ -967,16 +967,16 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.71875,
-            0.7710460838637786
+            0.70069122224131675,
+            0.75274926686217
           ],
           "recall_95": [
-            0.78269617706237427,
-            0.849802371541502
+            0.78875968992248058,
+            0.85685071574642124
           ],
           "false_positive_rate_95": [
-            0.29032258064516131,
-            0.3671875
+            0.32706766917293234,
+            0.40588235294117647
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
         },
@@ -1246,21 +1246,21 @@
       "model": "KONAET_FP32",
       "metrics": {
         "samples": 2265,
-        "tp": 40,
-        "fp": 383,
-        "tn": 1740,
-        "fn": 102,
+        "tp": 83,
+        "fp": 304,
+        "tn": 1819,
+        "fn": 59,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.78587196467991172,
-        "precision": 0.094562647754137114,
-        "recall": 0.28169014084507044,
-        "f1": 0.1415929203539823,
-        "false_positive_rate": 0.18040508714083844,
-        "normal_resolution": 0.81959491285916153,
-        "balanced_accuracy": 0.550642526852116,
-        "utility": 0.52358176378099019,
+        "accuracy": 0.83973509933774837,
+        "precision": 0.2144702842377261,
+        "recall": 0.58450704225352113,
+        "f1": 0.31379962192816635,
+        "false_positive_rate": 0.14319359397079603,
+        "normal_resolution": 0.856806406029204,
+        "balanced_accuracy": 0.72065672414136261,
+        "utility": 0.69917768504574318,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 32,
@@ -1268,16 +1268,16 @@
           "valid_replicates": 255,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.45014463623647005,
-            0.68799490877800429
+            0.60941979381655542,
+            0.8231250343148917
           ],
           "recall_95": [
-            0.066666666666666666,
-            0.56804733727810652
+            0.36633663366336633,
+            0.79545454545454541
           ],
           "false_positive_rate_95": [
-            0.135,
-            0.23054755043227665
+            0.10422535211267606,
+            0.18710918710918711
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
         },
@@ -1289,21 +1289,21 @@
       "model": "KONAET_INT8",
       "metrics": {
         "samples": 2265,
-        "tp": 41,
-        "fp": 376,
-        "tn": 1747,
-        "fn": 101,
+        "tp": 100,
+        "fp": 314,
+        "tn": 1809,
+        "fn": 42,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.78940397350993374,
-        "precision": 0.098321342925659472,
-        "recall": 0.28873239436619719,
-        "f1": 0.14669051878354203,
-        "false_positive_rate": 0.17710786622703723,
-        "normal_resolution": 0.82289213377296277,
-        "balanced_accuracy": 0.55581226406958,
-        "utility": 0.52924608413552432,
+        "accuracy": 0.84282560706401766,
+        "precision": 0.24154589371980675,
+        "recall": 0.704225352112676,
+        "f1": 0.35971223021582732,
+        "false_positive_rate": 0.14790390956194066,
+        "normal_resolution": 0.85209609043805934,
+        "balanced_accuracy": 0.77816072127536762,
+        "utility": 0.75597513484107648,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 32,
@@ -1311,16 +1311,16 @@
           "valid_replicates": 255,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.45336694194283272,
-            0.6817013081469796
+            0.66647114030971377,
+            0.88515446224256289
           ],
           "recall_95": [
-            0.076923076923076927,
-            0.55029585798816572
+            0.49038461538461536,
+            0.91089108910891092
           ],
           "false_positive_rate_95": [
-            0.13239436619718309,
-            0.22431761786600496
+            0.10753176043557169,
+            0.1945409429280397
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
         },
@@ -1590,21 +1590,21 @@
       "model": "KONAET_FP32",
       "metrics": {
         "samples": 723,
-        "tp": 78,
-        "fp": 551,
-        "tn": 81,
-        "fn": 13,
+        "tp": 73,
+        "fp": 520,
+        "tn": 112,
+        "fn": 18,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.21991701244813278,
-        "precision": 0.12400635930047695,
-        "recall": 0.8571428571428571,
-        "f1": 0.21666666666666667,
-        "false_positive_rate": 0.87183544303797467,
-        "normal_resolution": 0.12816455696202531,
-        "balanced_accuracy": 0.49265370705244121,
-        "utility": 0.361878390596745,
+        "accuracy": 0.25587828492392806,
+        "precision": 0.12310286677908938,
+        "recall": 0.80219780219780223,
+        "f1": 0.21345029239766081,
+        "false_positive_rate": 0.82278481012658233,
+        "normal_resolution": 0.17721518987341772,
+        "balanced_accuracy": 0.48970649603561,
+        "utility": 0.36628877451662267,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 32,
@@ -1612,16 +1612,16 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.42036960132890366,
-            0.552519437799043
+            0.38502906976744183,
+            0.58051606108478149
           ],
           "recall_95": [
-            0.70909090909090911,
-            0.972972972972973
+            0.60377358490566035,
+            0.97777777777777775
           ],
           "false_positive_rate_95": [
-            0.82426127527216175,
-            0.91247974068071314
+            0.75038520801232667,
+            0.8809946714031972
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
         },
@@ -1633,21 +1633,21 @@
       "model": "KONAET_INT8",
       "metrics": {
         "samples": 723,
-        "tp": 78,
-        "fp": 544,
-        "tn": 88,
-        "fn": 13,
+        "tp": 73,
+        "fp": 530,
+        "tn": 102,
+        "fn": 18,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.22959889349930843,
-        "precision": 0.12540192926045016,
-        "recall": 0.8571428571428571,
-        "f1": 0.2187938288920056,
-        "false_positive_rate": 0.86075949367088611,
-        "normal_resolution": 0.13924050632911392,
-        "balanced_accuracy": 0.49819168173598549,
-        "utility": 0.36907775768535256,
+        "accuracy": 0.24204702627939143,
+        "precision": 0.12106135986733002,
+        "recall": 0.80219780219780223,
+        "f1": 0.21037463976945248,
+        "false_positive_rate": 0.83860759493670889,
+        "normal_resolution": 0.16139240506329114,
+        "balanced_accuracy": 0.48179510363054667,
+        "utility": 0.35600396439004034,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 32,
@@ -1655,16 +1655,16 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.42618355481727577,
-            0.559488808801214
+            0.37873324086916321,
+            0.5710373880989994
           ],
           "recall_95": [
-            0.70909090909090911,
-            0.972972972972973
+            0.60377358490566035,
+            0.97777777777777775
           ],
           "false_positive_rate_95": [
-            0.80972818311874106,
-            0.90453074433656955
+            0.77286135693215341,
+            0.89967637540453071
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
         },
@@ -2279,20 +2279,20 @@
       "metrics": {
         "samples": 398,
         "tp": 33,
-        "fp": 353,
-        "tn": 2,
+        "fp": 355,
+        "tn": 0,
         "fn": 10,
         "abstentions": 10,
         "normal_abstentions": 0,
         "coverage": 0.97487437185929648,
-        "accuracy": 0.087939698492462318,
-        "precision": 0.08549222797927461,
+        "accuracy": 0.0829145728643216,
+        "precision": 0.08505154639175258,
         "recall": 0.76744186046511631,
-        "f1": 0.15384615384615385,
-        "false_positive_rate": 0.9943661971830986,
-        "normal_resolution": 0.0056338028169014088,
-        "balanced_accuracy": 0.38653783164100886,
-        "utility": 0.23738290206354407,
+        "f1": 0.1531322505800464,
+        "false_positive_rate": 1,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0.38372093023255816,
+        "utility": 0.23372093023255816,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 32,
@@ -2300,15 +2300,15 @@
           "valid_replicates": 252,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.31751023260457223,
-            0.50257731958762886
+            0.31521739130434784,
+            0.5
           ],
           "recall_95": [
             0.63043478260869568,
             1
           ],
           "false_positive_rate_95": [
-            0.98599439775910369,
+            1,
             1
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
@@ -2322,20 +2322,20 @@
       "metrics": {
         "samples": 398,
         "tp": 33,
-        "fp": 353,
-        "tn": 2,
+        "fp": 355,
+        "tn": 0,
         "fn": 10,
         "abstentions": 10,
         "normal_abstentions": 0,
         "coverage": 0.97487437185929648,
-        "accuracy": 0.087939698492462318,
-        "precision": 0.08549222797927461,
+        "accuracy": 0.0829145728643216,
+        "precision": 0.08505154639175258,
         "recall": 0.76744186046511631,
-        "f1": 0.15384615384615385,
-        "false_positive_rate": 0.9943661971830986,
-        "normal_resolution": 0.0056338028169014088,
-        "balanced_accuracy": 0.38653783164100886,
-        "utility": 0.23738290206354407,
+        "f1": 0.1531322505800464,
+        "false_positive_rate": 1,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0.38372093023255816,
+        "utility": 0.23372093023255816,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 32,
@@ -2343,15 +2343,15 @@
           "valid_replicates": 252,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.31751023260457223,
-            0.50257731958762886
+            0.31521739130434784,
+            0.5
           ],
           "recall_95": [
             0.63043478260869568,
             1
           ],
           "false_positive_rate_95": [
-            0.98599439775910369,
+            1,
             1
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
@@ -2623,20 +2623,20 @@
       "metrics": {
         "samples": 1029,
         "tp": 128,
-        "fp": 899,
-        "tn": 1,
+        "fp": 900,
+        "tn": 0,
         "fn": 1,
         "abstentions": 0,
         "normal_abstentions": 0,
         "coverage": 1,
-        "accuracy": 0.12536443148688048,
-        "precision": 0.124634858812074,
+        "accuracy": 0.12439261418853255,
+        "precision": 0.1245136186770428,
         "recall": 0.99224806201550386,
-        "f1": 0.22145328719723184,
-        "false_positive_rate": 0.99888888888888894,
-        "normal_resolution": 0.0011111111111111111,
-        "balanced_accuracy": 0.49667958656330746,
-        "utility": 0.34684625322997409,
+        "f1": 0.2212618841832325,
+        "false_positive_rate": 1,
+        "normal_resolution": 0,
+        "balanced_accuracy": 0.49612403100775193,
+        "utility": 0.34612403100775191,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 32,
@@ -2644,15 +2644,15 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.48907914449857848,
-            0.50174418604651161
+            0.4885057471264368,
+            0.5
           ],
           "recall_95": [
             0.97701149425287359,
             1
           ],
           "false_positive_rate_95": [
-            0.99644970414201184,
+            1,
             1
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
@@ -2967,20 +2967,20 @@
       "metrics": {
         "samples": 400,
         "tp": 45,
-        "fp": 309,
-        "tn": 41,
+        "fp": 327,
+        "tn": 23,
         "fn": 5,
         "abstentions": 4,
         "normal_abstentions": 0,
         "coverage": 0.99,
-        "accuracy": 0.215,
-        "precision": 0.1271186440677966,
+        "accuracy": 0.17,
+        "precision": 0.12096774193548387,
         "recall": 0.9,
-        "f1": 0.22277227722772278,
-        "false_positive_rate": 0.8828571428571429,
-        "normal_resolution": 0.11714285714285715,
-        "balanced_accuracy": 0.50857142857142856,
-        "utility": 0.37614285714285711,
+        "f1": 0.2132701421800948,
+        "false_positive_rate": 0.93428571428571427,
+        "normal_resolution": 0.065714285714285711,
+        "balanced_accuracy": 0.48285714285714287,
+        "utility": 0.34271428571428575,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 32,
@@ -2988,16 +2988,16 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.41013824884792627,
-            0.59230769230769231
+            0.38970588235294118,
+            0.551490514905149
           ],
           "recall_95": [
             0.70588235294117652,
             1
           ],
           "false_positive_rate_95": [
-            0.78869047619047616,
-            0.96416938110749184
+            0.86585365853658536,
+            0.98391420911528149
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
         },
@@ -3010,20 +3010,20 @@
       "metrics": {
         "samples": 400,
         "tp": 45,
-        "fp": 307,
-        "tn": 43,
+        "fp": 333,
+        "tn": 17,
         "fn": 5,
         "abstentions": 4,
         "normal_abstentions": 0,
         "coverage": 0.99,
-        "accuracy": 0.22,
-        "precision": 0.12784090909090909,
+        "accuracy": 0.155,
+        "precision": 0.11904761904761904,
         "recall": 0.9,
-        "f1": 0.22388059701492535,
-        "false_positive_rate": 0.87714285714285711,
-        "normal_resolution": 0.12285714285714286,
-        "balanced_accuracy": 0.51142857142857145,
-        "utility": 0.37985714285714289,
+        "f1": 0.2102803738317757,
+        "false_positive_rate": 0.9514285714285714,
+        "normal_resolution": 0.048571428571428571,
+        "balanced_accuracy": 0.47428571428571431,
+        "utility": 0.33157142857142863,
         "bootstrap": {
           "method": "moving-block bootstrap, conditional on this series",
           "block_windows": 32,
@@ -3031,16 +3031,16 @@
           "valid_replicates": 256,
           "seed": 66113,
           "balanced_accuracy_95": [
-            0.41417050691244239,
-            0.59827784156142372
+            0.37965367965367963,
+            0.54336043360433606
           ],
           "recall_95": [
             0.70588235294117652,
             1
           ],
           "false_positive_rate_95": [
-            0.7767857142857143,
-            0.96571428571428575
+            0.90133333333333332,
+            0.98927613941018766
           ],
           "limitation": "Block length is a declared heuristic; not independent-device or industrial reliability evidence"
         },
@@ -5499,7 +5499,7 @@
   },
   "hardware_latency": "NOT_MEASURED",
   "physical_device": "NOT_DEPLOYED",
-  "quantized_agreement": 0.986328125,
+  "quantized_agreement": 0.96630859375,
   "external_protocol": {
     "schema_version": 1,
     "protocol": "KONAET external evaluation v1",
