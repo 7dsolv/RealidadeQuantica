@@ -42,7 +42,7 @@ jobs:
           node-version: '24.22.2'
       - run: npm ci --ignore-scripts --no-audit --no-fund
         working-directory: .dependencies/sovereign
-      - uses: 7dsol3/konaet-sovereign-spec/infra/setup-ubuntu@4a38e19c0c82901bb2083d2d070b7675ea1a217d
+      - uses: 7dsol3/konaet-sovereign-spec/infra/setup-ubuntu@66a6bb0cdb61c0e43851d9f3721daf298a00e296
       - name: Capturar contexto independente antes dos calculos
         shell: pwsh
         run: ./.dependencies/sovereign/ecosystem/New-KonaetReceiptTrust.ps1 -Laboratory . -Bot .dependencies/bot -Sovereign .dependencies/sovereign -TrustFile "$env:RUNNER_TEMP/konaet-receipt-trust.json"
