@@ -1,15 +1,15 @@
 Lattice SU(3) 2^4, pure gauge
-Beta: 5.526387, measurements: 80, seed: 9030023
-Wilson mean: 0.574694738891
-Metropolis acceptance: 0.16552734
-Gauge invariance delta: 8.881784e-16
-SU(3) unitarity error: 1.375163e-14
-SU(3) determinant error: 9.920357e-15
+Beta: 5.527377, measurements: 80, seed: 9176813
+Wilson mean: 0.580256636053
+Metropolis acceptance: 0.19824219
+Gauge invariance delta: 9.992007e-16
+SU(3) unitarity error: 1.547019e-14
+SU(3) determinant error: 1.281105e-14
 Wave packet sigma(t): 0.903620834335
 Wave probability integral: 1.000000000000
 Cosmic age H0^-1: 0.950608110262
 Omega_k: 0.000000000000, present q0: -0.527320000000
-Autonomous cycle: 81
-Agent curiosity/coherence: 0.030173 / 0.996830
-Ramsey phase and ideal P(1): 2.18213408 / 0.78698172
+Autonomous cycle: 82
+Agent curiosity/coherence: 0.031367 / 0.996742
+Ramsey phase and ideal P(1): 2.23113550 / 0.80669238
 MATLAB/Fortran max error: 2.220446e-16
