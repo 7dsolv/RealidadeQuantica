@@ -1,5 +1,5 @@
 {
-  "source_revision": "d08efbb02399f02ab19958c2503d9fc0348dd1e6",
+  "source_revision": "fd4c3024e8638bf2093c3799df0f326cc38dd754",
   "cases": 390,
   "multiply_accumulate_per_window": 816,
   "first_layer_abs_bounds": [
