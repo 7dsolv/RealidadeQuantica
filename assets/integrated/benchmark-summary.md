@@ -1,10 +1,10 @@
 # KONAET / measured benchmark
 
-Source: `fd4c3024e8638bf2093c3799df0f326cc38dd754`
+Source: `11fdbd5ca359d2673610daa366842bcd4fe3a594`
 
-Benchmark SHA-256: `b9af8eb816ba1b64f4ac06fad53276e5ef50dad03fe5bc762cd488b2669e21b6`
+Benchmark SHA-256: `a490a517bd2500f583924215e867618aa2302ec233ab8415564a4c7cd03c8bef`
 
-Model bundle SHA-256: `1b9fc8ef95e23840d8ec830535c72e7d57f1f28e7b5a156b747285cd60436d86`
+Model bundle SHA-256: `3dd4b2f1f17817710a20f1f7480605418519bbe1ae65038b7dda9df002e20c27`
 
 Generated from counts in this package. BA includes abstentions as unresolved cases. Bootstrap intervals are conditional on each series.
 
