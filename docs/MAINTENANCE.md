@@ -18,6 +18,10 @@ credentials or the Docker socket. [Official image](https://github.com/KiCad/kica
 
 All PRs run physics, offline, Xenoelement, integrated FPGA/EDA, QSharp and publication-integrity checks. Broad push filters cover shared numerical dependencies, test files, workflow scripts and FPGA pin constraints. Generated-output pushes do not recursively trigger the producers.
 
+### Publication checks
+
+The publication workflow pins the KONAET proposal module by commit. Before sending the generated files to GitHub, the module checks the proposal diff and the new commit history for credential formats, reserved files, and unsupported Git links. A refusal fails the publication job and identifies the reason without printing the credential. Required repository checks still decide when the PR can be integrated.
+
 ## Review and support
 
 Code, data policy, workflow changes and pin constraints belong to `@7dsolv` through CODEOWNERS. Generated results have no code-owner requirement, but still require CI and the publication input check. Keep required check names aligned with workflow job names when updating branch protection.
