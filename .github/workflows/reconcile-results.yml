@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 10
     concurrency:
       group: konaet-publish-${{ github.repository }}
-      cancel-in-progress: false
+      queue: max
     steps:
       - uses: 7dsolv/konaet-bot@7506bfda2a6fb503e0457132e149f560fd83295a # validated v1.3.1 source
         id: app
