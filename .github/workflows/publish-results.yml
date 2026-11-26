@@ -59,7 +59,7 @@ jobs:
             *) exit 64;;
           esac
           { echo 'paths<<KONAET_PATHS';echo "$paths";echo KONAET_PATHS; } >> "$GITHUB_OUTPUT"
-      - uses: 7dsolv/konaet-bot/propose@7506bfda2a6fb503e0457132e149f560fd83295a # validated v1.3.1 source
+      - uses: 7dsolv/konaet-bot/propose@775078c680c785094e38ec6507bdbcedb15006dc # local credential inspection
         id: proposal
         with:
           token: ${{ steps.app.outputs.token }}
