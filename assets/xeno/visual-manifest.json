@@ -1,10 +1,10 @@
 {
-  "revision": "fe3188cf58068eca50962c02ce4f10dd6660b6e9",
+  "revision": "11fdbd5ca359d2673610daa366842bcd4fe3a594",
   "generator": "matlab/xeno/render_xeno.m",
   "frames": 36,
   "frame_delay_s": 0.16,
   "simulation_duration_s": 72,
-  "gif_bytes": 2.193882E+6,
+  "gif_bytes": 2.193571E+6,
   "live_telemetry": false,
   "data_origin": "synthetic",
   "physical_material": "NOT_FABRICATED"
