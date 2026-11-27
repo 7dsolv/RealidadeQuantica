@@ -1,5 +1,5 @@
 {
-  "source_revision": "a4d8e151bf8fe006259a95098a07daa49bb80d08",
+  "source_revision": "11fdbd5ca359d2673610daa366842bcd4fe3a594",
   "input": "Synthetic voltage, ideal RC, ideal sampler",
   "voltage_temperature_mapping": "T_C = 50 + 20 * (V - 1.65); illustrative, NOT_SENSOR_CALIBRATION",
   "sample_rate_Hz": 10,
